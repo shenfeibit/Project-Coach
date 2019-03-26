@@ -41,7 +41,7 @@ Contributor(s):
 -->
 <hibernate-configuration>
   <session-factory>
-    <property name="hibernate.connection.driver_class">com.ibm.db2.jdbc.app.DB2Driver</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://etu-web2.ut-capitole.fr:3306/db_21611945?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">21611945</property>
     <property name="hibernate.connection.password">R01RJ1</property>
@@ -50,6 +50,16 @@ Contributor(s):
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
-    
+    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Seanceperso.hbm.xml"/>
+    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Objectif.hbm.xml"/>
+    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Exercisestandard.hbm.xml"/>
+    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Seancestandard.hbm.xml"/>
+    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Client.hbm.xml"/>
+    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Programmeperso.hbm.xml"/>
+    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Exerciseperso.hbm.xml"/>
+    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Programmestandard.hbm.xml"/>
+    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Possederps.hbm.xml"/>
+    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Choisir.hbm.xml"/>
+    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Coach.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
