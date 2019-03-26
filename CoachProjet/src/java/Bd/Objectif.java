@@ -3,6 +3,7 @@ package Bd;
 
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -70,6 +71,39 @@ public class Objectif  implements java.io.Serializable {
     
     public void setProgrammestandards(Set programmestandards) {
         this.programmestandards = programmestandards;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.idobj);
+        hash = 97 * hash + Objects.hashCode(this.libobj);
+        hash = 97 * hash + Objects.hashCode(this.descripobj);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Objectif other = (Objectif) obj;
+        if (!Objects.equals(this.libobj, other.libobj)) {
+            return false;
+        }
+        if (!Objects.equals(this.descripobj, other.descripobj)) {
+            return false;
+        }
+        if (!Objects.equals(this.idobj, other.idobj)) {
+            return false;
+        }
+        return true;
     }
 
 
