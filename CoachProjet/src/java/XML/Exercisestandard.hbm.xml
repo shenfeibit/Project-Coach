@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26 mars 2019 16:30:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Bd.Exercisestandard" table="EXERCISESTANDARD" catalog="db_21611945" optimistic-lock="version">
+        <id name="idexes" type="java.lang.Integer">
+            <column name="IDEXES" />
+            <generator class="identity" />
+        </id>
+        <property name="libexes" type="string">
+            <column name="LIBEXES" length="32" />
+        </property>
+        <property name="descripexes" type="string">
+            <column name="DESCRIPEXES" length="32" />
+        </property>
+        <property name="dureeexes" type="java.lang.Integer">
+            <column name="DUREEEXES" />
+        </property>
+        <property name="nbrepets" type="java.lang.Integer">
+            <column name="NBREPETS" />
+        </property>
+        <property name="photoexe" type="string">
+            <column name="PHOTOEXE" length="32" />
+        </property>
+        <property name="videoexe" type="string">
+            <column name="VIDEOEXE" length="32" />
+        </property>
+        <set name="seancestandards" table="POSSEDERSEA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDEXES" not-null="true" />
+            </key>
+            <many-to-many entity-name="Bd.Seancestandard">
+                <column name="IDSEAS" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

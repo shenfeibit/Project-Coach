@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26 mars 2019 16:30:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Bd.Client" table="CLIENT" catalog="db_21611945" optimistic-lock="version">
+        <id name="idc" type="java.lang.Integer">
+            <column name="IDC" />
+            <generator class="identity" />
+        </id>
+        <property name="nomc" type="string">
+            <column name="NOMC" length="32" />
+        </property>
+        <property name="prenomc" type="string">
+            <column name="PRENOMC" length="32" />
+        </property>
+        <property name="telc" type="string">
+            <column name="TELC" length="10" />
+        </property>
+        <property name="emailc" type="string">
+            <column name="EMAILC" length="32" />
+        </property>
+        <property name="adressec" type="string">
+            <column name="ADRESSEC" length="32" />
+        </property>
+        <property name="sexec" type="string">
+            <column name="SEXEC" length="32" />
+        </property>
+        <property name="photoc" type="string">
+            <column name="PHOTOC" length="32" />
+        </property>
+        <property name="etatc" type="string">
+            <column name="ETATC" length="32" />
+        </property>
+        <set name="programmepersos" table="PROGRAMMEPERSO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDC" not-null="true" />
+            </key>
+            <one-to-many class="Bd.Programmeperso" />
+        </set>
+        <set name="coaches" table="GUIDER" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDC" not-null="true" />
+            </key>
+            <many-to-many entity-name="Bd.Coach">
+                <column name="IDCO" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="choisirs" table="CHOISIR" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDC" not-null="true" />
+            </key>
+            <one-to-many class="Bd.Choisir" />
+        </set>
+    </class>
+</hibernate-mapping>
