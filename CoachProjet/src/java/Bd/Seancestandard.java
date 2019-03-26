@@ -3,6 +3,7 @@ package Bd;
 
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -70,6 +71,43 @@ public class Seancestandard  implements java.io.Serializable {
     
     public void setPossederpses(Set possederpses) {
         this.possederpses = possederpses;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.idseas);
+        hash = 23 * hash + Objects.hashCode(this.libseas);
+        hash = 23 * hash + Objects.hashCode(this.descripseas);
+        hash = 23 * hash + Objects.hashCode(this.typeseas);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Seancestandard other = (Seancestandard) obj;
+        if (!Objects.equals(this.libseas, other.libseas)) {
+            return false;
+        }
+        if (!Objects.equals(this.descripseas, other.descripseas)) {
+            return false;
+        }
+        if (!Objects.equals(this.typeseas, other.typeseas)) {
+            return false;
+        }
+        if (!Objects.equals(this.idseas, other.idseas)) {
+            return false;
+        }
+        return true;
     }
 
 

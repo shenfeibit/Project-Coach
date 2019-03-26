@@ -1,6 +1,9 @@
 package Bd;
 // Generated 26 mars 2019 16:30:33 by Hibernate Tools 4.3.1
 
+import java.util.Objects;
+
+
 
 
 /**
@@ -126,6 +129,71 @@ public class Exerciseperso  implements java.io.Serializable {
     
     public void setNbrepetreal(Integer nbrepetreal) {
         this.nbrepetreal = nbrepetreal;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + Objects.hashCode(this.idexe);
+        hash = 73 * hash + Objects.hashCode(this.libexe);
+        hash = 73 * hash + Objects.hashCode(this.descripexe);
+        hash = 73 * hash + Objects.hashCode(this.dureeexe);
+        hash = 73 * hash + Objects.hashCode(this.nbrepet);
+        hash = 73 * hash + Objects.hashCode(this.photoexe);
+        hash = 73 * hash + Objects.hashCode(this.videoexe);
+        hash = 73 * hash + Objects.hashCode(this.ordreexe);
+        hash = 73 * hash + Objects.hashCode(this.performance);
+        hash = 73 * hash + Objects.hashCode(this.dureereal);
+        hash = 73 * hash + Objects.hashCode(this.nbrepetreal);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Exerciseperso other = (Exerciseperso) obj;
+        if (!Objects.equals(this.libexe, other.libexe)) {
+            return false;
+        }
+        if (!Objects.equals(this.descripexe, other.descripexe)) {
+            return false;
+        }
+        if (!Objects.equals(this.photoexe, other.photoexe)) {
+            return false;
+        }
+        if (!Objects.equals(this.videoexe, other.videoexe)) {
+            return false;
+        }
+        if (!Objects.equals(this.performance, other.performance)) {
+            return false;
+        }
+        if (!Objects.equals(this.idexe, other.idexe)) {
+            return false;
+        }
+        if (!Objects.equals(this.dureeexe, other.dureeexe)) {
+            return false;
+        }
+        if (!Objects.equals(this.nbrepet, other.nbrepet)) {
+            return false;
+        }
+        if (!Objects.equals(this.ordreexe, other.ordreexe)) {
+            return false;
+        }
+        if (!Objects.equals(this.dureereal, other.dureereal)) {
+            return false;
+        }
+        if (!Objects.equals(this.nbrepetreal, other.nbrepetreal)) {
+            return false;
+        }
+        return true;
     }
 
 

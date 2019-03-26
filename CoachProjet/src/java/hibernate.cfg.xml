@@ -50,16 +50,16 @@ Contributor(s):
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
-    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Seanceperso.hbm.xml"/>
-    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Objectif.hbm.xml"/>
-    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Exercisestandard.hbm.xml"/>
-    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Seancestandard.hbm.xml"/>
-    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Client.hbm.xml"/>
-    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Programmeperso.hbm.xml"/>
-    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Exerciseperso.hbm.xml"/>
-    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Programmestandard.hbm.xml"/>
-    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Possederps.hbm.xml"/>
-    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Choisir.hbm.xml"/>
-    <mapping resource="null/P/21611943/Documents/NetBeansProjects/Project-Coach/CoachProjet/src/java/XML/Coach.hbm.xml"/>
+    <mapping resource="XML/Seanceperso.hbm.xml"/>
+    <mapping resource="XML/Objectif.hbm.xml"/>
+    <mapping resource="XML/Exercisestandard.hbm.xml"/>
+    <mapping resource="XML/Seancestandard.hbm.xml"/>
+    <mapping resource="XML/Client.hbm.xml"/>
+    <mapping resource="XML/Programmeperso.hbm.xml"/>
+    <mapping resource="XML/Exerciseperso.hbm.xml"/>
+    <mapping resource="XML/Programmestandard.hbm.xml"/>
+    <mapping resource="XML/Possederps.hbm.xml"/>
+    <mapping resource="XML/Choisir.hbm.xml"/>
+    <mapping resource="XML/Coach.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -3,6 +3,7 @@ package Bd;
 
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -88,6 +89,55 @@ public class Exercisestandard  implements java.io.Serializable {
     
     public void setSeancestandards(Set seancestandards) {
         this.seancestandards = seancestandards;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 43 * hash + Objects.hashCode(this.idexes);
+        hash = 43 * hash + Objects.hashCode(this.libexes);
+        hash = 43 * hash + Objects.hashCode(this.descripexes);
+        hash = 43 * hash + Objects.hashCode(this.dureeexes);
+        hash = 43 * hash + Objects.hashCode(this.nbrepets);
+        hash = 43 * hash + Objects.hashCode(this.photoexe);
+        hash = 43 * hash + Objects.hashCode(this.videoexe);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Exercisestandard other = (Exercisestandard) obj;
+        if (!Objects.equals(this.libexes, other.libexes)) {
+            return false;
+        }
+        if (!Objects.equals(this.descripexes, other.descripexes)) {
+            return false;
+        }
+        if (!Objects.equals(this.photoexe, other.photoexe)) {
+            return false;
+        }
+        if (!Objects.equals(this.videoexe, other.videoexe)) {
+            return false;
+        }
+        if (!Objects.equals(this.idexes, other.idexes)) {
+            return false;
+        }
+        if (!Objects.equals(this.dureeexes, other.dureeexes)) {
+            return false;
+        }
+        if (!Objects.equals(this.nbrepets, other.nbrepets)) {
+            return false;
+        }
+        return true;
     }
 
 
