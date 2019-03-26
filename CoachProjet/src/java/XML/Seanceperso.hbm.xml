@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26 mars 2019 16:30:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Bd.Seanceperso" table="SEANCEPERSO" catalog="db_21611945" optimistic-lock="version">
+        <id name="idsea" type="java.lang.Integer">
+            <column name="IDSEA" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="programmeperso" class="Bd.Programmeperso" fetch="select">
+            <column name="IDPP" not-null="true" />
+        </many-to-one>
+        <property name="libsea" type="string">
+            <column name="LIBSEA" length="32" />
+        </property>
+        <property name="descrisea" type="string">
+            <column name="DESCRISEA" length="32" />
+        </property>
+        <property name="typesea" type="string">
+            <column name="TYPESEA" length="32" />
+        </property>
+        <property name="datesea" type="date">
+            <column name="DATESEA" length="10" />
+        </property>
+        <property name="ordresea" type="java.lang.Integer">
+            <column name="ORDRESEA" />
+        </property>
+        <property name="bras" type="java.lang.Double">
+            <column name="BRAS" precision="5" />
+        </property>
+        <property name="poitrine" type="java.lang.Double">
+            <column name="POITRINE" precision="5" />
+        </property>
+        <property name="taille" type="java.lang.Double">
+            <column name="TAILLE" precision="5" />
+        </property>
+        <property name="hanches" type="java.lang.Double">
+            <column name="HANCHES" precision="5" />
+        </property>
+        <property name="cuisses" type="java.lang.Double">
+            <column name="CUISSES" precision="5" />
+        </property>
+        <set name="exercisepersos" table="EXERCISEPERSO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDSEA" not-null="true" />
+            </key>
+            <one-to-many class="Bd.Exerciseperso" />
+        </set>
+    </class>
+</hibernate-mapping>
