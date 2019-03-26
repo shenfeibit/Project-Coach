@@ -1,6 +1,9 @@
 package Bd;
 // Generated 26 mars 2019 16:30:33 by Hibernate Tools 4.3.1
 
+import java.util.Objects;
+
+
 
 
 /**
@@ -58,6 +61,37 @@ public class Possederps  implements java.io.Serializable {
     public void setOrdredefaut(Integer ordredefaut) {
         this.ordredefaut = ordredefaut;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 83 * hash + Objects.hashCode(this.ordredefaut);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Possederps other = (Possederps) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.ordredefaut, other.ordredefaut)) {
+            return false;
+        }
+        return true;
+    }
+
+    
 
 
 

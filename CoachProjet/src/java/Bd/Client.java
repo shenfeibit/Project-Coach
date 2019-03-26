@@ -3,6 +3,7 @@ package Bd;
 
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -126,6 +127,66 @@ public class Client  implements java.io.Serializable {
         this.choisirs = choisirs;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 29 * hash + Objects.hashCode(this.idc);
+        hash = 29 * hash + Objects.hashCode(this.nomc);
+        hash = 29 * hash + Objects.hashCode(this.prenomc);
+        hash = 29 * hash + Objects.hashCode(this.telc);
+        hash = 29 * hash + Objects.hashCode(this.emailc);
+        hash = 29 * hash + Objects.hashCode(this.adressec);
+        hash = 29 * hash + Objects.hashCode(this.sexec);
+        hash = 29 * hash + Objects.hashCode(this.photoc);
+        hash = 29 * hash + Objects.hashCode(this.etatc);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Client other = (Client) obj;
+        if (!Objects.equals(this.nomc, other.nomc)) {
+            return false;
+        }
+        if (!Objects.equals(this.prenomc, other.prenomc)) {
+            return false;
+        }
+        if (!Objects.equals(this.telc, other.telc)) {
+            return false;
+        }
+        if (!Objects.equals(this.emailc, other.emailc)) {
+            return false;
+        }
+        if (!Objects.equals(this.adressec, other.adressec)) {
+            return false;
+        }
+        if (!Objects.equals(this.sexec, other.sexec)) {
+            return false;
+        }
+        if (!Objects.equals(this.photoc, other.photoc)) {
+            return false;
+        }
+        if (!Objects.equals(this.etatc, other.etatc)) {
+            return false;
+        }
+        if (!Objects.equals(this.idc, other.idc)) {
+            return false;
+        }
+        return true;
+    }
+
+//    public static trouverClient(integer idC){
+//        if (idC.equalsto)
+//    }
 
 
 

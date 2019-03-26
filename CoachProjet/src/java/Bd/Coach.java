@@ -3,6 +3,7 @@ package Bd;
 
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -70,6 +71,47 @@ public class Coach  implements java.io.Serializable {
     
     public void setClients(Set clients) {
         this.clients = clients;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.idco);
+        hash = 79 * hash + Objects.hashCode(this.nomco);
+        hash = 79 * hash + Objects.hashCode(this.prenomco);
+        hash = 79 * hash + Objects.hashCode(this.telco);
+        hash = 79 * hash + Objects.hashCode(this.emailco);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Coach other = (Coach) obj;
+        if (!Objects.equals(this.nomco, other.nomco)) {
+            return false;
+        }
+        if (!Objects.equals(this.prenomco, other.prenomco)) {
+            return false;
+        }
+        if (!Objects.equals(this.telco, other.telco)) {
+            return false;
+        }
+        if (!Objects.equals(this.emailco, other.emailco)) {
+            return false;
+        }
+        if (!Objects.equals(this.idco, other.idco)) {
+            return false;
+        }
+        return true;
     }
 
 
