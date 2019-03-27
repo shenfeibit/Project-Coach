@@ -16,7 +16,5 @@ function showinfoCli ()
 	xhr.send();
 	}
     } 
-        
-   
 
 
