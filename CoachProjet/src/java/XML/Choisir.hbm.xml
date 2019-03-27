@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26 mars 2019 16:30:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Bd.Choisir" table="CHOISIR" catalog="db_21611945" optimistic-lock="version">
+        <composite-id name="id" class="Bd.ChoisirId">
+            <key-property name="idobj" type="int">
+                <column name="IDOBJ" />
+            </key-property>
+            <key-property name="idc" type="int">
+                <column name="IDC" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="client" class="Bd.Client" update="false" insert="false" fetch="select">
+            <column name="IDC" not-null="true" />
+        </many-to-one>
+        <many-to-one name="objectif" class="Bd.Objectif" update="false" insert="false" fetch="select">
+            <column name="IDOBJ" not-null="true" />
+        </many-to-one>
+        <property name="datedemande" type="date">
+            <column name="DATEDEMANDE" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

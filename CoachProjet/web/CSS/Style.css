@@ -1,0 +1,144 @@
+html{
+    background-color: #333;
+}
+body{
+    padding: 50px 20px;
+    background-color: white;
+    border:5px dashed beige;
+    height : 100%;
+    min-width: 800px;
+}
+
+h1{
+    font-size: 250%;
+    color: #333;
+}
+
+#image{
+    background-color: gold;
+    position:relative;
+    float:left;
+    width: 20%; 
+    height: 180px;
+    padding:5%;
+}
+
+#descp{
+    background-color: gold;
+    position:relative;
+    float:left;
+    width: 20%; 
+    height: 180px;
+    border-left-style: solid;
+    padding:5%;
+    
+}
+
+#objectif{
+    background-color: gold;
+    position:relative;
+    margin-left: 60%;
+    width: 30%;
+    height: 180px;
+    border-left-style: solid;
+    padding:5%;
+    
+}
+
+.barOneLine{
+    height: 20px;
+    padding: 15px;
+    text-align: center;
+}
+.selectOption{
+    width: 200px;
+    margin-left: 10px; 
+}
+
+#typeProg{
+    margin-right: 80px;
+}
+
+progress::-moz-progress-bar { background: yellowgreen; }
+progress::-webkit-progress-value { background: yellowgreen; }
+progress { color: yellowgreen; }
+
+#percentProg{
+     margin-left: 10px;
+}
+
+/*===== Vertical Timeline =====*/
+#conference-timeline {
+  position: relative;
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+  border-top-style: dashed;
+  padding-top: 15px;
+}
+#conference-timeline .timeline-start,
+#conference-timeline .timeline-end {
+  display: table;
+  font-size: 18px;
+  font-weight: 900;
+  text-transform: uppercase;
+  background: gold;
+  padding: 15px 23px;
+  color: #333;
+  max-width: 5%;
+  width: 100px;
+  text-align: center;
+  margin: 0 auto;
+}
+.timeline-article {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+table{
+    position : relative;
+    width:100%;
+    margin:0; 
+    border-collapse: collapse;
+}
+.tableLine{
+    height: 75px;
+    width: 50%;
+    border-right:solid gold;
+}
+.content-left{
+    vertical-align: top;
+    text-align: right;
+    width: 50%;
+    padding-right: 50px;
+    border-right:solid gold;
+    height: 100px;
+    font-size: 150%;
+}
+.content-right{
+    vertical-align: top;
+    text-align: left;
+    padding-left: 70px;
+    
+}
+.timeline-article .meta-date {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  color: #333;
+  border-radius: 100%;
+  background: gold;
+  
+}
+.timeline-article .meta-date .date{
+  display: block;
+  text-align: center;
+  font-weight: 900;
+  font-size: 25px;
+  margin-top: 10px;
+}

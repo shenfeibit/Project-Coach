@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26 mars 2019 16:30:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Bd.Programmeperso" table="PROGRAMMEPERSO" catalog="db_21611945" optimistic-lock="version">
+        <id name="idpp" type="java.lang.Integer">
+            <column name="IDPP" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="client" class="Bd.Client" fetch="select">
+            <column name="IDC" not-null="true" />
+        </many-to-one>
+        <property name="libpp" type="string">
+            <column name="LIBPP" length="32" />
+        </property>
+        <property name="descrippp" type="string">
+            <column name="DESCRIPPP" length="32" />
+        </property>
+        <property name="dureepp" type="java.lang.Integer">
+            <column name="DUREEPP" />
+        </property>
+        <property name="etatpp" type="string">
+            <column name="ETATPP" length="32" />
+        </property>
+        <property name="dateaffecte" type="date">
+            <column name="DATEAFFECTE" length="10" />
+        </property>
+        <set name="seancepersos" table="SEANCEPERSO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPP" not-null="true" />
+            </key>
+            <one-to-many class="Bd.Seanceperso" />
+        </set>
+        <set name="objectifs" table="CONCERNERPP" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPP" not-null="true" />
+            </key>
+            <many-to-many entity-name="Bd.Objectif">
+                <column name="IDOBJ" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

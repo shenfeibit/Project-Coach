@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26 mars 2019 16:30:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Bd.Programmestandard" table="PROGRAMMESTANDARD" catalog="db_21611945" optimistic-lock="version">
+        <id name="idps" type="java.lang.Integer">
+            <column name="IDPS" />
+            <generator class="identity" />
+        </id>
+        <property name="libps" type="string">
+            <column name="LIBPS" length="32" />
+        </property>
+        <property name="descripps" type="string">
+            <column name="DESCRIPPS" length="32" />
+        </property>
+        <property name="dureeps" type="java.lang.Integer">
+            <column name="DUREEPS" />
+        </property>
+        <set name="possederpses" table="POSSEDERPS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPS" not-null="true" />
+            </key>
+            <one-to-many class="Bd.Possederps" />
+        </set>
+        <set name="objectifs" table="CONCERNERPS" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="IDPS" not-null="true" />
+            </key>
+            <many-to-many entity-name="Bd.Objectif">
+                <column name="IDOBJ" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
