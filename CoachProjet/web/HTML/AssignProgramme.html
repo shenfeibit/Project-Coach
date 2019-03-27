@@ -5,6 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>AssignProgramme</title>
 	<link rel="stylesheet" href="../CSS/Style.css" type="text/css" />
+        <script type="text/JavaScript" src="js/fctxml.js"></script>
 </head>
 
 <body>
@@ -12,10 +13,62 @@
 	<div>
             <div id="image"><p>Image of a client</p><p>Name of a client</p></div>
             <div id="descp"><p>the informations of the client</p></div>
-            <div id="objectif"><h1>Objectig</h1><p>client's objectif</p></div>
+            <div id="objectif"><h1>Objectif</h1><p>client's objectif</p></div>
+        </div>
+        <div class='barOneLine'>
+            Type <select id="typeProg" class="selectOption"><option>-----</option></select>
+            Programme <select id="nomProg" class="selectOption"><option>-----</option></select>
+        </div>
+        <div class='barOneLine'>
+            Name of a  programme : 
+            <progress id='percentProg' max='100' value='70' ></progress>
+            
         </div>
     
-
-	<script type="text/JavaScript" src="js/fctxml.js"></script>
+        <!-- Vertical Timeline -->
+        <section id="conference-timeline">
+          <div class="timeline-start">Start</div>
+          <div class="conference-timeline-content">
+              <table>
+                  <tr>
+                      <td class='tableLine'></td>
+                      <td></td>
+                  </tr>
+              </table>
+            <!-- Article -->
+            <div class="timeline-article">
+              <div>
+                  <table>
+                      <tr>
+                          <td class='content-left'>name of a seance</td>
+                          <td class='content-right'>liste of exercises</td>
+                      </tr>
+                  </table>
+              </div>  
+              <div class="meta-date">
+                <span class="date">Nb</span>
+              </div>
+            </div>
+            <!-- // Article -->
+            <!-- Article -->
+            <div class="timeline-article">
+              <div>
+                  <table>
+                      <tr>
+                          <td class='content-left'>name of a seance</td>
+                          <td class='content-right'>liste of exercises</td>
+                      </tr>
+                  </table>
+              </div>  
+              <div class="meta-date">
+                <span class="date">Nb</span>
+              </div>
+            </div>
+            <!-- // Article -->
+          </div>
+          <div class="timeline-end">End</div>
+        </section>
+        <!-- // Vertical Timeline -->
+	
 </body>
 </html>
