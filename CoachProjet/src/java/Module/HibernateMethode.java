@@ -27,5 +27,15 @@ public class HibernateMethode {
         tc.commit();
         return pp;
     }
+    
+    public static Client shoxInfoClient (int idClient) {
+        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tc = ses.beginTransaction() ;
+        Client c = (Client)ses.load(Client.class, idClient);
+        //tc.commit();
+        return c;
+    }
+    
    
+    
 }
