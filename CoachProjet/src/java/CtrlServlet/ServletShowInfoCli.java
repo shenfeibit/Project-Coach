@@ -21,7 +21,7 @@ public class ServletShowInfoCli extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String idCli = request.getParameter("idc");
-            Client c = HibernateMethode.shoxInfoClient(Integer.parseInt(idCli));
+            Client c = HibernateMethode.showInfoClient(Integer.parseInt(idCli));
             out.print("<nom>"+c.getNomc()+"</nom>");
             out.print("<prenom>"+c.getPrenomc()+"</prenom>");
            

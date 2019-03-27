@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TestSerl;
+package CtrlServlet;
 
 import Bd.Programmeperso;
 import Bd.Seanceperso;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Fei
  */
-public class TestServletTableProg extends HttpServlet {
+public class ServletTableProg extends HttpServlet {
 //the servelet to get all infomations of a programmePerso to show in other sites
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
