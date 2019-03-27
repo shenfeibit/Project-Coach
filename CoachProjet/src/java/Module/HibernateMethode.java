@@ -28,6 +28,16 @@ public class HibernateMethode {
         return pp;
     }
     
+
+    public static Client showInfoClient (int idClient) {
+        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tc = ses.beginTransaction() ;
+        Client c = (Client)ses.load(Client.class, idClient);
+        //tc.commit();
+        return c;
+    }
+    
+
     public static Programmeperso consultProgramIdPro(int idPP){
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction() ;
@@ -51,5 +61,7 @@ public class HibernateMethode {
         tc.commit();
         return msp;
     }
+
    
+    
 }
