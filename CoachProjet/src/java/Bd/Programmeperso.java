@@ -4,6 +4,7 @@ package Bd;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -102,6 +103,51 @@ public class Programmeperso  implements java.io.Serializable {
     
     public void setObjectifs(Set objectifs) {
         this.objectifs = objectifs;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 71 * hash + Objects.hashCode(this.idpp);
+        hash = 71 * hash + Objects.hashCode(this.libpp);
+        hash = 71 * hash + Objects.hashCode(this.descrippp);
+        hash = 71 * hash + Objects.hashCode(this.dureepp);
+        hash = 71 * hash + Objects.hashCode(this.etatpp);
+        hash = 71 * hash + Objects.hashCode(this.dateaffecte);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Programmeperso other = (Programmeperso) obj;
+        if (!Objects.equals(this.libpp, other.libpp)) {
+            return false;
+        }
+        if (!Objects.equals(this.descrippp, other.descrippp)) {
+            return false;
+        }
+        if (!Objects.equals(this.etatpp, other.etatpp)) {
+            return false;
+        }
+        if (!Objects.equals(this.idpp, other.idpp)) {
+            return false;
+        }
+        if (!Objects.equals(this.dureepp, other.dureepp)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateaffecte, other.dateaffecte)) {
+            return false;
+        }
+        return true;
     }
 
 

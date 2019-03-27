@@ -3,6 +3,7 @@ package Bd;
 
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -70,6 +71,43 @@ public class Programmestandard  implements java.io.Serializable {
     
     public void setObjectifs(Set objectifs) {
         this.objectifs = objectifs;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 31 * hash + Objects.hashCode(this.idps);
+        hash = 31 * hash + Objects.hashCode(this.libps);
+        hash = 31 * hash + Objects.hashCode(this.descripps);
+        hash = 31 * hash + Objects.hashCode(this.dureeps);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Programmestandard other = (Programmestandard) obj;
+        if (!Objects.equals(this.libps, other.libps)) {
+            return false;
+        }
+        if (!Objects.equals(this.descripps, other.descripps)) {
+            return false;
+        }
+        if (!Objects.equals(this.idps, other.idps)) {
+            return false;
+        }
+        if (!Objects.equals(this.dureeps, other.dureeps)) {
+            return false;
+        }
+        return true;
     }
 
 

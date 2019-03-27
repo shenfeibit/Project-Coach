@@ -4,6 +4,7 @@ package Bd;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -138,6 +139,71 @@ public class Seanceperso  implements java.io.Serializable {
     
     public void setExercisepersos(Set exercisepersos) {
         this.exercisepersos = exercisepersos;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 19 * hash + Objects.hashCode(this.idsea);
+        hash = 19 * hash + Objects.hashCode(this.libsea);
+        hash = 19 * hash + Objects.hashCode(this.descrisea);
+        hash = 19 * hash + Objects.hashCode(this.typesea);
+        hash = 19 * hash + Objects.hashCode(this.datesea);
+        hash = 19 * hash + Objects.hashCode(this.ordresea);
+        hash = 19 * hash + Objects.hashCode(this.bras);
+        hash = 19 * hash + Objects.hashCode(this.poitrine);
+        hash = 19 * hash + Objects.hashCode(this.taille);
+        hash = 19 * hash + Objects.hashCode(this.hanches);
+        hash = 19 * hash + Objects.hashCode(this.cuisses);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Seanceperso other = (Seanceperso) obj;
+        if (!Objects.equals(this.libsea, other.libsea)) {
+            return false;
+        }
+        if (!Objects.equals(this.descrisea, other.descrisea)) {
+            return false;
+        }
+        if (!Objects.equals(this.typesea, other.typesea)) {
+            return false;
+        }
+        if (!Objects.equals(this.idsea, other.idsea)) {
+            return false;
+        }
+        if (!Objects.equals(this.datesea, other.datesea)) {
+            return false;
+        }
+        if (!Objects.equals(this.ordresea, other.ordresea)) {
+            return false;
+        }
+        if (!Objects.equals(this.bras, other.bras)) {
+            return false;
+        }
+        if (!Objects.equals(this.poitrine, other.poitrine)) {
+            return false;
+        }
+        if (!Objects.equals(this.taille, other.taille)) {
+            return false;
+        }
+        if (!Objects.equals(this.hanches, other.hanches)) {
+            return false;
+        }
+        if (!Objects.equals(this.cuisses, other.cuisses)) {
+            return false;
+        }
+        return true;
     }
 
 
