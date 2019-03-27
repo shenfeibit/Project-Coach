@@ -41,10 +41,17 @@ function affichePP ()
                                     texteSea+="</tr>";
                                 texteSea+="</table>";
                             texteSea+="</div>";
-                            texteSea+="<div class=\"meta-date\">";
-                              texteSea+="<span class=\"date\">"+sea[0].firstChild.nodeValue+"</span>";
+                            
+                            if(sea[3].firstChild.nodeValue!="null"){
+                                texteSea+="<div class=\"meta-date-pass\">";
+                                texteSea+="<span class=\"date\">"+sea[0].firstChild.nodeValue+"</span>";
+                            }
+                            else{
+                                texteSea+="<div class=\"meta-date\">";
+                                texteSea+="<span class=\"date\">"+sea[0].firstChild.nodeValue+"</span>";
+                            }
                             texteSea+="</div>";
-                          texteSea+="</div>";
+                            texteSea+="</div>";
                         }
                         var eltSea=document.getElementById("tableSP");
                         eltSea.innerHTML=texteSea;
