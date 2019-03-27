@@ -92,7 +92,6 @@ progress { color: yellowgreen; }
 }
 .timeline-article {
   width: 100%;
-  height: 100%;
   position: relative;
   overflow: hidden;
   margin: 0 auto;
@@ -102,7 +101,9 @@ table{
     width:100%;
     margin:0; 
     border-collapse: collapse;
+    
 }
+
 .tableLine{
     height: 75px;
     width: 50%;
@@ -141,4 +142,15 @@ table{
   font-weight: 900;
   font-size: 25px;
   margin-top: 10px;
+}
+
+#nameProg{
+  text-align: center;
+  font-weight: 900;
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+#descripPP{
+  text-align: center;
 }
