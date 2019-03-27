@@ -29,13 +29,15 @@ function affichePP ()
                         
                         //for secances
                         var l_sea = rep.getElementsByTagName("seancePerso");
-                        console.log("1");
+                        console.log("a");
                         var texteSea="";
-                        console.log("1");
+                        console.log("a");
                         for(var i=0;i<l_sea.length;i++){
-                            console.log("1");
-                            var sea = l_sea[i];
-                            texteSea+="<p>-"+sea.firstChild.nodeValue+"</p>";
+                            console.log("a");
+                            var sea = l_sea[i].children; // tous les infos de seance
+                            texteSea+="<p>-"+sea[0].firstChild.nodeValue+
+                                    "/lib:"+sea[1].firstChild.nodeValue+
+                                    "/descrip:"+sea[2].firstChild.nodeValue+"</p>";
                         }
                         var eltSea=document.getElementById("tableSP");
                         text="111"

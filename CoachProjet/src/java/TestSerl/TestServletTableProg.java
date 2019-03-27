@@ -50,7 +50,7 @@ public class TestServletTableProg extends HttpServlet {
                     out.println("<seancePerso>");
                     out.println("<ordreSP>"+ordre+"</ordreSP>");
                     out.println("<libSP>"+msp.get(ordre).getLibsea()+"</libSP>");
-                    out.println("<descripSP>"+ordre+"</descripSP>");
+                    out.println("<descripSP>"+msp.get(ordre).getDescrisea()+"</descripSP>");
                     out.println("</seancePerso>");
                 }
                 out.println("</l_seancesPerso>");
