@@ -8,5 +8,37 @@ body{
 }
 
 h1{
+    font-size: 250%;
+    color: #333;
+}
+
+#image{
+    background-color: gold;
+    position:relative;
+    float:left;
+    width: 20%; 
+    height: 180px;
+    padding:5%;
+}
+
+#descp{
+    background-color: gold;
+    position:relative;
+    float:left;
+    width: 20%; 
+    height: 180px;
+    border-left-style: solid;
+    padding:5%;
+    
+}
+
+#objectif{
+    background-color: gold;
+    position:relative;
+    margin-left: 60%;
+    width: 30%;
+    height: 180px;
+    border-left-style: solid;
+    padding:5%;
     
 }
