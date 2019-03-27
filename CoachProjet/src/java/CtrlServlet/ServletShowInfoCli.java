@@ -23,6 +23,17 @@ import org.hibernate.Transaction;
 public class ServletShowInfoCli extends HttpServlet {
 
    
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            String idCli = request.getParameter("idc");
+            Client c = HibernateMethode.showInfoClient(Integer.parseInt(idCli));
+            out.print("<nom>"+c.getNomc()+"</nom>");
+            out.print("<prenom>"+c.getPrenomc()+"</prenom>");
+           
+        }
+    }
 //    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 //            throws ServletException, IOException {
 //        response.setContentType("application/xml;charset=UTF-8");
