@@ -42,3 +42,18 @@ h1{
     padding:5%;
     
 }
+
+#barchercher{
+    border-style: solid;
+    height: 20px;
+    padding: 15px;
+    text-align: center;
+}
+.selectOption{
+    width: 200px;
+    margin-left: 10px; 
+}
+
+#typeProg{
+    margin-right: 80px;
+}
