@@ -43,7 +43,8 @@ public class HibernateMethode {
         Transaction tc = ses.beginTransaction() ;
         Query q = ses.createQuery ("from Seanceperso as sp where sp.programmeperso = "+idPro);
         List<Seanceperso> lsp = (List<Seanceperso>) q.list();
-        HashMap<Integer,Seanceperso> msp = new HashMap<Integer,Seanceperso>();
+        HashMap<Integer,Seanceperso> msp;
+        msp = new HashMap<>();
         for(Seanceperso sp: lsp){
            msp.put(sp.getOrdresea(), sp);
         }

@@ -10,18 +10,39 @@ function affichePP ()
 		// Si la requête http s'est bien passée.
 		if (xhr.status === 200)
 			{
-                            console.log("inin");
                         //get the reponse of serveur
                         var rep = xhr.responseXML;
-                        var libPP = rep.getElementsByTagName("libPP")[0].firstChild.nodeValue;
+                        //for lib progPerso
+                        var libPP = rep.getElementsByTagName("libPP");
+                        var texteLibPP = libPP[0].firstChild.nodeValue;
                         
 			// Elément html que l'on va mettre à jour.
 			var eltLibPP = document.getElementById("libPP");
                         //elt.innerHTML = xhr.responseXML;
-                        var texte="<div>affiche</div>"
-                        eltLibPP.innerHTML = texte;
+                        eltLibPP.innerHTML = texteLibPP;
+                        
+                        //for descrip ProgPerso
+                        var descripPP = rep.getElementsByTagName("descripPP");
+                        var textDescripPP = descripPP[0].firstChild.nodeValue;
+                        var eltDescripPP = document.getElementById("descripPP");
+                        eltDescripPP.innerHTML = textDescripPP;
+                        
+                        //for secances
+                        var l_sea = rep.getElementsByTagName("seancePerso");
+                        console.log("1");
+                        var texteSea="";
+                        console.log("1");
+                        for(var i=0;i<l_sea.length;i++){
+                            console.log("1");
+                            var sea = l_sea[i];
+                            texteSea+="<p>-"+sea.firstChild.nodeValue+"</p>";
+                        }
+                        var eltSea=document.getElementById("tableSP");
+                        text="111"
+                        eltSea.innerHTML=texteSea;
+                        
 			}
-		};	
+		};
 	// Envoie de la requête.
 	xhr.send();
 	}
