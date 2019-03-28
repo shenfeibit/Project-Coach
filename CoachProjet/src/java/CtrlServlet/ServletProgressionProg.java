@@ -5,13 +5,9 @@
  */
 package CtrlServlet;
 
-import Bd.Programmeperso;
-import Bd.Seanceperso;
-import Module.HibernateMethode;
 import static Module.HibernateMethode.seeProgressionProg;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

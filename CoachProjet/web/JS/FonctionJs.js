@@ -25,11 +25,11 @@ function showinfoCli ()
                     lib += l_obj[i].firstChild.nodeValue + "</br>";                    
                 }
                 lib += "</p>";
-                var elt = document.getElementById("objectif");
-		elt.innerHTML = lib;  
+                var eltobj = document.getElementById("objectif");
+		eltobj.innerHTML = lib;  
                 
-                var elt = document.getElementById("descp");
-		elt.innerHTML = texte;  
+                var eltdescp = document.getElementById("descp");
+		eltdescp.innerHTML = texte;  
             };
 	};
         xhr.send();
