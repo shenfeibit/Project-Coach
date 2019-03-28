@@ -8,7 +8,6 @@ package CtrlServlet;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,24 +31,29 @@ public class ServletProgObjectif extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/xml;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<?xml version=\"1.0\"?>");
-			out.println("<list_progO>");
-			/*----- Récupération des paramètres -----*/
-			String nom = request.getParameter("nomObj");
-
-                        ArrayList<String> lnp = new ArrayList<String>(HibernateMethode.lireProgObj(nom));
-
-                        for (String unObj : lnp)
+        
+            response.setContentType("application/xml;charset=UTF-8");
+            try (PrintWriter out = response.getWriter()) {
+                //write the page XML
+                out.println("<?xml version=\"1.0\"?>");
+		out.println("<list_progO>");
+		//get the param
+		String nom = request.getParameter("nomObj");
+                //get the result
+                try
+                {
+                    //get the result
+                    ArrayList<String> lnp = new ArrayList<>(HibernateMethode.lireProgObj(nom));
+                    for (String unObj : lnp)
                         {
                             out.println("<nom>" + unObj + "</nom>");
                         }
-			out.println("</list_progO>");
-
-
-
-
+                }
+                catch (Exception ex)
+                {
+                    out.println("<erreur>ServletProgObjectif Erreur - " + ex.getMessage() + "</erreur>");
+                }
+            out.println("</list_progO>");
         }
     }
 

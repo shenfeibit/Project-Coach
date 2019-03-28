@@ -30,25 +30,28 @@ public class ServletProgressionProg extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/xml;charset=UTF-8");
-		response.setCharacterEncoding("UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /*----- Ecriture de la page XML -----*/
-            out.println("<?xml version=\"1.0\"?>");
-            out.println("<progression>");
-            /*----- Récupération des paramètres -----*/
-            String idc = request.getParameter("idc");
-            try {
-		/*----- Lecture de infomation dece prog -----*/
-                float k = 0;
-                k = HibernateMethode.seeProgressionProg(Integer.parseInt(idc));
-                int res = Math.round(k*100);
-                out.println("<percent>"+res+"</percent>");
-		}
-            catch (Exception ex)
-		{
-		out.println("<fault>Erreur - " + ex.getMessage() + "</fault>");
-		}
+            
+            response.setContentType("application/xml;charset=UTF-8");
+            try (PrintWriter out = response.getWriter()) 
+            {
+                //write the page XML
+                out.println("<?xml version=\"1.0\"?>");
+                out.println("<progression>");
+                //get the param
+                String idc = request.getParameter("idc");
+                
+                try 
+                {
+                    //get the result
+                    float k = 0;
+                    k = HibernateMethode.seeProgressionProg(Integer.parseInt(idc));
+                    int res = Math.round(k*100);
+                    out.println("<percent>"+res+"</percent>");
+                }
+                catch (Exception ex)
+                {
+                    out.println("<fault>ServletProgressionProg Erreur - " + ex.getMessage() + "</fault>");
+                }
             out.println("</progression>");
 	}
     }

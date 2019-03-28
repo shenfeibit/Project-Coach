@@ -25,8 +25,10 @@ public class HibernateMethode {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction();
         Query q = ses.createQuery ("from Programmeperso as pp where pp.client = "+idClient);
-        List<Programmeperso> lpp = (List<Programmeperso>) q.list();
-        Programmeperso pp = lpp.get(lpp.size()-1);
+        List<Programmeperso> lpp = new ArrayList<Programmeperso>();
+        lpp = (List<Programmeperso>) q.list();
+        Programmeperso pp = new Programmeperso();
+        pp = lpp.get(lpp.size()-1);
         tc.commit();
         return pp;
     }
@@ -35,7 +37,8 @@ public class HibernateMethode {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction() ;
         Query q  =ses.createQuery ("from Client as c where c.idc = "+idClient);
-        Client c = (Client) q.list().get(0);
+        Client c = new Client();
+        c = (Client) q.list().get(0);
         tc.commit();
         return c;
     }
@@ -44,7 +47,8 @@ public class HibernateMethode {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction();
         Query q = ses.createQuery ("from Choisir as c where c.client = " + idClient);
-        List<Choisir> l_cho = (List<Choisir>) q.list();
+        List<Choisir> l_cho = new ArrayList<>();
+        l_cho = (List<Choisir>) q.list();
         ArrayList<Objectif> l_obj = new ArrayList<>();
         for (Choisir ch : l_cho){
             l_obj.add(ch.getObjectif());
@@ -58,9 +62,10 @@ public class HibernateMethode {
             Transaction tc = ses.beginTransaction() ;
 
             Query q = ses.createQuery ("from Programmeperso as pp where pp.client = " + idClient);
-            List<Programmeperso> lpp = (List<Programmeperso>) q.list();
-            Programmeperso pp = lpp.get(0);
-            
+            List<Programmeperso> lpp = new ArrayList<>();
+            lpp = (List<Programmeperso>) q.list();
+            Programmeperso pp = new Programmeperso();
+            pp = lpp.get(0);
             tc.commit();
             return pp;
         }
@@ -70,7 +75,8 @@ public class HibernateMethode {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction() ;
         Query q = ses.createQuery ("from Seanceperso as sp where sp.programmeperso = "+idPro);
-        List<Seanceperso> lsp = (List<Seanceperso>) q.list();
+        List<Seanceperso> lsp = new ArrayList<>();
+        lsp = (List<Seanceperso>) q.list();
         HashMap<Integer,Seanceperso> msp;
         msp = new HashMap<>();
         for(Seanceperso sp: lsp){
@@ -89,7 +95,8 @@ public class HibernateMethode {
         Transaction tc = ses.beginTransaction() ;
 
         Query q = ses.createQuery ("from Programmestandard as ps");
-        List<Programmestandard> lps = (List<Programmestandard>) q.list();
+        List<Programmestandard> lps = new ArrayList<>();
+        lps = (List<Programmestandard>) q.list();
         ArrayList<String> nomps = new ArrayList<String>();
         for(Programmestandard p : lps){
 
@@ -108,7 +115,8 @@ public class HibernateMethode {
         Transaction tc = ses.beginTransaction() ;
 
         Query q = ses.createQuery ("from Objectif");
-        List<Objectif> lobj = (List<Objectif>) q.list();
+        List<Objectif> lobj = new ArrayList<>();
+        lobj = (List<Objectif>) q.list();
         ArrayList<String> nomlo = new ArrayList<String>();
         for(Objectif o : lobj){
             String nomo = o.getLibobj();
@@ -123,7 +131,8 @@ public class HibernateMethode {
         Transaction tc = ses.beginTransaction() ;
 
         Query q = ses.createQuery ("from Objectif");
-        List<Objectif> lobj = (List<Objectif>) q.list();
+        List<Objectif> lobj = new ArrayList<>();
+        lobj = (List<Objectif>) q.list();
         ArrayList<Objectif> nomlo = new ArrayList<Objectif>();
         for(Objectif o : lobj){
             nomlo.add(o);
@@ -139,7 +148,8 @@ public class HibernateMethode {
              Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
              Transaction tc = ses.beginTransaction() ;
                 Query q = ses.createQuery ("from Programmestandard");
-                List<Programmestandard> lps = (List<Programmestandard>) q.list();
+                List<Programmestandard> lps = new ArrayList<>();
+                lps = (List<Programmestandard>) q.list();
                 ArrayList<String> nomps = new ArrayList<String>();
                 for(Programmestandard p : lps){
                     String nomp = p.getLibps();
@@ -155,7 +165,8 @@ public class HibernateMethode {
            Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
            Transaction tc = ses.beginTransaction() ;
            Query q = ses.createQuery ("from Programmestandard");
-           List<Programmestandard> lps = (List<Programmestandard>) q.list();
+           List<Programmestandard> lps = new ArrayList<>();
+             lps = (List<Programmestandard>) q.list();
            ArrayList<String> nomps = new ArrayList<String>();
            for(Programmestandard p : lps){
                if( p.getObjectifs().contains(o)){
@@ -172,11 +183,13 @@ public class HibernateMethode {
     }
      
         public static float seeProgressionProg(int idClient) {
-            Programmeperso pp = seeProgrammeCli(idClient);
-            Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
-            Transaction tc = ses.beginTransaction() ;
-            Query q = ses.createQuery ("from Programmeperso as pp where pp.idpp=" + pp.getIdpp());
-            Programmeperso pp2 = (Programmeperso) q.list().get(0);
+            Programmeperso pp = new Programmeperso();
+            pp = seeProgrammeCli(idClient);
+            Session ses2 = HibernateUtil.getSessionFactory().getCurrentSession();
+            Transaction tc2 = ses2.beginTransaction() ;
+            Query q = ses2.createQuery ("from Programmeperso as pp where pp.idpp=" + pp.getIdpp());
+            Programmeperso pp2 = new Programmeperso();
+            pp2 = (Programmeperso) q.list().get(0);
     
             Set<Seanceperso> listesp = new HashSet<Seanceperso>();
             listesp = pp2.getSeancepersos();
@@ -193,6 +206,7 @@ public class HibernateMethode {
             
             float k = 0;
             k = (float)j/i;
+            tc2.commit();
             return k;
         }
 

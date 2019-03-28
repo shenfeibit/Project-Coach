@@ -25,40 +25,43 @@ public class ServletTableProg extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-		response.setContentType("application/xml;charset=UTF-8");
-		response.setCharacterEncoding("UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /*----- Ecriture de la page XML -----*/
-            out.println("<?xml version=\"1.0\"?>");
-            out.println("<programme>");
-             String idCli = request.getParameter("idc");
+        
+            response.setContentType("application/xml;charset=UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            try (PrintWriter out = response.getWriter()) {
+                //write the page XML
+                out.println("<?xml version=\"1.0\"?>");
+                out.println("<programme>");
+                //get the param
+                String idCli = request.getParameter("idc");
 
+                try 
+                {
+                    //get the result : name and description
+                    Programmeperso pp = new Programmeperso();
+                    pp = HibernateMethode.seeProgrammeCli(Integer.parseInt(idCli));
 
-            try {
-		/*----- Lecture de infomation dece prog -----*/
-                Programmeperso pp = new Programmeperso();
-                pp = HibernateMethode.seeProgrammeCli(Integer.parseInt(idCli));
-                
-                out.println("<libPP>"+pp.getLibpp()+"</libPP>");
-		out.println("<descripPP>"+pp.getDescrippp()+"</descripPP>");
-                
-                /*----Lecture de liste de seances de ce prog----*/
-                HashMap<Integer,Seanceperso> msp = HibernateMethode.consultSeancesIdProgPerso(1);
-                out.println("<l_seancesPerso>");
-                for(int ordre: msp.keySet()){
-                    out.println("<seancePerso>");
-                    out.println("<ordreSP>"+ordre+"</ordreSP>");
-                    out.println("<libSP>"+msp.get(ordre).getLibsea()+"</libSP>");
-                    out.println("<descripSP>"+msp.get(ordre).getDescrisea()+"</descripSP>");
-                    out.println("<dateSP>"+msp.get(ordre).getDatesea()+"</dateSP>");
-                    out.println("</seancePerso>");
+                    out.println("<libPP>"+pp.getLibpp()+"</libPP>");
+                    out.println("<descripPP>"+pp.getDescrippp()+"</descripPP>");
+
+                    //get the result : the liste of seances
+                    HashMap<Integer,Seanceperso> msp = HibernateMethode.consultSeancesIdProgPerso(1);
+                    out.println("<l_seancesPerso>");
+                    for(int ordre: msp.keySet())
+                    {
+                        out.println("<seancePerso>");
+                        out.println("<ordreSP>"+ordre+"</ordreSP>");
+                        out.println("<libSP>"+msp.get(ordre).getLibsea()+"</libSP>");
+                        out.println("<descripSP>"+msp.get(ordre).getDescrisea()+"</descripSP>");
+                        out.println("<dateSP>"+msp.get(ordre).getDatesea()+"</dateSP>");
+                        out.println("</seancePerso>");
+                    }
+                    out.println("</l_seancesPerso>");
                 }
-                out.println("</l_seancesPerso>");
-		}
-            catch (Exception ex)
-		{
-		out.println("<libPP>Erreur - " + ex.getMessage() + "</libPP>");
-		}
+                catch (Exception ex)
+                    {
+                        out.println("<erreur>ServletTableProg Erreur - " + ex.getMessage() + "</erreur>");
+                    }
             out.println("</programme>");
 	}
     }

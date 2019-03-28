@@ -31,20 +31,27 @@ public class ServletProgrammeSt extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/xml;charset=UTF-8");
-
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<?xml version=\"1.0\"?>");
-            out.println("<list_pgrm>");
-            ArrayList<String> lp = HibernateMethode.consultProgramSt();
-
-            for(String l : lp){
-               out.print("<nom>"+l+"</nom>");
-            }
-
+            
+            response.setContentType("application/xml;charset=UTF-8");
+            try (PrintWriter out = response.getWriter()) {
+                //write the page XML
+                out.println("<?xml version=\"1.0\"?>");
+                out.println("<list_pgrm>");
+                
+                try
+                {
+                    //get the result
+                    ArrayList<String> lp = HibernateMethode.consultProgramSt();
+                    for(String l : lp)
+                        {
+                           out.print("<nom>"+l+"</nom>");
+                        }
+                }
+                catch (Exception ex)
+                {
+                    out.println("<erreur>ServletProgrammeSt Erreur - " + ex.getMessage() + "</erreur>");
+                }
             out.println("</list_pgrm>");
-
-
         }
     }
 

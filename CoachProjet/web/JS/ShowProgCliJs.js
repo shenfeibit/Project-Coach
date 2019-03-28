@@ -1,13 +1,12 @@
 function affichePP ()
 	{
-	// Objet XMLHttpRequest.
+	// Object XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
-	// Requête au serveur avec les paramètres éventuels.
-	xhr.open("GET","../ServletTableProg?idc=" + 6);
-	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
+	// requery with a value entry.
+	xhr.open("GET","../ServletTableProg?idc=" + 1);
 	xhr.onload = function()
 		{
-		// Si la requête http s'est bien passée.
+		//if the connect succees
 		if (xhr.status === 200)
 			{
                         //get the reponse of serveur
@@ -65,15 +64,13 @@ function affichePP ()
         
 function afficheProgression ()
 	{
-	// Objet XMLHttpRequest.
+	// Object XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
-	// Requête au serveur avec les paramètres éventuels.
+	// requery with a value entry.
 	xhr.open("GET","../ServletProgressionProg?idc=" + 6);
-        
-	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
 	xhr.onload = function()
 		{
-		// Si la requête http s'est bien passée.
+		// if the query succes
 		if (xhr.status === 200)
 			{
                         //get the reponse of serveur
@@ -89,7 +86,7 @@ function afficheProgression ()
                         
 			}
 		};
-	// Envoie de la requête.
+	// send the query
 	xhr.send();
 	}
         
