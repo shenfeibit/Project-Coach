@@ -8,7 +8,9 @@ package Module;
 import Bd.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -45,7 +47,6 @@ public class HibernateMethode {
         List<Choisir> l_cho = (List<Choisir>) q.list();
         ArrayList<Objectif> l_obj = new ArrayList<>();
         for (Choisir ch : l_cho){
-            System.out.print(l_cho.get(0).getObjectif().getLibobj());
             l_obj.add(ch.getObjectif());
         }        
         tc.commit();
@@ -170,20 +171,29 @@ public class HibernateMethode {
         return null;
     }
      
-        public static String seeProgressionProg(int idClient) {
-            seeProgrammeCli(idClient);
+        public static float seeProgressionProg(int idClient) {
+            Programmeperso pp = seeProgrammeCli(idClient);
             Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
             Transaction tc = ses.beginTransaction() ;
-
-            Query q = ses.createQuery ("from Objectif");
-            List<Objectif> lobj = (List<Objectif>) q.list();
-            ArrayList<Objectif> nomlo = new ArrayList<Objectif>();
-            for(Objectif o : lobj){
-                nomlo.add(o);
+            Query q = ses.createQuery ("from Programmeperso as pp where pp.idpp=" + pp.getIdpp());
+            Programmeperso pp2 = (Programmeperso) q.list().get(0);
+    
+            Set<Seanceperso> listesp = new HashSet<Seanceperso>();
+            listesp = pp2.getSeancepersos();
+            
+            int i=0;
+            int j=0;
+            
+            for(Seanceperso sp : listesp){
+                i+=1;
+                if(sp.getDatesea()!=null){
+                    j+=1;
+                }
             }
-            String res = null;
-            tc.commit();
-            return res;
+            
+            float k = 0;
+            k = (float)j/i;
+            return k;
         }
 
 
