@@ -37,5 +37,4 @@ function showinfoCli ()
 
 document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showinfoCli);
-//        window.addEventListener("load",showObjCli);
 });

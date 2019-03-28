@@ -105,8 +105,6 @@ function showType ()
     
     
     document.addEventListener("DOMContentLoaded", () => {
-//        document.getElementById("typeProg").addEventListener("click",showType);
         window.addEventListener("load",showType);
-        //window.addEventListener("load",showProgramme);
         document.getElementById("typeProg").addEventListener("change",l_clickObj);
 });
