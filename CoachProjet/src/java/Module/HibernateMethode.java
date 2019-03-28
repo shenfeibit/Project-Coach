@@ -86,25 +86,38 @@ public class HibernateMethode {
         return msp;
     }
 
+    public static HashMap<Integer,Seancestandard> consultSeancesIdProgStand(int idPS){
+        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tc = ses.beginTransaction() ;
+        Query q1 = ses.createQuery ("from Possederps as psp where psp.programmestandard = "+idPS);
+        List<Possederps> lpsp = (List<Possederps>) q1.list();
+        HashMap<Integer,Seancestandard> mss;
+        mss = new HashMap<>();
+        for(Possederps psp : lpsp){
+            mss.put(psp.getOrdredefaut(), psp.getSeancestandard());
+            psp.getSeancestandard().getLibseas();
+        }
+        tc.commit();
+        return mss;
+    }
     /**
      * Method that return all names of programs.
      * @return return all name of programs
      */
-    public static ArrayList<String> consultProgramSt() {
+    public static ArrayList<Programmestandard> consultProgramSt() {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction() ;
 
         Query q = ses.createQuery ("from Programmestandard as ps");
-        List<Programmestandard> lps = new ArrayList<>();
-        lps = (List<Programmestandard>) q.list();
-        ArrayList<String> nomps = new ArrayList<String>();
-        for(Programmestandard p : lps){
 
-            String nomp = p.getLibps();
-            nomps.add(nomp);
+        List<Programmestandard> lps = (List<Programmestandard>) q.list();
+        ArrayList<Programmestandard> lpss = new ArrayList<Programmestandard>();
+
+        for(Programmestandard p : lps){
+            lpss.add(p);
         }
         tc.commit();
-        return nomps;
+        return lpss;
     }
     /**
      * Method that return all name of objectives.
@@ -143,21 +156,11 @@ public class HibernateMethode {
 
 
 
-     public static ArrayList<String> lireProgObj(String objectif) {
+     public static ArrayList<Programmestandard> lireProgObj(String objectif) {
          if(objectif.equals(null)){
-             Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
-             Transaction tc = ses.beginTransaction() ;
-                Query q = ses.createQuery ("from Programmestandard");
-                List<Programmestandard> lps = new ArrayList<>();
-                lps = (List<Programmestandard>) q.list();
-                ArrayList<String> nomps = new ArrayList<String>();
-                for(Programmestandard p : lps){
-                    String nomp = p.getLibps();
-                    nomps.add(nomp);
-                    }
 
-                tc.commit();
-                return nomps;
+             consultProgramSt();
+
          }else{
             ArrayList<Objectif> obj = consultTypePs();
             for(Objectif o : obj){
@@ -165,17 +168,16 @@ public class HibernateMethode {
            Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
            Transaction tc = ses.beginTransaction() ;
            Query q = ses.createQuery ("from Programmestandard");
-           List<Programmestandard> lps = new ArrayList<>();
-             lps = (List<Programmestandard>) q.list();
-           ArrayList<String> nomps = new ArrayList<String>();
+
+           List<Programmestandard> lps = (List<Programmestandard>) q.list();
+           ArrayList<Programmestandard> lpss = new ArrayList<Programmestandard>();
            for(Programmestandard p : lps){
                if( p.getObjectifs().contains(o)){
-                   String nomp = p.getLibps();
-               nomps.add(nomp);
+                lpss.add(p);
                }
            }
            tc.commit();
-           return nomps;
+           return lpss;
                 }
             }
          }

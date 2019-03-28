@@ -41,22 +41,25 @@ public class ServletTableProg extends HttpServlet {
                     Programmeperso pp = new Programmeperso();
                     pp = HibernateMethode.seeProgrammeCli(Integer.parseInt(idCli));
 
-                    out.println("<libPP>"+pp.getLibpp()+"</libPP>");
-                    out.println("<descripPP>"+pp.getDescrippp()+"</descripPP>");
+            try {
+		/*----- Lecture de infomation dece prog -----*/
+                Programmeperso pp = new Programmeperso();
+                pp = HibernateMethode.seeProgrammeCli(Integer.parseInt(idCli));
+                
+                out.println("<libPP>"+pp.getLibpp()+"</libPP>");
+		out.println("<descripPP>"+pp.getDescrippp()+"</descripPP>");
+                
+                /*----Lecture de liste de seances de ce prog----*/
+                HashMap<Integer,Seanceperso> msp = HibernateMethode.consultSeancesIdProgPerso(pp.getIdpp());
+                out.println("<l_seancesPerso>");
+                for(int ordre: msp.keySet()){
+                    out.println("<seancePerso>");
+                    out.println("<ordreSP>"+ordre+"</ordreSP>");
+                    out.println("<libSP>"+msp.get(ordre).getLibsea()+"</libSP>");
+                    out.println("<descripSP>"+msp.get(ordre).getDescrisea()+"</descripSP>");
+                    out.println("<dateSP>"+msp.get(ordre).getDatesea()+"</dateSP>");
+                    out.println("</seancePerso>");
 
-                    //get the result : the liste of seances
-                    HashMap<Integer,Seanceperso> msp = HibernateMethode.consultSeancesIdProgPerso(1);
-                    out.println("<l_seancesPerso>");
-                    for(int ordre: msp.keySet())
-                    {
-                        out.println("<seancePerso>");
-                        out.println("<ordreSP>"+ordre+"</ordreSP>");
-                        out.println("<libSP>"+msp.get(ordre).getLibsea()+"</libSP>");
-                        out.println("<descripSP>"+msp.get(ordre).getDescrisea()+"</descripSP>");
-                        out.println("<dateSP>"+msp.get(ordre).getDatesea()+"</dateSP>");
-                        out.println("</seancePerso>");
-                    }
-                    out.println("</l_seancesPerso>");
                 }
                 catch (Exception ex)
                     {
