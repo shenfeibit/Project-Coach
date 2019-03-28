@@ -35,12 +35,6 @@ public class ServletTableProg extends HttpServlet {
                 //get the param
                 String idCli = request.getParameter("idc");
 
-                try 
-                {
-                    //get the result : name and description
-                    Programmeperso pp = new Programmeperso();
-                    pp = HibernateMethode.seeProgrammeCli(Integer.parseInt(idCli));
-
             try {
 		/*----- Lecture de infomation dece prog -----*/
                 Programmeperso pp = new Programmeperso();
@@ -61,6 +55,7 @@ public class ServletTableProg extends HttpServlet {
                     out.println("</seancePerso>");
 
                 }
+            }
                 catch (Exception ex)
                     {
                         out.println("<erreur>ServletTableProg Erreur - " + ex.getMessage() + "</erreur>");
