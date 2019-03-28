@@ -5,7 +5,7 @@
  */
 package Module;
 
-import static Module.HibernateMethode.seeProgressionProg;
+import Bd.Programmeperso;
 
 /**
  *
@@ -14,10 +14,16 @@ import static Module.HibernateMethode.seeProgressionProg;
 public class test {
      public static void main (String[] args) throws Exception
         {
-            float k = 0;
-            k = seeProgressionProg(6);
-            int res = Math.round(k*100);
+            int i = 6;
+//            System.out.println(i);
+//            Programmeperso ps = new Programmeperso();
+//                    ps = HibernateMethode.seeProgrammeCli(i);
+//            System.out.println(i);
+//            System.out.println(ps.getIdpp());
+            //float k = 0;
+            float k = HibernateMethode.seeProgressionProg(i);
+            //int res = Math.round(k*100);
             
-            System.out.println(res);
+            System.out.println(k);
         }
 }

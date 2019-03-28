@@ -2,7 +2,6 @@ function showType ()
     { 
         var xhr = new XMLHttpRequest();
 	xhr.open("GET","../ServletObjectifs");
-       
 
 	xhr.onload = function()
         

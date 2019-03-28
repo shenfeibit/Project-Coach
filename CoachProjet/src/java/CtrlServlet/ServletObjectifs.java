@@ -5,7 +5,6 @@
  */
 package CtrlServlet;
 
-import Bd.Programmeperso;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,16 +33,25 @@ public class ServletObjectifs extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/xml;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<?xml version=\"1.0\"?>");
-            out.println("<list_obj>");
-            ArrayList<String> lo = HibernateMethode.consultType();
-
-            for(String l : lo){
-               out.print("<nom>"+l+"</nom>");
-            }
-
+        
+            response.setContentType("application/xml;charset=UTF-8");
+            try (PrintWriter out = response.getWriter()) {
+                //write the page XML
+                out.println("<?xml version=\"1.0\"?>");
+                out.println("<list_obj>");
+                try{
+                    //get the result
+                    ArrayList<String> lo = HibernateMethode.consultType();
+                    for(String l : lo)
+                    {
+                        out.print("<nom>"+l+"</nom>");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    out.println("<erreur>ServletObjectifs erreur - " + ex.getMessage() + "</erreur>");
+                }
+            
             out.println("</list_obj>");
         }
     }
