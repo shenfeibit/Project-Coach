@@ -8,7 +8,9 @@ package Module;
 import Bd.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -45,22 +47,24 @@ public class HibernateMethode {
         List<Choisir> l_cho = (List<Choisir>) q.list();
         ArrayList<Objectif> l_obj = new ArrayList<>();
         for (Choisir ch : l_cho){
-            System.out.print(l_cho.get(0).getObjectif().getLibobj());
             l_obj.add(ch.getObjectif());
         }        
         tc.commit();
         return l_obj;
     }
+    
+    public static Programmeperso seeProgrammeCli(int idClient) {
+            Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+            Transaction tc = ses.beginTransaction() ;
 
-    public static Programmeperso consultProgramIdPro(int idPP){
-        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
-        Transaction tc = ses.beginTransaction() ;
-        Query q = ses.createQuery ("from Programmeperso as pp where pp.idpp = "+idPP);
-        List<Programmeperso> lpp = (List<Programmeperso>) q.list();
-        Programmeperso pp = lpp.get(0);
-        tc.commit();
-        return pp;
-    }
+            Query q = ses.createQuery ("from Programmeperso as pp where pp.client = " + idClient);
+            List<Programmeperso> lpp = (List<Programmeperso>) q.list();
+            Programmeperso pp = lpp.get(0);
+            
+            tc.commit();
+            return pp;
+        }
+
     
     public static HashMap<Integer,Seanceperso> consultSeancesIdProgPerso(int idPro){
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -114,7 +118,7 @@ public class HibernateMethode {
         return nomlo;
     }
 
- public static ArrayList<Objectif> consultTypePs() {
+    public static ArrayList<Objectif> consultTypePs() {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction() ;
 
@@ -166,8 +170,31 @@ public class HibernateMethode {
          }
         return null;
     }
-
-
+     
+        public static float seeProgressionProg(int idClient) {
+            Programmeperso pp = seeProgrammeCli(idClient);
+            Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+            Transaction tc = ses.beginTransaction() ;
+            Query q = ses.createQuery ("from Programmeperso as pp where pp.idpp=" + pp.getIdpp());
+            Programmeperso pp2 = (Programmeperso) q.list().get(0);
+    
+            Set<Seanceperso> listesp = new HashSet<Seanceperso>();
+            listesp = pp2.getSeancepersos();
+            
+            int i=0;
+            int j=0;
+            
+            for(Seanceperso sp : listesp){
+                i+=1;
+                if(sp.getDatesea()!=null){
+                    j+=1;
+                }
+            }
+            
+            float k = 0;
+            k = (float)j/i;
+            return k;
+        }
 
 
 

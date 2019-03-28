@@ -26,10 +26,7 @@ function showinfoCli ()
                     lib += l_obj[i].firstChild.nodeValue + "</br>";                    
                 }
                 lib += "</p>";
-                
-                
-                
-                var eltlib = document.getElementById("libobj");
+           var eltlib = document.getElementById("libobj");
 		eltlib.innerHTML = lib;  
                 
                 var eltdescp = document.getElementById("descp");
@@ -38,12 +35,14 @@ function showinfoCli ()
                 var eltimage = document.getElementById("image");;
                 eltimage.innerHTML = imageCli; 
                 
+
             };
 	};
         xhr.send();
     } 
+    
+
 
 document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showinfoCli);
-//        window.addEventListener("load",showObjCli);
 });
