@@ -102,9 +102,27 @@ function showType ()
         }
     }
     
+    function affecter ()
+    {
+        var prog = document.getElementById("nomProg").value ;
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","../ServletAffecter?prog = " + prog);
+        xhr.onload = function(){
+            if (xhr.status === 200){
+                var resultat = document.getElementById("resultat");
+		resultat.innerHTML = "affecté";   
+            }
+        };
+        xhr.send();
+    } 
+        
+    
     
     
     document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showType);
         document.getElementById("typeProg").addEventListener("change",l_clickObj);
+        
+       
 });
