@@ -33,8 +33,6 @@ public class ServletTableProg extends HttpServlet {
             out.println("<programme>");
              String idCli = request.getParameter("idc");
 
-            /*----- Récupération des paramètres -----*/
-            //String nom = request.getParameter("idProg");
 
             try {
 		/*----- Lecture de infomation dece prog -----*/

@@ -5,7 +5,7 @@
  */
 package CtrlServlet;
 
-import static Module.HibernateMethode.seeProgressionProg;
+import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -37,13 +37,13 @@ public class ServletProgressionProg extends HttpServlet {
             out.println("<?xml version=\"1.0\"?>");
             out.println("<progression>");
             /*----- Récupération des paramètres -----*/
-            //String nom = request.getParameter("idProg");
+            String idc = request.getParameter("idc");
             try {
 		/*----- Lecture de infomation dece prog -----*/
-                //pp = HibernateMethode.seeProgrammeCli(Integer.parseInt(idCli));
                 float k = 0;
-                k = seeProgressionProg(6);
-                out.println("<percent>"+k+"</percent>");
+                k = HibernateMethode.seeProgressionProg(Integer.parseInt(idc));
+                int res = Math.round(k*100);
+                out.println("<percent>"+res+"</percent>");
 		}
             catch (Exception ex)
 		{

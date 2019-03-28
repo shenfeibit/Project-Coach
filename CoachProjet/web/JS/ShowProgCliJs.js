@@ -62,8 +62,40 @@ function affichePP ()
 	xhr.send();
 	}
         
+        
+function afficheProgression ()
+	{
+	// Objet XMLHttpRequest.
+	var xhr = new XMLHttpRequest();
+	// Requête au serveur avec les paramètres éventuels.
+	xhr.open("GET","../ServletProgressionProg?idc=" + 6);
+        
+	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
+	xhr.onload = function()
+		{
+		// Si la requête http s'est bien passée.
+		if (xhr.status === 200)
+			{
+                        //get the reponse of serveur
+                        var rep = xhr.responseXML;
+                        //for lib progPerso
+                        var percent = rep.getElementsByTagName("percent");
+                        var res = percent[0].firstChild.nodeValue;
+                        var texte ="<span>"+res+"%</span>";
+                            texte += "<progress id='percentProg' max='100' value=" + res + "></progress>";
+                        
+                        var eltSea=document.getElementById("barOneLine");
+                        eltSea.innerHTML=texte;
+                        
+			}
+		};
+	// Envoie de la requête.
+	xhr.send();
+	}
+        
 document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("load",affichePP);
+    window.addEventListener("load",afficheProgression);
 });
 
 

@@ -16,6 +16,8 @@ public class test {
         {
             float k = 0;
             k = seeProgressionProg(6);
-            System.out.println(k);
+            int res = Math.round(k*100);
+            
+            System.out.println(res);
         }
 }

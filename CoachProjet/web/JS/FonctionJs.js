@@ -34,6 +34,8 @@ function showinfoCli ()
 	};
         xhr.send();
     } 
+    
+
 
 document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showinfoCli);
