@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="../CSS/Style.css" type="text/css" />
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/JavaScript" src="../JS/FonctionJs.js"></script>
+        
     </head>
     <body>
         
@@ -14,13 +14,31 @@
             <div id="descp"><p>the informations of the client</p></div>
             <div id="objectif"><h1>Objectif</h1><p>client's objectif</p></div>
         </div>
-        
-        <a href="../ServletShowInfoCli?idc=6" >Go !</a><br/>
+<!--        
+        <a href="../ServletShowInfoCli?idc=6" >Go !</a><br/>-->
         
         <div id="nameProg"></div>
+        <div class='barOneLine'>
+             
+            <progress id='percentProg' max='100' value='70' ></progress>
+            
+        </div>
         <div id="descripPP"></div>
-        
-        
+         <!-- Vertical Timeline -->
+        <section id="conference-timeline">
+          <div class="timeline-start">Start</div>
+          <div class="conference-timeline-content">
+              <table>
+                  <tr>
+                      <td class='tableLine'></td>
+                      <td></td>
+                  </tr>
+              </table>
+            <!-- Article -->
+        <div id="tableSP"></div>
+        </div>
+          <div class="timeline-end">End</div>
+        </section>
         
         <script type="text/JavaScript" src="../JS/FonctionJs.js"></script>
         <script type="text/JavaScript" src="../JS/ShowProgCliJs.js"></script>

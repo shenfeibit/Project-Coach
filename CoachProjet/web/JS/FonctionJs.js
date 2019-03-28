@@ -34,26 +34,6 @@ function showinfoCli ()
 	};
         xhr.send();
     } 
-    
-    
-//function showObjCli ()
-//{
-//    var xhr = new XMLHttpRequest();
-//    xhr.open("GET","../ServletShowInfoCli?idc=" + 2); // 1 va être changé à idCli
-//    
-//    xhr.onload = function(){
-//            if (xhr.status === 200){
-//                
-//                //var donnees = xhr.responseXML.getElementsByTagName("donnees");
-//                
-//            };
-//	};
-//        xhr.send();
-//    } 
-
-
-
-        
 
 document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showinfoCli);

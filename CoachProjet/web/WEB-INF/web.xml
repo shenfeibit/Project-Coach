@@ -8,6 +8,30 @@
         <servlet-name>ServletTableProg</servlet-name>
         <url-pattern>/ServletTableProg</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletProgrammeSt</servlet-name>
+        <servlet-class>CtrlServlet.ServletProgrammeSt</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletProgrammeSt</servlet-name>
+        <url-pattern>/ServletProgrammeSt</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletProgObjectif</servlet-name>
+        <servlet-class>CtrlServlet.ServletProgObjectif</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletProgObjectif</servlet-name>
+        <url-pattern>/ServletProgObjectif</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletObjectifs</servlet-name>
+        <servlet-class>CtrlServlet.ServletObjectifs</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletObjectifs</servlet-name>
+        <url-pattern>/ServletObjectifs</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
