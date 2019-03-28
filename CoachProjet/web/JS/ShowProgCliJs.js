@@ -3,7 +3,7 @@ function affichePP ()
 	// Objet XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 	// Requête au serveur avec les paramètres éventuels.
-	xhr.open("GET","../TestServletTableProg");
+	xhr.open("GET","../ServletTableProg");
 	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
 	xhr.onload = function()
 		{
@@ -17,7 +17,7 @@ function affichePP ()
                         var texteLibPP = libPP[0].firstChild.nodeValue;
                         
 			// Elément html que l'on va mettre à jour.
-			var eltLibPP = document.getElementById("libPP");
+			var eltLibPP = document.getElementById("nameProg");
                         //elt.innerHTML = xhr.responseXML;
                         eltLibPP.innerHTML = texteLibPP;
                         
@@ -29,18 +29,31 @@ function affichePP ()
                         
                         //for secances
                         var l_sea = rep.getElementsByTagName("seancePerso");
-                        console.log("a");
                         var texteSea="";
-                        console.log("a");
                         for(var i=0;i<l_sea.length;i++){
-                            console.log("a");
-                            var sea = l_sea[i].children; // tous les infos de seance
-                            texteSea+="<p>-"+sea[0].firstChild.nodeValue+
-                                    "/lib:"+sea[1].firstChild.nodeValue+
-                                    "/descrip:"+sea[2].firstChild.nodeValue+"</p>";
+                            var sea = l_sea[i].children;
+                            texteSea+="<div class=\"timeline-article\">";
+                            texteSea+="<div>";
+                                texteSea+="<table>";
+                                    texteSea+="<tr>";
+                                        texteSea+="<td class='content-left'>"+sea[1].firstChild.nodeValue+"</td>";
+                                        texteSea+="<td class='content-right'>"+sea[2].firstChild.nodeValue+"</td>";
+                                    texteSea+="</tr>";
+                                texteSea+="</table>";
+                            texteSea+="</div>";
+                            
+                            if(sea[3].firstChild.nodeValue!="null"){
+                                texteSea+="<div class=\"meta-date-pass\">";
+                                texteSea+="<span class=\"date\">"+sea[0].firstChild.nodeValue+"</span>";
+                            }
+                            else{
+                                texteSea+="<div class=\"meta-date\">";
+                                texteSea+="<span class=\"date\">"+sea[0].firstChild.nodeValue+"</span>";
+                            }
+                            texteSea+="</div>";
+                            texteSea+="</div>";
                         }
                         var eltSea=document.getElementById("tableSP");
-                        text="111"
                         eltSea.innerHTML=texteSea;
                         
 			}
@@ -52,4 +65,7 @@ function affichePP ()
 document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("load",affichePP);
 });
+
+
+
 

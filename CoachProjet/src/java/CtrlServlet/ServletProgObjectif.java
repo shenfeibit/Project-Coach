@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TestSerl;
+package CtrlServlet;
 
-import Bd.Programmeperso;
-import Bd.Seanceperso;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,51 +17,42 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Fei
+ * @author 21511708
  */
-public class TestServletTableProg extends HttpServlet {
-//the servelet to get all infomations of a programmePerso to show in other sites
-    
+public class ServletProgObjectif extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-		response.setContentType("application/xml;charset=UTF-8");
-		response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/xml;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /*----- Ecriture de la page XML -----*/
             out.println("<?xml version=\"1.0\"?>");
-            out.println("<programme>");
+			out.println("<list_progO>");
+			/*----- Récupération des paramètres -----*/
+			String nom = request.getParameter("nomObj");
 
-            /*----- Récupération des paramètres -----*/
-            //String nom = request.getParameter("idProg");
+                        ArrayList<String> lnp = new ArrayList<String>(HibernateMethode.lireProgObj(nom));
 
-            try {
-		/*----- Lecture de infomation dece prog -----*/
-                Programmeperso pp = new Programmeperso();
-                pp = HibernateMethode.consultProgramIdPro(1);
-                
-                out.println("<libPP>"+pp.getLibpp()+"</libPP>");
-		out.println("<descripPP>"+pp.getDescrippp()+"</descripPP>");
-                
-                /*----Lecture de liste de seances de ce prog----*/
-                HashMap<Integer,Seanceperso> msp = HibernateMethode.consultSeancesIdProgPerso(1);
-                out.println("<l_seancesPerso>");
-                for(int ordre: msp.keySet()){
-                    out.println("<seancePerso>");
-                    out.println("<ordreSP>"+ordre+"</ordreSP>");
-                    out.println("<libSP>"+msp.get(ordre).getLibsea()+"</libSP>");
-                    out.println("<descripSP>"+msp.get(ordre).getDescrisea()+"</descripSP>");
-                    out.println("</seancePerso>");
-                }
-                out.println("</l_seancesPerso>");
-		}
-            catch (Exception ex)
-		{
-		out.println("<libPP>Erreur - " + ex.getMessage() + "</libPP>");
-		}
-            out.println("</programme>");
-	}
+                        for (String unObj : lnp)
+                        {
+                            out.println("<nom>" + unObj + "</nom>");
+                        }
+			out.println("</list_progO>");
+
+
+
+
+        }
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -101,6 +91,5 @@ public class TestServletTableProg extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 
 }
