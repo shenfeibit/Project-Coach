@@ -5,6 +5,7 @@
  */
 package CtrlServlet;
 
+import Bd.Programmestandard;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,6 +32,7 @@ public class ServletProgObjectif extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         
             response.setContentType("application/xml;charset=UTF-8");
             try (PrintWriter out = response.getWriter()) {
@@ -43,10 +45,15 @@ public class ServletProgObjectif extends HttpServlet {
                 try
                 {
                     //get the result
-                    ArrayList<String> lnp = new ArrayList<>(HibernateMethode.lireProgObj(nom));
-                    for (String unObj : lnp)
+                        ArrayList<Programmestandard> lps = new ArrayList<Programmestandard>(HibernateMethode.lireProgObj(nom));
+
+                        for (Programmestandard ps : lps)
+
                         {
-                            out.println("<nom>" + unObj + "</nom>");
+                            out.println("<prog>");
+                            out.println("<nom>" + ps.getLibps() + "</nom>");
+                            out.println("<id>"+ps.getIdps()+"</id>");
+                            out.println("</prog>");
                         }
                 }
                 catch (Exception ex)
