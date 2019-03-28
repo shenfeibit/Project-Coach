@@ -3,7 +3,7 @@ function affichePP ()
 	// Objet XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 	// Requête au serveur avec les paramètres éventuels.
-	xhr.open("GET","../ServletTableProg");
+	xhr.open("GET","../ServletTableProg?idc=" + 6);
 	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
 	xhr.onload = function()
 		{

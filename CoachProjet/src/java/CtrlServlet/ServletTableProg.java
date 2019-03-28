@@ -31,6 +31,7 @@ public class ServletTableProg extends HttpServlet {
             /*----- Ecriture de la page XML -----*/
             out.println("<?xml version=\"1.0\"?>");
             out.println("<programme>");
+             String idCli = request.getParameter("idc");
 
             /*----- Récupération des paramètres -----*/
             //String nom = request.getParameter("idProg");
@@ -38,7 +39,7 @@ public class ServletTableProg extends HttpServlet {
             try {
 		/*----- Lecture de infomation dece prog -----*/
                 Programmeperso pp = new Programmeperso();
-                pp = HibernateMethode.consultProgramIdPro(1);
+                pp = HibernateMethode.seeProgrammeCli(Integer.parseInt(idCli));
                 
                 out.println("<libPP>"+pp.getLibpp()+"</libPP>");
 		out.println("<descripPP>"+pp.getDescrippp()+"</descripPP>");

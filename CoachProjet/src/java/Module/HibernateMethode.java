@@ -51,16 +51,19 @@ public class HibernateMethode {
         tc.commit();
         return l_obj;
     }
+    
+    public static Programmeperso seeProgrammeCli(int idClient) {
+            Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+            Transaction tc = ses.beginTransaction() ;
 
-    public static Programmeperso consultProgramIdPro(int idPP){
-        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
-        Transaction tc = ses.beginTransaction() ;
-        Query q = ses.createQuery ("from Programmeperso as pp where pp.idpp = "+idPP);
-        List<Programmeperso> lpp = (List<Programmeperso>) q.list();
-        Programmeperso pp = lpp.get(0);
-        tc.commit();
-        return pp;
-    }
+            Query q = ses.createQuery ("from Programmeperso as pp where pp.client = " + idClient);
+            List<Programmeperso> lpp = (List<Programmeperso>) q.list();
+            Programmeperso pp = lpp.get(0);
+            
+            tc.commit();
+            return pp;
+        }
+
     
     public static HashMap<Integer,Seanceperso> consultSeancesIdProgPerso(int idPro){
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -114,7 +117,7 @@ public class HibernateMethode {
         return nomlo;
     }
 
- public static ArrayList<Objectif> consultTypePs() {
+    public static ArrayList<Objectif> consultTypePs() {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction() ;
 
@@ -166,8 +169,22 @@ public class HibernateMethode {
          }
         return null;
     }
+     
+        public static String seeProgressionProg(int idClient) {
+            seeProgrammeCli(idClient);
+            Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+            Transaction tc = ses.beginTransaction() ;
 
-
+            Query q = ses.createQuery ("from Objectif");
+            List<Objectif> lobj = (List<Objectif>) q.list();
+            ArrayList<Objectif> nomlo = new ArrayList<Objectif>();
+            for(Objectif o : lobj){
+                nomlo.add(o);
+            }
+            String res = null;
+            tc.commit();
+            return res;
+        }
 
 
 
