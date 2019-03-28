@@ -42,11 +42,11 @@ public class ServletSeanceStandPs extends HttpServlet {
             out.println("<l_seances>");
             HashMap<Integer,Seancestandard> mss = HibernateMethode.consultSeancesIdProgStand(Integer.parseInt(idPS));
             for(int i: mss.keySet()){
-                out.println("<seances>");
+                out.println("<seance>");
                 out.println("<ordre>"+i+"</ordre>");
                 out.println("<libSS>"+mss.get(i).getLibseas()+"</libSS>");
                 out.println("<desSS>"+mss.get(i).getDescripseas()+"</desSS>");
-                out.println("</seances>");
+                out.println("</seance>");
             }
             out.println("</l_seances>");
         }

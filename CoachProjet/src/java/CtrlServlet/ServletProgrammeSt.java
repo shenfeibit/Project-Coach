@@ -40,7 +40,10 @@ public class ServletProgrammeSt extends HttpServlet {
             ArrayList<Programmestandard> lps = HibernateMethode.consultProgramSt();
 
             for(Programmestandard ps : lps){
-               out.print("<nom>"+ps.getLibps()+"</nom>");
+                out.println("<prog>");
+                out.println("<nom>" + ps.getLibps() + "</nom>");
+                out.println("<id>"+ps.getIdps()+"</id>");
+                out.println("</prog>");
             }
 
             out.println("</list_pgrm>");

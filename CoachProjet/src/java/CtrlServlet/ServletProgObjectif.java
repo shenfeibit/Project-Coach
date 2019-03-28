@@ -44,7 +44,10 @@ public class ServletProgObjectif extends HttpServlet {
 
                         for (Programmestandard ps : lps)
                         {
+                            out.println("<prog>");
                             out.println("<nom>" + ps.getLibps() + "</nom>");
+                            out.println("<id>"+ps.getIdps()+"</id>");
+                            out.println("</prog>");
                         }
 			out.println("</list_progO>");
 
