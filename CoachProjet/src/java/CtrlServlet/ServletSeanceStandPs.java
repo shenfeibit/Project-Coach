@@ -5,66 +5,53 @@
  */
 package CtrlServlet;
 
-import Bd.Programmeperso;
-import Bd.Seanceperso;
+import Bd.Seancestandard;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Fei
+ * @author 21611943
  */
-public class ServletTableProg extends HttpServlet {
-//the servelet to get all infomations of a programmePerso to show in other sites
-    
+@WebServlet(name = "ServletSeanceStandPs", urlPatterns = {"/ServletSeanceStandPs"})
+public class ServletSeanceStandPs extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-		response.setContentType("application/xml;charset=UTF-8");
-		response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/xml;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /*----- Ecriture de la page XML -----*/
+            String idPS = request.getParameter("idPS");
+            
             out.println("<?xml version=\"1.0\"?>");
-            out.println("<programme>");
-             String idCli = request.getParameter("idc");
-
-            /*----- Récupération des paramètres -----*/
-            //String nom = request.getParameter("idProg");
-
-            try {
-		/*----- Lecture de infomation dece prog -----*/
-                Programmeperso pp = new Programmeperso();
-                pp = HibernateMethode.seeProgrammeCli(Integer.parseInt(idCli));
-                
-                out.println("<libPP>"+pp.getLibpp()+"</libPP>");
-		out.println("<descripPP>"+pp.getDescrippp()+"</descripPP>");
-                
-                /*----Lecture de liste de seances de ce prog----*/
-                HashMap<Integer,Seanceperso> msp = HibernateMethode.consultSeancesIdProgPerso(pp.getIdpp());
-                out.println("<l_seancesPerso>");
-                for(int ordre: msp.keySet()){
-                    out.println("<seancePerso>");
-                    out.println("<ordreSP>"+ordre+"</ordreSP>");
-                    out.println("<libSP>"+msp.get(ordre).getLibsea()+"</libSP>");
-                    out.println("<descripSP>"+msp.get(ordre).getDescrisea()+"</descripSP>");
-                    out.println("<dateSP>"+msp.get(ordre).getDatesea()+"</dateSP>");
-                    out.println("</seancePerso>");
-                }
-                out.println("</l_seancesPerso>");
-		}
-            catch (Exception ex)
-		{
-		out.println("<libPP>Erreur - " + ex.getMessage() + "</libPP>");
-		}
-            out.println("</programme>");
-	}
+            out.println("<l_seances>");
+            HashMap<Integer,Seancestandard> mss = HibernateMethode.consultSeancesIdProgStand(Integer.parseInt(idPS));
+            for(int i: mss.keySet()){
+                out.println("<seances>");
+                out.println("<ordre>"+i+"</ordre>");
+                out.println("<libSS>"+mss.get(i).getLibseas()+"</libSS>");
+                out.println("<desSS>"+mss.get(i).getDescripseas()+"</desSS>");
+                out.println("</seances>");
+            }
+            out.println("</l_seances>");
+        }
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -103,6 +90,5 @@ public class ServletTableProg extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 
 }

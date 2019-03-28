@@ -5,6 +5,7 @@
  */
 package CtrlServlet;
 
+import Bd.Programmestandard;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -36,10 +37,10 @@ public class ServletProgrammeSt extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             out.println("<?xml version=\"1.0\"?>");
             out.println("<list_pgrm>");
-            ArrayList<String> lp = HibernateMethode.consultProgramSt();
+            ArrayList<Programmestandard> lps = HibernateMethode.consultProgramSt();
 
-            for(String l : lp){
-               out.print("<nom>"+l+"</nom>");
+            for(Programmestandard ps : lps){
+               out.print("<nom>"+ps.getLibps()+"</nom>");
             }
 
             out.println("</list_pgrm>");

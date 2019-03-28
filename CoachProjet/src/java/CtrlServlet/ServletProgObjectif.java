@@ -5,6 +5,7 @@
  */
 package CtrlServlet;
 
+import Bd.Programmestandard;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,11 +40,11 @@ public class ServletProgObjectif extends HttpServlet {
 			/*----- Récupération des paramètres -----*/
 			String nom = request.getParameter("nomObj");
 
-                        ArrayList<String> lnp = new ArrayList<String>(HibernateMethode.lireProgObj(nom));
+                        ArrayList<Programmestandard> lps = new ArrayList<Programmestandard>(HibernateMethode.lireProgObj(nom));
 
-                        for (String unObj : lnp)
+                        for (Programmestandard ps : lps)
                         {
-                            out.println("<nom>" + unObj + "</nom>");
+                            out.println("<nom>" + ps.getLibps() + "</nom>");
                         }
 			out.println("</list_progO>");
 
