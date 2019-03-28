@@ -23,30 +23,7 @@ import org.hibernate.Transaction;
 public class ServletShowInfoCli extends HttpServlet {
 
    
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            String idCli = request.getParameter("idc");
-            Client c = HibernateMethode.showInfoClient(Integer.parseInt(idCli));
-            out.print("<nom>"+c.getNomc()+"</nom>");
-            out.print("<prenom>"+c.getPrenomc()+"</prenom>");
-           
-        }
-    }
-//    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        response.setContentType("application/xml;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) 
-//        {
-//            //String idCli = request.getParameter("idc");
-//            Client c = HibernateMethode.shoxInfoClient(1);
-//            //out.println("<nom>"+c.getNomc()+"</nom>");
-//            //out.println("<prenom>"+c.getPrenomc()+"</prenom>");
-//            
-//       
-//        }
-//    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -76,6 +53,7 @@ public class ServletShowInfoCli extends HttpServlet {
             out.println("<sexe>"+c.getSexec()+"</sexe>");
             out.println("<tele>"+c.getTelc()+"</tele>");
             out.println("<email>"+c.getEmailc()+"</email>");
+            out.println("<image>"+c.getPhotoc()+"</image>");
             out.println("<liste_obj>");
             ArrayList<Objectif> l_obj = HibernateMethode.showObjectifCli(Integer.parseInt(idCli));
             for (Objectif o : l_obj){
@@ -99,7 +77,7 @@ public class ServletShowInfoCli extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
+                doGet(request, response);
     }
 
     /**
