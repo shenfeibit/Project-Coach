@@ -52,6 +52,7 @@ public class HibernateMethode {
         ArrayList<Objectif> l_obj = new ArrayList<>();
         for (Choisir ch : l_cho){
             l_obj.add(ch.getObjectif());
+            ch.getObjectif().getLibobj();
         }        
         tc.commit();
         return l_obj;

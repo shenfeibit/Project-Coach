@@ -6,7 +6,7 @@ function showinfoCli ()
     { 
         //create a requery with a value entry
         var xhr = new XMLHttpRequest();
-	xhr.open("GET","../ServletShowInfoCli?idc=" + 2);
+	xhr.open("GET","../ServletShowInfoCli?idc=" + 1);
         xhr.onload = function(){
             //if the connect succees
             if (xhr.status === 200){

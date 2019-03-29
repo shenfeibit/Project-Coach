@@ -54,7 +54,9 @@ public class ServletTableProg extends HttpServlet {
                     out.println("<dateSP>"+msp.get(ordre).getDatesea()+"</dateSP>");
                     out.println("</seancePerso>");
 
-                }}
+                }
+                out.println("</l_seancesPerso>");
+            }
                 catch (Exception ex)
                     {
                         out.println("<erreur>ServletTableProg Erreur - " + ex.getMessage() + "</erreur>");
