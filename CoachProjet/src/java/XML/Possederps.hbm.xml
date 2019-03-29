@@ -11,6 +11,9 @@
             <key-property name="idseas" type="int">
                 <column name="IDSEAS" />
             </key-property>
+            <key-property name="ordredefaut" type="int">
+                <column name="ORDREDEFAUT" />
+            </key-property>
         </composite-id>
         <many-to-one name="programmestandard" class="Bd.Programmestandard" update="false" insert="false" fetch="select">
             <column name="IDPS" not-null="true" />
@@ -18,8 +21,5 @@
         <many-to-one name="seancestandard" class="Bd.Seancestandard" update="false" insert="false" fetch="select">
             <column name="IDSEAS" not-null="true" />
         </many-to-one>
-        <property name="ordredefaut" type="java.lang.Integer">
-            <column name="ORDREDEFAUT" />
-        </property>
     </class>
 </hibernate-mapping>

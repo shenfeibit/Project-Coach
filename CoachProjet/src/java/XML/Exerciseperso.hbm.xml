@@ -17,10 +17,10 @@
         <property name="descripexe" type="string">
             <column name="DESCRIPEXE" length="32" />
         </property>
-        <property name="dureeexe" type="java.lang.Integer">
+        <property name="dureeexe" type="string">
             <column name="DUREEEXE" />
         </property>
-        <property name="nbrepet" type="java.lang.Integer">
+        <property name="nbrepet" type="string">
             <column name="NBREPET" />
         </property>
         <property name="photoexe" type="string">
@@ -35,7 +35,7 @@
         <property name="performance" type="string">
             <column name="PERFORMANCE" length="32" />
         </property>
-        <property name="dureereal" type="java.lang.Integer">
+        <property name="dureereal" type="string">
             <column name="DUREEREAL" />
         </property>
         <property name="nbrepetreal" type="java.lang.Integer">

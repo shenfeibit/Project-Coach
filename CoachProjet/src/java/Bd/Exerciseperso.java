@@ -16,13 +16,13 @@ public class Exerciseperso  implements java.io.Serializable {
      private Seanceperso seanceperso;
      private String libexe;
      private String descripexe;
-     private Integer dureeexe;
-     private Integer nbrepet;
+     private String dureeexe;
+     private String nbrepet;
      private String photoexe;
      private String videoexe;
      private Integer ordreexe;
      private String performance;
-     private Integer dureereal;
+     private String dureereal;
      private Integer nbrepetreal;
 
     public Exerciseperso() {
@@ -32,7 +32,7 @@ public class Exerciseperso  implements java.io.Serializable {
     public Exerciseperso(Seanceperso seanceperso) {
         this.seanceperso = seanceperso;
     }
-    public Exerciseperso(Seanceperso seanceperso, String libexe, String descripexe, Integer dureeexe, Integer nbrepet, String photoexe, String videoexe, Integer ordreexe, String performance, Integer dureereal, Integer nbrepetreal) {
+    public Exerciseperso(Seanceperso seanceperso, String libexe, String descripexe, String dureeexe, String nbrepet, String photoexe, String videoexe, Integer ordreexe, String performance, String dureereal, Integer nbrepetreal) {
        this.seanceperso = seanceperso;
        this.libexe = libexe;
        this.descripexe = descripexe;
@@ -74,18 +74,18 @@ public class Exerciseperso  implements java.io.Serializable {
     public void setDescripexe(String descripexe) {
         this.descripexe = descripexe;
     }
-    public Integer getDureeexe() {
+    public String getDureeexe() {
         return this.dureeexe;
     }
     
-    public void setDureeexe(Integer dureeexe) {
+    public void setDureeexe(String dureeexe) {
         this.dureeexe = dureeexe;
     }
-    public Integer getNbrepet() {
+    public String getNbrepet() {
         return this.nbrepet;
     }
     
-    public void setNbrepet(Integer nbrepet) {
+    public void setNbrepet(String nbrepet) {
         this.nbrepet = nbrepet;
     }
     public String getPhotoexe() {
@@ -116,11 +116,11 @@ public class Exerciseperso  implements java.io.Serializable {
     public void setPerformance(String performance) {
         this.performance = performance;
     }
-    public Integer getDureereal() {
+    public String getDureereal() {
         return this.dureereal;
     }
     
-    public void setDureereal(Integer dureereal) {
+    public void setDureereal(String dureereal) {
         this.dureereal = dureereal;
     }
     public Integer getNbrepetreal() {
