@@ -1,11 +1,10 @@
 
     
     
-    function showType ()
+function showType ()
     { 
         var xhr = new XMLHttpRequest();
 	xhr.open("GET","../ServletObjectifs");
-       
 
 	xhr.onload = function()
         
@@ -14,25 +13,23 @@
 		if (xhr.status === 200)
                     {
                         var rep = xhr.responseXML;
-                        
-                        var pStandard = rep.getElementsByTagName("prog");
+                        var l_obj=rep.getElementsByTagName("nom");
                         
                         var texte = "<option></option>";
                         
-                        for(var i=0;i<pStandard.length;i++)
+                        for(var i=0;i<l_obj.length;i++)
                         {
-                            var pS = pStandard[i].children;
-                            texte +="<option value=\""+pS[1].firstChild.nodeValue+"\">"+ pS[0].firstChild.nodeValue+"</option>";
+                            texte +="<option>"+ l_obj[i].firstChild.nodeValue+"</option>";
                         }
                         
                         var elt = document.getElementById("typeProg");
                         
-			elt.innerHTML = texte; 
+			elt.innerHTML = texte;  
                     }
 	
 	};
         xhr.send();
-    } 
+} 
     
    function showProgramme ()
     { 
