@@ -32,23 +32,32 @@ public class ServletProgrammeSt extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/xml;charset=UTF-8");
+            
+            response.setContentType("application/xml;charset=UTF-8");
 
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<?xml version=\"1.0\"?>");
-            out.println("<list_pgrm>");
-            ArrayList<Programmestandard> lps = HibernateMethode.consultProgramSt();
+            try (PrintWriter out = response.getWriter()) {
+              //write the page XML
+                out.println("<?xml version=\"1.0\"?>");
+                out.println("<list_pgrm>");
+                try
+                {
+                    //get the result
+                    ArrayList<Programmestandard> lps = new ArrayList<>();
+                    lps = HibernateMethode.consultProgramSt();
 
-            for(Programmestandard ps : lps){
-                out.println("<prog>");
-                out.println("<nom>" + ps.getLibps() + "</nom>");
-                out.println("<id>"+ps.getIdps()+"</id>");
-                out.println("</prog>");
-            }
+                    for(Programmestandard ps : lps){
+                        out.println("<prog>");
+                        out.println("<nom>" + ps.getLibps() + "</nom>");
+                        out.println("<id>"+ps.getIdps()+"</id>");
+                        out.println("</prog>");
+                    }
+                }
+          catch (Exception ex)
+             {
+                    out.println("<erreur>ServletProgrammeSt Erreur - " + ex.getMessage() + "</erreur>");
+                }
 
             out.println("</list_pgrm>");
-
-
         }
     }
 

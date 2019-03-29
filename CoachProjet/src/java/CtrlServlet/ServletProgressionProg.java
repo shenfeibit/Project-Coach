@@ -8,19 +8,16 @@ package CtrlServlet;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author 21511708
+ * @author 21611924
  */
-@WebServlet(name = "ServletObjectifs", urlPatterns = {"/ServletObjectifs"})
-public class ServletObjectifs extends HttpServlet {
+public class ServletProgressionProg extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,27 +30,30 @@ public class ServletObjectifs extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+            
             response.setContentType("application/xml;charset=UTF-8");
-            try (PrintWriter out = response.getWriter()) {
+            try (PrintWriter out = response.getWriter()) 
+            {
                 //write the page XML
                 out.println("<?xml version=\"1.0\"?>");
-                out.println("<list_obj>");
-                try{
+                out.println("<progression>");
+                //get the param
+                String idc = request.getParameter("idc");
+                
+                try 
+                {
                     //get the result
-                    ArrayList<String> lo = HibernateMethode.consultType();
-                    for(String l : lo)
-                    {
-                        out.print("<nom>"+l+"</nom>");
-                    }
+                    float k = 0;
+                    k = HibernateMethode.seeProgressionProg(Integer.parseInt(idc));
+                    int res = Math.round(k*100);
+                    out.println("<percent>"+res+"</percent>");
                 }
                 catch (Exception ex)
                 {
-                    out.println("<erreur>ServletObjectifs erreur - " + ex.getMessage() + "</erreur>");
+                    out.println("<fault>ServletProgressionProg Erreur - " + ex.getMessage() + "</fault>");
                 }
-            
-            out.println("</list_obj>");
-        }
+            out.println("</progression>");
+	}
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

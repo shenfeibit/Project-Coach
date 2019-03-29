@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,16 +26,15 @@ public class ServletTableProg extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-		response.setContentType("application/xml;charset=UTF-8");
-		response.setCharacterEncoding("UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /*----- Ecriture de la page XML -----*/
-            out.println("<?xml version=\"1.0\"?>");
-            out.println("<programme>");
-             String idCli = request.getParameter("idc");
-
-            /*----- Récupération des paramètres -----*/
-            //String nom = request.getParameter("idProg");
+        
+            response.setContentType("application/xml;charset=UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            try (PrintWriter out = response.getWriter()) {
+                //write the page XML
+                out.println("<?xml version=\"1.0\"?>");
+                out.println("<programme>");
+                //get the param
+                String idCli = request.getParameter("idc");
 
             try {
 		/*----- Lecture de infomation dece prog -----*/
@@ -54,13 +54,14 @@ public class ServletTableProg extends HttpServlet {
                     out.println("<descripSP>"+msp.get(ordre).getDescrisea()+"</descripSP>");
                     out.println("<dateSP>"+msp.get(ordre).getDatesea()+"</dateSP>");
                     out.println("</seancePerso>");
+
                 }
                 out.println("</l_seancesPerso>");
-		}
-            catch (Exception ex)
-		{
-		out.println("<libPP>Erreur - " + ex.getMessage() + "</libPP>");
-		}
+            }
+                catch (Exception ex)
+                    {
+                        out.println("<erreur>ServletTableProg Erreur - " + ex.getMessage() + "</erreur>");
+                    }
             out.println("</programme>");
 	}
     }
@@ -106,3 +107,4 @@ public class ServletTableProg extends HttpServlet {
 
 
 }
+

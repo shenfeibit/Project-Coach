@@ -9,20 +9,12 @@
         <url-pattern>/ServletTableProg</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>ServletProgrammeSt</servlet-name>
-        <servlet-class>CtrlServlet.ServletProgrammeSt</servlet-class>
+        <servlet-name>ServletProgressionProg</servlet-name>
+        <servlet-class>CtrlServlet.ServletProgressionProg</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletProgrammeSt</servlet-name>
-        <url-pattern>/ServletProgrammeSt</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>ServletProgObjectif</servlet-name>
-        <servlet-class>CtrlServlet.ServletProgObjectif</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletProgObjectif</servlet-name>
-        <url-pattern>/ServletProgObjectif</url-pattern>
+        <servlet-name>ServletProgressionProg</servlet-name>
+        <url-pattern>/ServletProgressionProg</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ServletObjectifs</servlet-name>
@@ -32,6 +24,31 @@
         <servlet-name>ServletObjectifs</servlet-name>
         <url-pattern>/ServletObjectifs</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletProgObjectif</servlet-name>
+        <servlet-class>CtrlServlet.ServletProgObjectif</servlet-class>
+    </servlet>
+  <servlet-mapping>
+        <servlet-name>ServletProgObjectif</servlet-name>
+        <url-pattern>/ServletProgObjectif</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletShowInfoCli</servlet-name>
+        <servlet-class>CtrlServlet.ServletShowInfoCli</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletShowInfoCli</servlet-name>
+        <url-pattern>/ServletShowInfoCli</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletProgrammeSt</servlet-name>
+        <servlet-class>CtrlServlet.ServletProgrammeSt</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletProgrammeSt</servlet-name>
+        <url-pattern>/ServletProgrammeSt</url-pattern>
+    </servlet-mapping>
+  
     <session-config>
         <session-timeout>
             30

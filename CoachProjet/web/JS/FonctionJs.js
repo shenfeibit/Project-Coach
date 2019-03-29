@@ -1,35 +1,42 @@
-
+/*
+ * this function is to show all the information of the client
+ * name, address,tel, photo, objectifs
+ */
 function showinfoCli ()
     { 
-//      var idCli = document.getElementById("idc").value; 
-
+        //create a requery with a value entry
         var xhr = new XMLHttpRequest();
-	xhr.open("GET","../ServletShowInfoCli?idc=" + 6); // 1 va être changé à idCli
-
+	xhr.open("GET","../ServletShowInfoCli?idc=" + 1);
         xhr.onload = function(){
+            //if the connect succees
             if (xhr.status === 200){
-                console.log("XML200");
-                //var donnees = xhr.responseXML.getElementsByTagName("donnees");
+                //extract all the information
                 var nom = xhr.responseXML.getElementsByTagName("nom");
                 var prenom = xhr.responseXML.getElementsByTagName("prenom");
                 var sexe = xhr.responseXML.getElementsByTagName("sexe");
                 var tele = xhr.responseXML.getElementsByTagName("tele");
                 var email = xhr.responseXML.getElementsByTagName("email");
-                console.log(nom[0].firstChild.nodeValue);
-                var texte = nom[0].firstChild.nodeValue + " " +prenom[0].firstChild.nodeValue + "</br>" + sexe[0].firstChild.nodeValue + "</br>" + tele[0].firstChild.nodeValue + "</br>" + email[0].firstChild.nodeValue + "</br>" ;
+                var image = xhr.responseXML.getElementsByTagName("image");
                 
+                //format html
+                var imageCli = "<img src=\"../IMAGE/" + image[0].firstChild.nodeValue + "\" width =\"150\" alt=\"image of Client\"/>"
+                var texte = nom[0].firstChild.nodeValue + " " +prenom[0].firstChild.nodeValue + "</br>" + sexe[0].firstChild.nodeValue + "</br>" + tele[0].firstChild.nodeValue + "</br>" + email[0].firstChild.nodeValue + "</br>" ;
+              
                 var l_obj = xhr.responseXML.getElementsByTagName("lib");
                 var lib = "<p>";
-                for (var i =0; i < l_obj.length; i++){            
-                    console.log(lib);
+                for (var i =0; i < l_obj.length; i++){       
                     lib += l_obj[i].firstChild.nodeValue + "</br>";                    
                 }
                 lib += "</p>";
-                var elt = document.getElementById("objectif");
-		elt.innerHTML = lib;  
                 
-                var elt = document.getElementById("descp");
-		elt.innerHTML = texte;  
+                //show all the information
+                var eltimage = document.getElementById("image");;
+                eltimage.innerHTML = imageCli; 
+                var eltdescp = document.getElementById("descp");
+		eltdescp.innerHTML = texte; 
+                var eltlib = document.getElementById("libobj");
+		eltlib.innerHTML = lib;  
+             
             };
 	};
         xhr.send();
