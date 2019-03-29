@@ -12,6 +12,14 @@
         <servlet-name>ServletProgObjectif</servlet-name>
         <servlet-class>CtrlServlet.ServletProgObjectif</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletClientEnPgrm</servlet-name>
+        <servlet-class>CtrlServlet.ServletClientEnPgrm</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletClientNonPgrm</servlet-name>
+        <servlet-class>CtrlServlet.ServletClientNonPgrm</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletObjectifs</servlet-name>
         <url-pattern>/ServletObjectifs</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>ServletProgObjectif</servlet-name>
         <url-pattern>/ServletProgObjectif</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletClientEnPgrm</servlet-name>
+        <url-pattern>/ServletClientEnPgrm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletClientNonPgrm</servlet-name>
+        <url-pattern>/ServletClientNonPgrm</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

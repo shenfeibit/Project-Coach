@@ -30,11 +30,10 @@ function showType ()
     } 
     
     
-    function showProgramme ()
+    function showType ()
     { 
-        
         var xhr = new XMLHttpRequest();
-	xhr.open("GET","../ServletProgrammeSt");
+	xhr.open("GET","../ServletObjectifs");
        
 
 	xhr.onload = function()
@@ -46,21 +45,23 @@ function showType ()
                         var rep = xhr.responseXML;
                         var l_obj=rep.getElementsByTagName("nom");
                         
-                        var texte = "";
+                        var texte = "<option></option>";
                         
                         for(var i=0;i<l_obj.length;i++)
                         {
                             texte +="<option>"+ l_obj[i].firstChild.nodeValue+"</option>";
                         }
                         
-                        var elt = document.getElementById("nomProg");
+                        var elt = document.getElementById("typeProg");
                         
 			elt.innerHTML = texte;  
                     }
 	
 	};
         xhr.send();
-    }
+    } 
+    
+   
     
     
     function l_clickObj ()
@@ -109,4 +110,5 @@ function showType ()
         window.addEventListener("load",showType);
         //window.addEventListener("load",showProgramme);
         document.getElementById("typeProg").addEventListener("change",l_clickObj);
+        
 });

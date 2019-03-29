@@ -1,41 +1,51 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package CtrlServlet;
 
 import Bd.Client;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author 21511708
+ */
+public class ServletClientEnPgrm extends HttpServlet {
 
-@WebServlet(name = "ServletShowInfoCli", urlPatterns = {"/ServletShowInfoCli"})
-public class ServletShowInfoCli extends HttpServlet {
-
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 response.setContentType("application/xml;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            String idCli = request.getParameter("idc");
+try (PrintWriter out = response.getWriter()) {
+            out.println("<?xml version=\"1.0\"?>");
+            out.println("<list_idPgrm>");
+            ArrayList<Client> listid = HibernateMethode.consultClientPgrm();
 
-
-
-
-               Client cli = HibernateMethode.shoxInfoClient(parseInt(idCli));
-               out.print("<client>");
-               out.print("<id>"+cli.getIdc()+"</id>");
-               out.print("<nom>"+cli.getNomc()+"</nom>");
-               out.print("<prenom>"+cli.getPrenomc()+"</prenom>");
+            for(Client l : listid){
+                out.print("<client>");
+               out.print("<id>"+l.getIdc()+"</id>");
+               out.print("<nom>"+l.getNomc()+"</nom>");
                out.print("</client>");
+            }
 
-
-
+            out.println("</list_idPgrm>");
         }
     }
 

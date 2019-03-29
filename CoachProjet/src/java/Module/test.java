@@ -25,11 +25,16 @@ public class test {
 //     }
 
     public static void main (String[] args){
-            ArrayList<String> a = new ArrayList();
-            a=HibernateMethode.lireProgObj("Se muscler");
-            for(String l : a){
-                System.out.print(l);
-            }
+//            ArrayList<String> a = new ArrayList();
+//            a=HibernateMethode.lireProgObj("Se muscler");
+//            for(String l : a){
+//                System.out.print(l);
+//            }
 
+//            ArrayList<Integer> i = new ArrayList();
+//            i=HibernateMethode.consultClientPgrm();
+//            for(int ii : i){
+//                System.out.print(ii);
+//            }
      }
 }

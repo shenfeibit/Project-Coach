@@ -130,6 +130,33 @@ public class HibernateMethode {
     }
 
 
+      public static ArrayList<Client> consultClientPgrm() {
+        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tc = ses.beginTransaction() ;
+
+        Query q = ses.createQuery ("from Client as c where c.idc in (select client from Programmeperso)");
+        List<Client> clt = (List<Client>) q.list();
+        ArrayList<Client> cliId = new ArrayList();
+        for(Client c : clt){
+            cliId.add(c);
+        }
+        tc.commit();
+        return cliId;
+    }
+
+ public static ArrayList<Client> consultClientNonPgrm() {
+        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tc = ses.beginTransaction() ;
+
+        Query q = ses.createQuery ("from Client as c where c.idc not in (select client from Programmeperso)");
+        List<Client> clt = (List<Client>) q.list();
+        ArrayList<Client> cliId = new ArrayList();
+        for(Client c : clt){
+            cliId.add(c);
+        }
+        tc.commit();
+        return cliId;
+    }
 
 
 
