@@ -7,6 +7,7 @@ package Module;
 
 import Bd.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -213,7 +214,62 @@ public class HibernateMethode {
             return k;
         }
 
-
-
+        public static void affecter(int idps, int idc){
+            Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+            Transaction tc = ses.beginTransaction();
+            
+            //enregistrer dans programmeperso
+            Query qCli = ses.createQuery("from Client as c where c.idc= " + idc);
+            Client c = (Client) qCli.list().get(0);
+            Date date = new Date();
+            Query qProg = ses.createQuery("from Possederps as pp where pp.programmestandard=" + idps);
+            List<Possederps> listpossederps = (List<Possederps>) qProg.list();
+            Programmestandard ss = listpossederps.get(0).getProgrammestandard();
+            Set<Seancestandard> setSes = new HashSet<Seancestandard>();
+            for(Possederps ps : listpossederps){
+               setSes.add(ps.getSeancestandard());
+            }
+            Set<Objectif> setObj = new HashSet<Objectif>();
+            for( Object o : ss.getObjectifs()){ 
+                setObj.add((Objectif) o);
+            }
+            Programmeperso programmeperso = new Programmeperso(c, ss.getLibps(), ss.getDescripps(), ss.getDureeps(), "en cours", date, setSes, setObj );
+            ses.save(programmeperso);
+            
+            //enregistrer dans seanceperso
+            for(Possederps ps : listpossederps){
+                Set<Exerciseperso> setExe = new HashSet<Exerciseperso>();
+                //System.out.print(ps.getSeancestandard().getExercisestandards().size());
+                for(Object exe : ps.getSeancestandard().getExercisestandards()){ 
+                    setExe.add((Exerciseperso) exe);
+                }
+                Seanceperso seanceperso = new Seanceperso(programmeperso, ps.getSeancestandard().getLibseas(), ps.getSeancestandard().getDescripseas(), ps.getSeancestandard().getTypeseas(), null, ps.getOrdredefaut(),ps.getSemainesea(),null, null, null, null, null, setExe ); 
+                ses.save(seanceperso);
+                
+//                //enregistrer dans exerciseperso
+//                for(Exercisestandard exeSt : setExe){
+//                    
+//                    Exerciseperso exerciseperso = new Exerciseperso(seanceperso,exeSt.getLibexes(), exeSt.getDescripexes(), exeSt.getDureeexes(), exeSt.getNbrepets(), exeSt.getPhotoexe(), exeSt.getVideoexe(), exeSt., null, null, null);
+//                    ses.save(exerciseperso);
+//                }
+            
+            
+            }
+            tc.commit();       
+        }
+            
+            
+        
+        
+public static Integer consultSemaine(int idps) {
+        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tc = ses.beginTransaction();
+        Query q = ses.createQuery ("from Possederps as pp where pp.programmestandard=" + idps);
+        Possederps lpp = new Possederps();
+         lpp = (Possederps)q.list().get(0);
+        int pp = lpp.getSemainesea();
+        tc.commit();
+        return pp;
+    }
 
 }

@@ -26,6 +26,9 @@
         <property name="ordresea" type="java.lang.Integer">
             <column name="ORDRESEA" />
         </property>
+        <property name="semaine" type="java.lang.Integer">
+            <column name="SEMAINESEA" />
+        </property>
         <property name="bras" type="java.lang.Double">
             <column name="BRAS" precision="5" />
         </property>

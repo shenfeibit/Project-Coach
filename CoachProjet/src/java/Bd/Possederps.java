@@ -16,6 +16,7 @@ public class Possederps  implements java.io.Serializable {
      private Programmestandard programmestandard;
      private Seancestandard seancestandard;
      private Integer ordredefaut;
+     private Integer semainesea;
 
     public Possederps() {
     }
@@ -26,11 +27,12 @@ public class Possederps  implements java.io.Serializable {
         this.programmestandard = programmestandard;
         this.seancestandard = seancestandard;
     }
-    public Possederps(PossederpsId id, Programmestandard programmestandard, Seancestandard seancestandard, Integer ordredefaut) {
+    public Possederps(PossederpsId id, Programmestandard programmestandard, Seancestandard seancestandard, Integer ordredefaut, Integer semainesea) {
        this.id = id;
        this.programmestandard = programmestandard;
        this.seancestandard = seancestandard;
        this.ordredefaut = ordredefaut;
+       this.semainesea=semainesea;
     }
    
     public PossederpsId getId() {
@@ -62,6 +64,14 @@ public class Possederps  implements java.io.Serializable {
         this.ordredefaut = ordredefaut;
     }
 
+    public Integer getSemainesea() {
+        return semainesea;
+    }
+
+    public void setSemainesea(Integer semainesea) {
+        this.semainesea = semainesea;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
