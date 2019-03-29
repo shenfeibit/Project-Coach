@@ -3,7 +3,7 @@ function affichePP ()
 	// Object XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 	// requery with a value entry.
-	xhr.open("GET","../ServletTableProg?idc=" + 1);
+	xhr.open("GET","../ServletTableProg?idc=" + 6);
 	xhr.onload = function()
 		{
 		//if the connect succees
