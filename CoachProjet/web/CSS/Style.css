@@ -2,10 +2,10 @@ html{
     background-color: #333;
 }
 body{
-    padding: 50px 20px;
+    padding: 0;
     background-color: white;
-    border:5px dashed beige;
     min-width: 800px;
+    margin:20px;
 }
 
 h1{
@@ -194,17 +194,21 @@ table{
 
 
 
-
 .header {
-  position: absolute;
-  top: 0;
-  z-index: 1;
-  width: 100%;
+  position: relative;
+  top: -20px;
+ 
+  margin:0;
+  padding:0;
+  width:100%;
+  border-top-style:solid;
+  height: 50px;
   background-color: #f1f1f1;
 }
 
 .header h2 {
   text-align: center;
+  font-size: 100%;
 }
 
 .progress-container {
@@ -217,4 +221,56 @@ table{
   height: 8px;
   background: yellow;
   width: 0%;
+}
+
+.contentCli{
+    position:relative;
+    width:100%;
+    padding:0;
+    margin:0;
+}
+.tab-left{
+    position:relative;
+    float: left;
+    width : 50%;
+    border-right-style: solid;
+}
+
+.tab-right{
+    position:relative;
+
+    margin-left: 50%;
+    padding-left:10%;
+}
+
+#imagecl{
+    background-color: gold;
+    position:relative;
+    float:left;
+    width: 20%; 
+    height: 50px;
+    padding:5%;
+}
+
+#descpcl{
+    background-color: gold;
+    position:relative;
+    float:left;
+    width: 20%; 
+    height: 50px;
+    border-left-style: solid;
+    padding:5%;
+    
+}
+
+#objectifcl{
+    background-color: gold;
+    position:relative;
+    margin-left: 60%;
+    width: 30%;
+    height: 50px;
+    border-left-style: solid;
+    padding:5%;
+    font-size: 200%
+    
 }

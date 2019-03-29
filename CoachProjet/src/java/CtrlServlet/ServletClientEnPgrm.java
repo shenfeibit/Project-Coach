@@ -6,6 +6,7 @@
 package CtrlServlet;
 
 import Bd.Client;
+import Bd.Objectif;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,18 +35,53 @@ public class ServletClientEnPgrm extends HttpServlet {
             throws ServletException, IOException {
 response.setContentType("application/xml;charset=UTF-8");
 try (PrintWriter out = response.getWriter()) {
-            out.println("<?xml version=\"1.0\"?>");
-            out.println("<list_idPgrm>");
-            ArrayList<Client> listid = HibernateMethode.consultClientPgrm();
 
-            for(Client l : listid){
-                out.print("<client>");
-               out.print("<id>"+l.getIdc()+"</id>");
-               out.print("<nom>"+l.getNomc()+"</nom>");
-               out.print("</client>");
-            }
 
-            out.println("</list_idPgrm>");
+    //write the page XML
+                out.println("<?xml version=\"1.0\"?>");
+                out.println("<list_idPgrm>");
+                //get the param
+
+                try{
+                    //get the result
+                    ArrayList<Client> c = HibernateMethode.consultClientPgrm();
+
+                    for (Client ci : c)
+                    {
+                    out.println("<client>");
+                    out.print("<id>"+ci.getIdc()+"</id>");
+                    out.println("<nom>"+ci.getNomc()+"</nom>");
+                    out.println("<prenom>"+ci.getPrenomc()+"</prenom>");
+                    out.println("<sexe>"+ci.getSexec()+"</sexe>");
+                    out.println("<image>"+ci.getPhotoc()+"</image>");
+
+                    
+                    out.println("</client>");
+
+                    }
+                }
+                catch (Exception ex)
+		{
+                    out.println("<erreur>ServletShowInfoCli Erreur - " + ex.getMessage() + "</erreur>");
+		}
+                    out.println("</list_idPgrm>");
+
+
+
+
+
+//            out.println("<?xml version=\"1.0\"?>");
+//            out.println("<list_idPgrm>");
+//            ArrayList<Client> listid = HibernateMethode.consultClientPgrm();
+//
+//            for(Client l : listid){
+//                out.print("<client>");
+//               out.print("<id>"+l.getIdc()+"</id>");
+//               out.print("<nom>"+l.getNomc()+"</nom>");
+//               out.print("</client>");
+//            }
+//
+//            out.println("</list_idPgrm>");
         }
     }
 
