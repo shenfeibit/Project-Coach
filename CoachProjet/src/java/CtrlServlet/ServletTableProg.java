@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -55,6 +56,7 @@ public class ServletTableProg extends HttpServlet {
                     out.println("</seancePerso>");
 
                 }
+                out.println("</l_seancesPerso>");
             }
                 catch (Exception ex)
                     {
@@ -105,3 +107,4 @@ public class ServletTableProg extends HttpServlet {
 
 
 }
+

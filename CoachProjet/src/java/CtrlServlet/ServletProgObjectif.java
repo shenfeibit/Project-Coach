@@ -45,7 +45,7 @@ public class ServletProgObjectif extends HttpServlet {
                 try
                 {
                     //get the result
-                        ArrayList<Programmestandard> lps = new ArrayList<Programmestandard>(HibernateMethode.lireProgObj(nom));
+                        ArrayList<Programmestandard> lps = HibernateMethode.lireProgObj(nom);
 
                         for (Programmestandard ps : lps)
 

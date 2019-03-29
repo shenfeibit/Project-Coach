@@ -43,18 +43,20 @@ function showType ()
 		if (xhr.status === 200)
                     {
                         var rep = xhr.responseXML;
-                        var l_obj=rep.getElementsByTagName("nom");
                         
-                        var texte = "";
+                        var pStandard = rep.getElementsByTagName("prog");
                         
-                        for(var i=0;i<l_obj.length;i++)
+                        var texte = "<option></option>";
+                        
+                        for(var i=0;i<pStandard.length;i++)
                         {
-                            texte +="<option>"+ l_obj[i].firstChild.nodeValue+"</option>";
+                            var pS = pStandard[i].children;
+                            texte +="<option value=\""+pS[1].firstChild.nodeValue+"\">"+ pS[0].firstChild.nodeValue+"</option>";
                         }
                         
                         var elt = document.getElementById("nomProg");
                         
-			elt.innerHTML = texte;  
+			elt.innerHTML = texte; 
                     }
 	
 	};
@@ -155,6 +157,7 @@ function showType ()
     
     document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showType);
+        window.addEventListener("load",showProgramme);
         document.getElementById("typeProg").addEventListener("change",l_clickObj);
 
         document.getElementById("nomProg").addEventListener("change",l_clickProg)

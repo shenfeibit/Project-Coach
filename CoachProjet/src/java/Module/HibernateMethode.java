@@ -52,6 +52,7 @@ public class HibernateMethode {
         ArrayList<Objectif> l_obj = new ArrayList<>();
         for (Choisir ch : l_cho){
             l_obj.add(ch.getObjectif());
+            ch.getObjectif().getLibobj();
         }        
         tc.commit();
         return l_obj;
@@ -159,7 +160,7 @@ public class HibernateMethode {
      public static ArrayList<Programmestandard> lireProgObj(String objectif) {
          if(objectif.equals(null)){
 
-             consultProgramSt();
+            return consultProgramSt();
 
          }else{
             ArrayList<Objectif> obj = consultTypePs();
