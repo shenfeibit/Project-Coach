@@ -2,7 +2,6 @@ function showType ()
     { 
         var xhr = new XMLHttpRequest();
 	xhr.open("GET","../ServletObjectifs");
-       
 
 	xhr.onload = function()
         
@@ -44,18 +43,20 @@ function showType ()
 		if (xhr.status === 200)
                     {
                         var rep = xhr.responseXML;
-                        var l_obj=rep.getElementsByTagName("nom");
                         
-                        var texte = "";
+                        var pStandard = rep.getElementsByTagName("prog");
                         
-                        for(var i=0;i<l_obj.length;i++)
+                        var texte = "<option></option>";
+                        
+                        for(var i=0;i<pStandard.length;i++)
                         {
-                            texte +="<option>"+ l_obj[i].firstChild.nodeValue+"</option>";
+                            var pS = pStandard[i].children;
+                            texte +="<option value=\""+pS[1].firstChild.nodeValue+"\">"+ pS[0].firstChild.nodeValue+"</option>";
                         }
                         
                         var elt = document.getElementById("nomProg");
                         
-			elt.innerHTML = texte;  
+			elt.innerHTML = texte; 
                     }
 	
 	};
@@ -79,13 +80,14 @@ function showType ()
 			{
                         var rep = xhr.responseXML;
                         
-                        var pStandard = rep.getElementsByTagName("nom");
+                        var pStandard = rep.getElementsByTagName("prog");
                         
-                        var texte = "";
+                        var texte = "<option></option>";
                         
                         for(var i=0;i<pStandard.length;i++)
                         {
-                            texte +="<option>"+ pStandard[i].firstChild.nodeValue+"</option>";
+                            var pS = pStandard[i].children;
+                            texte +="<option value=\""+pS[1].firstChild.nodeValue+"\">"+ pS[0].firstChild.nodeValue+"</option>";
                         }
                         
                         var elt = document.getElementById("nomProg");
@@ -102,29 +104,62 @@ function showType ()
         }
     }
     
-    function affecter ()
-    {
-        var prog = document.getElementById("nomProg").value ;
+
+    function l_clickProg ()
+	{
+                // Objet XMLHttpRequest.
+	var xhr = new XMLHttpRequest();
+
+        var idPS = document.getElementById("nomProg").value;
         
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET","../ServletAffecter?prog = " + prog);
-        xhr.onload = function(){
-            if (xhr.status === 200){
-                var resultat = document.getElementById("resultat");
-		resultat.innerHTML = "affecté";   
-            }
-        };
-        xhr.send();
-    } 
-        
-    
+        if(idPS!==''){
+	xhr.open("GET","../ServletSeanceStandPs?idPS="+idPS);
+	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
+	xhr.onload = function()
+		{
+		if (xhr.status === 200)
+			{
+                        var rep = xhr.responseXML;
+                        console.log("1111");
+			//for secances
+                        var l_sea = rep.getElementsByTagName("seance");
+                        var texteSea="";
+                        for(var i=0;i<l_sea.length;i++){
+                            var sea = l_sea[i].children;
+                            texteSea+="<div class=\"timeline-article\">";
+                            texteSea+="<div>";
+                                texteSea+="<table>";
+                                    texteSea+="<tr>";
+                                        texteSea+="<td class='content-left'>"+sea[1].firstChild.nodeValue+"</td>";
+                                        texteSea+="<td class='content-right'>"+sea[2].firstChild.nodeValue+"</td>";
+                                    texteSea+="</tr>";
+                                texteSea+="</table>";
+                            texteSea+="</div>";
+                            texteSea+="<div class=\"meta-date\">";
+                            texteSea+="<span class=\"date\">"+sea[0].firstChild.nodeValue+"</span>";
+                            texteSea+="</div>";
+                            texteSea+="</div>";
+                        }
+                        var eltSea=document.getElementById("tableSS");
+                        eltSea.innerHTML=texteSea;
+                        }
+                        
+		};
+            
+
+	xhr.send();
+        }else{
+            showProgramme();
+        }
+    }
+
     
     
     document.addEventListener("DOMContentLoaded", () => {
-//        document.getElementById("typeProg").addEventListener("click",showType);
         window.addEventListener("load",showType);
-        //window.addEventListener("load",showProgramme);
+        window.addEventListener("load",showProgramme);
         document.getElementById("typeProg").addEventListener("change",l_clickObj);
-        
-       
+
+        document.getElementById("nomProg").addEventListener("change",l_clickProg)
+
 });
