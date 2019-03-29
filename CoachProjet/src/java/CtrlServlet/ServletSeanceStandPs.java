@@ -5,10 +5,11 @@
  */
 package CtrlServlet;
 
+import Bd.Seancestandard;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,10 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author 21511708
+ * @author 21611943
  */
-@WebServlet(name = "ServletObjectifs", urlPatterns = {"/ServletObjectifs"})
-public class ServletObjectifs extends HttpServlet {
+@WebServlet(name = "ServletSeanceStandPs", urlPatterns = {"/ServletSeanceStandPs"})
+public class ServletSeanceStandPs extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,26 +34,21 @@ public class ServletObjectifs extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-            response.setContentType("application/xml;charset=UTF-8");
-            try (PrintWriter out = response.getWriter()) {
-                //write the page XML
-                out.println("<?xml version=\"1.0\"?>");
-                out.println("<list_obj>");
-                try{
-                    //get the result
-                    ArrayList<String> lo = HibernateMethode.consultType();
-                    for(String l : lo)
-                    {
-                        out.print("<nom>"+l+"</nom>");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    out.println("<erreur>ServletObjectifs erreur - " + ex.getMessage() + "</erreur>");
-                }
+        response.setContentType("application/xml;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            String idPS = request.getParameter("idPS");
             
-            out.println("</list_obj>");
+            out.println("<?xml version=\"1.0\"?>");
+            out.println("<l_seances>");
+            HashMap<Integer,Seancestandard> mss = HibernateMethode.consultSeancesIdProgStand(Integer.parseInt(idPS));
+            for(int i: mss.keySet()){
+                out.println("<seance>");
+                out.println("<ordre>"+i+"</ordre>");
+                out.println("<libSS>"+mss.get(i).getLibseas()+"</libSS>");
+                out.println("<desSS>"+mss.get(i).getDescripseas()+"</desSS>");
+                out.println("</seance>");
+            }
+            out.println("</l_seances>");
         }
     }
 
