@@ -1,57 +1,41 @@
  
     function showIdCliNonP ()
     { 
-        
+//      var idCli = document.getElementById("idc").value; 
+
         var xhr = new XMLHttpRequest();
-	xhr.open("GET","../ServletShowInfoCli");
-       
+	xhr.open("GET","../ServletShowInfoCli?idc=" + 6); // 1 va être changé à idCli
 
-	xhr.onload = function()
-        
-            {
-
-		if (xhr.status === 200)
-                    {
-                        var rep = xhr.responseXML;
-                        var l_obj=rep.getElementsByTagName("client");
-                        
-                        var texte = "";
-                        
-                        for(var i=0;i<l_obj.length;i++)
-                        {
-                            texte +="<p>"+l_obj[i].children[0].firstChild.nodeValue+"</p><p>"+ l_obj[i].children[1].firstChild.nodeValue+"</p>";
-                        }
-                        
-                        var elt = document.getElementById("descp");
-                        
-			elt.innerHTML = texte;  
-                    }
-	
+        xhr.onload = function(){
+            if (xhr.status === 200){
+                console.log("XML200");
+                //var donnees = xhr.responseXML.getElementsByTagName("donnees");
+                var nom = xhr.responseXML.getElementsByTagName("nom");
+                var prenom = xhr.responseXML.getElementsByTagName("prenom");
+                var sexe = xhr.responseXML.getElementsByTagName("sexe");
+                var tele = xhr.responseXML.getElementsByTagName("tele");
+                var email = xhr.responseXML.getElementsByTagName("email");
+                console.log(nom[0].firstChild.nodeValue);
+                var texte = nom[0].firstChild.nodeValue + " " +prenom[0].firstChild.nodeValue + "</br>" + sexe[0].firstChild.nodeValue + "</br>" + tele[0].firstChild.nodeValue + "</br>" + email[0].firstChild.nodeValue + "</br>" ;
+                
+                var l_obj = xhr.responseXML.getElementsByTagName("lib");
+                var lib = "<p>";
+                for (var i =0; i < l_obj.length; i++){            
+                    console.log(lib);
+                    lib += l_obj[i].firstChild.nodeValue + "</br>";                    
+                }
+                lib += "</p>";
+                var elt = document.getElementById("objectif");
+		elt.innerHTML = lib;  
+                
+                var elt = document.getElementById("descp");
+		elt.innerHTML = texte;  
+            };
 	};
         xhr.send();
-    }
-    
-    
-    
-// When the user scrolls the page, execute myFunction 
+    } 
 
-
-function myFunction() {
-  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  var scrolled = (winScroll / height) * 100;
-  document.getElementById("myBar").style.width = scrolled + "%";
-}
-
-    
-    
-    
-    document.addEventListener("DOMContentLoaded", () => {
-        window.addEventListener("scroll",myFunction);
-
-        });
-
-
-
-
-
+document.addEventListener("DOMContentLoaded", () => {
+        window.addEventListener("load",showinfoCli);
+//        window.addEventListener("load",showObjCli);
+});
