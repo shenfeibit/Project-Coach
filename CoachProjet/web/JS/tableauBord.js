@@ -1,7 +1,10 @@
 //show the list of all the clients which have a programme
 function showIdCliP ()
     { 
-        
+        document.getElementById("detailCli").style.display = "none";
+        document.getElementById("progcli").style.display = "none";
+        document.getElementById("bt_ctrl_back").style.display = "none";
+        document.getElementById("listeCli").style.display = "block";  
         var xhr = new XMLHttpRequest();
 	xhr.open("GET","../ServletClientEnPgrm");
        
@@ -14,7 +17,7 @@ function showIdCliP ()
                         var rep = xhr.responseXML;
                         var l_obj=rep.getElementsByTagName("client");
                         var texte="";
-                                for(var i=0;i<l_obj.length;i++){
+                                for(var i=0;i<l_obj.length && i<3;i++){
                                 var clip = l_obj[i].children;
                                     texte+="<div id=\"imagecl\"><div id='photocli'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
                                     texte+="<div id=\"descpcl\"><p>"+clip[1].firstChild.nodeValue+"</p></div>";
@@ -37,10 +40,11 @@ function showIdCliP ()
 	};
         xhr.send();
     }
-    
+//show all infomation about a client which has been chose
 function showinfoCli ()
     {
        document.getElementById("detailCli").style.display = "block";
+       document.getElementById("bt_ctrl_back").style.display = "block";
         
        //create a requery with a value entry
         var xhr = new XMLHttpRequest();
@@ -84,9 +88,11 @@ function showinfoCli ()
 	};
         xhr.send();
     }
-    
+   
+//show the programme which a client has begin to do
 function affichePP ()
 	{
+        document.getElementById("progcli").style.display = "block";
 	// Object XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 	// requery with a value entry.
@@ -149,7 +155,7 @@ function affichePP ()
 	xhr.send();
 	}
         
-        
+//show progress    
 function afficheProgression ()
 	{
 	// Object XMLHttpRequest.
@@ -182,12 +188,55 @@ function afficheProgression ()
 function backToMenu ()
     {
         document.getElementById("detailCli").style.display = "none";
+        document.getElementById("progcli").style.display = "none";
+        document.getElementById("bt_ctrl_back").style.display = "none";
         document.getElementById("listeCli").style.display = "block";
+        
         
     }
     
+    
+//show the list of all the clients which demand a programme
+function showIdCliNonP ()
+    { 
+        var xhr = new XMLHttpRequest();
+	xhr.open("GET","../ServletClientNonPgrm");
+       
+	xhr.onload = function()
+            {
+		if (xhr.status === 200)
+                    {
+                        var rep = xhr.responseXML;
+                        var l_obj=rep.getElementsByTagName("client");
+                            var texte="";
+                            for(var i=0;i<l_obj.length && i<3;i++){
+                                var clip = l_obj[i].children;
+                                    texte+="<div id=\"imagecl\"><div id='photocli'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
+                                    texte+="<div id=\"descpcl\"><p>"+clip[1].firstChild.nodeValue+"</p></div>";
+                                    
+                                    var l_obj = xhr.responseXML.getElementsByTagName("lib");
+                                    texte+="<div id=\"objectifcl\"><p >client's objectif</p>";
+                                    for (var i =0; i < l_obj.length; i++){       
+                                        texte += l_obj[i].firstChild.nodeValue + "</br>";                    
+                                    }
+                                    texte += "</div>";
+                            }
+                       
+                        var elt = document.getElementById("cliNoProg");
+			elt.innerHTML = texte; 
+                        var choix =  document.querySelectorAll("#photocli");
+                        for (var i = 0; i<choix.length;i++){
+                                choix[i].addEventListener("click",showinfoCli);
+                            }
+                    }
+	};
+        xhr.send();
+    };
+    
+    
 document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showIdCliP);
+        window.addEventListener("load",showIdCliNonP);
         document.getElementById("bt_back").addEventListener("click",backToMenu);
         
         

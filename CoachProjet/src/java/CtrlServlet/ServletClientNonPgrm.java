@@ -6,6 +6,7 @@
 package CtrlServlet;
 
 import Bd.Client;
+import Bd.Objectif;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,10 +39,21 @@ response.setContentType("application/xml;charset=UTF-8");
             ArrayList<Client> listid = HibernateMethode.consultClientNonPgrm();
 
             for(Client l : listid){
-                out.print("<client>");
-               out.print("<id>"+l.getIdc()+"</id>");
-               out.print("<nom>"+l.getNomc()+"</nom>");
-               out.print("</client>");
+                out.println("<client>");
+                    out.print("<id>"+l.getIdc()+"</id>");
+                    out.println("<nom>"+l.getNomc()+"</nom>");
+                    out.println("<prenom>"+l.getPrenomc()+"</prenom>");
+                    out.println("<sexe>"+l.getSexec()+"</sexe>");
+                    out.println("<image>"+l.getPhotoc()+"</image>");
+                    out.println("<liste_obj>");
+                        ArrayList<Objectif> l_obj;
+                        l_obj = HibernateMethode.showObjectifCli(l.getIdc());
+                        for (Objectif o : l_obj)
+                        {
+                            out.println("<lib>"+o.getLibobj()+"</lib>");
+                        }
+                        out.println("</liste_obj>");
+                    out.println("</client>");
             }
 
             out.println("</list_idNonPgrm>");
