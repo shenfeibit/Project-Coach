@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 26 mars 2019 16:30:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Bd.Possederps" table="POSSEDERPS" catalog="db_21611945" optimistic-lock="version">
         <composite-id name="id" class="Bd.PossederpsId">
@@ -11,6 +11,9 @@
             <key-property name="idseas" type="int">
                 <column name="IDSEAS" />
             </key-property>
+            <key-property name="ordredefaut" type="int">
+                <column name="ORDREDEFAUT" />
+            </key-property>
         </composite-id>
         <many-to-one name="programmestandard" class="Bd.Programmestandard" update="false" insert="false" fetch="select">
             <column name="IDPS" not-null="true" />
@@ -18,8 +21,8 @@
         <many-to-one name="seancestandard" class="Bd.Seancestandard" update="false" insert="false" fetch="select">
             <column name="IDSEAS" not-null="true" />
         </many-to-one>
-        <property name="ordredefaut" type="java.lang.Integer">
-            <column name="ORDREDEFAUT" />
+        <property name="semainesea" type="int">
+            <column name="SEMAINESEA" not-null="true" />
         </property>
         <property name="semainesea" type="java.lang.Integer">
             <column name="SEMAINESEA" />

@@ -1,5 +1,5 @@
 package Bd;
-// Generated 26 mars 2019 16:30:33 by Hibernate Tools 4.3.1
+// Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -130,15 +130,15 @@ public class Client  implements java.io.Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 29 * hash + Objects.hashCode(this.idc);
-        hash = 29 * hash + Objects.hashCode(this.nomc);
-        hash = 29 * hash + Objects.hashCode(this.prenomc);
-        hash = 29 * hash + Objects.hashCode(this.telc);
-        hash = 29 * hash + Objects.hashCode(this.emailc);
-        hash = 29 * hash + Objects.hashCode(this.adressec);
-        hash = 29 * hash + Objects.hashCode(this.sexec);
-        hash = 29 * hash + Objects.hashCode(this.photoc);
-        hash = 29 * hash + Objects.hashCode(this.etatc);
+        hash = 89 * hash + Objects.hashCode(this.idc);
+        hash = 89 * hash + Objects.hashCode(this.nomc);
+        hash = 89 * hash + Objects.hashCode(this.prenomc);
+        hash = 89 * hash + Objects.hashCode(this.telc);
+        hash = 89 * hash + Objects.hashCode(this.emailc);
+        hash = 89 * hash + Objects.hashCode(this.adressec);
+        hash = 89 * hash + Objects.hashCode(this.sexec);
+        hash = 89 * hash + Objects.hashCode(this.photoc);
+        hash = 89 * hash + Objects.hashCode(this.etatc);
         return hash;
     }
 
@@ -184,10 +184,7 @@ public class Client  implements java.io.Serializable {
         return true;
     }
 
-//    public static trouverClient(integer idC){
-//        if (idC.equalsto)
-//    }
-
+    
 
 
 }
