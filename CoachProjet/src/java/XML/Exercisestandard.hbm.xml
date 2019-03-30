@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 26 mars 2019 16:30:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Bd.Exercisestandard" table="EXERCISESTANDARD" catalog="db_21611945" optimistic-lock="version">
         <id name="idexes" type="java.lang.Integer">
@@ -12,13 +12,13 @@
             <column name="LIBEXES" length="32" />
         </property>
         <property name="descripexes" type="string">
-            <column name="DESCRIPEXES" length="32" />
+            <column name="DESCRIPEXES" length="500" />
         </property>
-        <property name="dureeexes" type="java.lang.Integer">
-            <column name="DUREEEXES" />
+        <property name="dureeexes" type="string">
+            <column name="DUREEEXES" length="10" />
         </property>
-        <property name="nbrepets" type="java.lang.Integer">
-            <column name="NBREPETS" />
+        <property name="nbrepets" type="string">
+            <column name="NBREPETS" length="10" />
         </property>
         <property name="photoexe" type="string">
             <column name="PHOTOEXE" length="32" />
@@ -26,13 +26,14 @@
         <property name="videoexe" type="string">
             <column name="VIDEOEXE" length="32" />
         </property>
-        <set name="seancestandards" table="POSSEDERSEA" inverse="true" lazy="true" fetch="select">
+        <property name="materiel" type="string">
+            <column name="Materiel" length="250" />
+        </property>
+        <set name="possederseas" table="POSSEDERSEA" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="IDEXES" not-null="true" />
             </key>
-            <many-to-many entity-name="Bd.Seancestandard">
-                <column name="IDSEAS" not-null="true" />
-            </many-to-many>
+            <one-to-many class="Bd.Possedersea" />
         </set>
     </class>
 </hibernate-mapping>

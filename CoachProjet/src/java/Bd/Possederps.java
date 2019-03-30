@@ -1,5 +1,5 @@
 package Bd;
-// Generated 26 mars 2019 16:30:33 by Hibernate Tools 4.3.1
+// Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1
 
 import java.util.Objects;
 
@@ -15,22 +15,19 @@ public class Possederps  implements java.io.Serializable {
      private PossederpsId id;
      private Programmestandard programmestandard;
      private Seancestandard seancestandard;
-     private Integer ordredefaut;
+
+     private int semainesea;
+
 
     public Possederps() {
     }
 
-	
-    public Possederps(PossederpsId id, Programmestandard programmestandard, Seancestandard seancestandard) {
-        this.id = id;
-        this.programmestandard = programmestandard;
-        this.seancestandard = seancestandard;
-    }
-    public Possederps(PossederpsId id, Programmestandard programmestandard, Seancestandard seancestandard, Integer ordredefaut) {
+    public Possederps(PossederpsId id, Programmestandard programmestandard, Seancestandard seancestandard, int semainesea) {
        this.id = id;
        this.programmestandard = programmestandard;
        this.seancestandard = seancestandard;
-       this.ordredefaut = ordredefaut;
+       this.semainesea = semainesea;
+
     }
    
     public PossederpsId getId() {
@@ -54,19 +51,27 @@ public class Possederps  implements java.io.Serializable {
     public void setSeancestandard(Seancestandard seancestandard) {
         this.seancestandard = seancestandard;
     }
-    public Integer getOrdredefaut() {
-        return this.ordredefaut;
+    public int getSemainesea() {
+        return this.semainesea;
     }
     
-    public void setOrdredefaut(Integer ordredefaut) {
-        this.ordredefaut = ordredefaut;
+    public void setSemainesea(int semainesea) {
+        this.semainesea = semainesea;
     }
 
+    public Integer getSemainesea() {
+        return semainesea;
+    }
+
+    public void setSemainesea(Integer semainesea) {
+        this.semainesea = semainesea;
+    }
+    
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 5;
         hash = 83 * hash + Objects.hashCode(this.id);
-        hash = 83 * hash + Objects.hashCode(this.ordredefaut);
+        hash = 83 * hash + this.semainesea;
         return hash;
     }
 
@@ -82,16 +87,14 @@ public class Possederps  implements java.io.Serializable {
             return false;
         }
         final Possederps other = (Possederps) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (this.semainesea != other.semainesea) {
             return false;
         }
-        if (!Objects.equals(this.ordredefaut, other.ordredefaut)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
-
-    
 
 
 
