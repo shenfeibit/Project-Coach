@@ -1,5 +1,5 @@
 package Bd;
-// Generated 26 mars 2019 16:30:33 by Hibernate Tools 4.3.1
+// Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1
 
 
 
@@ -11,13 +11,15 @@ public class PossederpsId  implements java.io.Serializable {
 
      private int idps;
      private int idseas;
+     private int ordredefaut;
 
     public PossederpsId() {
     }
 
-    public PossederpsId(int idps, int idseas) {
+    public PossederpsId(int idps, int idseas, int ordredefaut) {
        this.idps = idps;
        this.idseas = idseas;
+       this.ordredefaut = ordredefaut;
     }
    
     public int getIdps() {
@@ -34,6 +36,13 @@ public class PossederpsId  implements java.io.Serializable {
     public void setIdseas(int idseas) {
         this.idseas = idseas;
     }
+    public int getOrdredefaut() {
+        return this.ordredefaut;
+    }
+    
+    public void setOrdredefaut(int ordredefaut) {
+        this.ordredefaut = ordredefaut;
+    }
 
 
    public boolean equals(Object other) {
@@ -43,7 +52,8 @@ public class PossederpsId  implements java.io.Serializable {
 		 PossederpsId castOther = ( PossederpsId ) other; 
          
 		 return (this.getIdps()==castOther.getIdps())
- && (this.getIdseas()==castOther.getIdseas());
+ && (this.getIdseas()==castOther.getIdseas())
+ && (this.getOrdredefaut()==castOther.getOrdredefaut());
    }
    
    public int hashCode() {
@@ -51,6 +61,7 @@ public class PossederpsId  implements java.io.Serializable {
          
          result = 37 * result + this.getIdps();
          result = 37 * result + this.getIdseas();
+         result = 37 * result + this.getOrdredefaut();
          return result;
    }   
 

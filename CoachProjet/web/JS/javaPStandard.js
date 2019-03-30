@@ -1,3 +1,6 @@
+
+    
+    
 function showType ()
     { 
         var xhr = new XMLHttpRequest();
@@ -26,10 +29,9 @@ function showType ()
 	
 	};
         xhr.send();
-    } 
+} 
     
-    
-    function showProgramme ()
+   function showProgramme ()
     { 
         
         var xhr = new XMLHttpRequest();
@@ -61,7 +63,7 @@ function showType ()
 	
 	};
         xhr.send();
-    }
+}
     
     
     function l_clickObj ()
@@ -160,6 +162,6 @@ function showType ()
         window.addEventListener("load",showProgramme);
         document.getElementById("typeProg").addEventListener("change",l_clickObj);
 
-        document.getElementById("nomProg").addEventListener("change",l_clickProg)
+        document.getElementById("nomProg").addEventListener("change",l_clickProg);
 
 });

@@ -1,5 +1,5 @@
 package Bd;
-// Generated 26 mars 2019 16:30:33 by Hibernate Tools 4.3.1
+// Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1
 
 import java.util.Objects;
 
@@ -16,23 +16,25 @@ public class Exerciseperso  implements java.io.Serializable {
      private Seanceperso seanceperso;
      private String libexe;
      private String descripexe;
-     private Integer dureeexe;
-     private Integer nbrepet;
+     private String dureeexe;
+     private String nbrepet;
      private String photoexe;
      private String videoexe;
      private Integer ordreexe;
      private String performance;
-     private Integer dureereal;
-     private Integer nbrepetreal;
+     private String dureereal;
+     private String nbrepetreal;
+     private String materiel;
 
     public Exerciseperso() {
     }
 
 	
-    public Exerciseperso(Seanceperso seanceperso) {
+    public Exerciseperso(Seanceperso seanceperso, String materiel) {
         this.seanceperso = seanceperso;
+        this.materiel = materiel;
     }
-    public Exerciseperso(Seanceperso seanceperso, String libexe, String descripexe, Integer dureeexe, Integer nbrepet, String photoexe, String videoexe, Integer ordreexe, String performance, Integer dureereal, Integer nbrepetreal) {
+    public Exerciseperso(Seanceperso seanceperso, String libexe, String descripexe, String dureeexe, String nbrepet, String photoexe, String videoexe, Integer ordreexe, String performance, String dureereal, String nbrepetreal, String materiel) {
        this.seanceperso = seanceperso;
        this.libexe = libexe;
        this.descripexe = descripexe;
@@ -44,6 +46,7 @@ public class Exerciseperso  implements java.io.Serializable {
        this.performance = performance;
        this.dureereal = dureereal;
        this.nbrepetreal = nbrepetreal;
+       this.materiel = materiel;
     }
    
     public Integer getIdexe() {
@@ -74,18 +77,18 @@ public class Exerciseperso  implements java.io.Serializable {
     public void setDescripexe(String descripexe) {
         this.descripexe = descripexe;
     }
-    public Integer getDureeexe() {
+    public String getDureeexe() {
         return this.dureeexe;
     }
     
-    public void setDureeexe(Integer dureeexe) {
+    public void setDureeexe(String dureeexe) {
         this.dureeexe = dureeexe;
     }
-    public Integer getNbrepet() {
+    public String getNbrepet() {
         return this.nbrepet;
     }
     
-    public void setNbrepet(Integer nbrepet) {
+    public void setNbrepet(String nbrepet) {
         this.nbrepet = nbrepet;
     }
     public String getPhotoexe() {
@@ -116,35 +119,43 @@ public class Exerciseperso  implements java.io.Serializable {
     public void setPerformance(String performance) {
         this.performance = performance;
     }
-    public Integer getDureereal() {
+    public String getDureereal() {
         return this.dureereal;
     }
     
-    public void setDureereal(Integer dureereal) {
+    public void setDureereal(String dureereal) {
         this.dureereal = dureereal;
     }
-    public Integer getNbrepetreal() {
+    public String getNbrepetreal() {
         return this.nbrepetreal;
     }
     
-    public void setNbrepetreal(Integer nbrepetreal) {
+    public void setNbrepetreal(String nbrepetreal) {
         this.nbrepetreal = nbrepetreal;
+    }
+    public String getMateriel() {
+        return this.materiel;
+    }
+    
+    public void setMateriel(String materiel) {
+        this.materiel = materiel;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 73 * hash + Objects.hashCode(this.idexe);
-        hash = 73 * hash + Objects.hashCode(this.libexe);
-        hash = 73 * hash + Objects.hashCode(this.descripexe);
-        hash = 73 * hash + Objects.hashCode(this.dureeexe);
-        hash = 73 * hash + Objects.hashCode(this.nbrepet);
-        hash = 73 * hash + Objects.hashCode(this.photoexe);
-        hash = 73 * hash + Objects.hashCode(this.videoexe);
-        hash = 73 * hash + Objects.hashCode(this.ordreexe);
-        hash = 73 * hash + Objects.hashCode(this.performance);
-        hash = 73 * hash + Objects.hashCode(this.dureereal);
-        hash = 73 * hash + Objects.hashCode(this.nbrepetreal);
+        hash = 19 * hash + Objects.hashCode(this.idexe);
+        hash = 19 * hash + Objects.hashCode(this.libexe);
+        hash = 19 * hash + Objects.hashCode(this.descripexe);
+        hash = 19 * hash + Objects.hashCode(this.dureeexe);
+        hash = 19 * hash + Objects.hashCode(this.nbrepet);
+        hash = 19 * hash + Objects.hashCode(this.photoexe);
+        hash = 19 * hash + Objects.hashCode(this.videoexe);
+        hash = 19 * hash + Objects.hashCode(this.ordreexe);
+        hash = 19 * hash + Objects.hashCode(this.performance);
+        hash = 19 * hash + Objects.hashCode(this.dureereal);
+        hash = 19 * hash + Objects.hashCode(this.nbrepetreal);
+        hash = 19 * hash + Objects.hashCode(this.materiel);
         return hash;
     }
 
@@ -166,6 +177,12 @@ public class Exerciseperso  implements java.io.Serializable {
         if (!Objects.equals(this.descripexe, other.descripexe)) {
             return false;
         }
+        if (!Objects.equals(this.dureeexe, other.dureeexe)) {
+            return false;
+        }
+        if (!Objects.equals(this.nbrepet, other.nbrepet)) {
+            return false;
+        }
         if (!Objects.equals(this.photoexe, other.photoexe)) {
             return false;
         }
@@ -175,28 +192,25 @@ public class Exerciseperso  implements java.io.Serializable {
         if (!Objects.equals(this.performance, other.performance)) {
             return false;
         }
-        if (!Objects.equals(this.idexe, other.idexe)) {
-            return false;
-        }
-        if (!Objects.equals(this.dureeexe, other.dureeexe)) {
-            return false;
-        }
-        if (!Objects.equals(this.nbrepet, other.nbrepet)) {
-            return false;
-        }
-        if (!Objects.equals(this.ordreexe, other.ordreexe)) {
-            return false;
-        }
         if (!Objects.equals(this.dureereal, other.dureereal)) {
             return false;
         }
         if (!Objects.equals(this.nbrepetreal, other.nbrepetreal)) {
             return false;
         }
+        if (!Objects.equals(this.materiel, other.materiel)) {
+            return false;
+        }
+        if (!Objects.equals(this.idexe, other.idexe)) {
+            return false;
+        }
+        if (!Objects.equals(this.ordreexe, other.ordreexe)) {
+            return false;
+        }
         return true;
     }
 
-
+    
 
 
 }

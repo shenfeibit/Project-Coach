@@ -6,7 +6,9 @@ function showinfoCli ()
     { 
         //create a requery with a value entry
         var xhr = new XMLHttpRequest();
-	xhr.open("GET","../ServletShowInfoCli?idc=" + 1);
+        var param = encodeURIComponent(this.firstChild.nodeValue);
+	xhr.open("GET","../ServletShowInfoCli?idc=" + param);
+        
         xhr.onload = function(){
             //if the connect succees
             if (xhr.status === 200){
@@ -19,7 +21,7 @@ function showinfoCli ()
                 var image = xhr.responseXML.getElementsByTagName("image");
                 
                 //format html
-                var imageCli = "<img src=\"../IMAGE/" + image[0].firstChild.nodeValue + "\" width =\"150\" alt=\"image of Client\"/>"
+                var imageCli = "<img src=\"../IMAGE/" + image[0].firstChild.nodeValue + "\" width =\"150\" alt=\"image of Client\"/>";
                 var texte = nom[0].firstChild.nodeValue + " " +prenom[0].firstChild.nodeValue + "</br>" + sexe[0].firstChild.nodeValue + "</br>" + tele[0].firstChild.nodeValue + "</br>" + email[0].firstChild.nodeValue + "</br>" ;
               
                 var l_obj = xhr.responseXML.getElementsByTagName("lib");
@@ -43,5 +45,6 @@ function showinfoCli ()
     } 
 
 document.addEventListener("DOMContentLoaded", () => {
-        window.addEventListener("load",showinfoCli);
+       // window.addEventListener("load",showinfoCli);
+        //document.getElementById("imagecl").addEventListener("click",showinfoCli);
 });

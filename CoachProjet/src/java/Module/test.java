@@ -25,12 +25,8 @@ public class test {
 //            //float k = 0;
 //            float k = HibernateMethode.seeProgressionProg(i);
 //            //int res = Math.round(k*100);
-            ArrayList<Programmestandard> ag = new ArrayList<>();
-            ag = HibernateMethode.consultProgramSt();
-            for(Programmestandard p : ag){
-                System.out.println(p.getIdps());
-                System.out.println(p.getLibps());
-            }
+             HibernateMethode.affecter(1, 1);
+            
             
         }
 }
