@@ -218,7 +218,7 @@ function showIdCliNonP ()
                             var texte="";
                             for(var i=0;i<l_obj.length && i<3;i++){
                                 var clip = l_obj[i].children;
-                                    texte+="<div id=\"imagecl\"><div id='photocli'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
+                                    texte+="<div id=\"imagecl\"><div id='photocliNoProg'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
                                     texte+="<div id=\"descpcl\"><p>"+clip[1].firstChild.nodeValue+"</p></div>";
                                     texte+="<div id=\"objectifcl\"><p >client's objectif</p>";
                                         var obj = xhr.responseXML.getElementsByTagName("lib");
@@ -235,7 +235,7 @@ function showIdCliNonP ()
                        
                         var elt = document.getElementById("cliNoProg");
 			elt.innerHTML = texte; 
-                        var choix =  document.querySelectorAll("#photocli");
+                        var choix =  document.querySelectorAll("#photocliNoProg");
                         for (var i = 0; i<choix.length;i++){
                                 choix[i].addEventListener("click",showinfoCli);
                                 choix[i].addEventListener("click",showType);
