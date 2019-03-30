@@ -2,6 +2,8 @@
 function showIdCliP ()
     { 
         document.getElementById("detailCli").style.display = "none";
+        document.getElementById("chercherProg").style.display = "none";
+        document.getElementById("detailProg").style.display = "none";
         document.getElementById("progcli").style.display = "none";
         document.getElementById("bt_ctrl_back").style.display = "none";
         document.getElementById("listeCli").style.display = "block";  
@@ -45,6 +47,7 @@ function showinfoCli ()
     {
        document.getElementById("detailCli").style.display = "block";
        document.getElementById("bt_ctrl_back").style.display = "block";
+        
         
        //create a requery with a value entry
         var xhr = new XMLHttpRequest();
@@ -93,6 +96,8 @@ function showinfoCli ()
 function affichePP ()
 	{
         document.getElementById("progcli").style.display = "block";
+        document.getElementById("detailProg").style.display = "block";
+        document.getElementById("chercherProg").style.display = "none";
 	// Object XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 	// requery with a value entry.
@@ -187,6 +192,8 @@ function afficheProgression ()
     
 function backToMenu ()
     {
+        document.getElementById("chercherProg").style.display = "none";
+        document.getElementById("detailProg").style.display = "none";
         document.getElementById("detailCli").style.display = "none";
         document.getElementById("progcli").style.display = "none";
         document.getElementById("bt_ctrl_back").style.display = "none";
@@ -213,12 +220,16 @@ function showIdCliNonP ()
                                 var clip = l_obj[i].children;
                                     texte+="<div id=\"imagecl\"><div id='photocli'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
                                     texte+="<div id=\"descpcl\"><p>"+clip[1].firstChild.nodeValue+"</p></div>";
-                                    
-                                    var l_obj = xhr.responseXML.getElementsByTagName("lib");
                                     texte+="<div id=\"objectifcl\"><p >client's objectif</p>";
-                                    for (var i =0; i < l_obj.length; i++){       
-                                        texte += l_obj[i].firstChild.nodeValue + "</br>";                    
-                                    }
+                                        var obj = xhr.responseXML.getElementsByTagName("lib");
+                                        if(obj.length!==0){
+                                            alert(i);
+                                           
+                                            for (var j =0; j < obj.length; j++){
+                                                texte += obj[j].firstChild.nodeValue + "</br>";                    
+                                            }
+                                            
+                                        }
                                     texte += "</div>";
                             }
                        
@@ -227,16 +238,174 @@ function showIdCliNonP ()
                         var choix =  document.querySelectorAll("#photocli");
                         for (var i = 0; i<choix.length;i++){
                                 choix[i].addEventListener("click",showinfoCli);
+                                choix[i].addEventListener("click",showType);
+                                choix[i].addEventListener("click",showProgramme);
                             }
                     }
 	};
         xhr.send();
     };
     
+function showType ()
+    { 
+        document.getElementById("chercherProg").style.display = "block";
+        
+        var xhr = new XMLHttpRequest();
+	xhr.open("GET","../ServletObjectifs");
+
+	xhr.onload = function()
+        
+            {
+
+		if (xhr.status === 200)
+                    {
+                        var rep = xhr.responseXML;
+                        var l_obj=rep.getElementsByTagName("nom");
+                        
+                        var texte = "<option></option>";
+                        
+                        for(var i=0;i<l_obj.length;i++)
+                        {
+                            texte +="<option>"+ l_obj[i].firstChild.nodeValue+"</option>";
+                        }
+                        
+                        var elt = document.getElementById("typeProg");
+                        
+			elt.innerHTML = texte;  
+                    }
+	
+	};
+        xhr.send();
+} 
     
+   function showProgramme ()
+    { 
+        document.getElementById("chercherProg").style.display = "block";
+        var xhr = new XMLHttpRequest();
+	xhr.open("GET","../ServletProgrammeSt");
+       
+
+	xhr.onload = function()
+        
+            {
+
+		if (xhr.status === 200)
+                    {
+                        var rep = xhr.responseXML;
+                        
+                        var pStandard = rep.getElementsByTagName("prog");
+                        
+                        var texte = "<option></option>";
+                        
+                        for(var i=0;i<pStandard.length;i++)
+                        {
+                            var pS = pStandard[i].children;
+                            texte +="<option value=\""+pS[1].firstChild.nodeValue+"\">"+ pS[0].firstChild.nodeValue+"</option>";
+                        }
+                        
+                        var elt = document.getElementById("nomProg");
+                        
+			elt.innerHTML = texte; 
+                    }
+	
+	};
+        xhr.send();
+}
+    
+    
+    function l_clickObj ()
+	{
+            
+                // Objet XMLHttpRequest.
+	var xhr = new XMLHttpRequest();
+
+        var objectif = document.getElementById("typeProg").value;
+        
+        if(objectif!==''){
+	xhr.open("GET","../ServletProgObjectif?nomObj="+objectif);
+	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
+	xhr.onload = function()
+		{
+		if (xhr.status === 200)
+			{
+                        var rep = xhr.responseXML;
+                        
+                        var pStandard = rep.getElementsByTagName("prog");
+                        
+                        var texte = "<option></option>";
+                        
+                        for(var i=0;i<pStandard.length;i++)
+                        {
+                            var pS = pStandard[i].children;
+                            texte +="<option value=\""+pS[1].firstChild.nodeValue+"\">"+ pS[0].firstChild.nodeValue+"</option>";
+                        }
+                        
+                        var elt = document.getElementById("nomProg");
+                        
+			elt.innerHTML = texte;
+                        }               
+		};
+            
+	xhr.send();
+        }else{
+            showProgramme();
+        }
+    }
+    
+
+    function l_clickProg ()
+	{
+            document.getElementById("detailProg").style.display = "block";
+                // Objet XMLHttpRequest.
+	var xhr = new XMLHttpRequest();
+
+        var idPS = document.getElementById("nomProg").value;
+        
+        if(idPS!==''){
+	xhr.open("GET","../ServletSeanceStandPs?idPS="+idPS);
+	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
+	xhr.onload = function()
+		{
+		if (xhr.status === 200)
+			{
+                        var rep = xhr.responseXML;
+			//for secances
+                        var l_sea = rep.getElementsByTagName("seance");
+                        var texteSea="";
+                        for(var i=0;i<l_sea.length;i++){
+                            var sea = l_sea[i].children;
+                            texteSea+="<div class=\"timeline-article\">";
+                            texteSea+="<div>";
+                                texteSea+="<table>";
+                                    texteSea+="<tr>";
+                                        texteSea+="<td class='content-left'>"+sea[1].firstChild.nodeValue+"</td>";
+                                        texteSea+="<td class='content-right'>"+sea[2].firstChild.nodeValue+"</td>";
+                                    texteSea+="</tr>";
+                                texteSea+="</table>";
+                            texteSea+="</div>";
+                            texteSea+="<div class=\"meta-date\">";
+                            texteSea+="<span class=\"date\">"+sea[0].firstChild.nodeValue+"</span>";
+                            texteSea+="</div>";
+                            texteSea+="</div>";
+                        }
+                        var eltSea=document.getElementById("tableSP");
+                        eltSea.innerHTML=texteSea;
+                        }
+                        
+		};
+            
+
+	xhr.send();
+        }else{
+            showProgramme();
+        }
+    }
+
 document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showIdCliP);
         window.addEventListener("load",showIdCliNonP);
+        document.getElementById("typeProg").addEventListener("change",l_clickObj);
+        document.getElementById("nomProg").addEventListener("change",l_clickProg);
         document.getElementById("bt_back").addEventListener("click",backToMenu);
         
         

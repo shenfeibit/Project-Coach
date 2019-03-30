@@ -162,6 +162,6 @@ function showType ()
         window.addEventListener("load",showProgramme);
         document.getElementById("typeProg").addEventListener("change",l_clickObj);
 
-        document.getElementById("nomProg").addEventListener("change",l_clickProg)
+        document.getElementById("nomProg").addEventListener("change",l_clickProg);
 
 });
