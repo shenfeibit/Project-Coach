@@ -7,6 +7,7 @@ package Module;
 
 import Bd.*;
 import java.util.ArrayList;
+import static java.util.Collections.list;
 import java.util.HashMap;
 import java.util.List;
 import org.hibernate.Query;
@@ -18,7 +19,7 @@ import org.hibernate.Transaction;
  * @author 21611943
  */
 public class HibernateMethode {
-    
+
     public static Programmeperso consultProgramClient(int idClient) {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction();
@@ -28,7 +29,7 @@ public class HibernateMethode {
         tc.commit();
         return pp;
     }
-    
+
     public static Client showInfoClient (int idClient) {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction() ;
@@ -37,7 +38,7 @@ public class HibernateMethode {
         tc.commit();
         return c;
     }
-    
+
     public static ArrayList<Objectif> showObjectifCli (int idClient) {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction();
@@ -47,7 +48,7 @@ public class HibernateMethode {
         for (Choisir ch : l_cho){
             System.out.print(l_cho.get(0).getObjectif().getLibobj());
             l_obj.add(ch.getObjectif());
-        }        
+        }
         tc.commit();
         return l_obj;
     }
@@ -61,7 +62,7 @@ public class HibernateMethode {
         tc.commit();
         return pp;
     }
-    
+
     public static HashMap<Integer,Seanceperso> consultSeancesIdProgPerso(int idPro){
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction() ;
@@ -167,9 +168,15 @@ public class HibernateMethode {
         return null;
     }
 
+    public static Programmeperso visualiserProgrammeEnCours(int idc){
+          Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+          Transaction tc = ses.beginTransaction() ;
+          Query q = ses.createQuery ("from Programmeperso as pp where pp.client="+idc);
+          List<Programmeperso> lstProgrammeperso = (List<Programmeperso>)q.list();
+          Programmeperso pp = lstProgrammeperso.get(0);
+          tc.commit();
+          return pp;
 
-
-
-
-
+    }
 }
+
