@@ -54,34 +54,16 @@ try (PrintWriter out = response.getWriter()) {
                     out.println("<prenom>"+ci.getPrenomc()+"</prenom>");
                     out.println("<sexe>"+ci.getSexec()+"</sexe>");
                     out.println("<image>"+ci.getPhotoc()+"</image>");
-
-                    
                     out.println("</client>");
 
                     }
                 }
                 catch (Exception ex)
 		{
-                    out.println("<erreur>ServletShowInfoCli Erreur - " + ex.getMessage() + "</erreur>");
+                    out.println("<erreur>ServletClientEnPgrm Erreur - " + ex.getMessage() + "</erreur>");
 		}
                     out.println("</list_idPgrm>");
 
-
-
-
-
-//            out.println("<?xml version=\"1.0\"?>");
-//            out.println("<list_idPgrm>");
-//            ArrayList<Client> listid = HibernateMethode.consultClientPgrm();
-//
-//            for(Client l : listid){
-//                out.print("<client>");
-//               out.print("<id>"+l.getIdc()+"</id>");
-//               out.print("<nom>"+l.getNomc()+"</nom>");
-//               out.print("</client>");
-//            }
-//
-//            out.println("</list_idPgrm>");
         }
     }
 
