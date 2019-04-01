@@ -20,12 +20,13 @@ function showIdCliP ()
                         var rep = xhr.responseXML;
                         var l_obj=rep.getElementsByTagName("client");
                         var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on Programme</h2></div>";
-                                for(var i=l_obj.length-1;i>=0 && i>l_obj.length-4;i--){
+                                for(var i=0;i<l_obj.length;i++){
                                 var clip = l_obj[i].children;
                                     texte+="<div id=\"imagecl\"><div id='photocli'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
                                     texte+="<div id=\"descpcl\"><p>"+clip[1].firstChild.nodeValue+"</p></div>";
-                                    texte+="<div id=\"objectifcl\"><p >client's objectif</p></div>";
-                            
+                                    texte+="<div id=\"objectifcl\"><span>"+clip[5].firstChild.nodeValue+"%</span>";
+                                    texte += "<progress id='percentProg' max='100' value=" +clip[5].firstChild.nodeValue+ "></progress>";
+                                    texte+="</div>";
                         }
                       
                         var elt = document.getElementById("cliProg");
@@ -43,6 +44,7 @@ function showIdCliP ()
 	};
         xhr.send();
     }
+   
 //show all infomation about a client which has been chose
 function showinfoCli ()
     {
@@ -224,11 +226,10 @@ function showIdCliNonP ()
                                 var clip = l_obj[i].children;
                                     texte+="<div id=\"imagecl\"><div id='photocliNoProg'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
                                     texte+="<div id=\"descpcl\"><p>"+clip[1].firstChild.nodeValue+"</p></div>";
-                                    texte+="<div id=\"objectifcl\"><p >client's objectif</p>";
+                                    texte+="<div id=\"objectifcl\">";
                                         var obj = xhr.responseXML.getElementsByTagName("lib");
                                         if(obj.length!==0){
-                                            alert(i);
-                                           
+                                            
                                             for (var j =0; j < obj.length; j++){
                                                 texte += obj[j].firstChild.nodeValue + "</br>";                    
                                             }

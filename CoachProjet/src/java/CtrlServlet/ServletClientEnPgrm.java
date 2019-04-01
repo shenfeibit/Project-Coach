@@ -54,8 +54,11 @@ try (PrintWriter out = response.getWriter()) {
                     out.println("<prenom>"+ci.getPrenomc()+"</prenom>");
                     out.println("<sexe>"+ci.getSexec()+"</sexe>");
                     out.println("<image>"+ci.getPhotoc()+"</image>");
-                    out.println("</client>");
-
+                    float k = 0;
+                    k = HibernateMethode.seeProgressionProg(ci.getIdc());
+                    int res = Math.round(k*100);
+                    out.println("<percent>"+res+"</percent>");
+                    out.println("</client>");                    
                     }
                 }
                 catch (Exception ex)
