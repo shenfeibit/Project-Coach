@@ -7,7 +7,7 @@ function showinfoCli ()
         //create a requery with a value entry
         var xhr = new XMLHttpRequest();
         var param = encodeURIComponent(this.firstChild.nodeValue);
-	xhr.open("GET","../ServletShowInfoCli?idc=" + param);
+	xhr.open("GET","ServletShowInfoCli?idc=" + param);
         
         xhr.onload = function(){
             //if the connect succees
@@ -21,7 +21,7 @@ function showinfoCli ()
                 var image = xhr.responseXML.getElementsByTagName("image");
                 
                 //format html
-                var imageCli = "<img src=\"../IMAGE/" + image[0].firstChild.nodeValue + "\" width =\"150\" alt=\"image of Client\"/>";
+                var imageCli = "<img src=\"IMAGE/" + image[0].firstChild.nodeValue + "\" width =\"150\" alt=\"image of Client\"/>";
                 var texte = nom[0].firstChild.nodeValue + " " +prenom[0].firstChild.nodeValue + "</br>" + sexe[0].firstChild.nodeValue + "</br>" + tele[0].firstChild.nodeValue + "</br>" + email[0].firstChild.nodeValue + "</br>" ;
               
                 var l_obj = xhr.responseXML.getElementsByTagName("lib");

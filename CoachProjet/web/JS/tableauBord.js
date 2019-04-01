@@ -8,7 +8,7 @@ function showIdCliP ()
         document.getElementById("bt_ctrl_back").style.display = "none";
         document.getElementById("listeCli").style.display = "block";  
         var xhr = new XMLHttpRequest();
-	xhr.open("GET","../ServletClientEnPgrm");
+	xhr.open("GET","ServletClientEnPgrm");
        
 
 	xhr.onload = function()
@@ -21,7 +21,7 @@ function showIdCliP ()
                         var texte="";
                                 for(var i=0;i<l_obj.length && i<3;i++){
                                 var clip = l_obj[i].children;
-                                    texte+="<div id=\"imagecl\"><div id='photocli'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
+                                    texte+="<div id=\"imagecl\"><div id='photocli'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
                                     texte+="<div id=\"descpcl\"><p>"+clip[1].firstChild.nodeValue+"</p></div>";
                                     texte+="<div id=\"objectifcl\"><p >client's objectif</p></div>";
                             
@@ -52,7 +52,7 @@ function showinfoCli ()
        //create a requery with a value entry
         var xhr = new XMLHttpRequest();
         var param = encodeURIComponent(this.firstChild.nodeValue);
-	xhr.open("GET","../ServletShowInfoCli?idc=" + param);
+	xhr.open("GET","ServletShowInfoCli?idc=" + param);
         
         xhr.onload = function(){
             //if the connect succees
@@ -102,7 +102,7 @@ function affichePP ()
 	var xhr = new XMLHttpRequest();
 	// requery with a value entry.
         var param = encodeURIComponent(this.firstChild.nodeValue);
-	xhr.open("GET","../ServletTableProg?idc=" + param);
+	xhr.open("GET","ServletTableProg?idc=" + param);
 	xhr.onload = function()
 		{
 		//if the connect succees
@@ -167,7 +167,7 @@ function afficheProgression ()
 	var xhr = new XMLHttpRequest();
 	// requery with a value entry.
         var param = encodeURIComponent(this.firstChild.nodeValue);
-	xhr.open("GET","../ServletProgressionProg?idc=" + param);
+	xhr.open("GET","ServletProgressionProg?idc=" + param);
 	xhr.onload = function()
 		{
 		// if the query succes
@@ -207,7 +207,7 @@ function backToMenu ()
 function showIdCliNonP ()
     { 
         var xhr = new XMLHttpRequest();
-	xhr.open("GET","../ServletClientNonPgrm");
+	xhr.open("GET","ServletClientNonPgrm");
        
 	xhr.onload = function()
             {
@@ -218,7 +218,7 @@ function showIdCliNonP ()
                             var texte="";
                             for(var i=0;i<l_obj.length && i<3;i++){
                                 var clip = l_obj[i].children;
-                                    texte+="<div id=\"imagecl\"><div id='photocliNoProg'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
+                                    texte+="<div id=\"imagecl\"><div id='photocliNoProg'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
                                     texte+="<div id=\"descpcl\"><p>"+clip[1].firstChild.nodeValue+"</p></div>";
                                     texte+="<div id=\"objectifcl\"><p >client's objectif</p>";
                                         var obj = xhr.responseXML.getElementsByTagName("lib");
