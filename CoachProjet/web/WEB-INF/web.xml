@@ -4,10 +4,6 @@
         <servlet-name>ServletTableProg</servlet-name>
         <servlet-class>CtrlServlet.ServletTableProg</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ShowProgram</servlet-name>
-        <jsp-file>/HTML/ShowProgram.jsp</jsp-file>
-    </servlet>
     <servlet-mapping>
         <servlet-name>ServletTableProg</servlet-name>
         <url-pattern>/ServletTableProg</url-pattern>
@@ -67,10 +63,6 @@
     <servlet-mapping>
         <servlet-name>ServletProgrammeSt</servlet-name>
         <url-pattern>/ServletProgrammeSt</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ShowProgram</servlet-name>
-        <url-pattern>/ShowProgram</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

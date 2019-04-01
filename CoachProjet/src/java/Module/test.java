@@ -5,8 +5,7 @@
  */
 package Module;
 
-import Bd.Programmeperso;
-import Bd.Programmestandard;
+import Bd.*;
 import java.util.ArrayList;
 
 /**
@@ -26,7 +25,10 @@ public class test {
 //            float k = HibernateMethode.seeProgressionProg(i);
 //            //int res = Math.round(k*100);
 
-             HibernateMethode.affecter(1, 1);
+             ArrayList<Client> lc = HibernateMethode.consultClientNonPgrm();
+             for(Client c: lc){
+                 System.out.println(c.getIdc()+c.getNomc());
+             }
             
             
 

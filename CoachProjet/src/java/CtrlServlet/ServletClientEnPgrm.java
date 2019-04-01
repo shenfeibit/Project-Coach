@@ -39,7 +39,7 @@ try (PrintWriter out = response.getWriter()) {
 
     //write the page XML
                 out.println("<?xml version=\"1.0\"?>");
-                out.println("<list_idPgrm>");
+                out.println("<list_idClient>");
                 //get the param
 
                 try{
@@ -62,7 +62,7 @@ try (PrintWriter out = response.getWriter()) {
 		{
                     out.println("<erreur>ServletClientEnPgrm Erreur - " + ex.getMessage() + "</erreur>");
 		}
-                    out.println("</list_idPgrm>");
+                    out.println("</list_idClient>");
 
         }
     }

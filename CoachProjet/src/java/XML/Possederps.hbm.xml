@@ -24,8 +24,5 @@
         <property name="semainesea" type="int">
             <column name="SEMAINESEA" not-null="true" />
         </property>
-        <property name="semainesea" type="java.lang.Integer">
-            <column name="SEMAINESEA" />
-        </property>
     </class>
 </hibernate-mapping>
