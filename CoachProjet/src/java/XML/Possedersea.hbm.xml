@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Bd.Possedersea" table="POSSEDERSEA" catalog="db_21611945" optimistic-lock="version">
+        <composite-id name="id" class="Bd.PossederseaId">
+            <key-property name="idseas" type="int">
+                <column name="IDSEAS" />
+            </key-property>
+            <key-property name="idexes" type="int">
+                <column name="IDEXES" />
+            </key-property>
+            <key-property name="ordreExo" type="int">
+                <column name="ordreExo" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="exercisestandard" class="Bd.Exercisestandard" update="false" insert="false" fetch="select">
+            <column name="IDEXES" not-null="true" />
+        </many-to-one>
+        <many-to-one name="seancestandard" class="Bd.Seancestandard" update="false" insert="false" fetch="select">
+            <column name="IDSEAS" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,3 +1,5 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -7,6 +9,7 @@ package Module;
 
 import Bd.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -95,7 +98,7 @@ public class HibernateMethode {
         HashMap<Integer,Seancestandard> mss;
         mss = new HashMap<>();
         for(Possederps psp : lpsp){
-            mss.put(psp.getOrdredefaut(), psp.getSeancestandard());
+            mss.put(psp.getId().getOrdredefaut(), psp.getSeancestandard());
             psp.getSeancestandard().getLibseas();
         }
         tc.commit();
@@ -241,7 +244,58 @@ public class HibernateMethode {
         return cliId;
     }
 
-
+public static void affecter(int idps, int idc){
+            Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+            Transaction tc = ses.beginTransaction();
+            
+            //enregistrer dans programmeperso
+            Query qCli = ses.createQuery("from Client as c where c.idc= " + idc);
+            Client c = (Client) qCli.list().get(0);
+            Date date = new Date();
+            Query qProg = ses.createQuery("from Possederps as pp where pp.programmestandard=" + idps);
+            List<Possederps> listpossederps = (List<Possederps>) qProg.list();
+            Programmestandard ss = listpossederps.get(0).getProgrammestandard();
+            Set<Seancestandard> setSes = new HashSet<Seancestandard>();
+            for(Possederps ps : listpossederps){
+               setSes.add(ps.getSeancestandard());
+            }
+            Set<Objectif> setObj = new HashSet<Objectif>();
+            for( Object o : ss.getObjectifs()){ 
+                setObj.add((Objectif) o);
+            }
+            Programmeperso programmeperso = new Programmeperso(c, ss.getLibps(), ss.getDescripps(), ss.getDureeps(), "en cours", date, setSes, setObj );
+            ses.save(programmeperso);
+            
+            //enregistrer dans seanceperso
+            for(Possederps ps : listpossederps){
+                Seancestandard sesncest = ps.getSeancestandard();
+                Query qListPossedersea = ses.createQuery("from Possedersea as p where p.seancestandard= " + sesncest.getIdseas());
+                List<Possedersea> listpossedersea = qListPossedersea.list();
+                Set<Exercisestandard> setExe = new HashSet<Exercisestandard>();
+                for(Possedersea psea : listpossedersea){
+                    setExe.add((Exercisestandard) psea.getExercisestandard());
+                }
+                
+               
+                Seanceperso seanceperso = new Seanceperso(programmeperso, ps.getSeancestandard().getLibseas(), ps.getSeancestandard().getDescripseas(), ps.getSeancestandard().getTypeseas(), ps.getId().getOrdredefaut(),ps.getSemainesea(),null,null, null, null, null, null, setExe ); 
+                ses.save(seanceperso);
+                
+                //enregistrer dans exerciseperso
+                for(Exercisestandard exeSt : setExe){
+                    
+                    Query qOrdreExe = ses.createQuery("from Possedersea as p where p.seancestandard= " + ps.getSeancestandard().getIdseas() + "and p.exercisestandard = " +exeSt.getIdexes());
+                    Possedersea pse = (Possedersea) qOrdreExe.list().get(0);
+                    int orderExe =  pse.getId().getOrdreExo();
+                    
+                    Exerciseperso exerciseperso = new Exerciseperso(seanceperso,exeSt.getLibexes(), exeSt.getDescripexes(), exeSt.getDureeexes(), exeSt.getNbrepets(), exeSt.getPhotoexe(), exeSt.getVideoexe(), orderExe, null, null, null,exeSt.getMateriel());
+                    ses.save(exerciseperso);
+                }
+            
+            
+            }
+            tc.commit();       
+        }
 
 
 }
+

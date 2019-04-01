@@ -15,22 +15,20 @@ import java.util.ArrayList;
  */
 public class test {
      public static void main (String[] args) throws Exception
-        {
+//        {
 //            int i = 6;
-////            System.out.println(i);
-////            Programmeperso ps = new Programmeperso();
-////                    ps = HibernateMethode.seeProgrammeCli(i);
-////            System.out.println(i);
-////            System.out.println(ps.getIdpp());
-//            //float k = 0;
+//            System.out.println(i);
+//            Programmeperso ps = new Programmeperso();
+//                    ps = HibernateMethode.seeProgrammeCli(i);
+//            System.out.println(i);
+//            System.out.println(ps.getIdpp());
+            //float k = 0;
 //            float k = HibernateMethode.seeProgressionProg(i);
 //            //int res = Math.round(k*100);
-            ArrayList<Programmestandard> ag = new ArrayList<>();
-            ag = HibernateMethode.consultProgramSt();
-            for(Programmestandard p : ag){
-                System.out.println(p.getIdps());
-                System.out.println(p.getLibps());
-            }
+
+             HibernateMethode.affecter(1, 1);
             
+            
+
         }
 }
