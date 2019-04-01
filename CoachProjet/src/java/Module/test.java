@@ -1,3 +1,9 @@
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,8 +12,7 @@
 package Module;
 
 import Bd.Programmeperso;
-import Bd.Programmestandard;
-import java.util.ArrayList;
+
 
 /**
  *
@@ -15,6 +20,7 @@ import java.util.ArrayList;
  */
 public class test {
      public static void main (String[] args) throws Exception
+
              {
 //        {
 //            int i = 6;
@@ -28,8 +34,7 @@ public class test {
 //            //int res = Math.round(k*100);
 
              HibernateMethode.affecter(1, 1);
-            
-            
 
         }
 }
+

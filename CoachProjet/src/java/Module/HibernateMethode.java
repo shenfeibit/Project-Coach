@@ -9,7 +9,11 @@ package Module;
 
 import Bd.*;
 import java.util.ArrayList;
+
 import java.util.Date;
+
+import static java.util.Collections.list;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -55,11 +59,14 @@ public class HibernateMethode {
         ArrayList<Objectif> l_obj = new ArrayList<>();
         for (Choisir ch : l_cho){
             l_obj.add(ch.getObjectif());
+
             ch.getObjectif().getLibobj();
+
         }
         tc.commit();
         return l_obj;
     }
+
 
     public static Programmeperso seeProgrammeCli(int idClient) {
             Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -73,6 +80,7 @@ public class HibernateMethode {
             tc.commit();
             return pp;
         }
+
 
 
     public static HashMap<Integer,Seanceperso> consultSeancesIdProgPerso(int idPro){

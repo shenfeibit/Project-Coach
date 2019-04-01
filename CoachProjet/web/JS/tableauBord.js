@@ -19,7 +19,7 @@ function showIdCliP ()
                     {
                         var rep = xhr.responseXML;
                         var l_obj=rep.getElementsByTagName("client");
-                        var texte="";
+                        var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on Programme</h2></div>";
                                 for(var i=0;i<l_obj.length && i<3;i++){
                                 var clip = l_obj[i].children;
                                     texte+="<div id=\"imagecl\"><div id='photocli'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
@@ -219,7 +219,7 @@ function showIdCliNonP ()
                     {
                         var rep = xhr.responseXML;
                         var l_obj=rep.getElementsByTagName("client");
-                            var texte="";
+                            var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on demande</h2></div>";
                             for(var i=0;i<l_obj.length && i<3;i++){
                                 var clip = l_obj[i].children;
                                     texte+="<div id=\"imagecl\"><div id='photocliNoProg'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";

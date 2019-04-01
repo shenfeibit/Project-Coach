@@ -59,8 +59,6 @@ public class Possederps  implements java.io.Serializable {
         this.semainesea = semainesea;
     }
 
-    
-    
     @Override
     public int hashCode() {
         int hash = 5;
