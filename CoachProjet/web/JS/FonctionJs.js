@@ -3,8 +3,10 @@
  * name, address,tel, photo, objectifs
  */
 function showinfoCli ()
+
     { 
         //create a requery with a value entry
+
         var xhr = new XMLHttpRequest();
 	xhr.open("GET","../ServletShowInfoCli?idc=" + 6);
         
@@ -17,6 +19,7 @@ function showinfoCli ()
                 var sexe = xhr.responseXML.getElementsByTagName("sexe");
                 var tele = xhr.responseXML.getElementsByTagName("tele");
                 var email = xhr.responseXML.getElementsByTagName("email");
+
                 var image = xhr.responseXML.getElementsByTagName("image");
                 
                 //format html
@@ -37,11 +40,11 @@ function showinfoCli ()
 		eltdescp.innerHTML = texte; 
                 var eltlib = document.getElementById("libobj");
 		eltlib.innerHTML = lib;  
-             
+
             };
 	};
         xhr.send();
-    } 
+    }
 
 document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showinfoCli);

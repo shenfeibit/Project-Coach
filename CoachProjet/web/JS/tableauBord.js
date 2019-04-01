@@ -6,6 +6,7 @@ function showIdCliP ()
         document.getElementById("detailProg").style.display = "none";
         document.getElementById("progcli").style.display = "none";
         document.getElementById("bt_ctrl_back").style.display = "none";
+        document.getElementById("affecter").style.display = "none";
         document.getElementById("listeCli").style.display = "block";  
         var xhr = new XMLHttpRequest();
 	xhr.open("GET","../ServletClientEnPgrm");
@@ -18,7 +19,7 @@ function showIdCliP ()
                     {
                         var rep = xhr.responseXML;
                         var l_obj=rep.getElementsByTagName("client");
-                        var texte="";
+                        var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on Programme</h2></div>";
                                 for(var i=0;i<l_obj.length && i<3;i++){
                                 var clip = l_obj[i].children;
                                     texte+="<div id=\"imagecl\"><div id='photocli'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
@@ -69,15 +70,14 @@ function showinfoCli ()
                 //format html
                 var imageCli = "<img src=\"../IMAGE/" + image[0].firstChild.nodeValue + "\" width =\"150\" alt=\"image of Client\"/>";
                 var texte = nom[0].firstChild.nodeValue + " " +prenom[0].firstChild.nodeValue + "</br>" + sexe[0].firstChild.nodeValue + "</br>" + tele[0].firstChild.nodeValue + "</br>" + email[0].firstChild.nodeValue + "</br>" ;
-              
+                //var showId = "<p>"+id[0].firstChild.nodeValue+"</p>" ;
+                
                 var l_obj = xhr.responseXML.getElementsByTagName("lib");
                 var lib = "<p>";
                 for (var i =0; i < l_obj.length; i++){       
                     lib += l_obj[i].firstChild.nodeValue + "</br>";                    
                 }
                 lib += "</p>";
-                
-                document.getElementById("listeCli").style.display = "none";
                 //show all the information
                 var eltimage = document.getElementById("image");;
                 eltimage.innerHTML = imageCli; 
@@ -85,6 +85,9 @@ function showinfoCli ()
 		eltdescp.innerHTML = texte; 
                 var eltlib = document.getElementById("libobj");
 		eltlib.innerHTML = lib;  
+                var eltid = document.getElementById("idClient");
+                eltid.value =param ;
+                document.getElementById("listeCli").style.display = "none";
                 
              
             };
@@ -197,6 +200,7 @@ function backToMenu ()
         document.getElementById("detailCli").style.display = "none";
         document.getElementById("progcli").style.display = "none";
         document.getElementById("bt_ctrl_back").style.display = "none";
+        document.getElementById("affecter").style.display = "none";
         document.getElementById("listeCli").style.display = "block";
         
         
@@ -215,7 +219,7 @@ function showIdCliNonP ()
                     {
                         var rep = xhr.responseXML;
                         var l_obj=rep.getElementsByTagName("client");
-                            var texte="";
+                            var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on demande</h2></div>";
                             for(var i=0;i<l_obj.length && i<3;i++){
                                 var clip = l_obj[i].children;
                                     texte+="<div id=\"imagecl\"><div id='photocliNoProg'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
@@ -356,6 +360,7 @@ function showType ()
     function l_clickProg ()
 	{
             document.getElementById("detailProg").style.display = "block";
+            document.getElementById("affecter").style.display = "block";
                 // Objet XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 
@@ -400,6 +405,15 @@ function showType ()
             showProgramme();
         }
     }
+    
+    function affecter (){
+        var idProg = document.getElementById("nomProg").value;
+        var idClient = document.getElementById("idClient").value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","../ServletAffecter?idProg=" + idProg+"&idClient="+idClient);
+        xhr.send();
+        
+    }
 
 document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showIdCliP);
@@ -407,6 +421,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("typeProg").addEventListener("change",l_clickObj);
         document.getElementById("nomProg").addEventListener("change",l_clickProg);
         document.getElementById("bt_back").addEventListener("click",backToMenu);
-        
+        document.getElementById("affecter").addEventListener("click",affecter);
         
 });

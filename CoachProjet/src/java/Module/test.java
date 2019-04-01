@@ -1,3 +1,9 @@
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,9 +11,9 @@
  */
 package Module;
 
-import Bd.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+import Bd.Programmeperso;
+
+
 
 /**
  *
@@ -15,12 +21,23 @@ import java.util.HashMap;
  */
 public class test {
      public static void main (String[] args) throws Exception
-        {
-            HashMap<Integer,Exerciseperso> mexp = HibernateMethode.showExePersoBySea(1);
-            for (Integer i : mexp.keySet()){
-                System.out.println(i+mexp.get(i).getLibexe());
-            }
-            
+
+
+             {
+//        {
+//            int i = 6;
+//            System.out.println(i);
+//            Programmeperso ps = new Programmeperso();
+//                    ps = HibernateMethode.seeProgrammeCli(i);
+//            System.out.println(i);
+//            System.out.println(ps.getIdpp());
+            //float k = 0;
+//            float k = HibernateMethode.seeProgressionProg(i);
+//            //int res = Math.round(k*100);
+
+             HibernateMethode.affecter(1, 1);
+
 
         }
 }
+

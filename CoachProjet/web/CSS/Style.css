@@ -231,6 +231,16 @@ table{
   font-size: 100%;
 }
 
+#photocli{
+    color:gold;
+}
+#photocliNoProg{
+    color:gold;
+}
+
+.content_liste_client{
+    text-align: center;
+}
 .progress-container {
   width: 100%;
   height: 8px;
@@ -253,6 +263,7 @@ table{
     padding:10px 2%;
     
 }
+
 #cliNoProg{
     position:relative;
     width:46%;
@@ -292,3 +303,6 @@ table{
     
 }
 
+#idClient{
+    opacity: 0;
+}
