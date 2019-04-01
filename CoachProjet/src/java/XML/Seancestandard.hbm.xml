@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 26 mars 2019 16:30:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Bd.Seancestandard" table="SEANCESTANDARD" catalog="db_21611945" optimistic-lock="version">
         <id name="idseas" type="java.lang.Integer">
@@ -9,21 +9,19 @@
             <generator class="identity" />
         </id>
         <property name="libseas" type="string">
-            <column name="LIBSEAS" length="32" />
+            <column name="LIBSEAS" length="100" />
         </property>
         <property name="descripseas" type="string">
-            <column name="DESCRIPSEAS" length="32" />
+            <column name="DESCRIPSEAS" length="500" />
         </property>
         <property name="typeseas" type="string">
             <column name="TYPESEAS" length="32" />
         </property>
-        <set name="exercisestandards" table="POSSEDERSEA" inverse="false" lazy="true" fetch="select">
+        <set name="possederseas" table="POSSEDERSEA" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="IDSEAS" not-null="true" />
             </key>
-            <many-to-many entity-name="Bd.Exercisestandard">
-                <column name="IDEXES" not-null="true" />
-            </many-to-many>
+            <one-to-many class="Bd.Possedersea" />
         </set>
         <set name="possederpses" table="POSSEDERPS" inverse="true" lazy="true" fetch="select">
             <key>

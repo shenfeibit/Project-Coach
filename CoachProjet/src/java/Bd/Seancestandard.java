@@ -1,5 +1,5 @@
 package Bd;
-// Generated 26 mars 2019 16:30:33 by Hibernate Tools 4.3.1
+// Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,17 +16,17 @@ public class Seancestandard  implements java.io.Serializable {
      private String libseas;
      private String descripseas;
      private String typeseas;
-     private Set exercisestandards = new HashSet(0);
+     private Set possederseas = new HashSet(0);
      private Set possederpses = new HashSet(0);
 
     public Seancestandard() {
     }
 
-    public Seancestandard(String libseas, String descripseas, String typeseas, Set exercisestandards, Set possederpses) {
+    public Seancestandard(String libseas, String descripseas, String typeseas, Set possederseas, Set possederpses) {
        this.libseas = libseas;
        this.descripseas = descripseas;
        this.typeseas = typeseas;
-       this.exercisestandards = exercisestandards;
+       this.possederseas = possederseas;
        this.possederpses = possederpses;
     }
    
@@ -58,12 +58,12 @@ public class Seancestandard  implements java.io.Serializable {
     public void setTypeseas(String typeseas) {
         this.typeseas = typeseas;
     }
-    public Set getExercisestandards() {
-        return this.exercisestandards;
+    public Set getPossederseas() {
+        return this.possederseas;
     }
     
-    public void setExercisestandards(Set exercisestandards) {
-        this.exercisestandards = exercisestandards;
+    public void setPossederseas(Set possederseas) {
+        this.possederseas = possederseas;
     }
     public Set getPossederpses() {
         return this.possederpses;
@@ -75,11 +75,11 @@ public class Seancestandard  implements java.io.Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.idseas);
-        hash = 23 * hash + Objects.hashCode(this.libseas);
-        hash = 23 * hash + Objects.hashCode(this.descripseas);
-        hash = 23 * hash + Objects.hashCode(this.typeseas);
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.idseas);
+        hash = 83 * hash + Objects.hashCode(this.libseas);
+        hash = 83 * hash + Objects.hashCode(this.descripseas);
+        hash = 83 * hash + Objects.hashCode(this.typeseas);
         return hash;
     }
 

@@ -1,5 +1,5 @@
 package Bd;
-// Generated 26 mars 2019 16:30:33 by Hibernate Tools 4.3.1
+// Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -76,9 +76,9 @@ public class Objectif  implements java.io.Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.idobj);
-        hash = 97 * hash + Objects.hashCode(this.libobj);
-        hash = 97 * hash + Objects.hashCode(this.descripobj);
+        hash = 71 * hash + Objects.hashCode(this.idobj);
+        hash = 71 * hash + Objects.hashCode(this.libobj);
+        hash = 71 * hash + Objects.hashCode(this.descripobj);
         return hash;
     }
 

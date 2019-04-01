@@ -1,5 +1,5 @@
 package Bd;
-// Generated 26 mars 2019 16:30:33 by Hibernate Tools 4.3.1
+// Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,23 +15,25 @@ public class Exercisestandard  implements java.io.Serializable {
      private Integer idexes;
      private String libexes;
      private String descripexes;
-     private Integer dureeexes;
-     private Integer nbrepets;
+     private String dureeexes;
+     private String nbrepets;
      private String photoexe;
      private String videoexe;
-     private Set seancestandards = new HashSet(0);
+     private String materiel;
+     private Set possederseas = new HashSet(0);
 
     public Exercisestandard() {
     }
 
-    public Exercisestandard(String libexes, String descripexes, Integer dureeexes, Integer nbrepets, String photoexe, String videoexe, Set seancestandards) {
+    public Exercisestandard(String libexes, String descripexes, String dureeexes, String nbrepets, String photoexe, String videoexe, String materiel, Set possederseas) {
        this.libexes = libexes;
        this.descripexes = descripexes;
        this.dureeexes = dureeexes;
        this.nbrepets = nbrepets;
        this.photoexe = photoexe;
        this.videoexe = videoexe;
-       this.seancestandards = seancestandards;
+       this.materiel = materiel;
+       this.possederseas = possederseas;
     }
    
     public Integer getIdexes() {
@@ -55,18 +57,18 @@ public class Exercisestandard  implements java.io.Serializable {
     public void setDescripexes(String descripexes) {
         this.descripexes = descripexes;
     }
-    public Integer getDureeexes() {
+    public String getDureeexes() {
         return this.dureeexes;
     }
     
-    public void setDureeexes(Integer dureeexes) {
+    public void setDureeexes(String dureeexes) {
         this.dureeexes = dureeexes;
     }
-    public Integer getNbrepets() {
+    public String getNbrepets() {
         return this.nbrepets;
     }
     
-    public void setNbrepets(Integer nbrepets) {
+    public void setNbrepets(String nbrepets) {
         this.nbrepets = nbrepets;
     }
     public String getPhotoexe() {
@@ -83,24 +85,32 @@ public class Exercisestandard  implements java.io.Serializable {
     public void setVideoexe(String videoexe) {
         this.videoexe = videoexe;
     }
-    public Set getSeancestandards() {
-        return this.seancestandards;
+    public String getMateriel() {
+        return this.materiel;
     }
     
-    public void setSeancestandards(Set seancestandards) {
-        this.seancestandards = seancestandards;
+    public void setMateriel(String materiel) {
+        this.materiel = materiel;
+    }
+    public Set getPossederseas() {
+        return this.possederseas;
+    }
+    
+    public void setPossederseas(Set possederseas) {
+        this.possederseas = possederseas;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 43 * hash + Objects.hashCode(this.idexes);
-        hash = 43 * hash + Objects.hashCode(this.libexes);
-        hash = 43 * hash + Objects.hashCode(this.descripexes);
-        hash = 43 * hash + Objects.hashCode(this.dureeexes);
-        hash = 43 * hash + Objects.hashCode(this.nbrepets);
-        hash = 43 * hash + Objects.hashCode(this.photoexe);
-        hash = 43 * hash + Objects.hashCode(this.videoexe);
+        hash = 73 * hash + Objects.hashCode(this.idexes);
+        hash = 73 * hash + Objects.hashCode(this.libexes);
+        hash = 73 * hash + Objects.hashCode(this.descripexes);
+        hash = 73 * hash + Objects.hashCode(this.dureeexes);
+        hash = 73 * hash + Objects.hashCode(this.nbrepets);
+        hash = 73 * hash + Objects.hashCode(this.photoexe);
+        hash = 73 * hash + Objects.hashCode(this.videoexe);
+        hash = 73 * hash + Objects.hashCode(this.materiel);
         return hash;
     }
 
@@ -122,19 +132,22 @@ public class Exercisestandard  implements java.io.Serializable {
         if (!Objects.equals(this.descripexes, other.descripexes)) {
             return false;
         }
+        if (!Objects.equals(this.dureeexes, other.dureeexes)) {
+            return false;
+        }
+        if (!Objects.equals(this.nbrepets, other.nbrepets)) {
+            return false;
+        }
         if (!Objects.equals(this.photoexe, other.photoexe)) {
             return false;
         }
         if (!Objects.equals(this.videoexe, other.videoexe)) {
             return false;
         }
+        if (!Objects.equals(this.materiel, other.materiel)) {
+            return false;
+        }
         if (!Objects.equals(this.idexes, other.idexes)) {
-            return false;
-        }
-        if (!Objects.equals(this.dureeexes, other.dureeexes)) {
-            return false;
-        }
-        if (!Objects.equals(this.nbrepets, other.nbrepets)) {
             return false;
         }
         return true;

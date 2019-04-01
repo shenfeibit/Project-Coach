@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 26 mars 2019 16:30:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Bd.Programmestandard" table="PROGRAMMESTANDARD" catalog="db_21611945" optimistic-lock="version">
         <id name="idps" type="java.lang.Integer">
@@ -12,7 +12,7 @@
             <column name="LIBPS" length="32" />
         </property>
         <property name="descripps" type="string">
-            <column name="DESCRIPPS" length="32" />
+            <column name="DESCRIPPS" length="500" />
         </property>
         <property name="dureeps" type="java.lang.Integer">
             <column name="DUREEPS" />
