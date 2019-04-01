@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class test {
      public static void main (String[] args) throws Exception
-//        {
+        {
 //            int i = 6;
 //            System.out.println(i);
 //            Programmeperso ps = new Programmeperso();
