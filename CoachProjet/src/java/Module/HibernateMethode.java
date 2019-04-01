@@ -9,11 +9,7 @@ package Module;
 
 import Bd.*;
 import java.util.ArrayList;
-
 import java.util.Date;
-
-import static java.util.Collections.list;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -169,7 +165,7 @@ public class HibernateMethode {
 
 
 
-     public static ArrayList<Programmestandard> lireProgObj(String objectif) {
+    public static ArrayList<Programmestandard> lireProgObj(String objectif) {
          if(objectif.equals(null)){
 
             return consultProgramSt();
@@ -197,7 +193,7 @@ public class HibernateMethode {
         return null;
     }
 
-        public static float seeProgressionProg(int idClient) {
+    public static float seeProgressionProg(int idClient) {
             Programmeperso pp = new Programmeperso();
             pp = seeProgrammeCli(idClient);
             Session ses2 = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -225,32 +221,34 @@ public class HibernateMethode {
             return k;
         }
 
-      public static ArrayList<Client> consultClientPgrm() {
+    public static ArrayList<Client> consultClientPgrm() {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction() ;
 
-        Query q = ses.createQuery ("from Client as c where c.idc in (select client from Programmeperso)");
-        List<Client> clt = (List<Client>) q.list();
-        ArrayList<Client> cliId = new ArrayList();
-        for(Client c : clt){
-            cliId.add(c);
+        Query q = ses.createQuery ("from Programmeperso as pp order by pp.idpp desc");
+        List<Programmeperso> lpro = (List<Programmeperso>) q.list();
+        ArrayList<Client> l_cli = new ArrayList();
+        for(Programmeperso p : lpro){
+            l_cli.add(p.getClient());
+            p.getClient().getNomc();
         }
         tc.commit();
-        return cliId;
+        return l_cli;
     }
 
  public static ArrayList<Client> consultClientNonPgrm() {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction() ;
 
-        Query q = ses.createQuery ("from Client as c where c.idc not in (select client from Programmeperso)");
-        List<Client> clt = (List<Client>) q.list();
-        ArrayList<Client> cliId = new ArrayList();
-        for(Client c : clt){
-            cliId.add(c);
+        Query q = ses.createQuery ("from Choisir as c where c.client not in (select client from Programmeperso) order by c.datedemande desc");
+        List<Choisir> l_choix = (List<Choisir>) q.list();
+        ArrayList<Client> l_cli = new ArrayList();
+        for(Choisir c : l_choix){
+            l_cli.add(c.getClient());
+            c.getClient().getNomc();
         }
         tc.commit();
-        return cliId;
+        return l_cli;
     }
 
 public static void affecter(int idps, int idc){

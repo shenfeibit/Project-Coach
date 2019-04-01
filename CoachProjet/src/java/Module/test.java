@@ -15,16 +15,12 @@ import Bd.Client;
 import Bd.Programmeperso;
 import java.util.ArrayList;
 
-
-
 /**
  *
  * @author 21611924
  */
 public class test {
      public static void main (String[] args) throws Exception
-
-
              {
         
             ArrayList<Client> lss=HibernateMethode.consultClientPgrm();
