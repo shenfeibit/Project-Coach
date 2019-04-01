@@ -99,11 +99,12 @@ public class HibernateMethode {
         Transaction tc = ses.beginTransaction() ;
         Query q1 = ses.createQuery ("from Possederps as psp where psp.programmestandard = "+idPS);
         List<Possederps> lpsp = (List<Possederps>) q1.list();
+        System.out.println(lpsp.size());
         HashMap<Integer,Seancestandard> mss;
         mss = new HashMap<>();
-        for(Possederps psp : lpsp){
-            mss.put(psp.getId().getOrdredefaut(), psp.getSeancestandard());
-            psp.getSeancestandard().getLibseas();
+        for(int i=0;i<lpsp.size();i++){
+            mss.put(lpsp.get(i).getId().getOrdredefaut(), lpsp.get(i).getSeancestandard());
+            lpsp.get(i).getSeancestandard().getLibseas();
         }
         tc.commit();
         return mss;
@@ -299,7 +300,22 @@ public static void affecter(int idps, int idc){
             
             
             }
-            tc.commit();       
+            tc.commit();
+}
+
+public static HashMap<Integer,Exerciseperso> showExePersoBySea(int idSea){
+            HashMap<Integer,Exerciseperso> l_exep= new HashMap();
+            
+            Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+            Transaction tc = ses.beginTransaction() ;
+//             as ex where ex.seanceperso="+idSea
+            Query q = ses.createQuery("from Exerciseperso as ex where ex.seanceperso="+idSea);
+            List<Exerciseperso> lexe = (List<Exerciseperso>) q.list();
+            for(Exerciseperso exe: lexe){
+                l_exep.put(exe.getOrdreexe(), exe);
+            }
+            tc.commit();
+            return l_exep;
         }
 
 

@@ -24,6 +24,6 @@
         <property name="semainesea" type="int">
             <column name="SEMAINESEA" not-null="true" />
         </property>
-
     </class>
 </hibernate-mapping>
+

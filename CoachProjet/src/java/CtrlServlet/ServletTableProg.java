@@ -6,6 +6,7 @@
  */
 package CtrlServlet;
 
+import Bd.Exerciseperso;
 import Bd.Programmeperso;
 import Bd.Seanceperso;
 import Module.HibernateMethode;
@@ -53,8 +54,13 @@ public class ServletTableProg extends HttpServlet {
                     out.println("<libSP>"+msp.get(ordre).getLibsea()+"</libSP>");
                     out.println("<descripSP>"+msp.get(ordre).getDescrisea()+"</descripSP>");
                     out.println("<dateSP>"+msp.get(ordre).getDatesea()+"</dateSP>");
+                    out.println("<l_exp>");
+                    HashMap<Integer,Exerciseperso> mexp = HibernateMethode.showExePersoBySea(msp.get(ordre).getIdsea());
+                    for(int ordEx: mexp.keySet()){
+                        out.println("<libexe>"+mexp.get(ordEx).getLibexe()+"</libexe>");
+                    }
+                    out.println("</l_exp>");
                     out.println("</seancePerso>");
-
                 }
                 out.println("</l_seancesPerso>");
             }
