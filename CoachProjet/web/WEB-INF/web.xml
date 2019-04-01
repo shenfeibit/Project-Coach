@@ -4,11 +4,6 @@
         <servlet-name>ServletTableProg</servlet-name>
         <servlet-class>CtrlServlet.ServletTableProg</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ServletAffecter</servlet-name>
-        <servlet-class>CtrlServlet.ServletAffecter</servlet-class>
-    </servlet>
-
     <servlet-mapping>
         <servlet-name>ServletTableProg</servlet-name>
         <url-pattern>/ServletTableProg</url-pattern>
@@ -69,7 +64,10 @@
         <servlet-name>ServletProgrammeSt</servlet-name>
         <url-pattern>/ServletProgrammeSt</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>ServletAffecter</servlet-name>
+        <servlet-class>CtrlServlet.ServletAffecter</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletAffecter</servlet-name>
         <url-pattern>/ServletAffecter</url-pattern>
