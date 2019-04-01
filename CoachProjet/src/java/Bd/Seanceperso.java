@@ -20,6 +20,7 @@ public class Seanceperso  implements java.io.Serializable {
      private String typesea;
      private Integer ordresea;
      private int semainesea;
+
      private Double bras;
      private Double poitrine;
      private Double taille;
@@ -38,12 +39,15 @@ public class Seanceperso  implements java.io.Serializable {
         this.semainesea = semainesea;
     }
     public Seanceperso(Programmeperso programmeperso, String libsea, String descrisea, String typesea, Integer ordresea, int semainesea, Double bras, Double poitrine, Double taille, Double hanches, Double cuisses, Date datesea, Set exercisepersos) {
+
        this.programmeperso = programmeperso;
        this.libsea = libsea;
        this.descrisea = descrisea;
        this.typesea = typesea;
        this.ordresea = ordresea;
+
        this.semainesea = semainesea;
+
        this.bras = bras;
        this.poitrine = poitrine;
        this.taille = taille;
@@ -95,6 +99,7 @@ public class Seanceperso  implements java.io.Serializable {
     public void setOrdresea(Integer ordresea) {
         this.ordresea = ordresea;
     }
+
     public int getSemainesea() {
         return this.semainesea;
     }
@@ -102,6 +107,7 @@ public class Seanceperso  implements java.io.Serializable {
     public void setSemainesea(int semainesea) {
         this.semainesea = semainesea;
     }
+
     public Double getBras() {
         return this.bras;
     }

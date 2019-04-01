@@ -25,6 +25,7 @@
         </property>
         <property name="semainesea" type="int">
             <column name="SEMAINESEA" not-null="true" />
+
         </property>
         <property name="bras" type="java.lang.Double">
             <column name="BRAS" precision="5" />
