@@ -59,13 +59,7 @@ public class Possederps  implements java.io.Serializable {
         this.semainesea = semainesea;
     }
 
-    public Integer getSemainesea() {
-        return semainesea;
-    }
-
-    public void setSemainesea(Integer semainesea) {
-        this.semainesea = semainesea;
-    }
+    
     
     @Override
     public int hashCode() {
