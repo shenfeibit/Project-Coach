@@ -22,8 +22,6 @@ public class test {
      public static void main (String[] args) throws Exception
         {
 
-            Programmeperso pp = HibernateMethode.visualiserProgrammeEnCours(1);
-            System.out.println(pp);
         }
 }
 
