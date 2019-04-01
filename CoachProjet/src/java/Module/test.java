@@ -11,7 +11,9 @@
  */
 package Module;
 
+import Bd.Client;
 import Bd.Programmeperso;
+import java.util.ArrayList;
 
 
 
@@ -24,20 +26,12 @@ public class test {
 
 
              {
-//        {
-//            int i = 6;
-//            System.out.println(i);
-//            Programmeperso ps = new Programmeperso();
-//                    ps = HibernateMethode.seeProgrammeCli(i);
-//            System.out.println(i);
-//            System.out.println(ps.getIdpp());
-            //float k = 0;
-//            float k = HibernateMethode.seeProgressionProg(i);
-//            //int res = Math.round(k*100);
-
-             HibernateMethode.affecter(1, 1);
-
-
+        
+            ArrayList<Client> lss=HibernateMethode.consultClientPgrm();
+            for(Client c:lss){
+                System.out.println(c.getIdc());
+            }
+            
         }
 }
 
