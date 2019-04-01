@@ -20,7 +20,7 @@ function showIdCliP ()
                         var rep = xhr.responseXML;
                         var l_obj=rep.getElementsByTagName("client");
                         var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on Programme</h2></div>";
-                                for(var i=0;i<l_obj.length && i<3;i++){
+                                for(var i=l_obj.length-1;i>=0 && i>l_obj.length-4;i--){
                                 var clip = l_obj[i].children;
                                     texte+="<div id=\"imagecl\"><div id='photocli'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
                                     texte+="<div id=\"descpcl\"><p>"+clip[1].firstChild.nodeValue+"</p></div>";
@@ -411,6 +411,7 @@ function showType ()
         var idClient = document.getElementById("idClient").value;
         var xhr = new XMLHttpRequest();
         xhr.open("GET","../ServletAffecter?idProg=" + idProg+"&idClient="+idClient);
+        document.getElementById("affecter").disabled="true";
         xhr.send();
         
     }

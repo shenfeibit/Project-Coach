@@ -228,7 +228,7 @@ public class HibernateMethode {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction() ;
 
-        Query q = ses.createQuery ("from Client as c where c.idc in (select client from Programmeperso)");
+        Query q = ses.createQuery ("from Client as c where c.idc in (select client from Programmeperso) ");
         List<Client> clt = (List<Client>) q.list();
         ArrayList<Client> cliId = new ArrayList();
         for(Client c : clt){
