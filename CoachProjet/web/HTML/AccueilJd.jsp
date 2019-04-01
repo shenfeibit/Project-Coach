@@ -85,8 +85,8 @@
   <section id="intro" class="intro">
 
     <div class="slogan">
-      <h2>WELCOME TO <span class="text_color">JDCOACHING</span> </h2>
-      <h4>MAKE YOUR DREAM REAL</h4>
+        <h2 style="color: gold">MAKE YOUR DREAM <span class="text_color" style="color: gold">REAL</span> </h2>
+      <h4>LE COACHING QU'IL VOUS FAUT</h4>
     </div>
     <div class="page-scroll">
       <a href="#service" class="btn btn-circle">
@@ -125,8 +125,8 @@
           <div class="wow bounceInUp" data-wow-delay="0.2s">
             <div class="team boxed-grey">
               <div class="inner">
-                <h5>Anna Hanaceck</h5>
-                <p class="subtitle">Pixel Crafter</p>
+                <h5>Jean David</h5>
+                <p class="subtitle">Coach sportif généraliste</p>
                 <div class="avatar"><img src="../IMAGE/team/1.jpg" alt="" class="img-responsive img-circle" /></div>
               </div>
             </div>
@@ -137,7 +137,7 @@
             <div class="team boxed-grey">
               <div class="inner">
                 <h5>Maura Daniels</h5>
-                <p class="subtitle">Ruby on Rails</p>
+                <p class="subtitle">Coach nutrition santé</p>
                 <div class="avatar"><img src="../IMAGE/team/2.jpg" alt="" class="img-responsive img-circle" /></div>
 
               </div>
@@ -149,7 +149,7 @@
             <div class="team boxed-grey">
               <div class="inner">
                 <h5>Jack Briane</h5>
-                <p class="subtitle">jQuery Ninja</p>
+                <p class="subtitle">Coach spécialisé remise en forme</p>
                 <div class="avatar"><img src="../IMAGE/team/3.jpg" alt="" class="img-responsive img-circle" /></div>
 
               </div>
@@ -161,7 +161,7 @@
             <div class="team boxed-grey">
               <div class="inner">
                 <h5>Tom Petterson</h5>
-                <p class="subtitle">Typographer</p>
+                <p class="subtitle">Coach spécialisé préparation physique</p>
                 <div class="avatar"><img src="../IMAGE/team/4.jpg" alt="" class="img-responsive img-circle" /></div>
 
               </div>
