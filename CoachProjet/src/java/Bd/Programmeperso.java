@@ -1,5 +1,5 @@
 package Bd;
-// Generated 26 mars 2019 16:30:33 by Hibernate Tools 4.3.1
+// Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -108,12 +108,12 @@ public class Programmeperso  implements java.io.Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 71 * hash + Objects.hashCode(this.idpp);
-        hash = 71 * hash + Objects.hashCode(this.libpp);
-        hash = 71 * hash + Objects.hashCode(this.descrippp);
-        hash = 71 * hash + Objects.hashCode(this.dureepp);
-        hash = 71 * hash + Objects.hashCode(this.etatpp);
-        hash = 71 * hash + Objects.hashCode(this.dateaffecte);
+        hash = 29 * hash + Objects.hashCode(this.idpp);
+        hash = 29 * hash + Objects.hashCode(this.libpp);
+        hash = 29 * hash + Objects.hashCode(this.descrippp);
+        hash = 29 * hash + Objects.hashCode(this.dureepp);
+        hash = 29 * hash + Objects.hashCode(this.etatpp);
+        hash = 29 * hash + Objects.hashCode(this.dateaffecte);
         return hash;
     }
 

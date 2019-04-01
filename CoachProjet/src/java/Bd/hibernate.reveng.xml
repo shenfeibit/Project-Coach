@@ -41,19 +41,19 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="db_21611945"/>
-  <table-filter match-name="POSSEDERPS"/>
-  <table-filter match-name="GUIDER"/>
-  <table-filter match-name="CHOISIR"/>
+  <table-filter match-name="SEANCESTANDARD"/>
+  <table-filter match-name="CONCERNERPP"/>
+  <table-filter match-name="CLIENT"/>
   <table-filter match-name="CONCERNERPS"/>
-  <table-filter match-name="PROGRAMMESTANDARD"/>
+  <table-filter match-name="POSSEDERSEA"/>
   <table-filter match-name="EXERCISEPERSO"/>
   <table-filter match-name="EXERCISESTANDARD"/>
-  <table-filter match-name="COACH"/>
-  <table-filter match-name="OBJECTIF"/>
-  <table-filter match-name="SEANCESTANDARD"/>
   <table-filter match-name="PROGRAMMEPERSO"/>
+  <table-filter match-name="OBJECTIF"/>
+  <table-filter match-name="PROGRAMMESTANDARD"/>
   <table-filter match-name="SEANCEPERSO"/>
-  <table-filter match-name="POSSEDERSEA"/>
-  <table-filter match-name="CLIENT"/>
-  <table-filter match-name="CONCERNERPP"/>
+  <table-filter match-name="POSSEDERPS"/>
+  <table-filter match-name="GUIDER"/>
+  <table-filter match-name="COACH"/>
+  <table-filter match-name="CHOISIR"/>
 </hibernate-reverse-engineering>

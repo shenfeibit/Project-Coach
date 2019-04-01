@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 26 mars 2019 16:30:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Bd.Exerciseperso" table="EXERCISEPERSO" catalog="db_21611945" optimistic-lock="version">
         <id name="idexe" type="java.lang.Integer">
@@ -12,16 +12,16 @@
             <column name="IDSEA" not-null="true" />
         </many-to-one>
         <property name="libexe" type="string">
-            <column name="LIBEXE" length="32" />
+            <column name="LIBEXE" length="50" />
         </property>
         <property name="descripexe" type="string">
-            <column name="DESCRIPEXE" length="32" />
+            <column name="DESCRIPEXE" length="500" />
         </property>
         <property name="dureeexe" type="string">
-            <column name="DUREEEXE" />
+            <column name="DUREEEXE" length="10" />
         </property>
         <property name="nbrepet" type="string">
-            <column name="NBREPET" />
+            <column name="NBREPET" length="50" />
         </property>
         <property name="photoexe" type="string">
             <column name="PHOTOEXE" length="32" />
@@ -36,10 +36,13 @@
             <column name="PERFORMANCE" length="32" />
         </property>
         <property name="dureereal" type="string">
-            <column name="DUREEREAL" />
+            <column name="DUREEREAL" length="10" />
         </property>
-        <property name="nbrepetreal" type="java.lang.Integer">
-            <column name="NBREPETREAL" />
+        <property name="nbrepetreal" type="string">
+            <column name="NBREPETREAL" length="32" />
+        </property>
+        <property name="materiel" type="string">
+            <column name="Materiel" length="500" not-null="false" />
         </property>
     </class>
 </hibernate-mapping>

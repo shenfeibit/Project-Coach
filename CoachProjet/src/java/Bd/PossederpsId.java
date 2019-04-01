@@ -1,5 +1,5 @@
 package Bd;
-// Generated 26 mars 2019 16:30:33 by Hibernate Tools 4.3.1
+// Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1
 
 
 
@@ -19,7 +19,7 @@ public class PossederpsId  implements java.io.Serializable {
     public PossederpsId(int idps, int idseas, int ordredefaut) {
        this.idps = idps;
        this.idseas = idseas;
-       this.ordredefaut=ordredefaut;
+       this.ordredefaut = ordredefaut;
     }
    
     public int getIdps() {
@@ -36,50 +36,33 @@ public class PossederpsId  implements java.io.Serializable {
     public void setIdseas(int idseas) {
         this.idseas = idseas;
     }
-
     public int getOrdredefaut() {
-        return ordredefaut;
+        return this.ordredefaut;
     }
-
+    
     public void setOrdredefaut(int ordredefaut) {
         this.ordredefaut = ordredefaut;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + this.idps;
-        hash = 79 * hash + this.idseas;
-        hash = 79 * hash + this.ordredefaut;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final PossederpsId other = (PossederpsId) obj;
-        if (this.idps != other.idps) {
-            return false;
-        }
-        if (this.idseas != other.idseas) {
-            return false;
-        }
-        if (this.ordredefaut != other.ordredefaut) {
-            return false;
-        }
-        return true;
-    }
-
-
+   public boolean equals(Object other) {
+         if ( (this == other ) ) return true;
+		 if ( (other == null ) ) return false;
+		 if ( !(other instanceof PossederpsId) ) return false;
+		 PossederpsId castOther = ( PossederpsId ) other; 
+         
+		 return (this.getIdps()==castOther.getIdps())
+ && (this.getIdseas()==castOther.getIdseas())
+ && (this.getOrdredefaut()==castOther.getOrdredefaut());
+   }
    
+   public int hashCode() {
+         int result = 17;
+         
+         result = 37 * result + this.getIdps();
+         result = 37 * result + this.getIdseas();
+         result = 37 * result + this.getOrdredefaut();
+         return result;
+   }   
 
 
 }
