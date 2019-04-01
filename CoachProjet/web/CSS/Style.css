@@ -105,6 +105,7 @@ progress { color: yellowgreen; }
   overflow: hidden;
   margin: 0 auto;
 }
+
 table{
     position : relative;
     width:100%;
@@ -133,6 +134,12 @@ table{
     padding-left: 70px;
     
 }
+.content-exercise{
+    vertical-align: top;
+    text-align: left;
+    padding-left: 70px;
+    border:solid #333;
+}
 .timeline-article .meta-date {
   position: absolute;
   top: 0;
@@ -155,7 +162,32 @@ table{
   border-radius: 100%;
   background: grey;
 }
-.timeline-article .meta-date .date {
+
+.clientColor .timeline-article .meta-date  {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  color: #333;
+  border-radius: 100%;
+  background: grey;
+}
+
+.clientColor .timeline-article .meta-date-pass  {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  color: #333;
+  border-radius: 100%;
+  background: gold;
+}
+
+.timeline-article .meta-date  {
   display: block;
   text-align: center;
   font-weight: 900;

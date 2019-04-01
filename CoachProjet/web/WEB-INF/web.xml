@@ -4,11 +4,6 @@
         <servlet-name>ServletTableProg</servlet-name>
         <servlet-class>CtrlServlet.ServletTableProg</servlet-class>
     </servlet>
-
-    <servlet>
-        <servlet-name>ShowProgram</servlet-name>
-        <jsp-file>/HTML/ShowProgram.jsp</jsp-file>
-    </servlet>
     <servlet>
         <servlet-name>ServletAffecter</servlet-name>
         <servlet-class>CtrlServlet.ServletAffecter</servlet-class>

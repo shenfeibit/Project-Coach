@@ -14,12 +14,14 @@ package Module;
 import Bd.Programmeperso;
 
 
+
 /**
  *
  * @author 21611924
  */
 public class test {
      public static void main (String[] args) throws Exception
+
 
              {
 //        {
@@ -34,6 +36,7 @@ public class test {
 //            //int res = Math.round(k*100);
 
              HibernateMethode.affecter(1, 1);
+
 
         }
 }
