@@ -27,9 +27,10 @@ and open the template in the editor.
         
         
         <div id="detailCli">
-            
+            <div><input id="idClient" type="text" value="" /></div>
             <div>
                 <div id="image"></div>
+                
                 <div id="descp"><p>the informations of the client</p></div>
                 <div id="objectif"><h1>Objectif</h1><p id="libobj">client's objectif</p></div>
             </div>
@@ -66,6 +67,10 @@ and open the template in the editor.
             </section>
              
         </div>
+        
+        <div id="affecter"><input type="button" value="affecter" /></div>
+        
+        
         
         <div id="bt_ctrl_back"> <input id="bt_back" type="button" value="back to the menu" /></div>
     </body>

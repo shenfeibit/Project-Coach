@@ -32,6 +32,7 @@ public class ServletShowInfoCli extends HttpServlet {
                 try{
                     //get the result
                     Client c = HibernateMethode.showInfoClient(Integer.parseInt(idCli));
+                    out.println("<id>"+c.getIdc()+"</id>");
                     out.println("<nom>"+c.getNomc()+"</nom>");
                     out.println("<prenom>"+c.getPrenomc()+"</prenom>");
                     out.println("<sexe>"+c.getSexec()+"</sexe>");

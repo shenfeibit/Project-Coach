@@ -20,7 +20,20 @@ import Bd.Programmeperso;
  */
 public class test {
      public static void main (String[] args) throws Exception
-        {
+
+             {
+//        {
+//            int i = 6;
+//            System.out.println(i);
+//            Programmeperso ps = new Programmeperso();
+//                    ps = HibernateMethode.seeProgrammeCli(i);
+//            System.out.println(i);
+//            System.out.println(ps.getIdpp());
+            //float k = 0;
+//            float k = HibernateMethode.seeProgressionProg(i);
+//            //int res = Math.round(k*100);
+
+             HibernateMethode.affecter(1, 1);
 
         }
 }
