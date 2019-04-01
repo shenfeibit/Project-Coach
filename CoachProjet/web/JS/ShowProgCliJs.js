@@ -1,13 +1,12 @@
 function affichePP ()
 	{
-	// Objet XMLHttpRequest.
+	// Object XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
-	// Requête au serveur avec les paramètres éventuels.
-	xhr.open("GET","../ServletTableProg");
-	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
+	// requery with a value entry.
+	xhr.open("GET","../ServletTableProg?idc=" + 1);
 	xhr.onload = function()
 		{
-		// Si la requête http s'est bien passée.
+		//if the connect succees
 		if (xhr.status === 200)
 			{
                         //get the reponse of serveur
@@ -62,8 +61,38 @@ function affichePP ()
 	xhr.send();
 	}
         
+        
+function afficheProgression ()
+	{
+	// Object XMLHttpRequest.
+	var xhr = new XMLHttpRequest();
+	// requery with a value entry.
+	xhr.open("GET","../ServletProgressionProg?idc=" + 1);
+	xhr.onload = function()
+		{
+		// if the query succes
+		if (xhr.status === 200)
+			{
+                        //get the reponse of serveur
+                        var rep = xhr.responseXML;
+                        //for lib progPerso
+                        var percent = rep.getElementsByTagName("percent");
+                        var res = percent[0].firstChild.nodeValue;
+                        var texte ="<span>"+res+"%</span>";
+                            texte += "<progress id='percentProg' max='100' value=" + res + "></progress>";
+                        
+                        var eltSea=document.getElementById("barOneLine");
+                        eltSea.innerHTML=texte;
+                        
+			}
+		};
+	// send the query
+	xhr.send();
+	}
+        
 document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("load",affichePP);
+    window.addEventListener("load",afficheProgression);
 });
 
 

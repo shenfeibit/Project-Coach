@@ -1,5 +1,5 @@
 package Bd;
-// Generated 26 mars 2019 16:30:33 by Hibernate Tools 4.3.1
+// Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -75,12 +75,12 @@ public class Coach  implements java.io.Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.idco);
-        hash = 79 * hash + Objects.hashCode(this.nomco);
-        hash = 79 * hash + Objects.hashCode(this.prenomco);
-        hash = 79 * hash + Objects.hashCode(this.telco);
-        hash = 79 * hash + Objects.hashCode(this.emailco);
+        int hash = 3;
+        hash = 83 * hash + Objects.hashCode(this.idco);
+        hash = 83 * hash + Objects.hashCode(this.nomco);
+        hash = 83 * hash + Objects.hashCode(this.prenomco);
+        hash = 83 * hash + Objects.hashCode(this.telco);
+        hash = 83 * hash + Objects.hashCode(this.emailco);
         return hash;
     }
 
@@ -114,7 +114,7 @@ public class Coach  implements java.io.Serializable {
         return true;
     }
 
-
+    
 
 
 }

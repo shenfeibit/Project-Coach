@@ -4,17 +4,45 @@
         <servlet-name>ServletTableProg</servlet-name>
         <servlet-class>CtrlServlet.ServletTableProg</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowProgram</servlet-name>
+        <jsp-file>/HTML/ShowProgram.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletTableProg</servlet-name>
         <url-pattern>/ServletTableProg</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>ServletProgrammeSt</servlet-name>
-        <servlet-class>CtrlServlet.ServletProgrammeSt</servlet-class>
+        <servlet-name>ServletProgressionProg</servlet-name>
+        <servlet-class>CtrlServlet.ServletProgressionProg</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletProgrammeSt</servlet-name>
-        <url-pattern>/ServletProgrammeSt</url-pattern>
+        <servlet-name>ServletProgressionProg</servlet-name>
+        <url-pattern>/ServletProgressionProg</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletClientEnPgrm</servlet-name>
+        <servlet-class>CtrlServlet.ServletClientEnPgrm</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletClientEnPgrm</servlet-name>
+        <url-pattern>/ServletClientEnPgrm</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletClientNonPgrm</servlet-name>
+        <servlet-class>CtrlServlet.ServletClientNonPgrm</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletClientNonPgrm</servlet-name>
+        <url-pattern>/ServletClientNonPgrm</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletObjectifs</servlet-name>
+        <servlet-class>CtrlServlet.ServletObjectifs</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletObjectifs</servlet-name>
+        <url-pattern>/ServletObjectifs</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ServletProgObjectif</servlet-name>
@@ -25,12 +53,24 @@
         <url-pattern>/ServletProgObjectif</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>ServletObjectifs</servlet-name>
-        <servlet-class>CtrlServlet.ServletObjectifs</servlet-class>
+        <servlet-name>ServletShowInfoCli</servlet-name>
+        <servlet-class>CtrlServlet.ServletShowInfoCli</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletObjectifs</servlet-name>
-        <url-pattern>/ServletObjectifs</url-pattern>
+        <servlet-name>ServletShowInfoCli</servlet-name>
+        <url-pattern>/ServletShowInfoCli</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletProgrammeSt</servlet-name>
+        <servlet-class>CtrlServlet.ServletProgrammeSt</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletProgrammeSt</servlet-name>
+        <url-pattern>/ServletProgrammeSt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowProgram</servlet-name>
+        <url-pattern>/ShowProgram</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

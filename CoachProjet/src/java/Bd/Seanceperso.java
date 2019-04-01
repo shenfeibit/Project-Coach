@@ -1,5 +1,5 @@
 package Bd;
-// Generated 26 mars 2019 16:30:33 by Hibernate Tools 4.3.1
+// Generated 30 mars 2019 16:35:04 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -18,34 +18,42 @@ public class Seanceperso  implements java.io.Serializable {
      private String libsea;
      private String descrisea;
      private String typesea;
-     private Date datesea;
      private Integer ordresea;
+     private int semainesea;
+
      private Double bras;
      private Double poitrine;
      private Double taille;
      private Double hanches;
      private Double cuisses;
+     private Date datesea;
      private Set exercisepersos = new HashSet(0);
 
     public Seanceperso() {
     }
 
 	
-    public Seanceperso(Programmeperso programmeperso) {
+    public Seanceperso(Programmeperso programmeperso, String libsea, int semainesea) {
         this.programmeperso = programmeperso;
+        this.libsea = libsea;
+        this.semainesea = semainesea;
     }
-    public Seanceperso(Programmeperso programmeperso, String libsea, String descrisea, String typesea, Date datesea, Integer ordresea, Double bras, Double poitrine, Double taille, Double hanches, Double cuisses, Set exercisepersos) {
+    public Seanceperso(Programmeperso programmeperso, String libsea, String descrisea, String typesea, Integer ordresea, int semainesea, Double bras, Double poitrine, Double taille, Double hanches, Double cuisses, Date datesea, Set exercisepersos) {
+
        this.programmeperso = programmeperso;
        this.libsea = libsea;
        this.descrisea = descrisea;
        this.typesea = typesea;
-       this.datesea = datesea;
        this.ordresea = ordresea;
+
+       this.semainesea = semainesea;
+
        this.bras = bras;
        this.poitrine = poitrine;
        this.taille = taille;
        this.hanches = hanches;
        this.cuisses = cuisses;
+       this.datesea = datesea;
        this.exercisepersos = exercisepersos;
     }
    
@@ -84,13 +92,6 @@ public class Seanceperso  implements java.io.Serializable {
     public void setTypesea(String typesea) {
         this.typesea = typesea;
     }
-    public Date getDatesea() {
-        return this.datesea;
-    }
-    
-    public void setDatesea(Date datesea) {
-        this.datesea = datesea;
-    }
     public Integer getOrdresea() {
         return this.ordresea;
     }
@@ -98,6 +99,15 @@ public class Seanceperso  implements java.io.Serializable {
     public void setOrdresea(Integer ordresea) {
         this.ordresea = ordresea;
     }
+
+    public int getSemainesea() {
+        return this.semainesea;
+    }
+    
+    public void setSemainesea(int semainesea) {
+        this.semainesea = semainesea;
+    }
+
     public Double getBras() {
         return this.bras;
     }
@@ -133,6 +143,13 @@ public class Seanceperso  implements java.io.Serializable {
     public void setCuisses(Double cuisses) {
         this.cuisses = cuisses;
     }
+    public Date getDatesea() {
+        return this.datesea;
+    }
+    
+    public void setDatesea(Date datesea) {
+        this.datesea = datesea;
+    }
     public Set getExercisepersos() {
         return this.exercisepersos;
     }
@@ -144,17 +161,18 @@ public class Seanceperso  implements java.io.Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 19 * hash + Objects.hashCode(this.idsea);
-        hash = 19 * hash + Objects.hashCode(this.libsea);
-        hash = 19 * hash + Objects.hashCode(this.descrisea);
-        hash = 19 * hash + Objects.hashCode(this.typesea);
-        hash = 19 * hash + Objects.hashCode(this.datesea);
-        hash = 19 * hash + Objects.hashCode(this.ordresea);
-        hash = 19 * hash + Objects.hashCode(this.bras);
-        hash = 19 * hash + Objects.hashCode(this.poitrine);
-        hash = 19 * hash + Objects.hashCode(this.taille);
-        hash = 19 * hash + Objects.hashCode(this.hanches);
-        hash = 19 * hash + Objects.hashCode(this.cuisses);
+        hash = 37 * hash + Objects.hashCode(this.idsea);
+        hash = 37 * hash + Objects.hashCode(this.libsea);
+        hash = 37 * hash + Objects.hashCode(this.descrisea);
+        hash = 37 * hash + Objects.hashCode(this.typesea);
+        hash = 37 * hash + Objects.hashCode(this.ordresea);
+        hash = 37 * hash + this.semainesea;
+        hash = 37 * hash + Objects.hashCode(this.bras);
+        hash = 37 * hash + Objects.hashCode(this.poitrine);
+        hash = 37 * hash + Objects.hashCode(this.taille);
+        hash = 37 * hash + Objects.hashCode(this.hanches);
+        hash = 37 * hash + Objects.hashCode(this.cuisses);
+        hash = 37 * hash + Objects.hashCode(this.datesea);
         return hash;
     }
 
@@ -170,6 +188,9 @@ public class Seanceperso  implements java.io.Serializable {
             return false;
         }
         final Seanceperso other = (Seanceperso) obj;
+        if (this.semainesea != other.semainesea) {
+            return false;
+        }
         if (!Objects.equals(this.libsea, other.libsea)) {
             return false;
         }
@@ -180,9 +201,6 @@ public class Seanceperso  implements java.io.Serializable {
             return false;
         }
         if (!Objects.equals(this.idsea, other.idsea)) {
-            return false;
-        }
-        if (!Objects.equals(this.datesea, other.datesea)) {
             return false;
         }
         if (!Objects.equals(this.ordresea, other.ordresea)) {
@@ -201,6 +219,9 @@ public class Seanceperso  implements java.io.Serializable {
             return false;
         }
         if (!Objects.equals(this.cuisses, other.cuisses)) {
+            return false;
+        }
+        if (!Objects.equals(this.datesea, other.datesea)) {
             return false;
         }
         return true;

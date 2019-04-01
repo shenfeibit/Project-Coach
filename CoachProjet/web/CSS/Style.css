@@ -2,18 +2,20 @@ html{
     background-color: #333;
 }
 body{
-    padding: 50px 20px;
+    padding: 0;
     background-color: white;
-    border:5px dashed beige;
-    height : 100%;
     min-width: 800px;
+    margin:20px;
+    
 }
 
 h1{
-    font-size: 250%;
     color: #333;
 }
-
+/*define the style of the div 'detailCli'*/
+#detailCli{
+    display:  none;
+}
 #image{
     background-color: gold;
     position:relative;
@@ -46,7 +48,12 @@ h1{
     
 }
 
-.barOneLine{
+#barOneLine{
+    height: 20px;
+    padding: 15px;
+    text-align: center;
+}
+#chercherProg{
     height: 20px;
     padding: 15px;
     text-align: center;
@@ -80,7 +87,7 @@ progress { color: yellowgreen; }
 #conference-timeline .timeline-start,
 #conference-timeline .timeline-end {
   display: table;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 900;
   text-transform: uppercase;
   background: gold;
@@ -91,6 +98,7 @@ progress { color: yellowgreen; }
   text-align: center;
   margin: 0 auto;
 }
+
 .timeline-article {
   width: 100%;
   position: relative;
@@ -172,5 +180,83 @@ table{
 
 #descripPP{
   text-align: center;
+}
+
+/*define the style of the div 'listeCli'*/
+.header {
+  position: relative;
+  top: -20px;
+  margin:0;
+  padding:0;
+  width:100%;
+  border-top-style:solid;
+  height: 50px;
+  background-color: #f1f1f1;
+}
+
+.header h2 {
+  text-align: center;
+  font-size: 100%;
+}
+
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: grey;
+}
+
+.progress-bar {
+  height: 8px;
+  background: yellow;
+  width: 0%;
+}
+#contentcli{
+    overflow:auto;
+}
+#cliProg{
+    position:relative;
+    float:left;
+    width:46%;
+    border-right: solid #333;
+    padding:10px 2%;
+    
+}
+#cliNoProg{
+    position:relative;
+    width:46%;
+    margin-left: 50%;
+    padding:10px 2%;
+}
+
+#imagecl{
+    background-color: gold;
+    position:relative;
+    float:left;
+    width: 13%; 
+    height: 50px;
+    border-bottom-style: dashed;
+    padding:3%;
+}
+
+#descpcl{
+    background-color: gold;
+    position:relative;
+    float:left;
+    width: 20%; 
+    height: 50px;
+    border-bottom-style: dashed;
+    padding:3%;
+    
+}
+
+#objectifcl{
+    background-color: gold;
+    position:relative;
+    margin-left: 45%;
+    width: 50%;
+    height: 50px;
+    border-bottom-style:dashed;
+    padding:3%;
+    
 }
 
