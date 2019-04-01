@@ -1,7 +1,7 @@
  function showIdCliNonP ()
     { 
         var xhr = new XMLHttpRequest();
-	xhr.open("GET","../ServletClientNonPgrm");
+	xhr.open("GET","ServletClientNonPgrm");
        
 	xhr.onload = function()
         

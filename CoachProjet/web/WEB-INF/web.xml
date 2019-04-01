@@ -4,33 +4,41 @@
         <servlet-name>ServletTableProg</servlet-name>
         <servlet-class>CtrlServlet.ServletTableProg</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletTableProg</servlet-name>
+        <url-pattern>/ServletTableProg</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>ShowProgram</servlet-name>
         <jsp-file>/HTML/ShowProgram.jsp</jsp-file>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowProgram</servlet-name>
+        <url-pattern>/ShowProgram</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>ServletAccueilCoach</servlet-name>
         <servlet-class>CtrlServlet.ServletAccueilCoach</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>Accueil</servlet-name>
-        <jsp-file>/HTML/Accueil.html</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>TableauBordC</servlet-name>
-        <jsp-file>/HTML/TableauBordC.html</jsp-file>
-    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAccueilCoach</servlet-name>
+        <url-pattern>/ServletAccueilCoach</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>TableauBordCo</servlet-name>
         <jsp-file>/HTML/TableauBordC.jsp</jsp-file>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>TableauBordCo</servlet-name>
+        <url-pattern>/TableauBordCo</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>AccueilJd</servlet-name>
         <jsp-file>/HTML/AccueilJd.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletTableProg</servlet-name>
-        <url-pattern>/ServletTableProg</url-pattern>
+        <servlet-name>AccueilJd</servlet-name>
+        <url-pattern>/AccueilJd</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ServletProgressionProg</servlet-name>
@@ -87,30 +95,6 @@
     <servlet-mapping>
         <servlet-name>ServletProgrammeSt</servlet-name>
         <url-pattern>/ServletProgrammeSt</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ShowProgram</servlet-name>
-        <url-pattern>/ShowProgram</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ServletAccueilCoach</servlet-name>
-        <url-pattern>/ServletAccueilCoach</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Accueil</servlet-name>
-        <url-pattern>/Accueil</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>TableauBordC</servlet-name>
-        <url-pattern>/TableauBordC</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>TableauBordCo</servlet-name>
-        <url-pattern>/TableauBordCo</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AccueilJd</servlet-name>
-        <url-pattern>/AccueilJd</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

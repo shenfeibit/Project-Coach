@@ -5,6 +5,7 @@
  */
 package Module;
 
+import Bd.Client;
 import Bd.Programmeperso;
 import Bd.Programmestandard;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  */
 public class test {
      public static void main (String[] args) throws Exception
-//        {
+        {
 //            int i = 6;
 //            System.out.println(i);
 //            Programmeperso ps = new Programmeperso();
@@ -25,10 +26,12 @@ public class test {
             //float k = 0;
 //            float k = HibernateMethode.seeProgressionProg(i);
 //            //int res = Math.round(k*100);
+            ArrayList<Client> lc = HibernateMethode.consultClientPgrm();
+            for(Client c: lc){
+                System.out.println(c.getIdc());
+            }
 
-             HibernateMethode.affecter(1, 1);
-            
-            
+
 
         }
 }
