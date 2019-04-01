@@ -67,7 +67,7 @@ function afficheProgression ()
 	// Object XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 	// requery with a value entry.
-	xhr.open("GET","../ServletProgressionProg?idc=" + 1);
+	xhr.open("GET","../ServletProgressionProg?idc=" + 6);
 	xhr.onload = function()
 		{
 		// if the query succes

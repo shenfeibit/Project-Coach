@@ -59,7 +59,7 @@ public class ServletTableProg extends HttpServlet {
                     for(int ordEx: mexp.keySet()){
                         out.println("<libexe>"+mexp.get(ordEx).getLibexe()+"</libexe>");
                     }
-                    out.println("<l_exp>");
+                    out.println("</l_exp>");
                     out.println("</seancePerso>");
                 }
                 out.println("</l_seancesPerso>");

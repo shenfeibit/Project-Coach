@@ -6,8 +6,7 @@ function showinfoCli ()
     { 
         //create a requery with a value entry
         var xhr = new XMLHttpRequest();
-        var param = encodeURIComponent(this.firstChild.nodeValue);
-	xhr.open("GET","../ServletShowInfoCli?idc=" + param);
+	xhr.open("GET","../ServletShowInfoCli?idc=" + 6);
         
         xhr.onload = function(){
             //if the connect succees
@@ -45,6 +44,6 @@ function showinfoCli ()
     } 
 
 document.addEventListener("DOMContentLoaded", () => {
-       // window.addEventListener("load",showinfoCli);
+        window.addEventListener("load",showinfoCli);
         //document.getElementById("imagecl").addEventListener("click",showinfoCli);
 });
