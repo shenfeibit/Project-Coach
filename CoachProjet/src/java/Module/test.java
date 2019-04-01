@@ -7,6 +7,7 @@ package Module;
 
 import Bd.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -15,21 +16,10 @@ import java.util.ArrayList;
 public class test {
      public static void main (String[] args) throws Exception
         {
-//            int i = 6;
-//            System.out.println(i);
-//            Programmeperso ps = new Programmeperso();
-//                    ps = HibernateMethode.seeProgrammeCli(i);
-//            System.out.println(i);
-//            System.out.println(ps.getIdpp());
-            //float k = 0;
-//            float k = HibernateMethode.seeProgressionProg(i);
-//            //int res = Math.round(k*100);
-
-             ArrayList<Client> lc = HibernateMethode.consultClientNonPgrm();
-             for(Client c: lc){
-                 System.out.println(c.getIdc()+c.getNomc());
-             }
-            
+            HashMap<Integer,Exerciseperso> mexp = HibernateMethode.showExePersoBySea(1);
+            for (Integer i : mexp.keySet()){
+                System.out.println(i+mexp.get(i).getLibexe());
+            }
             
 
         }

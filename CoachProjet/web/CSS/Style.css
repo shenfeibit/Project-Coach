@@ -134,6 +134,12 @@ table{
     padding-left: 70px;
     
 }
+.content-exercise{
+    vertical-align: top;
+    text-align: left;
+    padding-left: 70px;
+    border:solid #333;
+}
 .timeline-article .meta-date {
   position: absolute;
   top: 0;

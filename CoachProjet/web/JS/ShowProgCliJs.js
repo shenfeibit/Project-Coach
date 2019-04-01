@@ -36,7 +36,17 @@ function affichePP ()
                                 texteSea+="<table>";
                                     texteSea+="<tr>";
                                         texteSea+="<td class='content-left'>"+sea[1].firstChild.nodeValue+"</td>";
-                                        texteSea+="<td class='content-right'>"+sea[2].firstChild.nodeValue+"</td>";
+                                        if(sea[3].firstChild.nodeValue!="null"){
+                                            var exe=sea[4].children
+                                            texteSea+="<td class='content-exercise'>";
+                                            for(j=0;j<exe.length;j++){
+                                                texteSea+="-"+exe[j].firstChild.nodeValue+"</br>"
+                                            }
+                                            texteSea+= "</td>";
+                                        }
+                                        else{
+                                            texteSea+="<td class='content-right'>"+sea[2].firstChild.nodeValue+"</td>";
+                                        }
                                     texteSea+="</tr>";
                                 texteSea+="</table>";
                             texteSea+="</div>";
