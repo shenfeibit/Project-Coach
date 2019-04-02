@@ -270,6 +270,7 @@ function backToMenu ()
         document.getElementById("bt_ctrl_back").style.display = "none";
         document.getElementById("affecter").style.display = "none";
         document.getElementById("listeCli").style.display = "block";
+        window.execCommand("Refresh");
     }
 
  
