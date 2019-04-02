@@ -277,7 +277,7 @@ function backToMenu ()
 function showIdCliNonP ()
     { 
         var xhr = new XMLHttpRequest();
-	xhr.open("GET","../ServletClientNonPgrm");
+	xhr.open("GET","ServletClientNonPgrm");
        
 	xhr.onload = function()
             {
@@ -473,7 +473,7 @@ function showType ()
         var idProg = document.getElementById("nomProg").value;
         var idClient = document.getElementById("idClient").value;
         var xhr = new XMLHttpRequest();
-        xhr.open("GET","../ServletAffecter?idProg=" + idProg+"&idClient="+idClient);
+        xhr.open("GET","ServletAffecter?idProg=" + idProg+"&idClient="+idClient);
         xhr.send();
 //        window.location.reload();
         backToMenu();
