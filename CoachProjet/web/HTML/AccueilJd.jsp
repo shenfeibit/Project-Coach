@@ -127,7 +127,7 @@
               <div class="inner">
                 <h5>Jean David</h5>
                 <p class="subtitle">Coach sportif généraliste</p>
-                <div class="avatar"><img src="../IMAGE/team/1.jpg" alt="" class="img-responsive img-circle" /></div>
+                <div class="avatar"><img src="IMAGE/team/1.jpg" alt="" class="img-responsive img-circle" /></div>
               </div>
             </div>
           </div>
@@ -138,7 +138,7 @@
               <div class="inner">
                 <h5>Maura Daniels</h5>
                 <p class="subtitle">Coach nutrition santé</p>
-                <div class="avatar"><img src="../IMAGE/team/2.jpg" alt="" class="img-responsive img-circle" /></div>
+                <div class="avatar"><img src="IMAGE/team/2.jpg" alt="" class="img-responsive img-circle" /></div>
 
               </div>
             </div>
@@ -150,7 +150,7 @@
               <div class="inner">
                 <h5>Jack Briane</h5>
                 <p class="subtitle">Coach spécialisé remise en forme</p>
-                <div class="avatar"><img src="../IMAGE/team/3.jpg" alt="" class="img-responsive img-circle" /></div>
+                <div class="avatar"><img src="IMAGE/team/3.jpg" alt="" class="img-responsive img-circle" /></div>
 
               </div>
             </div>
@@ -162,7 +162,7 @@
               <div class="inner">
                 <h5>Tom Petterson</h5>
                 <p class="subtitle">Coach spécialisé préparation physique</p>
-                <div class="avatar"><img src="../IMAGE/team/4.jpg" alt="" class="img-responsive img-circle" /></div>
+                <div class="avatar"><img src="IMAGE/team/4.jpg" alt="" class="img-responsive img-circle" /></div>
 
               </div>
             </div>
@@ -202,33 +202,43 @@
                             <input type="text" class="form-control" name="idCoachAccueil" placeholder="Your id *" value="1" />
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" name="nameCoach" placeholder="Your Name *" value="" />
+                            <input type="text" class="form-control" name="nameCoach" placeholder="Your Name *" value="" />
                         </div>
                         <div class="form-group">
                             <!--<input type="hidden" name="idCoachAccueil" value="1" />-->
                             <input type="submit" class="btnSubmit" value="Login" />                            
                         </div>
-                        <div class="form-group">
-                            <a href="#" class="ForgetPwd">Forget Password?</a>
-                        </div>
+                        <%
+                            String avrt = (String) request.getAttribute("avrt");
+                            String err = (String) request.getAttribute("erreurIdentif");
+                            if(avrt!=null)
+                            out.println("<div class=\"form-group\"><a href=\"#\" class=\"ForgetPwd\">"+avrt+"</a></div>");
+                            if(err!=null)
+                            out.println("<div class=\"form-group\"><a href=\"#\" class=\"ForgetPwd\">"+err+"</a></div>");
+                        %>
+                     
                     </form>
                 </div>
                 <div class="col-md-6 login-form-2">
                     <h3>Espace client</h3>
                     <form action="ServletAccueilClient" method="GET">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="idCoachAccueil" placeholder="Your Name *" value="" />
+                            <input type="text" class="form-control" name="idCliAccueil" placeholder="Your Name *" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" name="nameCoach" placeholder="Your Password *" value="" />
+                            <input type="text" class="form-control" name="nameCli" placeholder="Your Password *" value="" />
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btnSubmit" value="Login" />
                         </div>
-                        <div class="form-group">
-
-                            <a href="#" class="ForgetPwd">Forget Password?</a>
-                        </div>
+                        <%
+                            String avrtCl = (String) request.getAttribute("avrtCl");
+                            String errCl = (String) request.getAttribute("erreurIdentifCl");
+                            if(avrtCl!=null)
+                            out.println("<div class=\"form-group\"><a href=\"#\" class=\"ForgetPwd\">"+avrtCl+"</a></div>");
+                            if(errCl!=null)
+                            out.println("<div class=\"form-group\"><a href=\"#\" class=\"ForgetPwd\">"+errCl+"</a></div>");
+                        %>
                     </form>
                 </div>
             </div>
