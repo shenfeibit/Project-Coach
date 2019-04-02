@@ -6,7 +6,7 @@
 package CtrlServlet;
 
 import Bd.Client;
-import Bd.Objectif;
+import Bd.Programmeperso;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -54,6 +54,8 @@ try (PrintWriter out = response.getWriter()) {
                     out.println("<prenom>"+ci.getPrenomc()+"</prenom>");
                     out.println("<sexe>"+ci.getSexec()+"</sexe>");
                     out.println("<image>"+ci.getPhotoc()+"</image>");
+                    Programmeperso prog=HibernateMethode.seeProgrammeCli(ci.getIdc());
+                    out.println("<nomprog>"+prog.getLibpp()+"</nomprog>");
                     float k = 0;
                     k = HibernateMethode.seeProgressionProg(ci.getIdc());
                     int res = Math.round(k*100);

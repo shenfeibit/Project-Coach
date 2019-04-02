@@ -128,6 +128,17 @@ table{
     height: 100px;
     font-size: 150%;
 }
+
+.content-left-bilan{
+    vertical-align: top;
+    text-align: right;
+    width: 50%;
+    padding-right: 50px;
+    border-right:solid gold;
+    height: 100px;
+    font-size: 150%;
+    color:#f44336;
+}
 .content-right{
     vertical-align: top;
     text-align: left;
@@ -310,4 +321,40 @@ table{
 
 #idClient{
     opacity: 0;
+}
+
+#affecter{
+    position:fixed;
+    left:20px;
+    top:450px;
+    z-index: 99;
+}
+#bt_ctrl_back{
+    position:fixed;
+    left:20px;
+    top:380px;
+    z-index: 99;
+    
+}
+
+.l_btn{
+    background-color: #f08080;
+    width:150px;
+    border: dashed 2px #f08080;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.l_btn:hover{
+    background-color: #f6f6fa;
+    color: #333;
 }

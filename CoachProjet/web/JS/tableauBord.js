@@ -34,10 +34,9 @@ function showIdCliP ()
                                             +"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
                                     texte+="<div id=\"descpcl\">"+clip[1].firstChild.nodeValue
                                             +"<br>"+clip[2].firstChild.nodeValue+"</div>";
-                                    texte+="<div id=\"objectifcl\"><span>"
-                                            +clip[5].firstChild.nodeValue+"%</span>";
+                                    texte+="<div id=\"objectifcl\">"+clip[5].firstChild.nodeValue+"<br/>"+clip[6].firstChild.nodeValue+"% ";
                                     texte += "<progress id='percentProg' max='100' value=" 
-                                            +clip[5].firstChild.nodeValue+ "></progress>";
+                                            +clip[6].firstChild.nodeValue+ "></progress>";
                                     texte+="</div>";
                         }
                         //put into html
@@ -187,8 +186,7 @@ function affichePP ()
                         var descripPP = rep.getElementsByTagName("descripPP");
                         var textDescripPP = descripPP[0].firstChild.nodeValue;
                         var eltDescripPP = document.getElementById("descripPP");
-                        eltDescripPP.innerHTML = textDescripPP;
-                        
+                        eltDescripPP.innerHTML = textDescripPP;                      
                         //for seances
                         var l_sea = rep.getElementsByTagName("seancePerso");
                         var texteSea="";
@@ -199,15 +197,22 @@ function affichePP ()
                                 texteSea+="<table>";
                                     texteSea+="<tr>";
                                         //show the name of the seance
-                                        texteSea+="<td class='content-left'>"+sea[1].firstChild.nodeValue+"</td>";
+                                        if(sea[1].firstChild.nodeValue=="Progress Training"){
+                                            texteSea+="<td class='content-left-bilan'>"+sea[1].firstChild.nodeValue+"</td>";
+                                        }
+                                        else
+                                        {
+                                            texteSea+="<td class='content-left'>"+sea[1].firstChild.nodeValue+"</td>";
+                                        }
                                         //show the description of the seance
                                         texteSea+="<td class='content-right'>"+sea[2].firstChild.nodeValue+"</td>";
                                     texteSea+="</tr>";
                                 texteSea+="</table>";
                             texteSea+="</div>";
-                            
+      
                             //check the date to identify the style
-                            if(sea[3].firstChild.nodeValue!="null"){
+                            if(sea[3].firstChild.nodeValue!=="null"){
+
                                 texteSea+="<div class=\"meta-date-pass\">";
                                 texteSea+="<span class=\"date\">"+sea[0].firstChild.nodeValue+"</span>";
                             }
@@ -216,8 +221,8 @@ function affichePP ()
                                 texteSea+="<span class=\"date\">"+sea[0].firstChild.nodeValue+"</span>";
                             }
                             texteSea+="</div>";
-                            texteSea+="</div>";
-                        }
+                        texteSea+="</div>";
+                    }
                         var eltSea=document.getElementById("tableSP");
                         eltSea.innerHTML=texteSea;
 			}
@@ -254,7 +259,7 @@ function afficheProgression ()
 	// send the query
 	xhr.send();
 	}
-    
+  
 //this is the function help us back to the first page
 function backToMenu ()
     {
@@ -266,9 +271,47 @@ function backToMenu ()
         document.getElementById("affecter").style.display = "none";
         document.getElementById("listeCli").style.display = "block";
     }
-    
-    
 
+ 
+//show the list of all the clients which demand a programme
+function showIdCliNonP ()
+    { 
+        var xhr = new XMLHttpRequest();
+	xhr.open("GET","../ServletClientNonPgrm");
+       
+	xhr.onload = function()
+            {
+		if (xhr.status === 200)
+                    {
+                        var rep = xhr.responseXML;
+                        var l_obj=rep.getElementsByTagName("client");
+                            var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on demande</h2></div>";
+                            for(var i=0;i<l_obj.length ;i++){
+                                var clip = l_obj[i].children;
+                                    texte+="<div id=\"imagecl\"><div id='photocliNoProg'>"+clip[0].firstChild.nodeValue+"<br><input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" alt=\"See the detail\"/></div></div>";
+                                    texte+="<div id=\"descpcl\">"+clip[1].firstChild.nodeValue+"<br>"+clip[2].firstChild.nodeValue+"</div>";
+                                    texte+="<div id=\"objectifcl\">"+clip[6].firstChild.nodeValue+"<br>";
+                                        var obj = clip[5].children;
+                                        if(obj.length!==0){
+                                            for (var j =0; j < obj.length; j++){
+                                                texte += obj[j].firstChild.nodeValue + "</br>";                    
+                                            }
+                                        }
+                                    texte += "</div>";
+                            }
+                       
+                        var elt = document.getElementById("cliNoProg");
+			elt.innerHTML = texte; 
+                        var choix =  document.querySelectorAll("#photocliNoProg");
+                        for (var i = 0; i<choix.length;i++){
+                                choix[i].addEventListener("click",showinfoCli);
+                                choix[i].addEventListener("click",showType);
+                                choix[i].addEventListener("click",showProgramme);
+                            }
+                    }
+	};
+        xhr.send();
+    };
     
 function showType ()
     { 
@@ -430,19 +473,20 @@ function showType ()
         var idProg = document.getElementById("nomProg").value;
         var idClient = document.getElementById("idClient").value;
         var xhr = new XMLHttpRequest();
-        xhr.open("GET","ServletAffecter?idProg=" + idProg+"&idClient="+idClient);
-        document.getElementById("affecter").disabled="true";
+        xhr.open("GET","../ServletAffecter?idProg=" + idProg+"&idClient="+idClient);
         xhr.send();
+//        window.location.reload();
+        backToMenu();
         
     }
-      //the events corresponding for each function
 
-        document.addEventListener("DOMContentLoaded", () => {
+      //the events corresponding for each function 
+document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showIdCliP);
         window.addEventListener("load",showIdCliNonP);
         document.getElementById("typeProg").addEventListener("change",l_clickObj);
         document.getElementById("nomProg").addEventListener("change",l_clickProg);
-        document.getElementById("bt_back").addEventListener("click",backToMenu);
+        document.getElementById("bt_ctrl_back").addEventListener("click",backToMenu);
         document.getElementById("affecter").addEventListener("click",affecter);
-        
 });
+
