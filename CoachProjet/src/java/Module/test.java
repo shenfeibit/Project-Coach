@@ -12,10 +12,9 @@
 package Module;
 
 import Bd.Client;
+import Bd.Objectif;
 import Bd.Programmeperso;
 import java.util.ArrayList;
-
-
 
 /**
  *
@@ -23,13 +22,11 @@ import java.util.ArrayList;
  */
 public class test {
      public static void main (String[] args) throws Exception
-
-
              {
         
-            ArrayList<Client> lss=HibernateMethode.consultClientPgrm();
-            for(Client c:lss){
-                System.out.println(c.getIdc());
+            ArrayList<Objectif> lss=HibernateMethode.showObjectifCli(5);
+            for(Objectif c:lss){
+                System.out.println(c.getLibobj());
             }
             
         }

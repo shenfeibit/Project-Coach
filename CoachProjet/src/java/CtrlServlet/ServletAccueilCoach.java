@@ -5,22 +5,20 @@
  */
 package CtrlServlet;
 
-import Bd.Client;
-import Bd.Objectif;
-import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author 21511708
+ * @author Toky
  */
-public class ServletClientEnPgrm extends HttpServlet {
+public class ServletAccueilCoach extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,41 +31,51 @@ public class ServletClientEnPgrm extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-response.setContentType("application/xml;charset=UTF-8");
-try (PrintWriter out = response.getWriter()) {
+        response.setContentType("text/html;charset=UTF-8");
 
+         {
+        //Catch informations
+        String idCo = request.getParameter("idCoachAccueil");
+        String nomCo = request.getParameter("nameCoach");
 
-    //write the page XML
-                out.println("<?xml version=\"1.0\"?>");
-                out.println("<list_idClient>");
-                //get the param
+        //verify that information are not empty
+        HttpSession ses = request.getSession(true);
+        ses.setAttribute("idC", idCo);
 
-                try{
-                    //get the result
-                    ArrayList<Client> c = HibernateMethode.consultClientPgrm();
+        String avertissement="";
 
-                    for (Client ci : c)
-                    {
-                    out.println("<client>");
-                    out.print("<id>"+ci.getIdc()+"</id>");
-                    out.println("<nom>"+ci.getNomc()+"</nom>");
-                    out.println("<prenom>"+ci.getPrenomc()+"</prenom>");
-                    out.println("<sexe>"+ci.getSexec()+"</sexe>");
-                    out.println("<image>"+ci.getPhotoc()+"</image>");
-                    float k = 0;
-                    k = HibernateMethode.seeProgressionProg(ci.getIdc());
-                    int res = Math.round(k*100);
-                    out.println("<percent>"+res+"</percent>");
-                    out.println("</client>");                    
-                    }
+        if(idCo.isEmpty())
+            avertissement="Veuillez saisir votre ID";
+        if(nomCo.isEmpty())
+            avertissement="Veuillez saisir votre nom";
+        if(idCo.isEmpty()&&nomCo.isEmpty())
+            avertissement="Veuillez saisir vos informations de connexion";
+
+            if (!avertissement.isEmpty()){
+                //On retourne sur la page de saisie. On délègue à la ressource accueil
+                RequestDispatcher rd = request.getRequestDispatcher("Accueil");
+                request.setAttribute("id", idCo);
+                request.setAttribute("name", nomCo);
+                request.setAttribute("avrt", avertissement);
+                rd.forward(request, response);
                 }
-                catch (Exception ex)
-		{
-                    out.println("<erreur>ServletClientEnPgrm Erreur - " + ex.getMessage() + "</erreur>");
-		}
-                    out.println("</list_idClient>");
+                else{
+                    try{
+                        //vérification
+                        response.sendRedirect("TableauBordCo");
+                        }
+                catch (Exception ex) {
+                      RequestDispatcher rd = request.getRequestDispatcher("Accueil");
+                      request.setAttribute("erreurIdentif", ex.getMessage()); //Changer la clé pour celle la (erreur) notamment pour les styles css
+                      rd.forward(request, response);
+                }
+
+            }
+
 
         }
+
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

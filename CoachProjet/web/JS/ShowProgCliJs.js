@@ -4,9 +4,8 @@ function affichePP ()
 	// Object XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 	// requery with a value entry.
-	xhr.open("GET","../ServletTableProg?idc=" + 6);
-        // execution of function when the xhr was opened
-	xhr.onload = function()  
+	xhr.open("GET","ServletTableProg?idc=" + 6);
+	xhr.onload = function()
 		{
 		//if the connect succees
 		if (xhr.status === 200)
@@ -80,7 +79,7 @@ function afficheProgression ()
 	// Object XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 	// requery with a value entry.
-	xhr.open("GET","../ServletProgressionProg?idc=" + 6);
+	xhr.open("GET","ServletProgressionProg?idc=" + 6);
 	xhr.onload = function()
 		{
 		// if the query succes
@@ -111,7 +110,7 @@ function showinfoCli ()
     { 
         //create a requery with a value 
         var xhr = new XMLHttpRequest();
-	xhr.open("GET","../ServletShowInfoCli?idc=" + 6);
+	xhr.open("GET","ServletShowInfoCli?idc=" + 6);
         
         xhr.onload = function(){
             //if the connect succees
@@ -125,7 +124,7 @@ function showinfoCli ()
                 var image = xhr.responseXML.getElementsByTagName("image");
                 
                 //format html
-                var imageCli = "<img src=\"../IMAGE/" 
+                var imageCli = "<img src=\"IMAGE/" 
                         + image[0].firstChild.nodeValue 
                         + "\" width =\"150\" alt=\"image of Client\"/>";
                 var texte = nom[0].firstChild.nodeValue + " " 

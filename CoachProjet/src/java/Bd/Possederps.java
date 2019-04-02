@@ -29,32 +29,32 @@ public class Possederps  implements java.io.Serializable {
        this.semainesea = semainesea;
 
     }
-   
+
     public PossederpsId getId() {
         return this.id;
     }
-    
+
     public void setId(PossederpsId id) {
         this.id = id;
     }
     public Programmestandard getProgrammestandard() {
         return this.programmestandard;
     }
-    
+
     public void setProgrammestandard(Programmestandard programmestandard) {
         this.programmestandard = programmestandard;
     }
     public Seancestandard getSeancestandard() {
         return this.seancestandard;
     }
-    
+
     public void setSeancestandard(Seancestandard seancestandard) {
         this.seancestandard = seancestandard;
     }
     public int getSemainesea() {
         return this.semainesea;
     }
-    
+
     public void setSemainesea(int semainesea) {
         this.semainesea = semainesea;
     }

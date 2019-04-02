@@ -13,7 +13,9 @@ function showIdCliP ()
         
         //create a requery with a value entry
         var xhr = new XMLHttpRequest();
-	xhr.open("GET","../ServletClientEnPgrm");
+	xhr.open("GET","ServletClientEnPgrm");
+       
+
 	xhr.onload = function()
             {
 		if (xhr.status === 200)
@@ -22,18 +24,20 @@ function showIdCliP ()
                         var rep = xhr.responseXML;
                         //get all the info of clients from servelet
                         var l_obj=rep.getElementsByTagName("client");
-                        var texte="<div class='content_liste_client'><h2>"
-                                +l_obj.length+" Clients on Programme</h2></div>";
-                                for(var i=0;i<l_obj.length && i<3;i++){
+                        var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on Programme</h2></div>";
+                                for(var i=0;i<l_obj.length;i++){
                                 var clip = l_obj[i].children;
                                     texte+="<div id=\"imagecl\"><div id='photocli'>"
                                             +clip[0].firstChild.nodeValue
-                                            +"<input type=\"image\"  src=\"../IMAGE/"
+                                            +"<br><input type=\"image\"  src=\"IMAGE/"
                                             +clip[4].firstChild.nodeValue
                                             +"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
-                                    texte+="<div id=\"descpcl\"><p>"+clip[1].firstChild.nodeValue+"</p></div>";
-                                    texte+="<div id=\"objectifcl\"><p >client's objectif</p></div>";
-                            
+                                    texte+="<div id=\"descpcl\">"+clip[1].firstChild.nodeValue
+                                            +"<br>"+clip[2].firstChild.nodeValue+"</div>";
+                                    texte+="<div id=\"objectifcl\"><span>"+clip[5].firstChild.nodeValue+"%</span>";
+                                    texte += "<progress id='percentProg' max='100' value=" 
+                                            +clip[5].firstChild.nodeValue+ "></progress>";
+                                    texte+="</div>";
                         }
                         //put into html
                         var elt = document.getElementById("cliProg");
@@ -50,7 +54,50 @@ function showIdCliP ()
 	};
         xhr.send();
     }
-//show all information about a client which has been chosed
+   
+   
+//show the list of all the clients which demand a programme
+function showIdCliNonP ()
+    { 
+        var xhr = new XMLHttpRequest();
+	xhr.open("GET","ServletClientNonPgrm");
+       
+	xhr.onload = function()
+            {
+		if (xhr.status === 200)
+                    {
+                        var rep = xhr.responseXML;
+                        var l_obj=rep.getElementsByTagName("client");
+                            var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on demande</h2></div>";
+                            for(var i=0;i<l_obj.length ;i++){
+                                var clip = l_obj[i].children;
+                                    texte+="<div id=\"imagecl\"><div id='photocliNoProg'>"+clip[0].firstChild.nodeValue+"<br><input type=\"image\"  src=\"IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" alt=\"See the detail\"/></div></div>";
+                                    texte+="<div id=\"descpcl\">"+clip[1].firstChild.nodeValue+"<br>"+clip[2].firstChild.nodeValue+"</div>";
+                                    texte+="<div id=\"objectifcl\">";
+                                        var obj = clip[5].children;
+                                        if(obj.length!==0){
+                                            for (var j =0; j < obj.length; j++){
+                                                texte += obj[j].firstChild.nodeValue + "</br>";                    
+                                            }
+                                        }
+                                    texte += "</div>";
+                            }
+                       
+                        var elt = document.getElementById("cliNoProg");
+			elt.innerHTML = texte; 
+                        var choix =  document.querySelectorAll("#photocliNoProg");
+                        for (var i = 0; i<choix.length;i++){
+                                choix[i].addEventListener("click",showinfoCli);
+                                choix[i].addEventListener("click",showType);
+                                choix[i].addEventListener("click",showProgramme);
+                            }
+                    }
+	};
+        xhr.send();
+    };
+    
+    
+//show all infomation about a client which has been chose
 function showinfoCli ()
     {
         //hide the first page
@@ -61,7 +108,7 @@ function showinfoCli ()
        //create a requery with a value entry
         var xhr = new XMLHttpRequest();
         var param = encodeURIComponent(this.firstChild.nodeValue);
-	xhr.open("GET","../ServletShowInfoCli?idc=" + param);
+	xhr.open("GET","ServletShowInfoCli?idc=" + param);
         
         xhr.onload = function(){
             //if the connect succees
@@ -76,7 +123,7 @@ function showinfoCli ()
                 var image = xhr.responseXML.getElementsByTagName("image");
                 
                 //change to format html
-                var imageCli = "<img src=\"../IMAGE/" 
+                var imageCli = "<img src=\"IMAGE/" 
                         + image[0].firstChild.nodeValue 
                         + "\" width =\"150\" alt=\"image of Client\"/>";
                 var texte = nom[0].firstChild.nodeValue + " " 
@@ -118,7 +165,7 @@ function affichePP ()
             var xhr = new XMLHttpRequest();
             // requery with a value entry.
             var param = encodeURIComponent(this.firstChild.nodeValue);
-            xhr.open("GET","../ServletTableProg?idc=" + param);
+            xhr.open("GET","ServletTableProg?idc=" + param);
             xhr.onload = function()
                     {
                     //if the connect succees
@@ -185,7 +232,7 @@ function afficheProgression ()
 	var xhr = new XMLHttpRequest();
 	// requery with a value entry.
         var param = encodeURIComponent(this.firstChild.nodeValue);
-	xhr.open("GET","../ServletProgressionProg?idc=" + param);
+	xhr.open("GET","ServletProgressionProg?idc=" + param);
 	xhr.onload = function()
 		{
 		// if the query succes
@@ -220,55 +267,14 @@ function backToMenu ()
     }
     
     
-//show the list of all the clients which demand a programme
-function showIdCliNonP ()
-    { 
-        var xhr = new XMLHttpRequest();
-	xhr.open("GET","../ServletClientNonPgrm");
-       
-	xhr.onload = function()
-            {
-		if (xhr.status === 200)
-                    {
-                        var rep = xhr.responseXML;
-                        var l_obj=rep.getElementsByTagName("client");
-                            var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on demande</h2></div>";
-                            for(var i=0;i<l_obj.length && i<3;i++){
-                                var clip = l_obj[i].children;
-                                    texte+="<div id=\"imagecl\"><div id='photocliNoProg'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
-                                    texte+="<div id=\"descpcl\"><p>"+clip[1].firstChild.nodeValue+"</p></div>";
-                                    texte+="<div id=\"objectifcl\"><p >client's objectif</p>";
-                                        var obj = xhr.responseXML.getElementsByTagName("lib");
-                                        if(obj.length!==0){
-                                            alert(i);
-                                           
-                                            for (var j =0; j < obj.length; j++){
-                                                texte += obj[j].firstChild.nodeValue + "</br>";                    
-                                            }
-                                            
-                                        }
-                                    texte += "</div>";
-                            }
-                       
-                        var elt = document.getElementById("cliNoProg");
-			elt.innerHTML = texte; 
-                        var choix =  document.querySelectorAll("#photocliNoProg");
-                        for (var i = 0; i<choix.length;i++){
-                                choix[i].addEventListener("click",showinfoCli);
-                                choix[i].addEventListener("click",showType);
-                                choix[i].addEventListener("click",showProgramme);
-                            }
-                    }
-	};
-        xhr.send();
-    };
- // the function which shows the type   
+
+    
 function showType ()
     { 
         document.getElementById("chercherProg").style.display = "block";
         
         var xhr = new XMLHttpRequest();
-	xhr.open("GET","../ServletObjectifs");
+	xhr.open("GET","ServletObjectifs");
 
 	xhr.onload = function()
         
@@ -299,7 +305,7 @@ function showType ()
     { 
         document.getElementById("chercherProg").style.display = "block";
         var xhr = new XMLHttpRequest();
-	xhr.open("GET","../ServletProgrammeSt");
+	xhr.open("GET","ServletProgrammeSt");
        
 
 	xhr.onload = function()
@@ -339,8 +345,8 @@ function showType ()
         var objectif = document.getElementById("typeProg").value;
         
         if(objectif!==''){
-	xhr.open("GET","../ServletProgObjectif?nomObj="+objectif);
-	//we precise what we will to do when we receive the response from the server.
+	xhr.open("GET","ServletProgObjectif?nomObj="+objectif);
+	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
 	xhr.onload = function()
 		{
 		if (xhr.status === 200)
@@ -380,7 +386,7 @@ function showType ()
         var idPS = document.getElementById("nomProg").value;
         
         if(idPS!==''){
-	xhr.open("GET","../ServletSeanceStandPs?idPS="+idPS);
+	xhr.open("GET","ServletSeanceStandPs?idPS="+idPS);
 	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
 	xhr.onload = function()
 		{
@@ -423,7 +429,8 @@ function showType ()
         var idProg = document.getElementById("nomProg").value;
         var idClient = document.getElementById("idClient").value;
         var xhr = new XMLHttpRequest();
-        xhr.open("GET","../ServletAffecter?idProg=" + idProg+"&idClient="+idClient);
+        xhr.open("GET","ServletAffecter?idProg=" + idProg+"&idClient="+idClient);
+        document.getElementById("affecter").disabled="true";
         xhr.send();
         
     }
