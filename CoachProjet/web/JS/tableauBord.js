@@ -24,8 +24,8 @@ function showIdCliP ()
                                 var clip = l_obj[i].children;
                                     texte+="<div id=\"imagecl\"><div id='photocli'>"+clip[0].firstChild.nodeValue+"<br><input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
                                     texte+="<div id=\"descpcl\">"+clip[1].firstChild.nodeValue+"<br>"+clip[2].firstChild.nodeValue+"</div>";
-                                    texte+="<div id=\"objectifcl\"><span>"+clip[5].firstChild.nodeValue+"%</span>";
-                                    texte += "<progress id='percentProg' max='100' value=" +clip[5].firstChild.nodeValue+ "></progress>";
+                                    texte+="<div id=\"objectifcl\">"+clip[5].firstChild.nodeValue+"<br/>"+clip[6].firstChild.nodeValue+"% ";
+                                    texte += "<progress id='percentProg' max='100' value=" +clip[6].firstChild.nodeValue+ "></progress>";
                                     texte+="</div>";
                         }
                       
@@ -226,7 +226,7 @@ function showIdCliNonP ()
                                 var clip = l_obj[i].children;
                                     texte+="<div id=\"imagecl\"><div id='photocliNoProg'>"+clip[0].firstChild.nodeValue+"<br><input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" alt=\"See the detail\"/></div></div>";
                                     texte+="<div id=\"descpcl\">"+clip[1].firstChild.nodeValue+"<br>"+clip[2].firstChild.nodeValue+"</div>";
-                                    texte+="<div id=\"objectifcl\">";
+                                    texte+="<div id=\"objectifcl\">"+clip[6].firstChild.nodeValue+"<br>";
                                         var obj = clip[5].children;
                                         if(obj.length!==0){
                                             for (var j =0; j < obj.length; j++){

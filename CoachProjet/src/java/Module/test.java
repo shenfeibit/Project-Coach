@@ -24,10 +24,10 @@ public class test {
      public static void main (String[] args) throws Exception
              {
         
-            ArrayList<Objectif> lss=HibernateMethode.showObjectifCli(5);
-            for(Objectif c:lss){
-                System.out.println(c.getLibobj());
-            }
+            String lss=HibernateMethode.showDateDemande(12);
+            
+                System.out.println(lss);
+            
             
         }
 }

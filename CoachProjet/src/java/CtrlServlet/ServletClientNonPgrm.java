@@ -37,7 +37,7 @@ response.setContentType("application/xml;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {out.println("<?xml version=\"1.0\"?>");
             out.println("<list_idNonPgrm>");
             ArrayList<Client> listid = HibernateMethode.consultClientNonPgrm();
-
+            
             for(Client l : listid){
                 out.println("<client>");
                     out.print("<id>"+l.getIdc()+"</id>");
@@ -53,6 +53,8 @@ response.setContentType("application/xml;charset=UTF-8");
                             out.println("<lib>"+o.getLibobj()+"</lib>");
                         }
                         out.println("</liste_obj>");
+                    String datecli = HibernateMethode.showDateDemande(l.getIdc());
+                    out.println("<date>"+datecli+"</date>");
                     out.println("</client>");
             }
 

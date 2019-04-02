@@ -8,6 +8,7 @@
 package Module;
 
 import Bd.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,17 +25,17 @@ import org.hibernate.Transaction;
  */
 public class HibernateMethode {
 
-    public static Programmeperso consultProgramClient(int idClient) {
-        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
-        Transaction tc = ses.beginTransaction();
-        Query q = ses.createQuery ("from Programmeperso as pp where pp.client = "+idClient);
-        List<Programmeperso> lpp = new ArrayList<Programmeperso>();
-        lpp = (List<Programmeperso>) q.list();
-        Programmeperso pp = new Programmeperso();
-        pp = lpp.get(lpp.size()-1);
-        tc.commit();
-        return pp;
-    }
+//    public static Programmeperso consultProgramClient(int idClient) {
+//        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+//        Transaction tc = ses.beginTransaction();
+//        Query q = ses.createQuery ("from Programmeperso as pp where pp.client = "+idClient);
+//        List<Programmeperso> lpp = new ArrayList<Programmeperso>();
+//        lpp = (List<Programmeperso>) q.list();
+//        Programmeperso pp = new Programmeperso();
+//        pp = lpp.get(lpp.size()-1);
+//        tc.commit();
+//        return pp;
+//    }
 
     public static Client showInfoClient (int idClient) {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -240,7 +241,7 @@ public class HibernateMethode {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction() ;
 
-        Query q = ses.createQuery ("from Choisir as c where c.client not in (select client from Programmeperso) order by c.datedemande desc");
+        Query q = ses.createQuery ("from Choisir as c where c.client not in (select client from Programmeperso as pp where pp.etatpp='en cours') order by c.datedemande desc");
         List<Choisir> l_choix = (List<Choisir>) q.list();
         ArrayList<Client> l_cli = new ArrayList();
         for(Choisir c : l_choix){
@@ -249,6 +250,18 @@ public class HibernateMethode {
         }
         tc.commit();
         return l_cli;
+    }
+ 
+  public static String showDateDemande(int idClient) {
+        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tc = ses.beginTransaction() ;
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+        Query q = ses.createQuery ("from Choisir as c where c.client ="+idClient+" order by c.datedemande desc");
+        Choisir choixCli = new Choisir();
+        choixCli = (Choisir)q.list().get(0);
+        String dateCli = sf.format(choixCli.getDatedemande());
+        tc.commit();
+        return dateCli;
     }
 
 public static void affecter(int idps, int idc){
