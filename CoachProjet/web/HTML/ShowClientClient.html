@@ -4,6 +4,7 @@ this is a web page used by client, showing the progress and profiles for him
 -->
 
 <html>
+    <!-- the head of the page which identify the style and javascript-->
     <head>
         <title>Show Profile</title>
         <link rel="stylesheet" href="CSS/Style.css" type="text/css" />
@@ -13,30 +14,30 @@ this is a web page used by client, showing the progress and profiles for him
         
     </head>
     <body>
-        
+        <!--the part of basic informations of the client-->
         <div>
             <div id="image"></div>
             <div id="descp"><p>the informations of the client</p></div>
             <div id="objectif"><h1>Objectif</h1><p id="libobj">client's objectif</p></div>
         </div>
-        
+        <!--the part of informations of programmPerson for this client-->
         <div id="nameProg"></div>
         <div id='barOneLine'></div>
         <div id="descripPP"></div>
-        <!-- Vertical Timeline -->
+        
+        <!-- Vertical Timeline (the begin)-->
         <section id="conference-timeline">
-          <div class="timeline-start">Start</div>
-          <div class="conference-timeline-content">
-              <table>
-                  <tr>
-                      <td class='tableLine'></td>
-                      <td></td>
-                  </tr>
-              </table>
-            <!-- Article -->
-        <div id="tableSP" class="clientColor"></div>
-        </div>
-          <div class="timeline-end">End</div>
+            <div class="timeline-start">Start</div>
+            <div class="conference-timeline-content">
+                <table>
+                    <tr>
+                        <td class='tableLine'></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <!-- the part of informations of seances (from javascript) -->
+                <div id="tableSP" class="clientColor"></div>
+            </div>
+            <div class="timeline-end">End</div>
         </section>
-       
     </body>
