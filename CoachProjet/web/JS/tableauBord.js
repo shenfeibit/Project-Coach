@@ -265,6 +265,7 @@ function backToMenu ()
         document.getElementById("bt_ctrl_back").style.display = "none";
         document.getElementById("affecter").style.display = "none";
         document.getElementById("listeCli").style.display = "block";
+        window.execCommand("Refresh");
     }
     
     
@@ -444,5 +445,5 @@ function showType ()
         document.getElementById("nomProg").addEventListener("change",l_clickProg);
         document.getElementById("bt_back").addEventListener("click",backToMenu);
         document.getElementById("affecter").addEventListener("click",affecter);
-        
+        document.getElementById("affecter").addEventListener("click",backToMenu);
 });

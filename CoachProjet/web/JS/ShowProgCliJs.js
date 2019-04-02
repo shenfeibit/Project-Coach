@@ -71,6 +71,7 @@ function affichePP ()
 			}
 		};
 	xhr.send();
+        afficheProgression ();
 	}
         
 // function which shows the progression of the taining of this client  
@@ -99,6 +100,8 @@ function afficheProgression ()
 		};
 	// send the query
 	xhr.send();
+        showinfoCli ();
+        
 	}
         
 /*
@@ -157,9 +160,7 @@ function showinfoCli ()
 
 //the events corresponding for each function
 document.addEventListener("DOMContentLoaded", () => {
-    window.addEventListener("load",showinfoCli);
     window.addEventListener("load",affichePP);
-    window.addEventListener("load",afficheProgression);
 });
 
 

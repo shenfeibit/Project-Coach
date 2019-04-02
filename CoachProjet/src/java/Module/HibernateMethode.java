@@ -166,30 +166,28 @@ public class HibernateMethode {
 
 
     public static ArrayList<Programmestandard> lireProgObj(String objectif) {
-         if(objectif.equals(null)){
-
+        if(objectif.equals(null)){
             return consultProgramSt();
-
-         }else{
+        }else{
             ArrayList<Objectif> obj = consultTypePs();
             for(Objectif o : obj){
                 if(o.getLibobj().equals(objectif)){
-           Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
-           Transaction tc = ses.beginTransaction() ;
-           Query q = ses.createQuery ("from Programmestandard");
+            Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+            Transaction tc = ses.beginTransaction() ;
+            Query q = ses.createQuery ("from Programmestandard");
 
-           List<Programmestandard> lps = (List<Programmestandard>) q.list();
-           ArrayList<Programmestandard> lpss = new ArrayList<Programmestandard>();
-           for(Programmestandard p : lps){
-               if( p.getObjectifs().contains(o)){
-                lpss.add(p);
-               }
-           }
-           tc.commit();
-           return lpss;
+            List<Programmestandard> lps = (List<Programmestandard>) q.list();
+            ArrayList<Programmestandard> lpss = new ArrayList<Programmestandard>();
+            for(Programmestandard p : lps){
+                if( p.getObjectifs().contains(o)){
+                    lpss.add(p);
                 }
             }
-         }
+            tc.commit();
+            return lpss;
+                }
+            }
+        }
         return null;
     }
 
@@ -297,8 +295,6 @@ public static void affecter(int idps, int idc){
                     Exerciseperso exerciseperso = new Exerciseperso(seanceperso,exeSt.getLibexes(), exeSt.getDescripexes(), exeSt.getDureeexes(), exeSt.getNbrepets(), exeSt.getPhotoexe(), exeSt.getVideoexe(), orderExe, null, null, null,exeSt.getMateriel());
                     ses.save(exerciseperso);
                 }
-            
-            
             }
             tc.commit();
 }
