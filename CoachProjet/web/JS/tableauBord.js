@@ -1,51 +1,59 @@
 //show the list of all the clients which have a programme
 function showIdCliP ()
     { 
+        //hide the first page
         document.getElementById("detailCli").style.display = "none";
         document.getElementById("chercherProg").style.display = "none";
         document.getElementById("detailProg").style.display = "none";
         document.getElementById("progcli").style.display = "none";
         document.getElementById("bt_ctrl_back").style.display = "none";
         document.getElementById("affecter").style.display = "none";
+        //show the new page
         document.getElementById("listeCli").style.display = "block";  
+        
+        //create a requery with a value entry
         var xhr = new XMLHttpRequest();
 	xhr.open("GET","../ServletClientEnPgrm");
-       
-
 	xhr.onload = function()
-        
             {
 		if (xhr.status === 200)
                     {
+                        //if it successed
                         var rep = xhr.responseXML;
+                        //get all the info of clients from servelet
                         var l_obj=rep.getElementsByTagName("client");
-                        var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on Programme</h2></div>";
+                        var texte="<div class='content_liste_client'><h2>"
+                                +l_obj.length+" Clients on Programme</h2></div>";
                                 for(var i=0;i<l_obj.length && i<3;i++){
                                 var clip = l_obj[i].children;
-                                    texte+="<div id=\"imagecl\"><div id='photocli'>"+clip[0].firstChild.nodeValue+"<input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
+                                    texte+="<div id=\"imagecl\"><div id='photocli'>"
+                                            +clip[0].firstChild.nodeValue
+                                            +"<input type=\"image\"  src=\"../IMAGE/"
+                                            +clip[4].firstChild.nodeValue
+                                            +"\" width =\"50\" value='1' alt=\"See the detail\"/></div></div>";
                                     texte+="<div id=\"descpcl\"><p>"+clip[1].firstChild.nodeValue+"</p></div>";
                                     texte+="<div id=\"objectifcl\"><p >client's objectif</p></div>";
                             
                         }
-                      
+                        //put into html
                         var elt = document.getElementById("cliProg");
 			elt.innerHTML = texte; 
                         
+                        //add the event listener to jump to the page next withe the image chosed
                         var choix =  document.querySelectorAll("#photocli");
                         for (var i = 0; i<choix.length;i++){
                                 choix[i].addEventListener("click",showinfoCli);
                                 choix[i].addEventListener("click",affichePP);
                                 choix[i].addEventListener("click",afficheProgression);
                             }
-                        
                     }
-	
 	};
         xhr.send();
     }
-//show all infomation about a client which has been chose
+//show all information about a client which has been chosed
 function showinfoCli ()
     {
+        //hide the first page
        document.getElementById("detailCli").style.display = "block";
        document.getElementById("bt_ctrl_back").style.display = "block";
         
@@ -59,7 +67,7 @@ function showinfoCli ()
             //if the connect succees
             if (xhr.status === 200){
                 
-                //extract all the information
+                //extract all the information of this client
                 var nom = xhr.responseXML.getElementsByTagName("nom");
                 var prenom = xhr.responseXML.getElementsByTagName("prenom");
                 var sexe = xhr.responseXML.getElementsByTagName("sexe");
@@ -67,10 +75,15 @@ function showinfoCli ()
                 var email = xhr.responseXML.getElementsByTagName("email");
                 var image = xhr.responseXML.getElementsByTagName("image");
                 
-                //format html
-                var imageCli = "<img src=\"../IMAGE/" + image[0].firstChild.nodeValue + "\" width =\"150\" alt=\"image of Client\"/>";
-                var texte = nom[0].firstChild.nodeValue + " " +prenom[0].firstChild.nodeValue + "</br>" + sexe[0].firstChild.nodeValue + "</br>" + tele[0].firstChild.nodeValue + "</br>" + email[0].firstChild.nodeValue + "</br>" ;
-                //var showId = "<p>"+id[0].firstChild.nodeValue+"</p>" ;
+                //change to format html
+                var imageCli = "<img src=\"../IMAGE/" 
+                        + image[0].firstChild.nodeValue 
+                        + "\" width =\"150\" alt=\"image of Client\"/>";
+                var texte = nom[0].firstChild.nodeValue + " " 
+                        + prenom[0].firstChild.nodeValue + "</br>" 
+                        + sexe[0].firstChild.nodeValue + "</br>" 
+                        + tele[0].firstChild.nodeValue + "</br>" 
+                        + email[0].firstChild.nodeValue + "</br>" ;
                 
                 var l_obj = xhr.responseXML.getElementsByTagName("lib");
                 var lib = "<p>";
@@ -78,6 +91,7 @@ function showinfoCli ()
                     lib += l_obj[i].firstChild.nodeValue + "</br>";                    
                 }
                 lib += "</p>";
+                
                 //show all the information
                 var eltimage = document.getElementById("image");;
                 eltimage.innerHTML = imageCli; 
@@ -88,28 +102,27 @@ function showinfoCli ()
                 var eltid = document.getElementById("idClient");
                 eltid.value =param ;
                 document.getElementById("listeCli").style.display = "none";
-                
-             
             };
 	};
         xhr.send();
     }
    
-//show the programme which a client has begin to do
+//show the programme which a client has began to do
 function affichePP ()
 	{
-        document.getElementById("progcli").style.display = "block";
-        document.getElementById("detailProg").style.display = "block";
-        document.getElementById("chercherProg").style.display = "none";
-	// Object XMLHttpRequest.
-	var xhr = new XMLHttpRequest();
-	// requery with a value entry.
-        var param = encodeURIComponent(this.firstChild.nodeValue);
-	xhr.open("GET","../ServletTableProg?idc=" + param);
-	xhr.onload = function()
-		{
-		//if the connect succees
-		if (xhr.status === 200)
+            //hide the first page
+            document.getElementById("progcli").style.display = "block";
+            document.getElementById("detailProg").style.display = "block";
+            document.getElementById("chercherProg").style.display = "none";
+            // Object XMLHttpRequest.
+            var xhr = new XMLHttpRequest();
+            // requery with a value entry.
+            var param = encodeURIComponent(this.firstChild.nodeValue);
+            xhr.open("GET","../ServletTableProg?idc=" + param);
+            xhr.onload = function()
+                    {
+                    //if the connect succees
+                    if (xhr.status === 200)
 			{
                         //get the reponse of serveur
                         var rep = xhr.responseXML;
@@ -128,7 +141,7 @@ function affichePP ()
                         var eltDescripPP = document.getElementById("descripPP");
                         eltDescripPP.innerHTML = textDescripPP;
                         
-                        //for secances
+                        //for seances
                         var l_sea = rep.getElementsByTagName("seancePerso");
                         var texteSea="";
                         for(var i=0;i<l_sea.length;i++){
@@ -137,12 +150,15 @@ function affichePP ()
                             texteSea+="<div>";
                                 texteSea+="<table>";
                                     texteSea+="<tr>";
+                                        //show the name of the seance
                                         texteSea+="<td class='content-left'>"+sea[1].firstChild.nodeValue+"</td>";
+                                        //show the description of the seance
                                         texteSea+="<td class='content-right'>"+sea[2].firstChild.nodeValue+"</td>";
                                     texteSea+="</tr>";
                                 texteSea+="</table>";
                             texteSea+="</div>";
                             
+                            //check the date to identify the style
                             if(sea[3].firstChild.nodeValue!="null"){
                                 texteSea+="<div class=\"meta-date-pass\">";
                                 texteSea+="<span class=\"date\">"+sea[0].firstChild.nodeValue+"</span>";
@@ -156,7 +172,6 @@ function affichePP ()
                         }
                         var eltSea=document.getElementById("tableSP");
                         eltSea.innerHTML=texteSea;
-                        
 			}
 		};
 	// Envoie de la requête.
@@ -183,7 +198,6 @@ function afficheProgression ()
                         var res = percent[0].firstChild.nodeValue;
                         var texte ="<span>"+res+"%</span>";
                             texte += "<progress id='percentProg' max='100' value=" + res + "></progress>";
-                        
                         var eltSea=document.getElementById("barOneLine");
                         eltSea.innerHTML=texte;
                         
@@ -193,6 +207,7 @@ function afficheProgression ()
 	xhr.send();
 	}
     
+//this is the function help us back to the first page
 function backToMenu ()
     {
         document.getElementById("chercherProg").style.display = "none";
@@ -202,8 +217,6 @@ function backToMenu ()
         document.getElementById("bt_ctrl_back").style.display = "none";
         document.getElementById("affecter").style.display = "none";
         document.getElementById("listeCli").style.display = "block";
-        
-        
     }
     
     
@@ -249,7 +262,7 @@ function showIdCliNonP ()
 	};
         xhr.send();
     };
-    
+ // the function which shows the type   
 function showType ()
     { 
         document.getElementById("chercherProg").style.display = "block";
@@ -262,7 +275,7 @@ function showType ()
             {
 
 		if (xhr.status === 200)
-                    {
+                    {//if connection is success
                         var rep = xhr.responseXML;
                         var l_obj=rep.getElementsByTagName("nom");
                         
@@ -281,7 +294,7 @@ function showType ()
 	};
         xhr.send();
 } 
-    
+    //function which show the program
    function showProgramme ()
     { 
         document.getElementById("chercherProg").style.display = "block";
@@ -294,7 +307,7 @@ function showType ()
             {
 
 		if (xhr.status === 200)
-                    {
+                    {//if the connections is successed
                         var rep = xhr.responseXML;
                         
                         var pStandard = rep.getElementsByTagName("prog");
@@ -316,7 +329,7 @@ function showType ()
         xhr.send();
 }
     
-    
+    //function  which show the objectifs +
     function l_clickObj ()
 	{
             
@@ -327,11 +340,11 @@ function showType ()
         
         if(objectif!==''){
 	xhr.open("GET","../ServletProgObjectif?nomObj="+objectif);
-	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
+	//we precise what we will to do when we receive the response from the server.
 	xhr.onload = function()
 		{
 		if (xhr.status === 200)
-			{
+			{//if connection is successed
                         var rep = xhr.responseXML;
                         
                         var pStandard = rep.getElementsByTagName("prog");
@@ -356,7 +369,7 @@ function showType ()
         }
     }
     
-
+    // function which shows the detail of program whith their seances
     function l_clickProg ()
 	{
             document.getElementById("detailProg").style.display = "block";
@@ -372,7 +385,7 @@ function showType ()
 	xhr.onload = function()
 		{
 		if (xhr.status === 200)
-			{
+			{//if the connection is successed
                         var rep = xhr.responseXML;
 			//for secances
                         var l_sea = rep.getElementsByTagName("seance");
@@ -405,7 +418,7 @@ function showType ()
             showProgramme();
         }
     }
-    
+    //function affecter wgich return the program affect to the client
     function affecter (){
         var idProg = document.getElementById("nomProg").value;
         var idClient = document.getElementById("idClient").value;
@@ -414,8 +427,9 @@ function showType ()
         xhr.send();
         
     }
+      //the events corresponding for each function
 
-document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showIdCliP);
         window.addEventListener("load",showIdCliNonP);
         document.getElementById("typeProg").addEventListener("change",l_clickObj);
