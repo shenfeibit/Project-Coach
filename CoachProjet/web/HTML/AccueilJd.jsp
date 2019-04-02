@@ -18,14 +18,14 @@
   <title>Squadfree - Free bootstrap 3 one page template</title>
 
   <!-- Bootstrap Core CSS -->
-  <link href="../CSS/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="CSS/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Fonts -->
-  <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link href="../CSS/animate.css" rel="stylesheet" />
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="CSS/animate.css" rel="stylesheet" />
   <!-- Squad theme CSS -->
-  <link href="../CSS/style2.css" rel="stylesheet">
-  <link href="../color/default.css" rel="stylesheet">
+  <link href="CSS/style2.css" rel="stylesheet">
+  <link href="color/default.css" rel="stylesheet">
 
   <!-- STYLES POUR LES FORMULAIRES a VOIR
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -197,7 +197,7 @@
             <div class="row">
                 <div class="col-md-6 login-form-1">
                     <h3>Espace coach</h3>
-                    <form action="../ServletAccueilCoach" method="GET">
+                    <form action="ServletAccueilCoach" method="GET">
                         <div class="form-group">
                             <input type="text" class="form-control" name="idCoachAccueil" placeholder="Your id *" value="1" />
                         </div>
@@ -215,12 +215,12 @@
                 </div>
                 <div class="col-md-6 login-form-2">
                     <h3>Espace client</h3>
-                    <form>
+                    <form action="ServletAccueilClient" method="GET">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name *" value="" />
+                            <input type="text" class="form-control" name="idCoachAccueil" placeholder="Your Name *" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Your Password *" value="" />
+                            <input type="password" class="form-control" name="nameCoach" placeholder="Your Password *" value="" />
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btnSubmit" value="Login" />
@@ -371,14 +371,14 @@
   </footer>
 
   <!-- Core JavaScript Files -->
-  <script src="../JS/jquery.min.js"></script>
-  <script src="../JS/bootstrap.min.js"></script>
-  <script src="../JS/jquery.easing.min.js"></script>
-  <script src="../JS/jquery.scrollTo.js"></script>
-  <script src="../JS/wow.min.js"></script>
+  <script src="JS/jquery.min.js"></script>
+  <script src="JS/bootstrap.min.js"></script>
+  <script src="JS/jquery.easing.min.js"></script>
+  <script src="JS/jquery.scrollTo.js"></script>
+  <script src="JS/wow.min.js"></script>
   <!-- Custom Theme JavaScript -->
-  <script src="../JS/custom.js"></script>
-  <script src="../contactform/contactform.js"></script>
+  <script src="JS/custom.js"></script>
+  <script src="contactform/contactform.js"></script>
 
 </body>
 

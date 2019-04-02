@@ -4,6 +4,14 @@
         <servlet-name>ServletTableProg</servlet-name>
         <servlet-class>CtrlServlet.ServletTableProg</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletAccueilClient</servlet-name>
+        <servlet-class>CtrlServlet.ServletAccueilClient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowClient</servlet-name>
+        <jsp-file>/HTML/ShowClientClient.html</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletTableProg</servlet-name>
         <url-pattern>/ServletTableProg</url-pattern>
@@ -95,6 +103,22 @@
     <servlet-mapping>
         <servlet-name>ServletProgrammeSt</servlet-name>
         <url-pattern>/ServletProgrammeSt</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletAffecter</servlet-name>
+        <servlet-class>CtrlServlet.ServletAffecter</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAffecter</servlet-name>
+        <url-pattern>/ServletAffecter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAccueilClient</servlet-name>
+        <url-pattern>/ServletAccueilClient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowClient</servlet-name>
+        <url-pattern>/ShowClient</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

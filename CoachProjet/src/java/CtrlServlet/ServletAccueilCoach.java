@@ -47,7 +47,7 @@ public class ServletAccueilCoach extends HttpServlet {
         if(idCo.isEmpty())
             avertissement="Veuillez saisir votre ID";
         if(nomCo.isEmpty())
-            avertissement="Veuillez saisir un message";
+            avertissement="Veuillez saisir votre nom";
         if(idCo.isEmpty()&&nomCo.isEmpty())
             avertissement="Veuillez saisir vos informations de connexion";
 
@@ -61,7 +61,8 @@ public class ServletAccueilCoach extends HttpServlet {
                 }
                 else{
                     try{
-                    response.sendRedirect("TableauBordCo");
+                        //vérification
+                        response.sendRedirect("TableauBordCo");
                         }
                 catch (Exception ex) {
                       RequestDispatcher rd = request.getRequestDispatcher("Accueil");

@@ -55,11 +55,14 @@ public class HibernateMethode {
         ArrayList<Objectif> l_obj = new ArrayList<>();
         for (Choisir ch : l_cho){
             l_obj.add(ch.getObjectif());
+
             ch.getObjectif().getLibobj();
+
         }
         tc.commit();
         return l_obj;
     }
+
 
     public static Programmeperso seeProgrammeCli(int idClient) {
             Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -73,6 +76,7 @@ public class HibernateMethode {
             tc.commit();
             return pp;
         }
+
 
 
     public static HashMap<Integer,Seanceperso> consultSeancesIdProgPerso(int idPro){
@@ -95,11 +99,12 @@ public class HibernateMethode {
         Transaction tc = ses.beginTransaction() ;
         Query q1 = ses.createQuery ("from Possederps as psp where psp.programmestandard = "+idPS);
         List<Possederps> lpsp = (List<Possederps>) q1.list();
+        System.out.println(lpsp.size());
         HashMap<Integer,Seancestandard> mss;
         mss = new HashMap<>();
-        for(Possederps psp : lpsp){
-            mss.put(psp.getId().getOrdredefaut(), psp.getSeancestandard());
-            psp.getSeancestandard().getLibseas();
+        for(int i=0;i<lpsp.size();i++){
+            mss.put(lpsp.get(i).getId().getOrdredefaut(), lpsp.get(i).getSeancestandard());
+            lpsp.get(i).getSeancestandard().getLibseas();
         }
         tc.commit();
         return mss;
@@ -160,7 +165,7 @@ public class HibernateMethode {
 
 
 
-     public static ArrayList<Programmestandard> lireProgObj(String objectif) {
+    public static ArrayList<Programmestandard> lireProgObj(String objectif) {
          if(objectif.equals(null)){
 
             return consultProgramSt();
@@ -188,7 +193,7 @@ public class HibernateMethode {
         return null;
     }
 
-        public static float seeProgressionProg(int idClient) {
+    public static float seeProgressionProg(int idClient) {
             Programmeperso pp = new Programmeperso();
             pp = seeProgrammeCli(idClient);
             Session ses2 = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -216,32 +221,34 @@ public class HibernateMethode {
             return k;
         }
 
-      public static ArrayList<Client> consultClientPgrm() {
+    public static ArrayList<Client> consultClientPgrm() {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction() ;
 
-        Query q = ses.createQuery ("from Client as c where c.idc in (select client from Programmeperso)");
-        List<Client> clt = (List<Client>) q.list();
-        ArrayList<Client> cliId = new ArrayList();
-        for(Client c : clt){
-            cliId.add(c);
+        Query q = ses.createQuery ("from Programmeperso as pp order by pp.idpp desc");
+        List<Programmeperso> lpro = (List<Programmeperso>) q.list();
+        ArrayList<Client> l_cli = new ArrayList();
+        for(Programmeperso p : lpro){
+            l_cli.add(p.getClient());
+            p.getClient().getNomc();
         }
         tc.commit();
-        return cliId;
+        return l_cli;
     }
 
  public static ArrayList<Client> consultClientNonPgrm() {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction() ;
 
-        Query q = ses.createQuery ("from Client as c where c.idc not in (select client from Programmeperso)");
-        List<Client> clt = (List<Client>) q.list();
-        ArrayList<Client> cliId = new ArrayList();
-        for(Client c : clt){
-            cliId.add(c);
+        Query q = ses.createQuery ("from Choisir as c where c.client not in (select client from Programmeperso) order by c.datedemande desc");
+        List<Choisir> l_choix = (List<Choisir>) q.list();
+        ArrayList<Client> l_cli = new ArrayList();
+        for(Choisir c : l_choix){
+            l_cli.add(c.getClient());
+            c.getClient().getNomc();
         }
         tc.commit();
-        return cliId;
+        return l_cli;
     }
 
 public static void affecter(int idps, int idc){
@@ -293,7 +300,22 @@ public static void affecter(int idps, int idc){
             
             
             }
-            tc.commit();       
+            tc.commit();
+}
+
+public static HashMap<Integer,Exerciseperso> showExePersoBySea(int idSea){
+            HashMap<Integer,Exerciseperso> l_exep= new HashMap();
+            
+            Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+            Transaction tc = ses.beginTransaction() ;
+//             as ex where ex.seanceperso="+idSea
+            Query q = ses.createQuery("from Exerciseperso as ex where ex.seanceperso="+idSea);
+            List<Exerciseperso> lexe = (List<Exerciseperso>) q.list();
+            for(Exerciseperso exe: lexe){
+                l_exep.put(exe.getOrdreexe(), exe);
+            }
+            tc.commit();
+            return l_exep;
         }
 
 
