@@ -401,8 +401,9 @@ function showType ()
         var idClient = document.getElementById("idClient").value;
         var xhr = new XMLHttpRequest();
         xhr.open("GET","../ServletAffecter?idProg=" + idProg+"&idClient="+idClient);
-        window.location.reload();
         xhr.send();
+//        window.location.reload();
+        backToMenu();
         
     }
     
