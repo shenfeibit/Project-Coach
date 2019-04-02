@@ -311,7 +311,6 @@ public static void affecter(int idps, int idc){
             }
             tc.commit();
 }
-
 public static HashMap<Integer,Exerciseperso> showExePersoBySea(int idSea){
             HashMap<Integer,Exerciseperso> l_exep= new HashMap();
             
@@ -326,7 +325,6 @@ public static HashMap<Integer,Exerciseperso> showExePersoBySea(int idSea){
             tc.commit();
             return l_exep;
         }
-
 
 }
 
