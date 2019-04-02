@@ -14,7 +14,9 @@ package Module;
 import Bd.Client;
 import Bd.Objectif;
 import Bd.Programmeperso;
+import Bd.Seanceperso;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -23,10 +25,11 @@ import java.util.ArrayList;
 public class test {
      public static void main (String[] args) throws Exception
              {
-        
-            String lss=HibernateMethode.showDateDemande(12);
-            
-                System.out.println(lss);
+                 HashMap<Integer,Seanceperso> res = HibernateMethode.consultSeancesIdProgPerso(58);
+            for(Integer i:res.keySet()){
+                System.out.println(res.get(i).getLibsea() + "---"+ res.get(i).getTypesea());
+            }
+                
             
             
         }

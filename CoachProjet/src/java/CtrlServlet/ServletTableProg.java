@@ -60,6 +60,7 @@ public class ServletTableProg extends HttpServlet {
                         out.println("<libexe>"+mexp.get(ordEx).getLibexe()+"</libexe>");
                     }
                     out.println("</l_exp>");
+                    
                     out.println("</seancePerso>");
                 }
                 out.println("</l_seancesPerso>");

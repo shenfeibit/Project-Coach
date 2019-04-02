@@ -129,7 +129,6 @@ function affichePP ()
                         var textDescripPP = descripPP[0].firstChild.nodeValue;
                         var eltDescripPP = document.getElementById("descripPP");
                         eltDescripPP.innerHTML = textDescripPP;
-                        
                         //for secances
                         var l_sea = rep.getElementsByTagName("seancePerso");
                         var texteSea="";
@@ -139,13 +138,19 @@ function affichePP ()
                             texteSea+="<div>";
                                 texteSea+="<table>";
                                     texteSea+="<tr>";
-                                        texteSea+="<td class='content-left'>"+sea[1].firstChild.nodeValue+"</td>";
+                                        if(sea[1].firstChild.nodeValue=="Progress Training"){
+                                            texteSea+="<td class='content-left-bilan'>"+sea[1].firstChild.nodeValue+"</td>";
+                                        }
+                                        else
+                                        {
+                                            texteSea+="<td class='content-left'>"+sea[1].firstChild.nodeValue+"</td>";
+                                        }
                                         texteSea+="<td class='content-right'>"+sea[2].firstChild.nodeValue+"</td>";
                                     texteSea+="</tr>";
                                 texteSea+="</table>";
                             texteSea+="</div>";
                             
-                            if(sea[3].firstChild.nodeValue!="null"){
+                            if(sea[3].firstChild.nodeValue!=="null"){
                                 texteSea+="<div class=\"meta-date-pass\">";
                                 texteSea+="<span class=\"date\">"+sea[0].firstChild.nodeValue+"</span>";
                             }
@@ -154,8 +159,8 @@ function affichePP ()
                                 texteSea+="<span class=\"date\">"+sea[0].firstChild.nodeValue+"</span>";
                             }
                             texteSea+="</div>";
-                            texteSea+="</div>";
-                        }
+                        texteSea+="</div>";
+                    }
                         var eltSea=document.getElementById("tableSP");
                         eltSea.innerHTML=texteSea;
                         
@@ -194,21 +199,7 @@ function afficheProgression ()
 	// send the query
 	xhr.send();
 	}
-    
-function backToMenu ()
-    {
-        document.getElementById("chercherProg").style.display = "none";
-        document.getElementById("detailProg").style.display = "none";
-        document.getElementById("detailCli").style.display = "none";
-        document.getElementById("progcli").style.display = "none";
-        document.getElementById("bt_ctrl_back").style.display = "none";
-        document.getElementById("affecter").style.display = "none";
-        document.getElementById("listeCli").style.display = "block";
-        
-        
-    }
-    
-    
+      
 //show the list of all the clients which demand a programme
 function showIdCliNonP ()
     { 
@@ -410,17 +401,28 @@ function showType ()
         var idClient = document.getElementById("idClient").value;
         var xhr = new XMLHttpRequest();
         xhr.open("GET","../ServletAffecter?idProg=" + idProg+"&idClient="+idClient);
-        document.getElementById("affecter").disabled="true";
+        window.location.reload();
         xhr.send();
         
     }
-
+    
+    function backToMenu ()
+    {
+        document.getElementById("chercherProg").style.display = "none";
+        document.getElementById("detailProg").style.display = "none";
+        document.getElementById("detailCli").style.display = "none";
+        document.getElementById("progcli").style.display = "none";
+        document.getElementById("bt_ctrl_back").style.display = "none";
+        document.getElementById("affecter").style.display = "none";
+        document.getElementById("listeCli").style.display = "block";
+         
+    }
+  
 document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showIdCliP);
         window.addEventListener("load",showIdCliNonP);
         document.getElementById("typeProg").addEventListener("change",l_clickObj);
         document.getElementById("nomProg").addEventListener("change",l_clickProg);
-        document.getElementById("bt_back").addEventListener("click",backToMenu);
+        document.getElementById("bt_ctrl_back").addEventListener("click",backToMenu);
         document.getElementById("affecter").addEventListener("click",affecter);
-        
 });

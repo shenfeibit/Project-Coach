@@ -4,6 +4,10 @@
         <servlet-name>ServletTableProg</servlet-name>
         <servlet-class>CtrlServlet.ServletTableProg</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletSeanceStandPs</servlet-name>
+        <servlet-class>CtrlServlet.ServletSeanceStandPs</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletTableProg</servlet-name>
         <url-pattern>/ServletTableProg</url-pattern>
@@ -72,7 +76,10 @@
         <servlet-name>ServletAffecter</servlet-name>
         <url-pattern>/ServletAffecter</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>ServletSeanceStandPs</servlet-name>
+        <url-pattern>/ServletSeanceStandPs</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
