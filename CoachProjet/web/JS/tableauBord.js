@@ -44,7 +44,7 @@ function showIdCliP ()
 			elt.innerHTML = texte; 
                         
                         //add the event listener to jump to the page next withe the image chosed
-                        var choix =  document.getElementsByClassName("photocliNoProg");
+                        var choix =  document.getElementsByClassName("photocli");
                         for (var i = 0; i<choix.length;i++){
                                 choix[i].addEventListener("click",afficheCliP);
                             }
@@ -54,9 +54,10 @@ function showIdCliP ()
     }
 
 function afficheCliP () { 
-    showinfoCli(this);
-    affichePP(this);
-    afficheProgression(this);
+    var param =this;
+    showinfoCli(param);
+    affichePP(param);
+    afficheProgression(param);
 }
 
 //show the list of all the clients which demand a programme
@@ -101,9 +102,10 @@ function showIdCliNonP ()
     };
     
 function afficheCliNonP(){
-    showinfoCli(this);
-    showType(this);
-    showProgramme(this);
+    var param =this;
+    showinfoCli(param);
+    showType(param);
+    showProgramme(param);
 }
     
 //show all infomation about a client which has been chose
@@ -278,8 +280,6 @@ function backToMenu ()
         document.getElementById("bt_ctrl_back").style.display = "none";
         document.getElementById("affecter").style.display = "none";
         document.getElementById("listeCli").style.display = "block";
-        load();
-        window.execCommand("Refresh");
     }
     
 function showType ()
@@ -440,7 +440,7 @@ function showType ()
         var xhr = new XMLHttpRequest();
         xhr.open("GET","ServletAffecter?idProg=" + idProg+"&idClient="+idClient);
         xhr.send();
-        backToMenu();
+        window.location.reload();
     }
     
     function load(){
@@ -456,4 +456,3 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("bt_ctrl_back").addEventListener("click",backToMenu);
         document.getElementById("affecter").addEventListener("click",affecter);
 });
-
