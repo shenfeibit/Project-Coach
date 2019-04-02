@@ -242,10 +242,10 @@ table{
   font-size: 100%;
 }
 
-#photocli{
+.photocli{
     color:gold;
 }
-#photocliNoProg{
+.photocliNoProg{
     color:gold;
 }
 

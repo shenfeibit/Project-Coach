@@ -9,7 +9,7 @@ function showIdCliP ()
         document.getElementById("bt_ctrl_back").style.display = "none";
         document.getElementById("affecter").style.display = "none";
         //show the new page
-        document.getElementById("listeCli").style.display = "block";  
+        document.getElementById("listeCli").style.display = "block";
         
         //create a requery with a value entry
         var xhr = new XMLHttpRequest();
@@ -27,7 +27,7 @@ function showIdCliP ()
                         var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on Programme</h2></div>";
                                 for(var i=0;i<l_obj.length;i++){
                                 var clip = l_obj[i].children;
-                                    texte+="<div id=\"imagecl\"><div id='photocli'>"
+                                    texte+="<div id=\"imagecl\"><div class='photocli'>"
                                             +clip[0].firstChild.nodeValue
                                             +"<br><input type=\"image\"  src=\"IMAGE/"
                                             +clip[4].firstChild.nodeValue
@@ -44,18 +44,21 @@ function showIdCliP ()
 			elt.innerHTML = texte; 
                         
                         //add the event listener to jump to the page next withe the image chosed
-                        var choix =  document.querySelectorAll("#photocli");
+                        var choix =  document.getElementsByClassName("photocliNoProg");
                         for (var i = 0; i<choix.length;i++){
-                                choix[i].addEventListener("click",showinfoCli);
-                                choix[i].addEventListener("click",affichePP);
-                                choix[i].addEventListener("click",afficheProgression);
+                                choix[i].addEventListener("click",afficheCliP);
                             }
                     }
 	};
         xhr.send();
     }
-   
-   
+
+function afficheCliP () { 
+    showinfoCli(this);
+    affichePP(this);
+    afficheProgression(this);
+}
+
 //show the list of all the clients which demand a programme
 function showIdCliNonP ()
     { 
@@ -71,9 +74,12 @@ function showIdCliNonP ()
                             var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on demande</h2></div>";
                             for(var i=0;i<l_obj.length ;i++){
                                 var clip = l_obj[i].children;
-                                    texte+="<div id=\"imagecl\"><div id='photocliNoProg'>"+clip[0].firstChild.nodeValue+"<br><input type=\"image\"  src=\"IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" alt=\"See the detail\"/></div></div>";
-                                    texte+="<div id=\"descpcl\">"+clip[1].firstChild.nodeValue+"<br>"+clip[2].firstChild.nodeValue+"</div>";
-                                    texte+="<div id=\"objectifcl\">";
+                                    texte+="<div id=\"imagecl\"><div class='photocliNoProg'>"
+                                            +clip[0].firstChild.nodeValue+"<br><input type=\"image\"  src=\"IMAGE/"
+                                            +clip[4].firstChild.nodeValue+"\" width =\"50\" alt=\"See the detail\"/></div></div>";
+                                    texte+="<div id=\"descpcl\">"
+                                            +clip[1].firstChild.nodeValue+"<br>"+clip[2].firstChild.nodeValue+"</div>";
+                                    texte+="<div id=\"objectifcl\">"+clip[6].firstChild.nodeValue+"<br>";
                                         var obj = clip[5].children;
                                         if(obj.length!==0){
                                             for (var j =0; j < obj.length; j++){
@@ -85,29 +91,27 @@ function showIdCliNonP ()
                        
                         var elt = document.getElementById("cliNoProg");
 			elt.innerHTML = texte; 
-                        var choix =  document.querySelectorAll("#photocliNoProg");
+                        var choix =  document.getElementsByClassName("photocliNoProg");
                         for (var i = 0; i<choix.length;i++){
-                                choix[i].addEventListener("click",showinfoCli);
-                                choix[i].addEventListener("click",showType);
-                                choix[i].addEventListener("click",showProgramme);
+                                choix[i].addEventListener("click",afficheCliNonP);
                             }
                     }
 	};
         xhr.send();
     };
     
+function afficheCliNonP(){
+    showinfoCli(this);
+    showType(this);
+    showProgramme(this);
+}
     
 //show all infomation about a client which has been chose
-function showinfoCli ()
+function showinfoCli (elt)
     {
-        //hide the first page
-       document.getElementById("detailCli").style.display = "block";
-       document.getElementById("bt_ctrl_back").style.display = "block";
-        
-        
        //create a requery with a value entry
         var xhr = new XMLHttpRequest();
-        var param = encodeURIComponent(this.firstChild.nodeValue);
+        var param = encodeURIComponent(elt.firstChild.nodeValue);
 	xhr.open("GET","ServletShowInfoCli?idc=" + param);
         
         xhr.onload = function(){
@@ -151,20 +155,19 @@ function showinfoCli ()
                 document.getElementById("listeCli").style.display = "none";
             };
 	};
+        //hide the first page
+        document.getElementById("detailCli").style.display = "block";
+        document.getElementById("bt_ctrl_back").style.display = "block";
         xhr.send();
     }
    
 //show the programme which a client has began to do
-function affichePP ()
+function affichePP (elt)
 	{
-            //hide the first page
-            document.getElementById("progcli").style.display = "block";
-            document.getElementById("detailProg").style.display = "block";
-            document.getElementById("chercherProg").style.display = "none";
             // Object XMLHttpRequest.
             var xhr = new XMLHttpRequest();
             // requery with a value entry.
-            var param = encodeURIComponent(this.firstChild.nodeValue);
+            var param = encodeURIComponent(elt.firstChild.nodeValue);
             xhr.open("GET","ServletTableProg?idc=" + param);
             xhr.onload = function()
                     {
@@ -227,17 +230,22 @@ function affichePP ()
                         eltSea.innerHTML=texteSea;
 			}
 		};
+        //hide the first page
+        document.getElementById("progcli").style.display = "block";
+        document.getElementById("detailProg").style.display = "block";
+        document.getElementById("chercherProg").style.display = "none";
+        
 	// Envoie de la requête.
 	xhr.send();
 	}
         
 //show progress    
-function afficheProgression ()
+function afficheProgression (elt)
 	{
 	// Object XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 	// requery with a value entry.
-        var param = encodeURIComponent(this.firstChild.nodeValue);
+        var param = encodeURIComponent(elt.firstChild.nodeValue);
 	xhr.open("GET","ServletProgressionProg?idc=" + param);
 	xhr.onload = function()
 		{
@@ -270,49 +278,9 @@ function backToMenu ()
         document.getElementById("bt_ctrl_back").style.display = "none";
         document.getElementById("affecter").style.display = "none";
         document.getElementById("listeCli").style.display = "block";
+        load();
         window.execCommand("Refresh");
     }
-
- 
-//show the list of all the clients which demand a programme
-function showIdCliNonP ()
-    { 
-        var xhr = new XMLHttpRequest();
-	xhr.open("GET","ServletClientNonPgrm");
-       
-	xhr.onload = function()
-            {
-		if (xhr.status === 200)
-                    {
-                        var rep = xhr.responseXML;
-                        var l_obj=rep.getElementsByTagName("client");
-                            var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on demande</h2></div>";
-                            for(var i=0;i<l_obj.length ;i++){
-                                var clip = l_obj[i].children;
-                                    texte+="<div id=\"imagecl\"><div id='photocliNoProg'>"+clip[0].firstChild.nodeValue+"<br><input type=\"image\"  src=\"../IMAGE/"+clip[4].firstChild.nodeValue+"\" width =\"50\" alt=\"See the detail\"/></div></div>";
-                                    texte+="<div id=\"descpcl\">"+clip[1].firstChild.nodeValue+"<br>"+clip[2].firstChild.nodeValue+"</div>";
-                                    texte+="<div id=\"objectifcl\">"+clip[6].firstChild.nodeValue+"<br>";
-                                        var obj = clip[5].children;
-                                        if(obj.length!==0){
-                                            for (var j =0; j < obj.length; j++){
-                                                texte += obj[j].firstChild.nodeValue + "</br>";                    
-                                            }
-                                        }
-                                    texte += "</div>";
-                            }
-                       
-                        var elt = document.getElementById("cliNoProg");
-			elt.innerHTML = texte; 
-                        var choix =  document.querySelectorAll("#photocliNoProg");
-                        for (var i = 0; i<choix.length;i++){
-                                choix[i].addEventListener("click",showinfoCli);
-                                choix[i].addEventListener("click",showType);
-                                choix[i].addEventListener("click",showProgramme);
-                            }
-                    }
-	};
-        xhr.send();
-    };
     
 function showType ()
     { 
@@ -383,8 +351,7 @@ function showType ()
     //function  which show the objectifs +
     function l_clickObj ()
 	{
-            
-                // Objet XMLHttpRequest.
+            // Objet XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 
         var objectif = document.getElementById("typeProg").value;
@@ -423,11 +390,8 @@ function showType ()
     // function which shows the detail of program whith their seances
     function l_clickProg ()
 	{
-            document.getElementById("detailProg").style.display = "block";
-            document.getElementById("affecter").style.display = "block";
-                // Objet XMLHttpRequest.
-	var xhr = new XMLHttpRequest();
-
+        // Objet XMLHttpRequest.
+        var xhr = new XMLHttpRequest;
         var idPS = document.getElementById("nomProg").value;
         
         if(idPS!==''){
@@ -462,8 +426,8 @@ function showType ()
                         }
                         
 		};
-            
-
+        document.getElementById("detailProg").style.display = "block";
+        document.getElementById("affecter").style.display = "block";
 	xhr.send();
         }else{
             showProgramme();
@@ -476,15 +440,17 @@ function showType ()
         var xhr = new XMLHttpRequest();
         xhr.open("GET","ServletAffecter?idProg=" + idProg+"&idClient="+idClient);
         xhr.send();
-//        window.location.reload();
         backToMenu();
-        
+    }
+    
+    function load(){
+        showIdCliP();
+        showIdCliNonP();
     }
 
       //the events corresponding for each function 
 document.addEventListener("DOMContentLoaded", () => {
-        window.addEventListener("load",showIdCliP);
-        window.addEventListener("load",showIdCliNonP);
+        window.addEventListener("load",load);
         document.getElementById("typeProg").addEventListener("change",l_clickObj);
         document.getElementById("nomProg").addEventListener("change",l_clickProg);
         document.getElementById("bt_ctrl_back").addEventListener("click",backToMenu);
