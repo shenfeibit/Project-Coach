@@ -1,8 +1,11 @@
-<!DOCTYPE html>
-<!--
-this is a web page used by client, showing the progress and profiles for him
--->
+<%-- 
+    Document   : PageClient
+    Created on : 2 avr. 2019, 16:19:05
+    Author     : 21511708
+--%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
         <title>Show Profile</title>
@@ -10,14 +13,16 @@ this is a web page used by client, showing the progress and profiles for him
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/JavaScript" src="JS/ShowProgCliJs.js"></script>
-        
     </head>
     <body>
-        
-        <div>
+        <%
+            String idCli = (String) session.getAttribute("idC");
+            
+        %>
+         <div>
             <div id="image"></div>
             <div id="descp"><p>the informations of the client</p></div>
-            <div id="objectif"><h1>Objectif</h1><p id="libobj">client's objectif</p></div>
+            <div id="objectif"><h1>Objectif</h1> <input type="hidden" id="idClient" value="<%=idCli%>"><p id="libobj">client's objectif</p></div>
         </div>
         
         <div id="nameProg"></div>
@@ -38,5 +43,5 @@ this is a web page used by client, showing the progress and profiles for him
         </div>
           <div class="timeline-end">End</div>
         </section>
-       
     </body>
+</html>

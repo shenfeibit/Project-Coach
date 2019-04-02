@@ -3,7 +3,8 @@ function affichePP ()
 	// Object XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 	// requery with a value entry.
-	xhr.open("GET","ServletTableProg?idc=" + 6);
+        var param=encodeURIComponent(document.getElementById("idClient").value);
+	xhr.open("GET","ServletTableProg?idc=" + param);
 	xhr.onload = function()
 		{
 		//if the connect succees
@@ -77,7 +78,8 @@ function afficheProgression ()
 	// Object XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 	// requery with a value entry.
-	xhr.open("GET","ServletProgressionProg?idc=" + 6);
+         var param=encodeURIComponent(document.getElementById("idClient").value);
+	xhr.open("GET","ServletProgressionProg?idc=" + param);
 	xhr.onload = function()
 		{
 		// if the query succes
@@ -110,7 +112,8 @@ function showinfoCli ()
         //create a requery with a value entry
 
         var xhr = new XMLHttpRequest();
-	xhr.open("GET","ServletShowInfoCli?idc=" + 6);
+         var param=encodeURIComponent(document.getElementById("idClient").value);
+	xhr.open("GET","ServletShowInfoCli?idc=" + param);
         
         xhr.onload = function(){
             //if the connect succees

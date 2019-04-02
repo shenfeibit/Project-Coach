@@ -5,8 +5,11 @@
  */
 package CtrlServlet;
 
+import Bd.Client;
+import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,44 +38,51 @@ public class ServletAccueilClient extends HttpServlet {
 
          {
         //Catch informations
-        String idCo = request.getParameter("idCoachAccueil");
-        String nomCo = request.getParameter("nameCoach");
+        String idCo = request.getParameter("idCliAccueil");
+        String nomCo = request.getParameter("nameCli");
 
-        //verify that information are not empty
+        //create session
         HttpSession ses = request.getSession(true);
         ses.setAttribute("idC", idCo);
+        ses.setAttribute("nameCli", nomCo);
+
 
         String avertissement="";
 
+        //verify that information send are not empty
         if(idCo.isEmpty())
+        {
             avertissement="Veuillez saisir votre ID";
-        if(nomCo.isEmpty())
-            avertissement="Veuillez saisir votre nom";
-        if(idCo.isEmpty()&&nomCo.isEmpty())
-            avertissement="Veuillez saisir vos informations de connexion";
-
-            if (!avertissement.isEmpty()){
-                //On retourne sur la page de saisie. On délègue à la ressource accueil
-                RequestDispatcher rd = request.getRequestDispatcher("Accueil");
-                request.setAttribute("id", idCo);
-                request.setAttribute("name", nomCo);
-                request.setAttribute("avrt", avertissement);
-                rd.forward(request, response);
+        }
+        else
+        {
+            try{
+                //vérification
+                boolean c = HibernateMethode.verifCli(Integer.parseInt(idCo),nomCo);
+                if(c)
+                {
+                    response.sendRedirect("PageClient");
                 }
-                else{
-                    try{
-                        //vérification
-                        response.sendRedirect("ShowClient");
-                        }
-                catch (Exception ex) {
-                      RequestDispatcher rd = request.getRequestDispatcher("Accueil");
-                      request.setAttribute("erreurIdentif", ex.getMessage()); //Changer la clé pour celle la (erreur) notamment pour les styles css
-                      rd.forward(request, response);
+                else
+                {
+                    avertissement="Veuillez saisir votre nom correct";
                 }
-
             }
+            catch (Exception ex)
+            {
+                RequestDispatcher rd = request.getRequestDispatcher("AccueilJd");
+                request.setAttribute("erreurIdentifCl", ex.getMessage()); //Changer la clé pour celle la (erreur) notamment pour les styles css
+                rd.forward(request, response);
+            }
+        }
 
-
+            if (!avertissement.isEmpty())
+            {
+                //On retourne sur la page de saisie. On délègue à la ressource accueil
+                RequestDispatcher rd = request.getRequestDispatcher("AccueilJd");
+                request.setAttribute("avrtCl", avertissement);
+                rd.forward(request, response);
+            }
         }
 
 
