@@ -265,7 +265,7 @@ public class HibernateMethode {
 public static void affecter(int idps, int idc){
             Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
             Transaction tc = ses.beginTransaction();
-            
+
             //enregistrer dans programmeperso
             Query qCli = ses.createQuery("from Client as c where c.idc= " + idc);
             Client c = (Client) qCli.list().get(0);
@@ -278,12 +278,12 @@ public static void affecter(int idps, int idc){
                setSes.add(ps.getSeancestandard());
             }
             Set<Objectif> setObj = new HashSet<Objectif>();
-            for( Object o : ss.getObjectifs()){ 
+            for( Object o : ss.getObjectifs()){
                 setObj.add((Objectif) o);
             }
             Programmeperso programmeperso = new Programmeperso(c, ss.getLibps(), ss.getDescripps(), ss.getDureeps(), "en cours", date, setSes, setObj );
             ses.save(programmeperso);
-            
+
             //enregistrer dans seanceperso
             for(Possederps ps : listpossederps){
                 Seancestandard sesncest = ps.getSeancestandard();
@@ -293,27 +293,29 @@ public static void affecter(int idps, int idc){
                 for(Possedersea psea : listpossedersea){
                     setExe.add((Exercisestandard) psea.getExercisestandard());
                 }
-                
-               
-                Seanceperso seanceperso = new Seanceperso(programmeperso, ps.getSeancestandard().getLibseas(), ps.getSeancestandard().getDescripseas(), ps.getSeancestandard().getTypeseas(), ps.getId().getOrdredefaut(),ps.getSemainesea(),null,null, null, null, null, null, setExe ); 
+
+
+                Seanceperso seanceperso = new Seanceperso(programmeperso, ps.getSeancestandard().getLibseas(), ps.getSeancestandard().getDescripseas(), ps.getSeancestandard().getTypeseas(), ps.getId().getOrdredefaut(),ps.getSemainesea(),null,null, null, null, null, null, setExe );
                 ses.save(seanceperso);
-                
+
                 //enregistrer dans exerciseperso
                 for(Exercisestandard exeSt : setExe){
-                    
+
                     Query qOrdreExe = ses.createQuery("from Possedersea as p where p.seancestandard= " + ps.getSeancestandard().getIdseas() + "and p.exercisestandard = " +exeSt.getIdexes());
                     Possedersea pse = (Possedersea) qOrdreExe.list().get(0);
                     int orderExe =  pse.getId().getOrdreExo();
-                    
+
                     Exerciseperso exerciseperso = new Exerciseperso(seanceperso,exeSt.getLibexes(), exeSt.getDescripexes(), exeSt.getDureeexes(), exeSt.getNbrepets(), exeSt.getPhotoexe(), exeSt.getVideoexe(), orderExe, null, null, null,exeSt.getMateriel());
                     ses.save(exerciseperso);
                 }
+
+
             }
             tc.commit();
 }
 public static HashMap<Integer,Exerciseperso> showExePersoBySea(int idSea){
             HashMap<Integer,Exerciseperso> l_exep= new HashMap();
-            
+
             Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
             Transaction tc = ses.beginTransaction() ;
 //             as ex where ex.seanceperso="+idSea
@@ -326,5 +328,33 @@ public static HashMap<Integer,Exerciseperso> showExePersoBySea(int idSea){
             return l_exep;
         }
 
+public static boolean verifCli (int idClient, String nomc) {
+        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tc = ses.beginTransaction();
+        Query q = ses.createQuery ("from Client as c where c.idc = " + idClient);
+        List<Client> l_cli = new ArrayList<>();
+        l_cli = (List<Client>) q.list();
+        tc.commit();
+        if(l_cli.get(0).getNomc().equals(nomc)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+public static boolean verifCoach (int idCoach, String nomCoach) {
+        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tc = ses.beginTransaction();
+        Query q = ses.createQuery("from Coach as c where c.idco = " + idCoach);
+        List<Coach> l_co = new ArrayList<>();
+        l_co = (List<Coach>) q.list();
+        tc.commit();
+        if(l_co.get(0).getNomco().equals(nomCoach)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 

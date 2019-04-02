@@ -6,7 +6,7 @@
  */
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+// * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Module;
@@ -25,13 +25,26 @@ import java.util.HashMap;
 public class test {
      public static void main (String[] args) throws Exception
              {
-                 HashMap<Integer,Seanceperso> res = HibernateMethode.consultSeancesIdProgPerso(58);
-            for(Integer i:res.keySet()){
-                System.out.println(res.get(i).getLibsea() + "---"+ res.get(i).getTypesea());
-            }
-                
-            
-            
+//            ArrayList<String> lss =HibernateMethode.verifCli(6);
+//            for(String m : lss){
+//                System.out.println(m);
+//            }
+//            ArrayList<String> l = HibernateMethode.verifCoach(1);
+//            for(String ma : l){
+//                System.out.println(ma);
+//            }
+
+                boolean c = HibernateMethode.verifCoach(1,"David");
+                if(c)
+                {
+                    System.out.println("Dave");
+                }
+                else
+                {
+                    System.out.println("Non");
+                }
+
         }
-}
+
+        }
 
