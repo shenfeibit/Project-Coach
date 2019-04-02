@@ -4,6 +4,10 @@
         <servlet-name>ServletAccueilClient</servlet-name>
         <servlet-class>CtrlServlet.ServletAccueilClient</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletShowExe</servlet-name>
+        <servlet-class>CtrlServlet.ServletShowExe</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletAccueilClient</servlet-name>
         <url-pattern>/ServletAccueilClient</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>ServletAffecter</servlet-name>
         <url-pattern>/ServletAffecter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletShowExe</servlet-name>
+        <url-pattern>/ServletShowExe</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
