@@ -2,10 +2,13 @@ var order;
 var order_length;
 var idExe;
 var listExe;
+//count the time
+var i=0;
+var x;
+
 function showExe(){
         var xhr = new XMLHttpRequest();
 	xhr.open("GET","ServletShowExe?idExe="+ idExe);
-        alert(idExe);
         xhr.onload = function()
             {
             if (xhr.status === 200)
@@ -15,11 +18,11 @@ function showExe(){
                 //var exe = l_exe.children;
                 var lib = rep.getElementsByTagName("libexe")[0].firstChild.nodeValue;
                 var des = rep.getElementsByTagName("descripexe")[0].firstChild.nodeValue;
+                var eltNameExercise = document.getElementById("nameExercise");
+                eltNameExercise.innerHTML = lib;
+                var eltLibExercise = document.getElementById("libExercise");
+                eltLibExercise.innerHTML = des;
                 
-                
-                var texteExe = lib +"</br>"+ des + "</br>";
-                var elt = document.getElementById("exercise");
-                elt.innerHTML = texteExe; 
                 if(order<=0){
                     document.getElementById("btn_Left").disabled=true;
                 }
@@ -77,8 +80,31 @@ function showSeaName(){
     
 }
 
+function timebegin(){
+    i=0;
+    x=setInterval(function(){
+        i+=1;
+    var seconde = Math.floor(i % 60);
+    var minute = Math.floor(i/60);
+      
+    document.getElementById("time").innerHTML=minute+" m " + seconde + " s ";
+    
+    if(minute>5){
+        clearInterval(x);
+        document.getElementById("timeout").innerHTML="Expired";
+    }
+    },1000);
+};
+
+function timeend(){
+    clearInterval(x);
+}
+
+//the events corresponding for each function
 document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showSeaName);
         document.getElementById("btn_Left").addEventListener("click",showLeftExe);
         document.getElementById("btn_Right").addEventListener("click",showRightExe);
+        document.getElementById("time_begin").addEventListener("click",timebegin);
+        document.getElementById("time_end").addEventListener("click",timeend);
 });
