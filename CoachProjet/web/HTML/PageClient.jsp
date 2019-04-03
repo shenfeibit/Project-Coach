@@ -38,10 +38,10 @@
                       <td></td>
                   </tr>
               </table>
-            <!-- Article -->
+        <!-- Article -->
         <div id="tableSP" class="clientColor"></div>
         </div>
-          <div class="timeline-end">End</div>
+        <div class="timeline-end">End</div>
         </section>
     </body>
 </html>
