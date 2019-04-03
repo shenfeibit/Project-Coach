@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>PageClient</servlet-name>
-        <jsp-file>/HTML/PageClient.jsp</jsp-file>
+        <servlet-name>ServletAccueilClient</servlet-name>
+        <servlet-class>CtrlServlet.ServletAccueilClient</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>PageClient</servlet-name>
-        <url-pattern>/PageClient</url-pattern>
-    </servlet-mapping>
+        <servlet-name>ServletAccueilClient</servlet-name>
+        <url-pattern>/ServletAccueilClient</url-pattern>
+    </servlet-mapping>    
     <servlet>
         <servlet-name>ServletSeanceStandPs</servlet-name>
         <servlet-class>CtrlServlet.ServletSeanceStandPs</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ServletAccueilClient</servlet-name>
-        <servlet-class>CtrlServlet.ServletAccueilClient</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletSeanceStandPs</servlet-name>
@@ -116,9 +112,29 @@
         <servlet-name>ServletAffecter</servlet-name>
         <url-pattern>/ServletAffecter</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletShowExe</servlet-name>
+        <servlet-class>CtrlServlet.ServletShowExe</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>ServletAccueilClient</servlet-name>
-        <url-pattern>/ServletAccueilClient</url-pattern>
+        <servlet-name>ServletShowExe</servlet-name>
+        <url-pattern>/ServletShowExe</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletSeaName</servlet-name>
+        <servlet-class>CtrlServlet.ServletSeaName</servlet-class>
+    </servlet>    
+    <servlet-mapping>
+        <servlet-name>ServletSeaName</servlet-name>
+        <url-pattern>/ServletSeaName</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PageClient</servlet-name>
+        <jsp-file>/HTML/PageClient.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PageClient</servlet-name>
+        <url-pattern>/PageClient</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

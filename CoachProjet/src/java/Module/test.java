@@ -25,26 +25,10 @@ import java.util.HashMap;
 public class test {
      public static void main (String[] args) throws Exception
              {
-//            ArrayList<String> lss =HibernateMethode.verifCli(6);
-//            for(String m : lss){
-//                System.out.println(m);
-//            }
-//            ArrayList<String> l = HibernateMethode.verifCoach(1);
-//            for(String ma : l){
-//                System.out.println(ma);
-//            }
 
-                boolean c = HibernateMethode.verifCoach(1,"David");
-                if(c)
-                {
-                    System.out.println("Dave");
-                }
-                else
-                {
-                    System.out.println("Non");
-                }
-
-        }
+                 int[] res = HibernateMethode.getIdExe(1);
+            
+                System.out.println(res[0]+" " + res[1]);
 
         }
 
