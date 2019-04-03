@@ -25,10 +25,10 @@ import java.util.HashMap;
 public class test {
      public static void main (String[] args) throws Exception
              {
-                 HashMap<Integer,Seanceperso> res = HibernateMethode.consultSeancesIdProgPerso(58);
-            for(Integer i:res.keySet()){
-                System.out.println(res.get(i).getLibsea() + "---"+ res.get(i).getTypesea());
-            }
+                 int[] res = HibernateMethode.getIdExe(1);
+            
+                System.out.println(res[0]+" " + res[1]);
+            
                 
             
             

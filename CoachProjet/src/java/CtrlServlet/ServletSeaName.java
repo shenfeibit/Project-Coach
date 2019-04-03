@@ -5,11 +5,9 @@
  */
 package CtrlServlet;
 
-import Bd.Exerciseperso;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 21611945
  */
-public class ServletShowExe extends HttpServlet {
+public class ServletSeaName extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,17 +31,19 @@ public class ServletShowExe extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/xml;charset=UTF-8");
+        
         try (PrintWriter out = response.getWriter()) {
             out.println("<?xml version=\"1.0\"?>");
-            out.println("<exercise>");
-            String idExe = request.getParameter("idExe");
-            Exerciseperso ep = HibernateMethode.showExe(Integer.parseInt(idExe));
-            out.println("<libexe>"+ep.getLibexe()+"</libexe>");
-            out.println("<descripexe>"+ep.getDescripexe()+"</descripexe>");
-            out.println("<photoexe>"+ep.getPhotoexe()+"</photoexe>");
-            out.println("<videoexe>"+ep.getVideoexe()+"</videoexe>");
-            out.println("</exercise>");
+            out.println("<seance>");
+            String idSea = request.getParameter("idSea");
+            String name = HibernateMethode.showNameSea(Integer.parseInt(idSea));
+            out.println("<name>"+name+"</name>");
+            int[] idExe = HibernateMethode.getIdExe(Integer.parseInt(idSea));
+            out.println("<idexemin>"+idExe[0]+"</idexemin>");
+            out.println("<idexemax>"+idExe[1]+"</idexemax>");
+            out.println("</seance>");
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

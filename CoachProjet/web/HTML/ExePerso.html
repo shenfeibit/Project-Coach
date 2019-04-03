@@ -9,7 +9,7 @@
     <body>
         <div id="nomSea">
             <div class="header">
-                <h2>name of the seance</h2>
+                <h2 id="nameSea">name of the seance</h2>
                 <div class="progress-container">
                     <div class="progress-bar" id="myBar"></div>
                 </div>
@@ -18,7 +18,7 @@
         <div id="seance">
             
             <div id="buttonleft">
-                <input class="btnLeftRight" type="button" value="<" />
+                <input id="btn_Left" class="btnLeftRight" type="button" value="<" />
             </div>
             
             <div id="exercise">
@@ -27,7 +27,14 @@
                 <input type="image"  src="../IMAGE/performance/easy.png" width ="150" alt="image easy"/>
             </div>  
             
-            <div id="performance">
+            
+            
+            <div id="buttonright">
+                <input id="btn_Right" class="btnLeftRight" type="button" value=">" />
+            </div>
+        </div>
+        
+        <div id="performance">
                 <h1>performance : </h1>
                 <table border="0">
                     <tr>
@@ -37,11 +44,8 @@
                     </tr>
                 </table>
             </div>
-            <div id="chrono"><h1>chrono : </h1></div>
             
-            <div id="buttonright">
-                <input class="btnLeftRight" type="button" value=">" />
-            </div>
-        </div>
+            <div id="chrono"><h1>chrono : </h1></div>
+        
     </body>
 </html>
