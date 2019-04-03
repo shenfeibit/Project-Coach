@@ -4,7 +4,7 @@ var idExemax = 0;
 
 function showExe(){
         var xhr = new XMLHttpRequest();
-	xhr.open("GET","../ServletShowExe?idExe="+ idExe);
+	xhr.open("GET","ServletShowExe?idExe="+ idExe);
         alert(idExe);
         xhr.onload = function()
             {
@@ -51,8 +51,8 @@ function showRightExe(){
 function showSeaName(){
     var xhr = new XMLHttpRequest();
     
-    var idSea = 1; //var idSea = document.getElementById("idSea").value;
-    xhr.open("GET","../ServletSeaName?idSea="+idSea);
+    var idSea = document.getElementById("idSea").value;
+    xhr.open("GET","ServletSeaName?idSea="+idSea);
     xhr.onload = function()
 	{
 	if (xhr.status === 200)
