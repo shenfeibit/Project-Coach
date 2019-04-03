@@ -48,21 +48,26 @@ public class ServletTableProg extends HttpServlet {
                 /*----Lecture de liste de seances de ce prog----*/
                 HashMap<Integer,Seanceperso> msp = HibernateMethode.consultSeancesIdProgPerso(pp.getIdpp());
                 out.println("<l_seancesPerso>");
+                int i=1;
                 for(int ordre: msp.keySet()){
                     out.println("<seancePerso>");
                     out.println("<ordreSP>"+ordre+"</ordreSP>");
                     out.println("<libSP>"+msp.get(ordre).getLibsea()+"</libSP>");
                     out.println("<descripSP>"+msp.get(ordre).getDescrisea()+"</descripSP>");
                     out.println("<dateSP>"+msp.get(ordre).getDatesea()+"</dateSP>");
+                    if (msp.get(ordre).getDatesea()!=null){
+                        i += 1;
+                    }
                     out.println("<l_exp>");
                     HashMap<Integer,Exerciseperso> mexp = HibernateMethode.showExePersoBySea(msp.get(ordre).getIdsea());
                     for(int ordEx: mexp.keySet()){
                         out.println("<libexe>"+mexp.get(ordEx).getLibexe()+"</libexe>");
                     }
                     out.println("</l_exp>");
-                    
+                    out.println("<idSP>"+msp.get(ordre).getIdsea()+"</idSP>");
                     out.println("</seancePerso>");
                 }
+                out.println("<encours>"+i+"</encours>");
                 out.println("</l_seancesPerso>");
             }
                 catch (Exception ex)
