@@ -18,10 +18,14 @@ function showExe(){
                 //var exe = l_exe.children;
                 var lib = rep.getElementsByTagName("libexe")[0].firstChild.nodeValue;
                 var des = rep.getElementsByTagName("descripexe")[0].firstChild.nodeValue;
+                var image = rep.getElementsByTagName("photoexe")[0].firstChild.nodeValue;
                 var eltNameExercise = document.getElementById("nameExercise");
                 eltNameExercise.innerHTML = lib;
                 var eltLibExercise = document.getElementById("libExercise");
                 eltLibExercise.innerHTML = des;
+                var eltImgExercise = document.getElementById("img_video");
+                var texteExe = "<input type=\"image\"  src=\"IMAGE/Exercises/"+image+"\" width =\"250\" alt=\"See the detail\"/>";
+                eltImgExercise.innerHTML=texteExe;
                 
                 if(order<=0){
                     document.getElementById("btn_Left").disabled=true;
