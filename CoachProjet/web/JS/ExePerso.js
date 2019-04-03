@@ -1,11 +1,14 @@
-var idExe = 0;
-var idExemin = 0;
-var idExemax = 0;
+var order;
+var order_length;
+var idExe;
+var listExe;
+//count the time
+var i=0;
+var x;
 
 function showExe(){
         var xhr = new XMLHttpRequest();
 	xhr.open("GET","ServletShowExe?idExe="+ idExe);
-        alert(idExe);
         xhr.onload = function()
             {
             if (xhr.status === 200)
@@ -16,19 +19,21 @@ function showExe(){
                 var lib = rep.getElementsByTagName("libexe")[0].firstChild.nodeValue;
                 var des = rep.getElementsByTagName("descripexe")[0].firstChild.nodeValue;
                 var image = rep.getElementsByTagName("photoexe")[0].firstChild.nodeValue;
+                var eltNameExercise = document.getElementById("nameExercise");
+                eltNameExercise.innerHTML = lib;
+                var eltLibExercise = document.getElementById("libExercise");
+                eltLibExercise.innerHTML = des;
+                var eltImgExercise = document.getElementById("img_video");
+                var texteExe = "<input type=\"image\"  src=\"IMAGE/Exercises/"+image+"\" width =\"250\" alt=\"See the detail\"/>";
+                eltImgExercise.innerHTML=texteExe;
                 
-                
-                var texteExe = lib +"</br>"+ des + "</br>";
-                texteExe += "<div><input type=\"image\"  src=\"IMAGE/Exercises/"+image+"\" width =\"250\" alt=\"See the detail\"/></div>";
-                var elt = document.getElementById("exercise");
-                elt.innerHTML = texteExe; 
-                if(idExe<=idExemin){
+                if(order<=0){
                     document.getElementById("btn_Left").disabled=true;
                 }
                 else{
                     document.getElementById("btn_Left").disabled=false;
                 }
-                if(parseInt(idExe)>=parseInt(idExemax)){
+                if(parseInt(order)>=parseInt(order_length-1)){
                     document.getElementById("btn_Right").disabled=true;
                 }
                 else{
@@ -40,13 +45,15 @@ function showExe(){
 }
 
 function showLeftExe(){
-        idExe -= 1;
+        order -= 1;
+        idExe = listExe[order].children[1].firstChild.nodeValue;
         showExe();
 }
 
 function showRightExe(){
-        idExe -= 1;
-        idExe += 2;
+        order -= 1;
+        order += 2;
+        idExe = listExe[order].children[1].firstChild.nodeValue;
         showExe();
 }
 
@@ -65,12 +72,11 @@ function showSeaName(){
             var elt = document.getElementById("nameSea");
             elt.innerHTML = texte;
             
-            var id = rep.getElementsByTagName("idexemin");
-            idExe = id[0].firstChild.nodeValue;
-            idExemin = id[0].firstChild.nodeValue;
-            
-            var id = rep.getElementsByTagName("idexemax");
-            idExemax = id[0].firstChild.nodeValue;
+            var id = rep.getElementsByTagName("exercise");
+            order=0;
+            order_length=id.length;
+            listExe = id;
+            idExe = listExe[order].children[1].firstChild.nodeValue;
             showExe();
             }               
 	};
@@ -78,8 +84,31 @@ function showSeaName(){
     
 }
 
+function timebegin(){
+    i=0;
+    x=setInterval(function(){
+        i+=1;
+    var seconde = Math.floor(i % 60);
+    var minute = Math.floor(i/60);
+      
+    document.getElementById("time").innerHTML=minute+" m " + seconde + " s ";
+    
+    if(minute>5){
+        clearInterval(x);
+        document.getElementById("timeout").innerHTML="Expired";
+    }
+    },1000);
+};
+
+function timeend(){
+    clearInterval(x);
+}
+
+//the events corresponding for each function
 document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showSeaName);
         document.getElementById("btn_Left").addEventListener("click",showLeftExe);
         document.getElementById("btn_Right").addEventListener("click",showRightExe);
+        document.getElementById("time_begin").addEventListener("click",timebegin);
+        document.getElementById("time_end").addEventListener("click",timeend);
 });
