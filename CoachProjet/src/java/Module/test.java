@@ -6,7 +6,7 @@
  */
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+// * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Module;
@@ -25,13 +25,10 @@ import java.util.HashMap;
 public class test {
      public static void main (String[] args) throws Exception
              {
+
                  int[] res = HibernateMethode.getIdExe(1);
             
                 System.out.println(res[0]+" " + res[1]);
-            
-                
-            
-            
+
         }
-}
 

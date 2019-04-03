@@ -4,7 +4,8 @@ function affichePP ()
 	// Object XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 	// requery with a value entry.
-	xhr.open("GET","ServletTableProg?idc=" + 6);
+        var param=encodeURIComponent(document.getElementById("idClient").value);
+	xhr.open("GET","ServletTableProg?idc=" + param);
 	xhr.onload = function()
 		{
 		//if the connect succees
@@ -71,6 +72,7 @@ function affichePP ()
 			}
 		};
 	xhr.send();
+        afficheProgression ();
 	}
         
 // function which shows the progression of the taining of this client  
@@ -79,7 +81,8 @@ function afficheProgression ()
 	// Object XMLHttpRequest.
 	var xhr = new XMLHttpRequest();
 	// requery with a value entry.
-	xhr.open("GET","ServletProgressionProg?idc=" + 6);
+         var param=encodeURIComponent(document.getElementById("idClient").value);
+	xhr.open("GET","ServletProgressionProg?idc=" + param);
 	xhr.onload = function()
 		{
 		// if the query succes
@@ -99,6 +102,8 @@ function afficheProgression ()
 		};
 	// send the query
 	xhr.send();
+        showinfoCli ();
+        
 	}
         
 /*
@@ -110,7 +115,8 @@ function showinfoCli ()
     { 
         //create a requery with a value 
         var xhr = new XMLHttpRequest();
-	xhr.open("GET","ServletShowInfoCli?idc=" + 6);
+         var param=encodeURIComponent(document.getElementById("idClient").value);
+	xhr.open("GET","ServletShowInfoCli?idc=" + param);
         
         xhr.onload = function(){
             //if the connect succees
@@ -157,9 +163,7 @@ function showinfoCli ()
 
 //the events corresponding for each function
 document.addEventListener("DOMContentLoaded", () => {
-    window.addEventListener("load",showinfoCli);
     window.addEventListener("load",affichePP);
-    window.addEventListener("load",afficheProgression);
 });
 
 

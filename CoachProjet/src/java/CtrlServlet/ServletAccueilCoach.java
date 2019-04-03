@@ -5,8 +5,8 @@
  */
 package CtrlServlet;
 
+import Module.HibernateMethode;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,41 +38,50 @@ public class ServletAccueilCoach extends HttpServlet {
         String idCo = request.getParameter("idCoachAccueil");
         String nomCo = request.getParameter("nameCoach");
 
-        //verify that information are not empty
+        //create session
         HttpSession ses = request.getSession(true);
-        ses.setAttribute("idC", idCo);
+        ses.setAttribute("idCoach", idCo);
+        ses.setAttribute("nameCoach", nomCo);
+
 
         String avertissement="";
 
+        //verify that information send are not empty
         if(idCo.isEmpty())
+        {
             avertissement="Veuillez saisir votre ID";
-        if(nomCo.isEmpty())
-            avertissement="Veuillez saisir votre nom";
-        if(idCo.isEmpty()&&nomCo.isEmpty())
-            avertissement="Veuillez saisir vos informations de connexion";
+        }
+        else
+        {
+            try{
+                //vérification
+                boolean c = HibernateMethode.verifCoach(Integer.parseInt(idCo),nomCo);
+                if(c)
+                {
+                    response.sendRedirect("TableauBordCo");
+                }
+                else
+                {
+                    avertissement="Veuillez saisir votre nom correct";
+                }
+            }
+            catch (Exception ex)
+            {
+                RequestDispatcher rd = request.getRequestDispatcher("AccueilJd");
+                request.setAttribute("erreurIdentif", ex.getMessage()); //Changer la clé pour celle la (erreur) notamment pour les styles css
+                rd.forward(request, response);
+            }
+        }
 
-            if (!avertissement.isEmpty()){
+            if (!avertissement.isEmpty())
+            {
                 //On retourne sur la page de saisie. On délègue à la ressource accueil
-                RequestDispatcher rd = request.getRequestDispatcher("Accueil");
+                RequestDispatcher rd = request.getRequestDispatcher("AccueilJd");
                 request.setAttribute("id", idCo);
-                request.setAttribute("name", nomCo);
+//                request.setAttribute("name", nomCo);
                 request.setAttribute("avrt", avertissement);
                 rd.forward(request, response);
-                }
-                else{
-                    try{
-                        //vérification
-                        response.sendRedirect("TableauBordCo");
-                        }
-                catch (Exception ex) {
-                      RequestDispatcher rd = request.getRequestDispatcher("Accueil");
-                      request.setAttribute("erreurIdentif", ex.getMessage()); //Changer la clé pour celle la (erreur) notamment pour les styles css
-                      rd.forward(request, response);
-                }
-
             }
-
-
         }
 
 
