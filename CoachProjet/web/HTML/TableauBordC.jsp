@@ -5,14 +5,16 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
+    <!-- the head of the page which identify the style and javascript-->
     <head>
+        <!-- the title of the page-->
+        <title>Coach</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Coach</title>
 	<link rel="stylesheet" href="CSS/Style.css" type="text/css" />
         <script type="text/JavaScript" src="JS/tableauBord.js"></script>
 </head>
     <body>
-        
+        <!--the part of acueil page, shows the table of clients in programm and in wait line-->
         <div id="listeCli">
             <div class="header">
                 <h2>Tableau de bord clients</h2>
@@ -30,35 +32,38 @@ and open the template in the editor.
             
             
             <div id="contentcli">
+                <!--the table shows the clients in programme-->
                 <div id="cliProg"></div>
+                <!--the table shows the clients in wait line-->
                 <div id="cliNoProg"></div>
             </div>
         </div>
-
         
+        <!--the part of basic informations of the client-->
         <div id="detailCli">
             <div><input id="idClient" type="text" value="" /></div>
             <div>
                 <div id="image"></div>
                 
                 <div id="descp"><p>the informations of the client</p></div>
-                <div id="objectif"><h1>Objectif</h1><p id="libobj">client's objectif</p></div>
+                <div id="objectif"><p id="libobj">client's objectif</p></div>
             </div>
         </div>
         
+        <!--the part of search program standard (possible with type)-->
         <div id='chercherProg'>
             Type <select id="typeProg" class="selectOption"><option></option></select>
-
             Programme <select id="nomProg" class="selectOption"><option></option></select>
-
         </div>
         
+        <!--the part of information of program of client-->
         <div id="progcli">
             <div id="nameProg"></div>
             <div id='barOneLine'></div>
             <div id="descripPP"></div>
         </div>
         
+        <!--the details of program person with the seances-->
         <div id="detailProg">
              <!-- Vertical Timeline -->
             <section id="conference-timeline">
@@ -70,17 +75,17 @@ and open the template in the editor.
                           <td></td>
                       </tr>
                   </table>
-                <!-- Article -->
+            <!-- the part of informations of seances (from javascript) -->
             <div id="tableSP"></div>
             </div>
-              <div class="timeline-end">End</div>
-            </section>
-             
+                <div class="timeline-end">End</div>
+            </section>            
         </div>
         
-        <div id="affecter"><input type="button" value="affecter" /></div>
+        <!--the button for affect a program to a client-->
+        <div id="affecter"><input class="l_btn" type="button" value="Affecter" /></div>
         
-        
-        <div id="bt_ctrl_back"> <input id="bt_back" type="button" value="back to the menu" /></div>
+        <!--the button for turn back to the previous page-->
+        <div id="bt_ctrl_back"> <input class="l_btn" type="button" value="Back" /></div>
     </body>
 </html>

@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>ServletTableProg</servlet-name>
-        <servlet-class>CtrlServlet.ServletTableProg</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ServletAccueilClient</servlet-name>
         <servlet-class>CtrlServlet.ServletAccueilClient</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ShowClient</servlet-name>
-        <jsp-file>/HTML/ShowClientClient.html</jsp-file>
+        <servlet-name>ServletBeginSea</servlet-name>
+        <servlet-class>CtrlServlet.ServletBeginSea</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PageClient</servlet-name>
-        <jsp-file>/HTML/PageClient.jsp</jsp-file>
+        <servlet-name>BeginSeance</servlet-name>
+        <jsp-file>/HTML/BeginSeance.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletExerciseBySea</servlet-name>
+        <servlet-class>CtrlServlet.ServletExerciseBySea</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAccueilClient</servlet-name>
+        <url-pattern>/ServletAccueilClient</url-pattern>
+    </servlet-mapping>    
+    <servlet>
+        <servlet-name>ServletSeanceStandPs</servlet-name>
+        <servlet-class>CtrlServlet.ServletSeanceStandPs</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletSeanceStandPs</servlet-name>
+        <url-pattern>/ServletSeanceStandPs</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletTableProg</servlet-name>
+        <servlet-class>CtrlServlet.ServletTableProg</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ServletSearch</servlet-name>
@@ -23,14 +39,6 @@
     <servlet-mapping>
         <servlet-name>ServletTableProg</servlet-name>
         <url-pattern>/ServletTableProg</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>ShowProgram</servlet-name>
-        <jsp-file>/HTML/ShowProgram.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ShowProgram</servlet-name>
-        <url-pattern>/ShowProgram</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ServletAccueilCoach</servlet-name>
@@ -120,19 +128,41 @@
         <servlet-name>ServletAffecter</servlet-name>
         <url-pattern>/ServletAffecter</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletShowExe</servlet-name>
+        <servlet-class>CtrlServlet.ServletShowExe</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>ServletAccueilClient</servlet-name>
-        <url-pattern>/ServletAccueilClient</url-pattern>
+        <servlet-name>ServletShowExe</servlet-name>
+        <url-pattern>/ServletShowExe</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletSeaName</servlet-name>
+        <servlet-class>CtrlServlet.ServletSeaName</servlet-class>
+    </servlet>    
     <servlet-mapping>
-        <servlet-name>ShowClient</servlet-name>
-        <url-pattern>/ShowClient</url-pattern>
+        <servlet-name>ServletSeaName</servlet-name>
+        <url-pattern>/ServletSeaName</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>PageClient</servlet-name>
+        <jsp-file>/HTML/PageClient.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PageClient</servlet-name>
         <url-pattern>/PageClient</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ServletBeginSea</servlet-name>
+        <url-pattern>/ServletBeginSea</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BeginSeance</servlet-name>
+        <url-pattern>/BeginSeance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletExerciseBySea</servlet-name>
+        <url-pattern>/ServletExerciseBySea</url-pattern>
         <servlet-name>ServletSearch</servlet-name>
         <url-pattern>/ServletSearch</url-pattern>
     </servlet-mapping>

@@ -5,12 +5,10 @@
  */
 package CtrlServlet;
 
-import Bd.Client;
-import Bd.Objectif;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author 21511708
+ * @author 21611945
  */
-public class ServletClientNonPgrm extends HttpServlet {
+public class ServletSeaName extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,33 +31,34 @@ public class ServletClientNonPgrm extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-response.setContentType("application/xml;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {out.println("<?xml version=\"1.0\"?>");
-            out.println("<list_idNonPgrm>");
-            ArrayList<Client> listid = HibernateMethode.consultClientNonPgrm();
+        response.setContentType("application/xml;charset=UTF-8");
+        
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<?xml version=\"1.0\"?>");
+            out.println("<seance>");
+            String idSea = request.getParameter("idSea");
             
-            for(Client l : listid){
-                out.println("<client>");
-                    out.print("<id>"+l.getIdc()+"</id>");
-                    out.println("<nom>"+l.getNomc()+"</nom>");
-                    out.println("<prenom>"+l.getPrenomc()+"</prenom>");
-                    out.println("<sexe>"+l.getSexec()+"</sexe>");
-                    out.println("<image>"+l.getPhotoc()+"</image>");
-                    out.println("<liste_obj>");
-                        ArrayList<Objectif> l_obj;
-                        l_obj = HibernateMethode.showObjectifCli(l.getIdc());
-                        for (Objectif o : l_obj)
-                        {
-                            out.println("<lib>"+o.getLibobj()+"</lib>");
-                        }
-                        out.println("</liste_obj>");
-                    String datecli = HibernateMethode.showDateDemande(l.getIdc());
-                    out.println("<date>"+datecli+"</date>");
-                    out.println("</client>");
+            try
+            {
+                String name = HibernateMethode.showNameSea(Integer.parseInt(idSea));
+                out.println("<name>"+name+"</name>");
+                HashMap<Integer,Integer> listexe = HibernateMethode.getOrderExe(Integer.parseInt(idSea));
+                out.println("<listexe>");
+                for(Integer order : listexe.keySet()){
+                    out.println("<exercise>");
+                    out.println("<order>"+order+"</order>");
+                    out.println("<idexe>"+listexe.get(order)+"</idexe>");
+                    out.println("</exercise>");
+                }
+                out.println("</listexe>");
             }
-
-            out.println("</list_idNonPgrm>");
+            catch (Exception ex)
+            {
+                out.println("<erreur>ServletSeaName Erreur - " + ex.getMessage() + "</erreur>");
+            }
+            out.println("</seance>");
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
