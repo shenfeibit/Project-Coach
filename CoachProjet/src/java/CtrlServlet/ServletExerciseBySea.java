@@ -5,20 +5,21 @@
  */
 package CtrlServlet;
 
-import Module.HibernateMethode;
+import Bd.*;
+import Module.*;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Toky
+ * @author 21611943
  */
-public class ServletAccueilClient extends HttpServlet {
+public class ServletExerciseBySea extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,58 +32,17 @@ public class ServletAccueilClient extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
-        {
-        //Catch informations
-        String idCo = request.getParameter("idCliAccueil");
-        String nomCo = request.getParameter("nameCli");
-
-        //create session
-        HttpSession ses = request.getSession(true);
-        ses.setAttribute("idC", idCo);
-        ses.setAttribute("nameCli", nomCo);
-
-
-        String avertissement="";
-
-        //verify that information send are not empty
-        if(idCo.isEmpty())
-        {
-            avertissement="Veuillez saisir votre ID";
-        }
-        else
-        {
-            try{
-                //vérification
-                boolean c = HibernateMethode.verifCli(Integer.parseInt(idCo),nomCo);
-                if(c)
-                {
-                    response.sendRedirect("PageClient");
-                }
-                else
-                {
-                    avertissement="Veuillez saisir votre nom correct";
-                }
-            }
-            catch (Exception ex)
-            {
-                RequestDispatcher rd = request.getRequestDispatcher("AccueilJd");
-                request.setAttribute("erreurIdentifCl", ex.getMessage()); //Changer la clé pour celle la (erreur) notamment pour les styles css
-                rd.forward(request, response);
+            response.setContentType("application/xml;charset=UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            String idSea = request.getParameter("idSea");
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<?xml version=\"1.0\"?>");
+            HashMap<Integer,Exerciseperso> mexp = new HashMap();
+            mexp = HibernateMethode.showExePersoBySea(Integer.parseInt(idSea));
+            for(int ordEx: mexp.keySet()){
+                out.println("<libexe>"+mexp.get(ordEx).getLibexe()+"</libexe>");
             }
         }
-
-            if (!avertissement.isEmpty())
-            {
-                //On retourne sur la page de saisie. On délègue à la ressource accueil
-                RequestDispatcher rd = request.getRequestDispatcher("AccueilJd");
-                request.setAttribute("avrtCl", avertissement);
-                rd.forward(request, response);
-            }
-        }
-
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -27,6 +27,8 @@ function affichePP ()
                         eltDescripPP.innerHTML = textDescripPP;
                         
                         //for secances(get and set into html)
+                        var encours = rep.getElementsByTagName("encours")[0].firstChild.nodeValue;
+                        var next = encours - 1 + 2;
                         var l_sea = rep.getElementsByTagName("seancePerso");
                         var texteSea="";
                         for(var i=0;i<l_sea.length;i++){
@@ -55,6 +57,14 @@ function affichePP ()
                             texteSea+="</div>";
                             
                             //identify different classes to show differently in style
+                            if(sea[0].firstChild.nodeValue===encours){
+                                texteSea+="<div id=\"encours\" value=\""+sea[5].firstChild.nodeValue+"\">";
+                            }else if(sea[0].firstChild.nodeValue === next.toString()){
+                                    alert("entre");
+                                texteSea+="<div id=\"next\" value=\""+sea[5].firstChild.nodeValue+"\">";
+                            }else{
+                                texteSea+="<div>";
+                            }
                             if(sea[3].firstChild.nodeValue!="null"){
                                 texteSea+="<div class=\"meta-date-pass\">";
                                 texteSea+="<span class=\"date\">"+sea[0].firstChild.nodeValue+"</span>";
@@ -68,7 +78,8 @@ function affichePP ()
                         }
                         var eltSea=document.getElementById("tableSP");
                         eltSea.innerHTML=texteSea;
-                        
+                        document.getElementById("encours").addEventListener("click",click_encours);
+                        document.getElementById("next").addEventListener("click",click_next);
 			}
 		};
 	xhr.send();
@@ -115,7 +126,7 @@ function showinfoCli ()
     { 
         //create a requery with a value 
         var xhr = new XMLHttpRequest();
-         var param=encodeURIComponent(document.getElementById("idClient").value);
+        var param=encodeURIComponent(document.getElementById("idClient").value);
 	xhr.open("GET","ServletShowInfoCli?idc=" + param);
         
         xhr.onload = function(){
@@ -160,6 +171,32 @@ function showinfoCli ()
 	};
         xhr.send();
     }
+    
+
+function click_encours(){
+    var idSea = document.getElementById("encours").getAttribute('value');
+    window.location.href="ServletBeginSea?idSea="+idSea;
+}
+
+function click_next(){
+    var idSea = document.getElementById("next").getAttribute('value');
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET","ServletExerciseBySea?idSea="+idSea);
+    xhr.onload = function()
+            {
+		if (xhr.status === 200)
+                    {
+                        var rep = xhr.responseXML;
+                        var l_exe = rep.getElementsByTagName("libexe");
+                        var texte = "";
+                        for(var i=0;i<l_exe.length;i++){
+                            texte += l_exe[i].firstChild.nodeValue+"</br>";
+                        }
+                    }
+                    var elt = document.getElementById("next");
+                    elt.innerHTML = texte;
+            }
+}
 
 //the events corresponding for each function
 document.addEventListener("DOMContentLoaded", () => {
