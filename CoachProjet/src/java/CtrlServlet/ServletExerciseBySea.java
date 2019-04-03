@@ -37,11 +37,13 @@ public class ServletExerciseBySea extends HttpServlet {
             String idSea = request.getParameter("idSea");
         try (PrintWriter out = response.getWriter()) {
             out.println("<?xml version=\"1.0\"?>");
+            out.print("<l_exe>");
             HashMap<Integer,Exerciseperso> mexp = new HashMap();
             mexp = HibernateMethode.showExePersoBySea(Integer.parseInt(idSea));
             for(int ordEx: mexp.keySet()){
                 out.println("<libexe>"+mexp.get(ordEx).getLibexe()+"</libexe>");
             }
+            out.print("</l_exe>");
         }
     }
 
