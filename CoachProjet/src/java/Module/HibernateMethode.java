@@ -10,6 +10,7 @@ package Module;
 import Bd.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -356,5 +357,44 @@ public static boolean verifCoach (int idCoach, String nomCoach) {
             return false;
         }
     }
+public static String showNameSea (int idSea) {
+    Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+    Transaction tc = ses.beginTransaction() ;
+    Query q = ses.createQuery("from Seanceperso as sp where sp.idsea="+idSea);
+    Seanceperso sp = (Seanceperso) q.list().get(0);
+    String name = sp.getLibsea();
+    tc.commit();
+    return name;       
+    
 }
 
+public static Exerciseperso showExe (int idExe) {
+    Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+    Transaction tc = ses.beginTransaction() ;
+    Query q = ses.createQuery("from Exerciseperso as ep where ep.idexe="+idExe);
+    Exerciseperso ep = (Exerciseperso) q.list().get(0);
+    tc.commit();
+    return ep;   
+}
+
+public static int[] getIdExe(int idSea){
+    Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+    Transaction tc = ses.beginTransaction();
+    Query q = ses.createQuery("from Exerciseperso as ep where ep.seanceperso="+idSea+ " order by ep.idexe asc");
+    ArrayList<Exerciseperso> e = (ArrayList<Exerciseperso>) q.list();
+    ArrayList<Integer> listid = new ArrayList<Integer>();
+    for(Exerciseperso ep : e){
+        listid.add(ep.getIdexe());
+    }
+    int max = 0;
+    int min = 0;
+    min = Collections.min(listid);
+    max = Collections.max(listid);
+    int[] res = new int[2];
+    res[0] = min;
+    res[1] = max;
+    tc.commit();
+    return res;
+}
+
+}

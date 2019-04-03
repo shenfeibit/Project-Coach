@@ -358,3 +358,34 @@ table{
     background-color: #f6f6fa;
     color: #333;
 }
+
+#buttonleft{
+    position:relative;
+    float:left;
+    width:9%;
+    height: 600px;
+}
+
+#exercise{
+    position:relative;
+    float:left;
+    width:78%;
+    height: 550px;
+    background-color: gold;
+    padding:25px 2%;
+}
+
+#buttonright{
+    position:relative;
+    margin-left: 91%;
+    width:9%;
+    height: 600px;
+}
+
+.btnLeftRight{
+    border: none;
+    width: 100%;
+    height: 100%;
+    
+    
+}
