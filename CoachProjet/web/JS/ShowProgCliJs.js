@@ -60,7 +60,6 @@ function affichePP ()
                             if(sea[0].firstChild.nodeValue===encours){
                                 texteSea+="<div id=\"encours\" value=\""+sea[5].firstChild.nodeValue+"\">";
                             }else if(sea[0].firstChild.nodeValue === next.toString()){
-                                    alert("entre");
                                 texteSea+="<div id=\"next\" value=\""+sea[5].firstChild.nodeValue+"\">";
                             }else{
                                 texteSea+="<div>";
@@ -190,12 +189,14 @@ function click_next(){
                         var l_exe = rep.getElementsByTagName("libexe");
                         var texte = "";
                         for(var i=0;i<l_exe.length;i++){
-                            texte += l_exe[i].firstChild.nodeValue+"</br>";
+                            texte += "\r\n";
+                            texte += "-"+l_exe[i].firstChild.nodeValue;
                         }
+                        confirm("Cet seance n'est pas ouvert, voici des détails"
+                                +texte);
                     }
-                    var elt = document.getElementById("next");
-                    elt.innerHTML = texte;
             }
+    xhr.send();
 }
 
 //the events corresponding for each function
