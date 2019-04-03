@@ -44,7 +44,6 @@ public class PossederpsId  implements java.io.Serializable {
         this.ordredefaut = ordredefaut;
     }
 
-
    public boolean equals(Object other) {
          if ( (this == other ) ) return true;
 		 if ( (other == null ) ) return false;

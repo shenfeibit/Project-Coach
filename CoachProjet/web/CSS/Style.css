@@ -4,7 +4,7 @@ html{
 body{
     padding: 0;
     background-color: white;
-    min-width: 800px;
+    min-width: 1024px;
     margin:20px;
     
 }
@@ -105,6 +105,7 @@ progress { color: yellowgreen; }
   overflow: hidden;
   margin: 0 auto;
 }
+
 table{
     position : relative;
     width:100%;
@@ -127,11 +128,28 @@ table{
     height: 100px;
     font-size: 150%;
 }
+
+.content-left-bilan{
+    vertical-align: top;
+    text-align: right;
+    width: 50%;
+    padding-right: 50px;
+    border-right:solid gold;
+    height: 100px;
+    font-size: 150%;
+    color:#f44336;
+}
 .content-right{
     vertical-align: top;
     text-align: left;
     padding-left: 70px;
     
+}
+.content-exercise{
+    vertical-align: top;
+    text-align: left;
+    padding-left: 70px;
+    border:solid #333;
 }
 .timeline-article .meta-date {
   position: absolute;
@@ -155,7 +173,32 @@ table{
   border-radius: 100%;
   background: grey;
 }
-.timeline-article .meta-date .date {
+
+.clientColor .timeline-article .meta-date  {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  color: #333;
+  border-radius: 100%;
+  background: grey;
+}
+
+.clientColor .timeline-article .meta-date-pass  {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  color: #333;
+  border-radius: 100%;
+  background: gold;
+}
+
+.timeline-article .meta-date  {
   display: block;
   text-align: center;
   font-weight: 900;
@@ -199,12 +242,14 @@ table{
   font-size: 100%;
 }
 
-#photocli{
+.photocli{
     color:gold;
 }
-#photocliNoProg{
+.photocliNoProg{
     color:gold;
 }
+
+
 
 .content_liste_client{
     text-align: center;
@@ -244,9 +289,10 @@ table{
     position:relative;
     float:left;
     width: 13%; 
-    height: 50px;
+    min-height: 70px;
+    height:100px;
     border-bottom-style: dashed;
-    padding:3%;
+    padding:5px 3%;
 }
 
 #descpcl{
@@ -254,9 +300,10 @@ table{
     position:relative;
     float:left;
     width: 20%; 
-    height: 50px;
+    min-height: 70px;
+    height:100px;
     border-bottom-style: dashed;
-    padding:3%;
+    padding:5px 3%;
     
 }
 
@@ -265,9 +312,49 @@ table{
     position:relative;
     margin-left: 45%;
     width: 50%;
-    height: 50px;
+    min-height: 70px;
+    height:100px;
     border-bottom-style:dashed;
-    padding:3%;
+    padding:5px 3%;
     
 }
 
+#idClient{
+    opacity: 0;
+}
+
+#affecter{
+    position:fixed;
+    left:20px;
+    top:450px;
+    z-index: 99;
+}
+#bt_ctrl_back{
+    position:fixed;
+    left:20px;
+    top:380px;
+    z-index: 99;
+    
+}
+
+.l_btn{
+    background-color: #f08080;
+    width:150px;
+    border: dashed 2px #f08080;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.l_btn:hover{
+    background-color: #f6f6fa;
+    color: #333;
+}
