@@ -8,6 +8,7 @@ package CtrlServlet;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,11 +37,25 @@ public class ServletSeaName extends HttpServlet {
             out.println("<?xml version=\"1.0\"?>");
             out.println("<seance>");
             String idSea = request.getParameter("idSea");
-            String name = HibernateMethode.showNameSea(Integer.parseInt(idSea));
-            out.println("<name>"+name+"</name>");
-            int[] idExe = HibernateMethode.getIdExe(Integer.parseInt(idSea));
-            out.println("<idexemin>"+idExe[0]+"</idexemin>");
-            out.println("<idexemax>"+idExe[1]+"</idexemax>");
+            
+            try
+            {
+                String name = HibernateMethode.showNameSea(Integer.parseInt(idSea));
+                out.println("<name>"+name+"</name>");
+                HashMap<Integer,Integer> listexe = HibernateMethode.getOrderExe(Integer.parseInt(idSea));
+                out.println("<listexe>");
+                for(Integer order : listexe.keySet()){
+                    out.println("<exercise>");
+                    out.println("<order>"+order+"</order>");
+                    out.println("<idexe>"+listexe.get(order)+"</idexe>");
+                    out.println("</exercise>");
+                }
+                out.println("</listexe>");
+            }
+            catch (Exception ex)
+            {
+                out.println("<erreur>ServletSeaName Erreur - " + ex.getMessage() + "</erreur>");
+            }
             out.println("</seance>");
         }
         

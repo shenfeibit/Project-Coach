@@ -1,7 +1,7 @@
-var idExe = 0;
-var idExemin = 0;
-var idExemax = 0;
-
+var order;
+var order_length;
+var idExe;
+var listExe;
 function showExe(){
         var xhr = new XMLHttpRequest();
 	xhr.open("GET","ServletShowExe?idExe="+ idExe);
@@ -20,13 +20,13 @@ function showExe(){
                 var texteExe = lib +"</br>"+ des + "</br>";
                 var elt = document.getElementById("exercise");
                 elt.innerHTML = texteExe; 
-                if(idExe<=idExemin){
+                if(order<=0){
                     document.getElementById("btn_Left").disabled=true;
                 }
                 else{
                     document.getElementById("btn_Left").disabled=false;
                 }
-                if(parseInt(idExe)>=parseInt(idExemax)){
+                if(parseInt(order)>=parseInt(order_length-1)){
                     document.getElementById("btn_Right").disabled=true;
                 }
                 else{
@@ -38,13 +38,15 @@ function showExe(){
 }
 
 function showLeftExe(){
-        idExe -= 1;
+        order -= 1;
+        idExe = listExe[order].children[1].firstChild.nodeValue;
         showExe();
 }
 
 function showRightExe(){
-        idExe -= 1;
-        idExe += 2;
+        order -= 1;
+        order += 2;
+        idExe = listExe[order].children[1].firstChild.nodeValue;
         showExe();
 }
 
@@ -63,12 +65,11 @@ function showSeaName(){
             var elt = document.getElementById("nameSea");
             elt.innerHTML = texte;
             
-            var id = rep.getElementsByTagName("idexemin");
-            idExe = id[0].firstChild.nodeValue;
-            idExemin = id[0].firstChild.nodeValue;
-            
-            var id = rep.getElementsByTagName("idexemax");
-            idExemax = id[0].firstChild.nodeValue;
+            var id = rep.getElementsByTagName("exercise");
+            order=0;
+            order_length=id.length;
+            listExe = id;
+            idExe = listExe[order].children[1].firstChild.nodeValue;
             showExe();
             }               
 	};

@@ -37,11 +37,18 @@ public class ServletShowExe extends HttpServlet {
             out.println("<?xml version=\"1.0\"?>");
             out.println("<exercise>");
             String idExe = request.getParameter("idExe");
-            Exerciseperso ep = HibernateMethode.showExe(Integer.parseInt(idExe));
-            out.println("<libexe>"+ep.getLibexe()+"</libexe>");
-            out.println("<descripexe>"+ep.getDescripexe()+"</descripexe>");
-            out.println("<photoexe>"+ep.getPhotoexe()+"</photoexe>");
-            out.println("<videoexe>"+ep.getVideoexe()+"</videoexe>");
+            try
+            {
+                Exerciseperso ep = HibernateMethode.showExe(Integer.parseInt(idExe));
+                out.println("<libexe>"+ep.getLibexe()+"</libexe>");
+                out.println("<descripexe>"+ep.getDescripexe()+"</descripexe>");
+                out.println("<photoexe>"+ep.getPhotoexe()+"</photoexe>");
+                out.println("<videoexe>"+ep.getVideoexe()+"</videoexe>");
+            }
+            catch (Exception ex)
+            {
+                out.println("<erreur>ServletShowExe Erreur - " + ex.getMessage() + "</erreur>");
+            }
             out.println("</exercise>");
         }
     }

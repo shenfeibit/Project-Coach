@@ -39,12 +39,12 @@ function affichePP ()
                                     texteSea+="<tr>";
                                         texteSea+="<td class='content-left'>"+sea[1].firstChild.nodeValue+"</td>";
                                         //if the date is not null(already done)
-                                        if(sea[3].firstChild.nodeValue!="null"){
+                                        if(sea[3].firstChild.nodeValue!=="null"){
                                             //show the exercise on the detail
-                                            var exe=sea[4].children
+                                            var exe=sea[4].children;
                                             texteSea+="<td class='content-exercise'>";
                                             for(j=0;j<exe.length;j++){
-                                                texteSea+="-"+exe[j].firstChild.nodeValue+"</br>"
+                                                texteSea+="-"+exe[j].firstChild.nodeValue+"</br>";
                                             }
                                             texteSea+= "</td>";
                                         }
@@ -65,7 +65,7 @@ function affichePP ()
                             }else{
                                 texteSea+="<div>";
                             }
-                            if(sea[3].firstChild.nodeValue!="null"){
+                            if(sea[3].firstChild.nodeValue!=="null"){
                                 texteSea+="<div class=\"meta-date-pass\">";
                                 texteSea+="<span class=\"date\">"+sea[0].firstChild.nodeValue+"</span>";
                             }

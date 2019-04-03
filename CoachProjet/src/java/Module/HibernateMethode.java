@@ -377,24 +377,17 @@ public static Exerciseperso showExe (int idExe) {
     return ep;   
 }
 
-public static int[] getIdExe(int idSea){
+public static HashMap<Integer,Integer> getOrderExe(int idSea){
     Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
     Transaction tc = ses.beginTransaction();
     Query q = ses.createQuery("from Exerciseperso as ep where ep.seanceperso="+idSea+ " order by ep.idexe asc");
     ArrayList<Exerciseperso> e = (ArrayList<Exerciseperso>) q.list();
-    ArrayList<Integer> listid = new ArrayList<Integer>();
+    HashMap<Integer,Integer> listexe = new HashMap<Integer,Integer>();
     for(Exerciseperso ep : e){
-        listid.add(ep.getIdexe());
+        listexe.put(ep.getOrdreexe(), ep.getIdexe());
     }
-    int max = 0;
-    int min = 0;
-    min = Collections.min(listid);
-    max = Collections.max(listid);
-    int[] res = new int[2];
-    res[0] = min;
-    res[1] = max;
     tc.commit();
-    return res;
+    return listexe;
 }
 
 }
