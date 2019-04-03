@@ -12,6 +12,10 @@
         <servlet-name>BeginSeance</servlet-name>
         <jsp-file>/HTML/BeginSeance.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>ServletExerciseBySea</servlet-name>
+        <servlet-class>CtrlServlet.ServletExerciseBySea</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PageClient</servlet-name>
         <url-pattern>/PageClient</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>BeginSeance</servlet-name>
         <url-pattern>/BeginSeance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletExerciseBySea</servlet-name>
+        <url-pattern>/ServletExerciseBySea</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
