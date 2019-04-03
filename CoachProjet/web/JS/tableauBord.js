@@ -11,7 +11,6 @@ function showIdCliP ()
         var xhr = new XMLHttpRequest();
 	xhr.open("GET","ServletClientEnPgrm");
        
-
 	xhr.onload = function()
         
             {
@@ -132,8 +131,6 @@ function showinfoCli ()
                 var eltid = document.getElementById("idClient");
                 eltid.value =param ;
                 document.getElementById("listeCli").style.display = "none";
-                
-             
             };
 	};
         xhr.send();
@@ -257,9 +254,12 @@ function showType ()
     { 
         document.getElementById("chercherProg").style.display = "block";
         
+        
         var xhr = new XMLHttpRequest();
+        
+        
 	xhr.open("GET","ServletObjectifs");
-
+        
 	xhr.onload = function()
         
             {
@@ -270,19 +270,19 @@ function showType ()
                         var l_obj=rep.getElementsByTagName("nom");
                         
                         var texte = "<option></option>";
-                        
                         for(var i=0;i<l_obj.length;i++)
                         {
                             texte +="<option>"+ l_obj[i].firstChild.nodeValue+"</option>";
                         }
-                        
                         var elt = document.getElementById("typeProg");
                         
 			elt.innerHTML = texte;  
+                        
                     }
 	
 	};
         xhr.send();
+    
 } 
     
    function showProgramme ()
@@ -418,6 +418,70 @@ function showType ()
         xhr.send();
         
     }
+    
+    
+    function processKey ()
+    {
+	var xhr = new XMLHttpRequest();
+        var premierelettre = document.getElementById("saisieNom").value;
+        
+        if(premierelettre!==''){
+	xhr.open("GET","ServletSearch?saisieNom="+premierelettre);
+
+	// On précise ce que l'on va faire quand on aura reçu la réponse du serveur.
+	xhr.onload = function()
+		{
+		// Si la requête http s'est bien passée.
+		if (xhr.status === 200)
+                {
+
+                var rep = xhr.responseXML;
+                var l_obj=rep.getElementsByTagName("client");
+                var texte='<ul>';
+
+                for(var i=0;i<l_obj.length;i++)
+                {
+                var clip = l_obj[i].children;
+                if(clip[3].firstChild.nodeValue==="true"){
+                    texte+="<li><span class='nomCliPgrm'>"+clip[0].firstChild.nodeValue+"<span>"+clip[1].firstChild.nodeValue+" "+clip[2].firstChild.nodeValue+"</span></span></li>";
+                }else{
+                    texte+="<li><span class='nomCliNoPgrm'>"+clip[0].firstChild.nodeValue+"<span>"+clip[1].firstChild.nodeValue+" "+clip[2].firstChild.nodeValue+"</span></span></li>";
+                }
+                }
+                    if(clip[0].firstChild.nodeValue!==0){
+                            document.getElementById("zoneaff").style.display = 'block';
+                    }
+                    else{
+                            document.getElementById("zoneaff").style.display = 'none';
+                        }
+                        //récuperer le composant html à mettre à jour
+                        var eltDivG = document.getElementById("zoneaff");
+                        eltDivG.innerHTML=texte;
+                        
+                        //var elt_listener = document.getElementsByClass("motsGoogle");
+                        var elt_p = document.getElementsByClassName("nomCliPgrm");
+                        var elt_np = document.getElementsByClassName("nomCliNoPgrm");
+                        
+                        for(i=0;i<elt_p.length;i++){
+                        elt_p[i].addEventListener("click",showinfoCli);
+                        elt_p[i].addEventListener("click",affichePP);
+                    }
+                        for(i=0;i<elt_np.length;i++){
+                        elt_np[i].addEventListener("click",showinfoCli);
+                        elt_np[i].addEventListener("click",showType);
+                    }  
+//                        document.getElementById("listeCli").style.display = "none";
+                    }
+		};
+	
+	// Envoie de la requête.
+	xhr.send();
+	}else{
+                document.getElementById("zoneaff").style.display = 'none';
+        }
+
+    }
+       
 
 document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showIdCliP);
@@ -426,5 +490,5 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("nomProg").addEventListener("change",l_clickProg);
         document.getElementById("bt_back").addEventListener("click",backToMenu);
         document.getElementById("affecter").addEventListener("click",affecter);
-        
+        document.getElementById("saisieNom").addEventListener("keyup",processKey);
 });

@@ -345,5 +345,24 @@ public static boolean verifCoach (int idCoach, String nomCoach) {
             return false;
         }
     }
+
+    public static List<Client> verifierClient (String nomSaisi) {
+        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tc = ses.beginTransaction() ;
+        Query q  = ses.createQuery ("from Client as c where c.nomc like '"+nomSaisi+"%'");
+        List<Client> lstc = new ArrayList<Client>();
+        lstc = (List<Client>) q.list();
+        tc.commit();
+        return lstc;
+    }
+
+
+
+
+
 }
+
+
+
+
 

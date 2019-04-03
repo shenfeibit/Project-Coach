@@ -311,3 +311,23 @@ table{
 #idClient{
     opacity: 0;
 }
+
+li:hover{
+text-decoration: underline goldenrod;
+}
+
+.nomCliNoPgrm {
+    color: white;
+}
+
+.nomCliNoPgrm span{
+    color: black;
+}
+
+.nomCliPgrm {
+    color: white;
+}
+
+.nomCliPgrm span{
+    color: black;
+}

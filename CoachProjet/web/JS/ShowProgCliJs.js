@@ -145,6 +145,7 @@ function showinfoCli ()
 		eltdescp.innerHTML = texte; 
                 var eltlib = document.getElementById("libobj");
 		eltlib.innerHTML = lib;  
+                
 
             };
 	};

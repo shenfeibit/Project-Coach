@@ -12,19 +12,29 @@ and open the template in the editor.
         <script type="text/JavaScript" src="JS/tableauBord.js"></script>
 </head>
     <body>
+        
         <div id="listeCli">
             <div class="header">
                 <h2>Tableau de bord clients</h2>
+                
                 <div class="progress-container">
                     <div class="progress-bar" id="myBar"></div>
                 </div>  
+            </div> 
+            
+            <div class="form-group">
+            <label for="email">Rechercher par nom :</label>
+            <input type="email" class="form-control" id="saisieNom">
+            <div id="zoneaff" class="form-control"></div>
             </div>
+            
+            
             <div id="contentcli">
                 <div id="cliProg"></div>
                 <div id="cliNoProg"></div>
             </div>
         </div>
-        
+
         
         <div id="detailCli">
             <div><input id="idClient" type="text" value="" /></div>
@@ -69,7 +79,6 @@ and open the template in the editor.
         </div>
         
         <div id="affecter"><input type="button" value="affecter" /></div>
-        
         
         
         <div id="bt_ctrl_back"> <input id="bt_back" type="button" value="back to the menu" /></div>

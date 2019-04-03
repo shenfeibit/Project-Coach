@@ -16,6 +16,10 @@
         <servlet-name>PageClient</servlet-name>
         <jsp-file>/HTML/PageClient.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>ServletSearch</servlet-name>
+        <servlet-class>CtrlServlet.ServletSearch</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletTableProg</servlet-name>
         <url-pattern>/ServletTableProg</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>PageClient</servlet-name>
         <url-pattern>/PageClient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletSearch</servlet-name>
+        <url-pattern>/ServletSearch</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

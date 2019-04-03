@@ -15,6 +15,7 @@ import Bd.Client;
 import Bd.Objectif;
 import Bd.Programmeperso;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -32,15 +33,27 @@ public class test {
 //                System.out.println(ma);
 //            }
 
-                boolean c = HibernateMethode.verifCoach(1,"David");
-                if(c)
-                {
-                    System.out.println("Dave");
-                }
-                else
-                {
-                    System.out.println("Non");
-                }
+//                boolean c = HibernateMethode.verifCoach(1,"David");
+//                if(c)
+//                {
+//                    System.out.println("Dave");
+//                }
+//                else
+//                {
+//                    System.out.println("Non");
+//                }
+            List<Client> lstclients = HibernateMethode.verifierClient("Shen");
+            List<Client> lstcliP = HibernateMethode.consultClientPgrm();
+            ArrayList<Integer> listid = new ArrayList<Integer>();
+
+            for(Client cp : lstcliP){
+                listid.add(cp.getIdc());
+                System.out.println(cp.getIdc() + "-");
+            }
+            for(Client c : lstclients){
+                System.out.println(c.getIdc());
+                System.out.println(listid.contains(c.getIdc()));
+            }
 
         }
 
