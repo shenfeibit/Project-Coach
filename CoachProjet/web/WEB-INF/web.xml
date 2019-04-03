@@ -12,10 +12,6 @@
         <servlet-name>ServletSeanceStandPs</servlet-name>
         <servlet-class>CtrlServlet.ServletSeanceStandPs</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ServletAccueilClient</servlet-name>
-        <servlet-class>CtrlServlet.ServletAccueilClient</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>ServletSeanceStandPs</servlet-name>
         <url-pattern>/ServletSeanceStandPs</url-pattern>
@@ -116,6 +112,10 @@
         <servlet-name>ServletAffecter</servlet-name>
         <url-pattern>/ServletAffecter</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletAccueilClient</servlet-name>
+        <servlet-class>CtrlServlet.ServletAccueilClient</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletAccueilClient</servlet-name>
         <url-pattern>/ServletAccueilClient</url-pattern>
