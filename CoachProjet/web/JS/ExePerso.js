@@ -15,9 +15,11 @@ function showExe(){
                 //var exe = l_exe.children;
                 var lib = rep.getElementsByTagName("libexe")[0].firstChild.nodeValue;
                 var des = rep.getElementsByTagName("descripexe")[0].firstChild.nodeValue;
+                var image = rep.getElementsByTagName("photoexe")[0].firstChild.nodeValue;
                 
                 
                 var texteExe = lib +"</br>"+ des + "</br>";
+                texteExe += "<div><input type=\"image\"  src=\"IMAGE/Exercises/"+image+"\" width =\"250\" alt=\"See the detail\"/></div>";
                 var elt = document.getElementById("exercise");
                 elt.innerHTML = texteExe; 
                 if(idExe<=idExemin){

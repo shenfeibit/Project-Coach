@@ -35,7 +35,6 @@
             <div id="exercise">
                 <p>name of the exercise</p>
                 <p>description of the exercise</p>
-                <input type="image"  src="IMAGE/performance/easy.png" width ="150" alt="image easy"/>
             </div>  
             
             
