@@ -26,27 +26,32 @@ function showExe(){
                 var eltImgExercise = document.getElementById("img_video");
                 var texteExe = "<input type=\"image\"  src=\"IMAGE/Exercises/"+image+"\" width =\"250\" alt=\"See the detail\"/>";
                 eltImgExercise.innerHTML=texteExe;
-                
+               
                 if(order<=0){
                     document.getElementById("btn_Left").disabled=true;
+                    document.getElementById("btn_Left").type="hidden";
                 }
                 else{
                     document.getElementById("btn_Left").disabled=false;
+                    document.getElementById("btn_Left").type="button";
                 }
-                if(parseInt(order)>=parseInt(order_length-1)){
-                    document.getElementById("btn_Right").disabled=true;
-                }
-                else{
-                    document.getElementById("btn_Right").disabled=false;
-                }
+                document.getElementById("btn_Right").type="hidden";
+                document.getElementById("btn_finish").type="hidden";
+                document.getElementById("time_minute").innerHTML="0";
+                document.getElementById("time_second").innerHTML="0";
+                document.getElementById("timeout").innerHTML="0";
+//                document.getElementById("easy").checked=false;
+//                document.getElementById("normal").checked=true;
+//                document.getElementById("hard").checked=false;
         }
     };
     xhr.send();
-}
+};
 
 function showLeftExe(){
         order -= 1;
         idExe = listExe[order].children[1].firstChild.nodeValue;
+        clearInterval(x);
         showExe();
 }
 
@@ -54,6 +59,7 @@ function showRightExe(){
         order -= 1;
         order += 2;
         idExe = listExe[order].children[1].firstChild.nodeValue;
+        clearInterval(x);
         showExe();
 }
 
@@ -91,7 +97,8 @@ function timebegin(){
     var seconde = Math.floor(i % 60);
     var minute = Math.floor(i/60);
       
-    document.getElementById("time").innerHTML=minute+" m " + seconde + " s ";
+    document.getElementById("time_minute").innerHTML=minute;
+    document.getElementById("time_second").innerHTML=seconde;
     
     if(minute>5){
         clearInterval(x);
@@ -104,11 +111,30 @@ function timeend(){
     clearInterval(x);
 }
 
+function continu(){
+    if(parseInt(order)>=parseInt(order_length-1)){
+        document.getElementById("btn_Right").disabled=true;
+        document.getElementById("btn_Right").type="hidden";
+        document.getElementById("btn_finish").type="button";
+        
+    }
+    else{
+        document.getElementById("btn_Right").disabled=false;
+        document.getElementById("btn_Right").type="button";
+        document.getElementById("btn_finish").type="hidden";
+    }
+}
+
+
 //the events corresponding for each function
 document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showSeaName);
+        window.addEventListener("load",timeend);
         document.getElementById("btn_Left").addEventListener("click",showLeftExe);
         document.getElementById("btn_Right").addEventListener("click",showRightExe);
         document.getElementById("time_begin").addEventListener("click",timebegin);
         document.getElementById("time_end").addEventListener("click",timeend);
+        document.getElementById("easy").addEventListener("click",continu);
+        document.getElementById("normal").addEventListener("click",continu);
+        document.getElementById("hard").addEventListener("click",continu);
 });

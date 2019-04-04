@@ -17,7 +17,6 @@
     <body>
         <%
             String idCli = (String) session.getAttribute("idC");
-            
         %>
          <div>
             <div id="image"></div>

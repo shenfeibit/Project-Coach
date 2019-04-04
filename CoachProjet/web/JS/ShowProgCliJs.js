@@ -196,7 +196,7 @@ function click_next(){
                         confirm("Cet seance n'est pas ouvert, voici des détails"
                                 +texte);
                     }
-            }
+            };
     xhr.send();
 }
 
