@@ -43,5 +43,13 @@
         </div>
         <div class="timeline-end">End</div>
         </section>
+        
+        <form action="AccueilJd" method="GET">
+            <div class="form-group">
+                <!--<input type="hidden" name="idCoachAccueil" value="1" />-->
+                <input type="submit" class="btnSubmit" value="Deconnexion" />                            
+            </div>
+        </form>
+        
     </body>
 </html>

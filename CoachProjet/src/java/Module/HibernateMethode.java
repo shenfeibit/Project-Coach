@@ -399,4 +399,38 @@ public static List<Client> verifierClient (String nomSaisi) {
         tc.commit();
         return lstc;
     }
+
+public static void insertMensBilan(int idSea, double bra, double poi, double tou, double han, double cui){
+    Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+    Transaction tc = ses.beginTransaction();
+    Query q = ses.createQuery("from Seanceperso as sp where sp.idsea="+idSea);
+    Seanceperso se = (Seanceperso) q.list().get(0);
+    se.setBras(bra);
+    se.setPoitrine(poi);
+    se.setCuisses(cui);
+    se.setTaille(tou);
+    se.setHanches(han);
+    ses.update(se);
+    tc.commit();
+}
+
+public static void insrtPerfBilan(int idSea, String freqCardCalme, String freqCardFlex, String freqCardExAll){
+    Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+    Transaction tc = ses.beginTransaction();
+    Query q1 = ses.createQuery("from Exerciseperso as ep where ep.seanceperso="+idSea+" and ep.ordreexe=1");
+    Exerciseperso exp1 = (Exerciseperso) q1.list().get(0);
+    exp1.setNbrepet(freqCardCalme);
+    Query q2 = ses.createQuery("from Exerciseperso as ep where ep.seanceperso="+idSea+" and ep.ordreexe=2");
+    Exerciseperso exp2 = (Exerciseperso) q2.list().get(0);
+    exp2.setNbrepet(freqCardFlex);
+    Query q3 = ses.createQuery("from Exerciseperso as ep where ep.seanceperso="+idSea+" and ep.ordreexe=3");
+    Exerciseperso exp3 = (Exerciseperso) q3.list().get(0);
+    exp3.setNbrepet(freqCardExAll);
+    ses.update(exp1);
+    ses.update(exp2);
+    ses.update(exp3);
+    tc.commit();
+}
+
+
 }

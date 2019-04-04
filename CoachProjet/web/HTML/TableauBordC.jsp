@@ -21,8 +21,8 @@ and open the template in the editor.
                 
                 <div class="progress-container">
                     <div class="progress-bar" id="myBar"></div>
-                </div>  
-            </div> 
+                </div>
+            </div>
             
             <div class="form-group">
             <label for="email">Rechercher par nom :</label>
@@ -82,10 +82,18 @@ and open the template in the editor.
             </section>            
         </div>
         
+        <form action="AccueilJd" method="GET">
+            <div class="form-group">
+                <!--<input type="hidden" name="idCoachAccueil" value="1" />-->
+                <input type="submit" class="btn btn-warning" value="Deconnexion" />                            
+            </div>
+        </form>
+        
         <!--the button for affect a program to a client-->
         <div id="affecter"><input class="l_btn" type="button" value="Affecter" /></div>
         
         <!--the button for turn back to the previous page-->
         <div id="bt_ctrl_back"> <input class="l_btn" type="button" value="Back" /></div>
+        
     </body>
 </html>

@@ -8,17 +8,18 @@ package CtrlServlet;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author 21611945
+ * @author 21511708
  */
-public class ServletSeaName extends HttpServlet {
+public class ServletMens extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,35 +32,45 @@ public class ServletSeaName extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/xml;charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
+            response.setContentType("application/xml;charset=UTF-8");
+            response.setCharacterEncoding("UTF-8");
 
         try (PrintWriter out = response.getWriter()) {
-            out.println("<?xml version=\"1.0\"?>");
-            out.println("<seance>");
             String idSea = request.getParameter("idSea");
+            String idBras = request.getParameter("idBras");
+            String idPoitrine = request.getParameter("idPoitrine");
+            String idTaille = request.getParameter("idTaille");
+            String idHanches = request.getParameter("idHanches");
+            String idCuisses = request.getParameter("idCuisses");
 
-            try
-            {
-                String name = HibernateMethode.showNameSea(Integer.parseInt(idSea));
-                out.println("<name>"+name+"</name>");
-                HashMap<Integer,Integer> listexe = HibernateMethode.getOrderExe(Integer.parseInt(idSea));
-                out.println("<listexe>");
-                for(Integer order : listexe.keySet()){
-                    out.println("<exercise>");
-                    out.println("<order>"+order+"</order>");
-                    out.println("<idexe>"+listexe.get(order)+"</idexe>");
-                    out.println("</exercise>");
+            String avertissement="";
+
+            if(idBras.isEmpty()||idPoitrine.isEmpty()||idTaille.isEmpty()||idHanches.isEmpty()||idCuisses.isEmpty()){
+                avertissement = "Veuillez saisir vos informations";
+            }else{
+                try{
+                    HibernateMethode.insertMensBilan(
+                        Integer.parseInt(idSea),
+                        Double.parseDouble(idBras),
+                        Double.parseDouble(idPoitrine),
+                        Double.parseDouble(idTaille),
+                        Double.parseDouble(idHanches),
+                        Double.parseDouble(idCuisses));
+                    response.sendRedirect("FreqMens");
+                }catch (Exception ex){
+                        RequestDispatcher rd = request.getRequestDispatcher("FreqMens");
+                        request.setAttribute("erreurReq", ex.getMessage()) ;
+                        rd.forward(request, response);
                 }
-                out.println("</listexe>");
             }
-            catch (Exception ex)
-            {
-                out.println("<erreur>ServletSeaName Erreur - " + ex.getMessage() + "</erreur>");
-            }
-            out.println("</seance>");
-        }
 
+            if (!avertissement.isEmpty()){
+                //On retourne sur la page de saisie. On délègue à la ressource accueil
+                RequestDispatcher rd = request.getRequestDispatcher("FreqMens");
+                request.setAttribute("avrtMensuration", avertissement);
+                rd.forward(request, response);
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

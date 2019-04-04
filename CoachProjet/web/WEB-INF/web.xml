@@ -9,9 +9,25 @@
         <url-pattern>/ServletAccueilClient</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>FreqMens</servlet-name>
+        <jsp-file>/HTML/FreqMens.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FreqMens</servlet-name>
+        <url-pattern>/FreqMens</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ServletExerciseBySea</servlet-name>
         <servlet-class>CtrlServlet.ServletExerciseBySea</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletMens</servlet-name>
+        <servlet-class>CtrlServlet.ServletMens</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletMens</servlet-name>
+        <url-pattern>/ServletMens</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletExerciseBySea</servlet-name>
         <url-pattern>/ServletExerciseBySea</url-pattern>
@@ -20,6 +36,14 @@
         <servlet-name>ServletBeginSea</servlet-name>
         <servlet-class>CtrlServlet.ServletBeginSea</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletPerfBilan</servlet-name>
+        <servlet-class>CtrlServlet.ServletPerfBilan</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletPerfBilan</servlet-name>
+        <url-pattern>/ServletPerfBilan</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletBeginSea</servlet-name>
         <url-pattern>/ServletBeginSea</url-pattern>
@@ -31,7 +55,7 @@
     <servlet-mapping>
         <servlet-name>BeginSeance</servlet-name>
         <url-pattern>/BeginSeance</url-pattern>
-    </servlet-mapping>      
+    </servlet-mapping>
     <servlet>
         <servlet-name>ServletSeanceStandPs</servlet-name>
         <servlet-class>CtrlServlet.ServletSeanceStandPs</servlet-class>
@@ -155,7 +179,7 @@
     <servlet>
         <servlet-name>ServletSeaName</servlet-name>
         <servlet-class>CtrlServlet.ServletSeaName</servlet-class>
-    </servlet>    
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletSeaName</servlet-name>
         <url-pattern>/ServletSeaName</url-pattern>

@@ -14,12 +14,11 @@ import java.util.HashMap;
 public class test {
      public static void main (String[] args) throws Exception
         {
-
-             HashMap<Integer,Integer> listexe =HibernateMethode.getOrderExe(5);
-             for(Integer i : listexe.keySet()){
-                 System.out.println(i + "-"+listexe.get(i));
+            HibernateMethode.insertMensBilan(7,10,20,12,15,14);
+//             for(Integer i : listexe.keySet()){
+//                 System.out.println(res);
              }
-          
+
 
 }
-}
+
