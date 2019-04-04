@@ -23,7 +23,7 @@ function showIdCliP ()
                         var rep = xhr.responseXML;
                         //get all the info of clients from servelet
                         var l_obj=rep.getElementsByTagName("client");
-                        var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on Programme</h2></div>";
+                        var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients en Programme</h2></div>";
                                 for(var i=0;i<l_obj.length;i++){
                                 var clip = l_obj[i].children;
                                     texte+="<div id=\"imagecl\"><div class='photocli'>"
@@ -71,7 +71,7 @@ function showIdCliNonP ()
                     {
                         var rep = xhr.responseXML;
                         var l_obj=rep.getElementsByTagName("client");
-                            var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on demande</h2></div>";
+                            var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients en demande</h2></div>";
                             for(var i=0;i<l_obj.length ;i++){
                                 var clip = l_obj[i].children;
                                     texte+="<div id=\"imagecl\"><div class='photocliNoProg'>"
