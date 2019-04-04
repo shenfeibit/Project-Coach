@@ -399,4 +399,13 @@ public static List<Client> verifierClient (String nomSaisi) {
         tc.commit();
         return lstc;
     }
+
+public static void addPerformance (int idExe, String performance) {
+        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tc = ses.beginTransaction();
+        Query q = ses.createQuery("update Exerciseperso set PERFORMANCE = '"+ performance +"' where IDEXE="+idExe);
+        int result = q.executeUpdate();
+        tc.commit();
+    }
+
 }

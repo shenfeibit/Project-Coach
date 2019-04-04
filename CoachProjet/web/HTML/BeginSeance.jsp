@@ -38,21 +38,20 @@
                     <input class="btn_time" type="button" id="time_begin" value="begin">
                     <input class="btn_time" type="button" id="time_end" value="end">
                 </div>
-                <div id="performance">
+                 <div id="performance">
                     <h3>How do you feel ? </h3>
-                            <input type="radio" name="emotion" id="easy" class="input-hidden" />
+                        <input type="radio" name="emotion" id="easy" value="1" class="input-hidden" />
                             <label for="easy">
                               <img src="IMAGE/performance/easy.png" alt="image easy"/>
                             </label>
-                            <input type="radio" name="emotion" id="normal" class="input-hidden" />
+                        <input type="radio" name="emotion" id="normal" value="2" class="input-hidden" />
                             <label for="normal">
                               <img src="IMAGE/performance/normal.png" alt="image normal"/>
                             </label>
-                            <input type="radio" name="emotion" id="hard" class="input-hidden" />
+                        <input type="radio" name="emotion" id="hard" value="3" class="input-hidden" />
                             <label for="hard">
                               <img src="IMAGE/performance/hard.png" alt="image hard"/>
-                            </label>
-                            
+                            </label>            
                 </div>
                 <input id="btn_finish" class="btn_time" type="button" value="Finish">
             </div>  

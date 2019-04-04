@@ -5,7 +5,7 @@ var listExe;
 //count the time
 var i=0;
 var x;
-
+var perfo;
 function showExe(){
         var xhr = new XMLHttpRequest();
 	xhr.open("GET","ServletShowExe?idExe="+ idExe);
@@ -126,8 +126,41 @@ function continu(){
         document.getElementById("btn_Right").type="button";
         document.getElementById("btn_finish").type="hidden";
     }
+    perfo = this.value;
 }
 
+function addPerformance(){
+    var xhr = new XMLHttpRequest();
+    var performance = null;
+    if (perfo === "1") {
+        performance = "easy";
+    }
+    else if (perfo === "2"){
+        performance = "normal";
+    }
+    else{
+        performance = "hard";
+    }
+    var id=idExe-1;
+    xhr.open("GET","ServletAddPer?idExe=" +id+ "&performance="+performance);
+    xhr.send();   
+}
+
+function addPerformancefinal(){
+    var xhr = new XMLHttpRequest();
+    var performance = null;
+    if (perfo === "1") {
+        performance = "easy";
+    }
+    else if (perfo === "2"){
+        performance = "normal";
+    }
+    else{
+        performance = "hard";
+    }
+    xhr.open("GET","ServletAddPer?idExe=" +idExe+ "&performance="+performance);
+    xhr.send();   
+}
 
 //the events corresponding for each function
 document.addEventListener("DOMContentLoaded", () => {
@@ -140,4 +173,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("easy").addEventListener("click",continu);
         document.getElementById("normal").addEventListener("click",continu);
         document.getElementById("hard").addEventListener("click",continu);
+        document.getElementById("btn_Right").addEventListener("click",addPerformance);
+        document.getElementById("btn_finish").addEventListener("click",addPerformancefinal);
 });
