@@ -40,9 +40,6 @@ function showExe(){
                 document.getElementById("time_minute").innerHTML="0";
                 document.getElementById("time_second").innerHTML="0";
                 document.getElementById("timeout").innerHTML="0";
-//                document.getElementById("easy").checked=false;
-//                document.getElementById("normal").checked=true;
-//                document.getElementById("hard").checked=false;
         }
     };
     xhr.send();
@@ -52,6 +49,9 @@ function showLeftExe(){
         order -= 1;
         idExe = listExe[order].children[1].firstChild.nodeValue;
         clearInterval(x);
+        document.getElementById("easy").checked=false;
+        document.getElementById("normal").checked=false;
+        document.getElementById("hard").checked=false;
         showExe();
 }
 
@@ -60,6 +60,9 @@ function showRightExe(){
         order += 2;
         idExe = listExe[order].children[1].firstChild.nodeValue;
         clearInterval(x);
+        document.getElementById("easy").checked=false;
+        document.getElementById("normal").checked=false;
+        document.getElementById("hard").checked=false;
         showExe();
 }
 
