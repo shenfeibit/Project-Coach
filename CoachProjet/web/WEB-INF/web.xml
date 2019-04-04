@@ -216,7 +216,6 @@
         <servlet-name>ServletEvoluation</servlet-name>
         <url-pattern>/ServletEvoluation</url-pattern>
     </servlet-mapping>
-    
     <session-config>
         <session-timeout>
             30
