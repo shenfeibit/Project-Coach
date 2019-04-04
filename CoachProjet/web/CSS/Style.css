@@ -36,7 +36,7 @@ h1{
     
 }
 
-#objectif{
+#evoluation{
     background-color: gold;
     position:relative;
     margin-left: 60%;
@@ -44,8 +44,10 @@ h1{
     height: 180px;
     border-left-style: solid;
     padding:5%;
-    font-size: 200%
-    
+    font-size: 100%
+}
+evoluation table{
+    border:1;
 }
 
 #barOneLine{
@@ -111,7 +113,6 @@ table{
     width:100%;
     margin:0; 
     border-collapse: collapse;
-    
 }
 
 .tableLine{
