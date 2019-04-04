@@ -39,7 +39,7 @@ function showExe(){
                 document.getElementById("btn_finish").type="hidden";
                 document.getElementById("time_minute").innerHTML="0";
                 document.getElementById("time_second").innerHTML="0";
-                document.getElementById("timeout").innerHTML="0";
+                document.getElementById("time_out").innerHTML="0";
         }
     };
     xhr.send();
