@@ -250,7 +250,7 @@ public class HibernateMethode {
         tc.commit();
         return l_cli;
     }
- 
+
   public static String showDateDemande(int idClient) {
         Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tc = ses.beginTransaction() ;
@@ -364,8 +364,8 @@ public static String showNameSea (int idSea) {
     Seanceperso sp = (Seanceperso) q.list().get(0);
     String name = sp.getLibsea();
     tc.commit();
-    return name;       
-    
+    return name;
+
 }
 
 public static Exerciseperso showExe (int idExe) {
@@ -374,7 +374,7 @@ public static Exerciseperso showExe (int idExe) {
     Query q = ses.createQuery("from Exerciseperso as ep where ep.idexe="+idExe);
     Exerciseperso ep = (Exerciseperso) q.list().get(0);
     tc.commit();
-    return ep;   
+    return ep;
 }
 
 public static HashMap<Integer,Integer> getOrderExe(int idSea){
@@ -390,4 +390,13 @@ public static HashMap<Integer,Integer> getOrderExe(int idSea){
     return listexe;
 }
 
+public static List<Client> verifierClient (String nomSaisi) {
+        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tc = ses.beginTransaction() ;
+        Query q  = ses.createQuery ("from Client as c where c.nomc like '"+nomSaisi+"%'");
+        List<Client> lstc = new ArrayList<Client>();
+        lstc = (List<Client>) q.list();
+        tc.commit();
+        return lstc;
+    }
 }
