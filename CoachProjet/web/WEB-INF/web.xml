@@ -8,6 +8,14 @@
         <servlet-name>ShowProgram</servlet-name>
         <jsp-file>/HTML/ShowProgram.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>ServletEnregistrerNBrept</servlet-name>
+        <servlet-class>CtrlServlet.ServletEnregistrerNBrepet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletEnregistrerDureeReal</servlet-name>
+        <servlet-class>CtrlServlet.ServletEnregistrerDureeReal</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletTableProg</servlet-name>
         <url-pattern>/ServletTableProg</url-pattern>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>ShowProgram</servlet-name>
         <url-pattern>/ShowProgram</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletEnregistrerNBrept</servlet-name>
+        <url-pattern>/ServetEnregistrerNBrept</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletEnregistrerDureeReal</servlet-name>
+        <url-pattern>/ServletEnregistrerDureeReal</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -22,8 +22,13 @@ public class test {
      public static void main (String[] args) throws Exception
         {
 
-            Programmeperso pp = HibernateMethode.visualiserProgrammeEnCours(1);
-            System.out.println(pp);
+//            Programmeperso pp = HibernateMethode.visualiserProgrammeEnCours(1);
+//            System.out.println(pp);
+                 HibernateMethode.enregistrerNombreRepetition("1","3");
+                
+              
+                HibernateMethode.enregisterDureereal("1","180");
+              
         }
 }
 

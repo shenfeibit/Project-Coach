@@ -304,6 +304,27 @@ public static void affecter(int idps, int idc){
             tc.commit();       
         }
 
+public static void enregistrerNombreRepetition(String idexo,String nbrept){
+    Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+    Transaction tc = ses.beginTransaction() ;
+    Query q = ses.createQuery("from Exerciseperso as exp where exp.idexe="+idexo);
+    Exerciseperso exp = (Exerciseperso) q.list().get(0);
+    exp.setNbrepet(nbrept);
+    ses.update(exp);
+    tc.commit();
+}
+
+
+
+public static void enregisterDureereal(String idexo,String duree){
+    Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+    Transaction tc = ses.beginTransaction() ;
+    Query q = ses.createQuery("from Exerciseperso as exp where exp.idexe="+idexo);
+    Exerciseperso exp = (Exerciseperso) q.list().get(0);
+    exp.setDureereal(duree);
+    ses.update(exp);
+    tc.commit();
+   }
 
 }
 
