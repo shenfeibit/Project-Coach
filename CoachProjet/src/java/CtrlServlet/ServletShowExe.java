@@ -9,7 +9,6 @@ import Bd.Exerciseperso;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,8 +41,20 @@ public class ServletShowExe extends HttpServlet {
                 Exerciseperso ep = HibernateMethode.showExe(Integer.parseInt(idExe));
                 out.println("<libexe>"+ep.getLibexe()+"</libexe>");
                 out.println("<descripexe>"+ep.getDescripexe()+"</descripexe>");
-                out.println("<photoexe>"+ep.getPhotoexe()+"</photoexe>");
-                out.println("<videoexe>"+ep.getVideoexe()+"</videoexe>");
+                String photo;
+                String video;
+                if(ep.getPhotoexe()==null){
+                    photo = "Bon Courage";
+                }else{
+                    photo = ep.getPhotoexe();
+                }
+                if(ep.getVideoexe()==null){
+                    video = "Bon Courage";
+                }else{
+                    video = ep.getPhotoexe();
+                }
+                out.println("<photoexe>"+photo+"</photoexe>");
+                out.println("<videoexe>"+video+"</videoexe>");
             }
             catch (Exception ex)
             {
