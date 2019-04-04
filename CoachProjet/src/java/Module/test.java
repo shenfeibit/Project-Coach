@@ -15,11 +15,6 @@ public class test {
      public static void main (String[] args) throws Exception
         {
 
-             HashMap<Integer,Integer> listexe =HibernateMethode.getOrderExe(5);
-             for(Integer i : listexe.keySet()){
-                 System.out.println(i + "-"+listexe.get(i));
-             }
-          
 
 }
 }

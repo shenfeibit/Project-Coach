@@ -39,6 +39,7 @@ public class ServletEndSeaPerformance extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             out.println("<?xml version=\"1.0\"?>");
             out.print("<l_exe>");
+            HibernateMethode.finishSeance(Integer.parseInt(idSea));
             HashMap<Integer,Exerciseperso> mexp = new HashMap();
             mexp = HibernateMethode.showExePersoBySea(Integer.parseInt(idSea));
             for(int ordEx: mexp.keySet()){

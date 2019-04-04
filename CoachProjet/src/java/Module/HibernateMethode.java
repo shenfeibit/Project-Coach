@@ -274,7 +274,7 @@ public static void affecter(int idps, int idc){
             Query qProg = ses.createQuery("from Possederps as pp where pp.programmestandard=" + idps);
             List<Possederps> listpossederps = (List<Possederps>) qProg.list();
             Programmestandard ss = listpossederps.get(0).getProgrammestandard();
-            Set<Seancestandard> setSes = new HashSet<Seancestandard>();
+            Set<Seancestandard> setSes = new HashSet<>();
             for(Possederps ps : listpossederps){
                setSes.add(ps.getSeancestandard());
             }
@@ -408,4 +408,15 @@ public static void addPerformance (int idExe, String performance) {
         tc.commit();
     }
 
+public static void finishSeance (int idSea) {
+        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tc = ses.beginTransaction();
+        Date date = new Date();
+        
+        Query q = ses.createQuery("from Seanceperso as sp where idsea="+idSea);
+        Seanceperso sp=(Seanceperso)q.list().get(0);
+        sp.setDatesea(date);
+        ses.update(sp);
+        tc.commit();
+    }
 }

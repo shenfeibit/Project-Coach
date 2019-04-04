@@ -9,7 +9,7 @@ function showPerformance(){
             var rep = xhr.responseXML;
             var l_exe = rep.getElementsByTagName("exe");
             
-            var texte = "<table><tr><th>Exercise</th><th>Performance</th></tr>";
+            var texte = "<table><tr><th>Exercise</th></tr><tr><th>Performance</th></tr>";
             for(var i=0;i<l_exe.length;i++){
                 var exe = l_exe[i].children;
                 texte+="<tr><td>"+exe[0].firstChild.nodeValue+"</td><td>";
