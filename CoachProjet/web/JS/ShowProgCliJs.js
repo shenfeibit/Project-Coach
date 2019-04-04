@@ -82,7 +82,6 @@ function affichePP ()
 			}
 		};
 	xhr.send();
-        afficheProgression ();
 	}
         
 // function which shows the progression of the taining of this client  
@@ -112,7 +111,7 @@ function afficheProgression ()
 		};
 	// send the query
 	xhr.send();
-        showinfoCli ();
+        
 	}
         
 /*
@@ -160,13 +159,11 @@ function showinfoCli ()
                 eltimage.innerHTML = imageCli; 
                 var eltdescp = document.getElementById("descp");
 		eltdescp.innerHTML = texte; 
-                var eltlib = document.getElementById("libobj");
-                eltlib.innerHTML = lib;  
-                
-
             };
 	};
+        
         xhr.send();
+        
     }
     
 
@@ -197,8 +194,41 @@ function click_next(){
     xhr.send();
 }
 
+function evoluation(){
+    var xhr = new XMLHttpRequest();
+        var param=encodeURIComponent(document.getElementById("idClient").value);
+	xhr.open("GET","ServletEvoluation?idc=" + param);
+        xhr.onload = function(){
+            //if the connect succees
+            if (xhr.status === 200){
+                var res = xhr.responseXML;
+                var l_mes = res.getElementsByTagName("mes");
+                
+                var texte ="<table><tr><td>Mesure</td><td>Bilan N°1</td><td>Bilan Dernier</td><td>Evoluation</td></tr>";
+                for(var i=0; i<l_mes.length; i++){
+                    var mes=l_mes[i];
+                    texte+="<tr><td>"+mes.children[0].firstChild.nodeValue;+"</td>";
+                    var l_res=mes.children[1];
+                    for(var j=0;j<3;j++){
+                        texte+="<td>"+l_res.children[j].firstChild.nodeValue+"</td>";
+                    }
+                    texte+="</tr>";
+                }
+                texte += "</table>";
+                var elt = document.getElementById("evoluation");
+                elt.innerHTML = texte;
+                
+            }
+            
+        };
+        xhr.send();
+}
+
 //the events corresponding for each function
 document.addEventListener("DOMContentLoaded", () => {
+    window.addEventListener("load",showinfoCli);
+    window.addEventListener("load",evoluation);
+    window.addEventListener("load",afficheProgression);
     window.addEventListener("load",affichePP);
 });
 

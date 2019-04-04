@@ -4,29 +4,49 @@
         <servlet-name>ServletAccueilClient</servlet-name>
         <servlet-class>CtrlServlet.ServletAccueilClient</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAccueilClient</servlet-name>
+        <url-pattern>/ServletAccueilClient</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>ServletAddPer</servlet-name>
         <servlet-class>CtrlServlet.ServletAddPer</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAddPer</servlet-name>
+        <url-pattern>/ServletAddPer</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>ServletEndSea</servlet-name>
         <servlet-class>CtrlServlet.ServletEndSea</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>EndSeance</servlet-name>
-        <jsp-file>/HTML/EndSeancejsp.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>FunctionEndSeance</servlet-name>
-        <jsp-file>/JS/EndSeance.js</jsp-file>
-    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletEndSea</servlet-name>
+        <url-pattern>/ServletEndSea</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>ServletEndSeaPerformance</servlet-name>
         <servlet-class>CtrlServlet.ServletEndSeaPerformance</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ServletAccueilClient</servlet-name>
-        <url-pattern>/ServletAccueilClient</url-pattern>
+        <servlet-name>ServletEndSeaPerformance</servlet-name>
+        <url-pattern>/ServletEndSeaPerformance</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EndSeance</servlet-name>
+        <jsp-file>/HTML/EndSeancejsp.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EndSeance</servlet-name>
+        <url-pattern>/EndSeance</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FunctionEndSeance</servlet-name>
+        <jsp-file>/JS/EndSeance.js</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FunctionEndSeance</servlet-name>
+        <url-pattern>/FunctionEndSeance</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ServletExerciseBySea</servlet-name>
@@ -188,26 +208,15 @@
         <servlet-name>PageClient</servlet-name>
         <url-pattern>/PageClient</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletEvoluation</servlet-name>
+        <servlet-class>CtrlServlet.ServletEvoluation</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>ServletAddPer</servlet-name>
-        <url-pattern>/ServletAddPer</url-pattern>
+        <servlet-name>ServletEvoluation</servlet-name>
+        <url-pattern>/ServletEvoluation</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ServletEndSea</servlet-name>
-        <url-pattern>/ServletEndSea</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EndSeance</servlet-name>
-        <url-pattern>/EndSeance</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>FunctionEndSeance</servlet-name>
-        <url-pattern>/FunctionEndSeance</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ServletEndSeaPerformance</servlet-name>
-        <url-pattern>/ServletEndSeaPerformance</url-pattern>
-    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30
