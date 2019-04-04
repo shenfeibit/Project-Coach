@@ -113,7 +113,6 @@ function afficheProgression ()
 	// send the query
 	xhr.send();
         showinfoCli ();
-        
 	}
         
 /*
@@ -143,20 +142,17 @@ function showinfoCli ()
                 var imageCli = "<img src=\"IMAGE/" 
                         + image[0].firstChild.nodeValue 
                         + "\" width =\"150\" alt=\"image of Client\"/>";
-                var texte = nom[0].firstChild.nodeValue + " " 
+                //show all the objectifs of the client
+                var lib = "<h3>Objectifs</h3>";
+                var l_obj = xhr.responseXML.getElementsByTagName("lib");
+                for (var i =0; i < l_obj.length; i++){       
+                    lib += l_obj[i].firstChild.nodeValue + "</br>";                    
+                }
+                var texte = lib+nom[0].firstChild.nodeValue + " " 
                         + prenom[0].firstChild.nodeValue + "</br>" 
                         + sexe[0].firstChild.nodeValue + "</br>" 
                         + tele[0].firstChild.nodeValue + "</br>" 
                         + email[0].firstChild.nodeValue + "</br>" ;
-                
-                var l_obj = xhr.responseXML.getElementsByTagName("lib");
-                var lib = "<p>";
-                
-                //show all the objectifs of the client
-                for (var i =0; i < l_obj.length; i++){       
-                    lib += l_obj[i].firstChild.nodeValue + "</br>";                    
-                }
-                lib += "</p>";
                 
                 //show all the information
                 var eltimage = document.getElementById("image");;
@@ -164,7 +160,7 @@ function showinfoCli ()
                 var eltdescp = document.getElementById("descp");
 		eltdescp.innerHTML = texte; 
                 var eltlib = document.getElementById("libobj");
-		eltlib.innerHTML = lib;  
+                eltlib.innerHTML = lib;  
                 
 
             };
@@ -196,7 +192,7 @@ function click_next(){
                         confirm("Cet seance n'est pas ouvert, voici des détails"
                                 +texte);
                     }
-            }
+            };
     xhr.send();
 }
 
