@@ -18,10 +18,19 @@ and open the template in the editor.
         <div id="listeCli">
             <div class="header">
                 <h2>Tableau de bord clients</h2>
+                
                 <div class="progress-container">
                     <div class="progress-bar" id="myBar"></div>
                 </div>  
+            </div> 
+            
+            <div class="form-group">
+            <label for="email">Rechercher par nom :</label>
+            <input type="email" class="form-control" id="saisieNom">
+            <div id="zoneaff" class="form-control"></div>
             </div>
+            
+            
             <div id="contentcli">
                 <!--the table shows the clients in programme-->
                 <div id="cliProg"></div>
