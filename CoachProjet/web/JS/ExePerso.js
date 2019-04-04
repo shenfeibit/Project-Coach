@@ -162,6 +162,11 @@ function addPerformancefinal(){
     xhr.send();   
 }
 
+function finish_seance(){
+    var idSea = document.getElementById("idSea").value;
+    window.location.href="ServletEndSea?idSea="+idSea;
+}
+
 //the events corresponding for each function
 document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("load",showSeaName);
@@ -175,4 +180,5 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("hard").addEventListener("click",continu);
         document.getElementById("btn_Right").addEventListener("click",addPerformance);
         document.getElementById("btn_finish").addEventListener("click",addPerformancefinal);
+        document.getElementById("btn_finish").addEventListener("click",finish_seance);
 });
