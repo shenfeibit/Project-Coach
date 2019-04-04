@@ -8,6 +8,8 @@
 package Module;
 
 import Bd.*;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -399,4 +401,54 @@ public static List<Client> verifierClient (String nomSaisi) {
         tc.commit();
         return lstc;
     }
+
+//author Fei
+public static HashMap<String,Double[]> evoluationBilan(int idCli){
+    Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+    Transaction tc = ses.beginTransaction();
+    Query q = ses.createQuery("from Seanceperso as sea where sea.programmeperso "
+            + "= (select idpp from Programmeperso as pp where pp.client = "+idCli+") "
+                    + "and sea.typesea='bilan'");
+    HashMap<String,Double[]> mres = new HashMap<String,Double[]>();
+    List<Seanceperso> lsea = (List<Seanceperso>) q.list();
+    Seanceperso b1 = lsea.get(0);
+    Seanceperso b2 = lsea.get(lsea.size()-1);
+    
+    //for the evaluations of bras
+    Double[] resB = new Double[3];
+    resB[0]=b1.getBras();
+    resB[1]=b2.getBras();
+    resB[2]=new BigDecimal(resB[1]-resB[0]).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+    mres.put("Bras",resB);
+    
+    //for poitrine
+    Double[] resP = new Double[3];
+    resP[0]=b1.getPoitrine();
+    resP[1]=b2.getPoitrine();
+    resP[2]=new BigDecimal(resP[1]-resP[0]).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+    mres.put("Poitrine",resP);
+    
+    //for Taille
+    Double[] resT = new Double[3];
+    resT[0]=b1.getTaille();
+    resT[1]=b2.getTaille();
+    resT[2]=new BigDecimal(resT[1]-resT[0]).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+    mres.put("Taille",resT);
+    
+    //for hanches
+    Double[] resH = new Double[3];
+    resH[0]=b1.getHanches();
+    resH[1]=b2.getHanches();
+    resH[2]=new BigDecimal(resH[1]-resH[0]).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+    mres.put("Hanches",resH);
+    
+    //for Cuisses
+    Double[] resC = new Double[3];
+    resC[0]=b1.getCuisses();
+    resC[1]=b2.getCuisses();
+    resC[2]=new BigDecimal(resC[1]-resC[0]).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+    mres.put("Cuisses",resC);
+    tc.commit();
+    return mres;
+}
 }

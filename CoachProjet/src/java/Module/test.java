@@ -15,10 +15,11 @@ public class test {
      public static void main (String[] args) throws Exception
         {
 
-             HashMap<Integer,Integer> listexe =HibernateMethode.getOrderExe(5);
-             for(Integer i : listexe.keySet()){
-                 System.out.println(i + "-"+listexe.get(i));
+             HashMap<String,Double[]> mres = HibernateMethode.evoluationBilan(3);
+             for (String mes : mres.keySet()){
+                 System.out.println(mes+" :"+ mres.get(mes)[0]+"/"+ mres.get(mes)[1]+"/"+ mres.get(mes)[2]);
              }
+             
           
 
 }
