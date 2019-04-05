@@ -52,7 +52,6 @@ try (PrintWriter out = response.getWriter()) {
                     Map<String,Client> listecli= new TreeMap<String, Client>(
                     new Comparator<String>() {
                         public int compare(String obj1, String obj2) {
-                            // 降序排序
                             return obj1.compareTo(obj2);
                         }
                     });

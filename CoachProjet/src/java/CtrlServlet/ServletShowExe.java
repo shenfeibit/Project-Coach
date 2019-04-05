@@ -42,19 +42,12 @@ public class ServletShowExe extends HttpServlet {
                 out.println("<libexe>"+ep.getLibexe()+"</libexe>");
                 out.println("<descripexe>"+ep.getDescripexe()+"</descripexe>");
                 String photo;
-                String video;
                 if(ep.getPhotoexe().equals("")){
                     photo = "Bon Courage";
                 }else{
                     photo = ep.getPhotoexe();
                 }
-                if(ep.getVideoexe().equals("")){
-                    video = "Bon Courage";
-                }else{
-                    video = ep.getVideoexe();
-                }
                 out.println("<photoexe>"+photo+"</photoexe>");
-                out.println("<videoexe>"+video+"</videoexe>");
             }
             catch (Exception ex)
             {

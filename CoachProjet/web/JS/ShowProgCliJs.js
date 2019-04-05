@@ -147,7 +147,7 @@ function showinfoCli ()
                 for (var i =0; i < l_obj.length; i++){       
                     lib += l_obj[i].firstChild.nodeValue + "</br>";                    
                 }
-                lib+="</span>";
+                lib+="</span></br>";
                 var texte = lib+nom[0].firstChild.nodeValue + " " 
                         + prenom[0].firstChild.nodeValue + "</br>" 
                         + sexe[0].firstChild.nodeValue + "</br>" 
@@ -223,13 +223,15 @@ function evoluation(){
         };
         xhr.send();
 }
-
+function load(){
+    showinfoCli();
+    evoluation();
+    afficheProgression();
+    affichePP();
+}
 //the events corresponding for each function
 document.addEventListener("DOMContentLoaded", () => {
-    window.addEventListener("load",showinfoCli);
-    window.addEventListener("load",evoluation);
-    window.addEventListener("load",afficheProgression);
-    window.addEventListener("load",affichePP);
+    window.addEventListener("load",load);
 });
 
 
