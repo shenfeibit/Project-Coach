@@ -11,7 +11,10 @@ import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,11 +49,16 @@ try (PrintWriter out = response.getWriter()) {
                 try{
                     //get the result
                     ArrayList<Client> c = HibernateMethode.consultClientPgrm();
-                    HashMap<String,Client> listecli=new HashMap<>();
+                    Map<String,Client> listecli= new TreeMap<String, Client>(
+                    new Comparator<String>() {
+                        public int compare(String obj1, String obj2) {
+                            // 降序排序
+                            return obj1.compareTo(obj2);
+                        }
+                    });
                     for(Client cli : c){
-                        listecli.put(cli.getNomc(), cli);
-                    }
-                    
+                        listecli.put(cli.getNomc().toString(), cli);
+                    }                    
                     for (String nomci : listecli.keySet())
                     {
                     out.println("<client>");

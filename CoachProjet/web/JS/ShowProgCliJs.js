@@ -142,11 +142,12 @@ function showinfoCli ()
                         + image[0].firstChild.nodeValue 
                         + "\" width =\"150\" alt=\"image of Client\"/>";
                 //show all the objectifs of the client
-                var lib = "<h3>Objectifs</h3>";
+                var lib = "<strong>Objectifs : </strong><span id='list_objectif'>";
                 var l_obj = xhr.responseXML.getElementsByTagName("lib");
                 for (var i =0; i < l_obj.length; i++){       
                     lib += l_obj[i].firstChild.nodeValue + "</br>";                    
                 }
+                lib+="</span>";
                 var texte = lib+nom[0].firstChild.nodeValue + " " 
                         + prenom[0].firstChild.nodeValue + "</br>" 
                         + sexe[0].firstChild.nodeValue + "</br>" 
