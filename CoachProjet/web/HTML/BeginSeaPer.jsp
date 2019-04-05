@@ -11,7 +11,7 @@
         <title>Begin Seance</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" href="CSS/StyleBeginSeance.css" type="text/css" />
-        <script type="text/JavaScript" src="JS/PerformanceMens.js"></script>
+        <script type="text/JavaScript" src="PerformanceMens"></script>
         
         <link href="CSS/bootstrap.min.css" rel="stylesheet" type="text/css">
         <!-- Fonts -->
@@ -45,17 +45,18 @@
                         <div class="form-group">
                             <input type="text" class="form-control" name="idCalme" placeholder="00" required/>
                         </div>
-                        <label class="control-label col-sm-2" for="email">Fréquence après 30 flexions complètes en 45 sec </label>
+                        <p>Fréquence après 30 flexions complètes en 45 sec </p> 
                         <div class="form-group">
                             <input type="text" class="form-control" name="idFlex" placeholder="00*" required />
                         </div>
-                        <label class="control-label col-sm-2" for="email">Fréquence 1 min après exercice allongé</label>
+                        <p>Fréquence 1 min après exercice allongé</p> 
                         <div class="form-group">
                             <input type="text" class="form-control" name="idExAll" placeholder="00*" required/>
                         </div>
                         <div class="form-group">
                         <%
                             String idSea = (String)session.getAttribute("idSea");
+                            out.println("<input type='hidden' id='idSea' value='"+idSea+"'>");
                             out.println("<input type='hidden' name='idSea' value='"+idSea+"'>");
                         %>
                         <input type="submit" class="btnSubmitFreq" value="Enregistrer" />

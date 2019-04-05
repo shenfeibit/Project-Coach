@@ -5,9 +5,11 @@
  */
 package CtrlServlet;
 
+import Bd.Exerciseperso;
+import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author 21611943
+ * @author 21611924
  */
-public class ServletBeginSea extends HttpServlet {
+public class ServletEndSeaPerformance extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,15 +32,23 @@ public class ServletBeginSea extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        {
+        response.setContentType("application/xml;charset=UTF-8");
+            response.setCharacterEncoding("UTF-8");
             String idSea = request.getParameter("idSea");
-            try{
-                response.sendRedirect("BeginSeance?idSea="+idSea);
+            
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<?xml version=\"1.0\"?>");
+            out.print("<l_exe>");
+            HibernateMethode.finishSeance(Integer.parseInt(idSea));
+            HashMap<Integer,Exerciseperso> mexp = new HashMap();
+            mexp = HibernateMethode.showExePersoBySea(Integer.parseInt(idSea));
+            for(int ordEx: mexp.keySet()){
+                out.print("<exe>");
+                out.println("<libexe>"+mexp.get(ordEx).getLibexe()+"</libexe>");
+                out.println("<perexe>"+mexp.get(ordEx).getPerformance()+"</perexe>");
+                out.print("</exe>");
             }
-            catch(Exception ex){
-                out.println("<erreur>ServletBeginSea Erreur - " + ex.getMessage() + "</erreur>");
-            }
+            out.print("</l_exe>");
         }
     }
 

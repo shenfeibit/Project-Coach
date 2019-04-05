@@ -4,42 +4,74 @@
         <servlet-name>ServletAccueilClient</servlet-name>
         <servlet-class>CtrlServlet.ServletAccueilClient</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BilanExoDo</servlet-name>
+        <jsp-file>/JS/BilanExoDo.js</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletEnregBilan</servlet-name>
+        <servlet-class>CtrlServlet.ServletEnregBilan</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletAccueilClient</servlet-name>
         <url-pattern>/ServletAccueilClient</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>FreqMens</servlet-name>
-        <jsp-file>/HTML/FreqMens.jsp</jsp-file>
+        <servlet-name>ServletAddPer</servlet-name>
+        <servlet-class>CtrlServlet.ServletAddPer</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAddPer</servlet-name>
+        <url-pattern>/ServletAddPer</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletEndSea</servlet-name>
+        <servlet-class>CtrlServlet.ServletEndSea</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletEndSea</servlet-name>
+        <url-pattern>/ServletEndSea</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletEndSeaPerformance</servlet-name>
+        <servlet-class>CtrlServlet.ServletEndSeaPerformance</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletEndSeaPerformance</servlet-name>
+        <url-pattern>/ServletEndSeaPerformance</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EndSeance</servlet-name>
+        <jsp-file>/HTML/EndSeancejsp.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EndSeance</servlet-name>
+        <url-pattern>/EndSeance</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FunctionEndSeance</servlet-name>
+        <jsp-file>/JS/EndSeance.js</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FunctionEndSeance</servlet-name>
+        <url-pattern>/FunctionEndSeance</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletReturnPageClient</servlet-name>
+        <servlet-class>CtrlServlet.ServletReturnPageClient</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletReturnPageClient</servlet-name>
+        <url-pattern>/ServletReturnPageClient</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>ServletVerifSea</servlet-name>
         <servlet-class>CtrlServlet.ServletVerifSea</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>BeginSeancesBilan</servlet-name>
-        <jsp-file>/HTML/BeginSeancesBilan.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>PerformanceMens</servlet-name>
-        <jsp-file>/JS/PerformanceMens.js</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>BeginSeaPer</servlet-name>
-        <jsp-file>/HTML/BeginSeaPer.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>BeginSeaBilanExo</servlet-name>
-        <jsp-file>/HTML/BeginSeaBilanExo.jsp</jsp-file>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>FreqMens</servlet-name>
-        <url-pattern>/FreqMens</url-pattern>
+        <servlet-name>ServletVerifSea</servlet-name>
+        <url-pattern>/ServletVerifSea</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>ServletExerciseBySea</servlet-name>
-        <servlet-class>CtrlServlet.ServletExerciseBySea</servlet-class>
-    </servlet>
     <servlet>
         <servlet-name>ServletMens</servlet-name>
         <servlet-class>CtrlServlet.ServletMens</servlet-class>
@@ -48,14 +80,14 @@
         <servlet-name>ServletMens</servlet-name>
         <url-pattern>/ServletMens</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletExerciseBySea</servlet-name>
+        <servlet-class>CtrlServlet.ServletExerciseBySea</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletExerciseBySea</servlet-name>
         <url-pattern>/ServletExerciseBySea</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>ServletBeginSea</servlet-name>
-        <servlet-class>CtrlServlet.ServletBeginSea</servlet-class>
-    </servlet>
     <servlet>
         <servlet-name>ServletPerfBilan</servlet-name>
         <servlet-class>CtrlServlet.ServletPerfBilan</servlet-class>
@@ -64,10 +96,6 @@
         <servlet-name>ServletPerfBilan</servlet-name>
         <url-pattern>/ServletPerfBilan</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ServletBeginSea</servlet-name>
-        <url-pattern>/ServletBeginSea</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>BeginSeance</servlet-name>
         <jsp-file>/HTML/BeginSeance.jsp</jsp-file>
@@ -75,6 +103,14 @@
     <servlet-mapping>
         <servlet-name>BeginSeance</servlet-name>
         <url-pattern>/BeginSeance</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletBeginSea</servlet-name>
+        <servlet-class>CtrlServlet.ServletBeginSea</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletBeginSea</servlet-name>
+        <url-pattern>/ServletBeginSea</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ServletSeanceStandPs</servlet-name>
@@ -212,25 +248,53 @@
         <servlet-name>PageClient</servlet-name>
         <url-pattern>/PageClient</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletEvoluation</servlet-name>
+        <servlet-class>CtrlServlet.ServletEvoluation</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>ServletVerifSea</servlet-name>
-        <url-pattern>/ServletVerifSea</url-pattern>
+        <servlet-name>ServletEvoluation</servlet-name>
+        <url-pattern>/ServletEvoluation</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>BeginSeaPer</servlet-name>
+        <jsp-file>/HTML/BeginSeaPer.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BeginSeaPer</servlet-name>
+        <url-pattern>/BeginSeaPer</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>BeginSeaBilanExo</servlet-name>
+        <jsp-file>/HTML/BeginSeaBilanExo.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BeginSeaBilanExo</servlet-name>
+        <url-pattern>/BeginSeaBilanExo</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>BeginSeancesBilan</servlet-name>
+        <jsp-file>/HTML/BeginSeancesBilan.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BeginSeancesBilan</servlet-name>
         <url-pattern>/BeginSeancesBilan</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>PerformanceMens</servlet-name>
+        <jsp-file>/JS/PerformanceMens.js</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PerformanceMens</servlet-name>
         <url-pattern>/PerformanceMens</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>BeginSeaPer</servlet-name>
-        <url-pattern>/BeginSeaPer</url-pattern>
+        <servlet-name>BilanExoDo</servlet-name>
+        <url-pattern>/BilanExoDo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>BeginSeaBilanExo</servlet-name>
-        <url-pattern>/BeginSeaBilanExo</url-pattern>
+        <servlet-name>ServletEnregBilan</servlet-name>
+        <url-pattern>/ServletEnregBilan</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

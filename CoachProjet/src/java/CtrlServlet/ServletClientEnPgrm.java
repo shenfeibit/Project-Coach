@@ -11,6 +11,10 @@ import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,19 +49,27 @@ try (PrintWriter out = response.getWriter()) {
                 try{
                     //get the result
                     ArrayList<Client> c = HibernateMethode.consultClientPgrm();
-
-                    for (Client ci : c)
+                    Map<String,Client> listecli= new TreeMap<String, Client>(
+                    new Comparator<String>() {
+                        public int compare(String obj1, String obj2) {
+                            return obj1.compareTo(obj2);
+                        }
+                    });
+                    for(Client cli : c){
+                        listecli.put(cli.getNomc().toString(), cli);
+                    }                    
+                    for (String nomci : listecli.keySet())
                     {
                     out.println("<client>");
-                    out.print("<id>"+ci.getIdc()+"</id>");
-                    out.println("<nom>"+ci.getNomc()+"</nom>");
-                    out.println("<prenom>"+ci.getPrenomc()+"</prenom>");
-                    out.println("<sexe>"+ci.getSexec()+"</sexe>");
-                    out.println("<image>"+ci.getPhotoc()+"</image>");
-                    Programmeperso prog=HibernateMethode.seeProgrammeCli(ci.getIdc());
+                    out.print("<id>"+listecli.get(nomci).getIdc()+"</id>");
+                    out.println("<nom>"+listecli.get(nomci).getNomc()+"</nom>");
+                    out.println("<prenom>"+listecli.get(nomci).getPrenomc()+"</prenom>");
+                    out.println("<sexe>"+listecli.get(nomci).getSexec()+"</sexe>");
+                    out.println("<image>"+listecli.get(nomci).getPhotoc()+"</image>");
+                    Programmeperso prog=HibernateMethode.seeProgrammeCli(listecli.get(nomci).getIdc());
                     out.println("<nomprog>"+prog.getLibpp()+"</nomprog>");
                     float k = 0;
-                    k = HibernateMethode.seeProgressionProg(ci.getIdc());
+                    k = HibernateMethode.seeProgressionProg(listecli.get(nomci).getIdc());
                     int res = Math.round(k*100);
                     out.println("<percent>"+res+"</percent>");
                     out.println("</client>");                    

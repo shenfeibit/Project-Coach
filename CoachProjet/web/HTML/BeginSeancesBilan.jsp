@@ -11,7 +11,7 @@
         <title>Begin Seance</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" href="CSS/StyleBeginSeance.css" type="text/css" />
-        <script type="text/JavaScript" src="JS/PerformanceMens.js"></script>
+        <script type="text/JavaScript" src="PerformanceMens"></script>
         
         <link href="CSS/bootstrap.min.css" rel="stylesheet" type="text/css">
         <!-- Fonts -->
@@ -34,7 +34,6 @@
         
         <div id="seance">
             <div id="buttonleft">
-                <input id="btn_Left" class="btnLeftRight" type="button" value="<" />
             </div>
             
             <div id="exercise">
@@ -64,6 +63,7 @@
                         <div class="form-group">
                         <%
                             String idSea = request.getParameter("idSea");
+                            out.println("<input type='hidden' id='idSea' value='"+idSea+"'>");
                             out.println("<input type='hidden' name='idSea' value='"+idSea+"'>");
                         %>
                         <input type="submit" class="btnSubmitMens" value="Enregistrer" /> 

@@ -17,12 +17,14 @@
     <body>
         <%
             String idCli = (String) session.getAttribute("idC");
-            
         %>
+        <input type="hidden" id="idClient" value="<%=idCli%>">
          <div>
             <div id="image"></div>
-            <div id="descp"><p>the informations of the client</p></div>
-            <div id="objectif"><h1>Objectif</h1> <input type="hidden" id="idClient" value="<%=idCli%>"><p id="libobj">client's objectif</p></div>
+            <div id="descp">
+                <p>the informations of the client</p>
+            </div>
+            <div id="evoluation"></div>
         </div>
         
         <div id="nameProg"></div>

@@ -5,9 +5,11 @@
  */
 package CtrlServlet;
 
+import Bd.*;
+import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 21611943
  */
-public class ServletBeginSea extends HttpServlet {
+public class ServletEvoluation extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,16 +32,35 @@ public class ServletBeginSea extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        {
-            String idSea = request.getParameter("idSea");
-            try{
-                response.sendRedirect("BeginSeance?idSea="+idSea);
+        
+        
+            response.setContentType("application/xml;charset=UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            try (PrintWriter out = response.getWriter()) {
+                //write the page XML
+                out.println("<?xml version=\"1.0\"?>");
+                out.println("<mesurables>");
+                //get the param
+                String idCli = request.getParameter("idc");
+            try {
+                HashMap<String,String[]> mres = HibernateMethode.evoluationBilan(Integer.parseInt(idCli));
+                for (String mes : mres.keySet()){
+                    out.println("<mes>"
+                            +"<libM>"+mes+"</libM>"
+                            +"<l_res>"
+                                +"<r1>"+ mres.get(mes)[0]+"</r1>"
+                                +"<r2>"+ mres.get(mes)[1]+"</r2>"
+                                +"<r3>"+ mres.get(mes)[2]+"</r3>"
+                            +"</l_res>"
+                        +"</mes>");
+                }
             }
-            catch(Exception ex){
-                out.println("<erreur>ServletBeginSea Erreur - " + ex.getMessage() + "</erreur>");
-            }
-        }
+                catch (Exception ex)
+                    {
+                        out.println("<erreur>ServletTableProg Erreur - " + ex.getMessage() + "</erreur>");
+                    }
+            out.println("</mesurables>");
+	}
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

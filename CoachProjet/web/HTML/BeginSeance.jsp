@@ -32,21 +32,28 @@
                 <h2 id="nameExercise">name of the exercise</h2>
                 <div id="libExercise">description of the exercise</div>
                 <div id="img_video"><input type="image"  src="IMAGE/performance/easy.png" width ="150" alt="image easy"/></div>
+                <div id="clock"><span id="time_minute">0</span> : <span id="time_second">0</span></div>
+                <span id="time_out"></span>
                 <div>
                     <input class="btn_time" type="button" id="time_begin" value="begin">
                     <input class="btn_time" type="button" id="time_end" value="end">
-                    <span id="time"></span><span id="time_out"></span>
                 </div>
-                <div id="performance">
-                    <h1>Performance : </h1>
-                    <table>
-                        <tr>
-                            <td><div id="easy"><input type="image"  src="IMAGE/performance/easy.png" width ="50" alt="image easy"/></div></td>
-                            <td><div id="normal"><input type="image"  src="IMAGE/performance/normal.png" width ="50" alt="image easy"/></div></td>
-                            <td><div id="hard"><input type="image"  src="IMAGE/performance/hard.png" width ="50" alt="image easy"/></div></td>
-                        </tr>
-                    </table>
+                 <div id="performance">
+                    <h3>How do you feel ? </h3>
+                        <input type="radio" name="emotion" id="easy" value="1" class="input-hidden" />
+                            <label for="easy">
+                              <img src="IMAGE/performance/easy.png" alt="image easy"/>
+                            </label>
+                        <input type="radio" name="emotion" id="normal" value="2" class="input-hidden" />
+                            <label for="normal">
+                              <img src="IMAGE/performance/normal.png" alt="image normal"/>
+                            </label>
+                        <input type="radio" name="emotion" id="hard" value="3" class="input-hidden" />
+                            <label for="hard">
+                              <img src="IMAGE/performance/hard.png" alt="image hard"/>
+                            </label>            
                 </div>
+                <input id="btn_finish" class="btn_time" type="button" value="Finish">
             </div>  
             
             <div id="buttonright">

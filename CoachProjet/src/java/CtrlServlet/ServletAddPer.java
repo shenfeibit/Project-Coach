@@ -5,9 +5,9 @@
  */
 package CtrlServlet;
 
+import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author 21611943
+ * @author 21611924
  */
-public class ServletBeginSea extends HttpServlet {
+public class ServletAddPer extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,16 +31,10 @@ public class ServletBeginSea extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        {
-            String idSea = request.getParameter("idSea");
-            try{
-                response.sendRedirect("BeginSeance?idSea="+idSea);
-            }
-            catch(Exception ex){
-                out.println("<erreur>ServletBeginSea Erreur - " + ex.getMessage() + "</erreur>");
-            }
+        String performance = request.getParameter("performance");
+        String idExe = request.getParameter("idExe");
+        HibernateMethode.addPerformance(Integer.parseInt(idExe), performance);
         }
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

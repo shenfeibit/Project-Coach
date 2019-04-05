@@ -11,7 +11,7 @@
         <title>Begin Seance</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" href="CSS/StyleBeginSeance.css" type="text/css" />
-        <script type="text/JavaScript" src="JS/PerformanceMens.js"></script>
+        <script type="text/JavaScript" src="BilanExoDo"></script>
         
         <link href="CSS/bootstrap.min.css" rel="stylesheet" type="text/css">
         <!-- Fonts -->
@@ -28,6 +28,7 @@
     <body>
         <%
             String idSea = (String)session.getAttribute("idSea");
+            out.println("<input type='hidden' id='idSea' value='"+idSea+"'>");
             out.println("<input type='hidden' name='idSea' value='"+idSea+"'>");
         %>
         
@@ -40,44 +41,31 @@
             </div>
             
             <div id="exercise">
-                <div id="exe">
                 <h2 id="nameExercise">name of the exercise</h2>
                 <div id="libExercise">description of the exercise</div>
                 <div id="img_video"><input type="image"  src="IMAGE/performance/easy.png" width ="150" alt="image easy"/></div>
-                <div>
-                    <input class="btn_time" type="button" id="time_begin" value="begin">
-                    <input class="btn_time" type="button" id="time_end" value="end">
-                    <span id="time"></span><span id="time_out"></span>
-                </div>
+                
                 
                 <div>
-                    <h3>Nombre répétion et durée</h3>
-                    <form action="ServletPerfBilan" method="GET">
-                        <label class="control-label col-sm-2" for="email">Durée réalisée</label>            
+                    <h2>Nombre répétion et durée</h2>
+                    <div>
+                    <p>Durée réalisée</p>
+                    <div id="clock"><span id="time_minute">0</span> : <span id="time_second">0</span></div>
+                    <span id="time_out"></span>
+                    <div>
+                        <input class="btn_time" type="button" id="time_begin" value="begin">
+                        <input class="btn_time" type="button" id="time_end" value="end">
+                    </div>
+                    </div>
+                    <div>
+                        <p>Nombre répetition réalisé</p>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="idDuree" placeholder="00" required/>
+                            <input id="nbrep" type="text" class="" name="idRepet" placeholder="0"/>
                         </div>
-                        <label class="control-label col-sm-2" for="email">Nombre répetition réalisé</label>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="idRepet" placeholder="00*" required/>
-                        </div>
-                        
-                        <div class="form-group">
-                        <!--<input type="hidden" name="idCoachAccueil" value="1" />-->
-                        <input type="submit" class="btnSubmitFreq" value="Suivant" />
-                        </div>
-                        <%
-                            String avrtCl = (String) request.getAttribute("avrtPerf");
-                            String errCl = (String) request.getAttribute("erreurReqBil");
-                            if(avrtCl!=null)
-                            out.println("<div class=\"form-group\"><a href=\"#\" class=\"ForgetPwd\">"+avrtCl+"</a></div>");
-                            if(errCl!=null)
-                            out.println("<div class=\"form-group\"><a href=\"#\" class=\"ForgetPwd\">"+errCl+"</a></div>");
-                   
-                        %>
-                    </form>
-                </div>
-                </div>
+                    </div>
+                    <input type="button" id="suivant" class="btn_time" value="Suivant" />
+                    <input type="button" id="Terminer" class="btn_time" value="Terminer" />
+                
             </div>  
             
             <div id="buttonright">

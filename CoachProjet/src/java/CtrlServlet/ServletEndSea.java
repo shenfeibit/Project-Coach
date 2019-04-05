@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author 21611943
+ * @author 21611924
  */
-public class ServletBeginSea extends HttpServlet {
+public class ServletEndSea extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,7 +34,7 @@ public class ServletBeginSea extends HttpServlet {
         {
             String idSea = request.getParameter("idSea");
             try{
-                response.sendRedirect("BeginSeance?idSea="+idSea);
+                response.sendRedirect("EndSeance?idSea="+idSea);
             }
             catch(Exception ex){
                 out.println("<erreur>ServletBeginSea Erreur - " + ex.getMessage() + "</erreur>");

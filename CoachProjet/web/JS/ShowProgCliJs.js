@@ -82,7 +82,6 @@ function affichePP ()
 			}
 		};
 	xhr.send();
-        afficheProgression ();
 	}
         
 // function which shows the progression of the taining of this client  
@@ -112,7 +111,6 @@ function afficheProgression ()
 		};
 	// send the query
 	xhr.send();
-        showinfoCli ();
         
 	}
         
@@ -143,33 +141,29 @@ function showinfoCli ()
                 var imageCli = "<img src=\"IMAGE/" 
                         + image[0].firstChild.nodeValue 
                         + "\" width =\"150\" alt=\"image of Client\"/>";
-                var texte = nom[0].firstChild.nodeValue + " " 
+                //show all the objectifs of the client
+                var lib = "<strong>Objectifs : </strong><span id='list_objectif'>";
+                var l_obj = xhr.responseXML.getElementsByTagName("lib");
+                for (var i =0; i < l_obj.length; i++){       
+                    lib += l_obj[i].firstChild.nodeValue + "</br>";                    
+                }
+                lib+="</span></br>";
+                var texte = lib+nom[0].firstChild.nodeValue + " " 
                         + prenom[0].firstChild.nodeValue + "</br>" 
                         + sexe[0].firstChild.nodeValue + "</br>" 
                         + tele[0].firstChild.nodeValue + "</br>" 
                         + email[0].firstChild.nodeValue + "</br>" ;
-                
-                var l_obj = xhr.responseXML.getElementsByTagName("lib");
-                var lib = "<p>";
-                
-                //show all the objectifs of the client
-                for (var i =0; i < l_obj.length; i++){       
-                    lib += l_obj[i].firstChild.nodeValue + "</br>";                    
-                }
-                lib += "</p>";
                 
                 //show all the information
                 var eltimage = document.getElementById("image");;
                 eltimage.innerHTML = imageCli; 
                 var eltdescp = document.getElementById("descp");
 		eltdescp.innerHTML = texte; 
-                var eltlib = document.getElementById("libobj");
-		eltlib.innerHTML = lib;  
-                
-
             };
 	};
+        
         xhr.send();
+        
     }
     
 
@@ -196,13 +190,48 @@ function click_next(){
                         confirm("Cet seance n'est pas ouvert, voici des détails"
                                 +texte);
                     }
-            }
+            };
     xhr.send();
 }
 
+function evoluation(){
+    var xhr = new XMLHttpRequest();
+        var param=encodeURIComponent(document.getElementById("idClient").value);
+	xhr.open("GET","ServletEvoluation?idc=" + param);
+        xhr.onload = function(){
+            //if the connect succees
+            if (xhr.status === 200){
+                var res = xhr.responseXML;
+                var l_mes = res.getElementsByTagName("mes");
+                
+                var texte ="<table><tr><td>Mesure</td><td>Bilan N°1</td><td>Bilan Dernier</td><td>Evoluation</td></tr>";
+                for(var i=0; i<l_mes.length; i++){
+                    var mes=l_mes[i];
+                    texte+="<tr><td>"+mes.children[0].firstChild.nodeValue;+"</td>";
+                    var l_res=mes.children[1];
+                    for(var j=0;j<3;j++){
+                        texte+="<td>"+l_res.children[j].firstChild.nodeValue+"</td>";
+                    }
+                    texte+="</tr>";
+                }
+                texte += "</table>";
+                var elt = document.getElementById("evoluation");
+                elt.innerHTML = texte;
+                
+            }
+            
+        };
+        xhr.send();
+}
+function load(){
+    showinfoCli();
+    evoluation();
+    afficheProgression();
+    affichePP();
+}
 //the events corresponding for each function
 document.addEventListener("DOMContentLoaded", () => {
-    window.addEventListener("load",affichePP);
+    window.addEventListener("load",load);
 });
 
 

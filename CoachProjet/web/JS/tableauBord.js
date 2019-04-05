@@ -23,7 +23,7 @@ function showIdCliP ()
                         var rep = xhr.responseXML;
                         //get all the info of clients from servelet
                         var l_obj=rep.getElementsByTagName("client");
-                        var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on Programme</h2></div>";
+                        var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients en Programme</h2></div>";
                                 for(var i=0;i<l_obj.length;i++){
                                 var clip = l_obj[i].children;
                                     texte+="<div id=\"imagecl\"><div class='photocli'>"
@@ -57,6 +57,7 @@ function afficheCliP () {
     showinfoCli(param);
     affichePP(param);
     afficheProgression(param);
+    evoluation(param);
 }
 
 //show the list of all the clients which demand a programme
@@ -71,7 +72,7 @@ function showIdCliNonP ()
                     {
                         var rep = xhr.responseXML;
                         var l_obj=rep.getElementsByTagName("client");
-                            var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients on demande</h2></div>";
+                            var texte="<div class='content_liste_client'><h2>"+l_obj.length+" Clients en demande</h2></div>";
                             for(var i=0;i<l_obj.length ;i++){
                                 var clip = l_obj[i].children;
                                     texte+="<div id=\"imagecl\"><div class='photocliNoProg'>"
@@ -105,6 +106,9 @@ function afficheCliNonP(){
     showinfoCli(param);
     showType(param);
     showProgramme(param);
+    var texte="<p></p>";
+    var elt = document.getElementById("evoluation");
+                elt.innerHTML = texte;
 }
     
 //show all infomation about a client which has been chose
@@ -131,26 +135,24 @@ function showinfoCli (elt)
                 var imageCli = "<img src=\"IMAGE/" 
                         + image[0].firstChild.nodeValue 
                         + "\" width =\"150\" alt=\"image of Client\"/>";
-                var texte = nom[0].firstChild.nodeValue + " " 
+                //show all the objectifs of the client
+                var lib = "<strong>Objectifs : </strong><span id='list_objectif'>";
+                var l_obj = xhr.responseXML.getElementsByTagName("lib");
+                for (var i =0; i < l_obj.length; i++){       
+                    lib += l_obj[i].firstChild.nodeValue + "</br>";                    
+                }
+                lib+="</span></br>";
+                var texte = lib+nom[0].firstChild.nodeValue + " "
                         + prenom[0].firstChild.nodeValue + "</br>" 
                         + sexe[0].firstChild.nodeValue + "</br>" 
                         + tele[0].firstChild.nodeValue + "</br>" 
                         + email[0].firstChild.nodeValue + "</br>" ;
                 
-                var l_obj = xhr.responseXML.getElementsByTagName("lib");
-                var lib = "<p>";
-                for (var i =0; i < l_obj.length; i++){       
-                    lib += l_obj[i].firstChild.nodeValue + "</br>";                    
-                }
-                lib += "</p>";
-                
                 //show all the information
                 var eltimage = document.getElementById("image");;
                 eltimage.innerHTML = imageCli; 
                 var eltdescp = document.getElementById("descp");
-		eltdescp.innerHTML = texte; 
-                var eltlib = document.getElementById("libobj");
-		eltlib.innerHTML = lib;  
+		eltdescp.innerHTML = texte;  
                 var eltid = document.getElementById("idClient");
                 eltid.value =param ;
                 document.getElementById("listeCli").style.display = "none";
@@ -510,7 +512,36 @@ function showType ()
         }
 
     }
-       
+    
+function evoluation(elt){
+    var xhr = new XMLHttpRequest();
+        var param=encodeURIComponent(elt.firstChild.nodeValue);
+	xhr.open("GET","ServletEvoluation?idc=" + param);
+        xhr.onload = function(){
+            //if the connect succees
+            if (xhr.status === 200){
+                var res = xhr.responseXML;
+                var l_mes = res.getElementsByTagName("mes");
+                
+                var texte ="<table border=\"1\"><tr><td>Mesure</td><td>Bilan N°1</td><td>Bilan Dernier</td><td>Evoluation</td></tr>";
+                for(var i=0; i<l_mes.length; i++){
+                    var mes=l_mes[i];
+                    texte+="<tr><td>"+mes.children[0].firstChild.nodeValue;+"</td>";
+                    var l_res=mes.children[1];
+                    for(var j=0;j<3;j++){
+                        texte+="<td>"+l_res.children[j].firstChild.nodeValue+"</td>";
+                    }
+                    texte+="</tr>";
+                }
+                texte += "</table>";
+                var elt = document.getElementById("evoluation");
+                elt.innerHTML = texte;
+                
+            }
+            
+        };
+        xhr.send();
+}
 
       //the events corresponding for each function 
 document.addEventListener("DOMContentLoaded", () => {

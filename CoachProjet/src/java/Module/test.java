@@ -5,7 +5,14 @@
  */
 package Module;
 
+import Bd.Client;
+import Bd.Exerciseperso;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  *
@@ -14,11 +21,14 @@ import java.util.HashMap;
 public class test {
      public static void main (String[] args) throws Exception
         {
-            boolean h =HibernateMethode.verifSea(8);
-//             for(Integer i : listexe.keySet()){
-                 System.out.println(h);
-             }
+            Exerciseperso ep = HibernateMethode.showExe(21);
+                String photo;
+                if(ep.getPhotoexe().equals("")){
+                    photo = "Bon Courage";
+                }else{
+                    photo = ep.getPhotoexe();
+                }
+                System.out.println("<photoexe>"+photo+"</photoexe>");
 
-
-}
+}}
 

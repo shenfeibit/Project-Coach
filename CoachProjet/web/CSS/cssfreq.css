@@ -1,6 +1,7 @@
-body{
+Body{
     text-align: center;
 }
+
 h1{
     font-size: 45px;
     margin:0;
@@ -19,7 +20,7 @@ h1{
     float:left;
     width:78%;
     height: 750px;
-    background-color: #FFDC00;
+    background-color: #fffdef;
     padding:25px 2%;
     text-align: center;
 }
@@ -34,7 +35,7 @@ h1{
 .btnLeftRight{
     position:relative;
     border-style: dashed;
-    background-color: #f08080;
+    background-color: #C0C0C0;
     font-size: 200%;
     color:grey;
     width: 80%;
@@ -50,18 +51,28 @@ h1{
     border: 2px dashed #333;
     margin: 0 auto;
 }
+#clock{
+    height: 60px;
+    width: 150px;
+    border:7px solid #C0C0C0;
+    border-radius: 2px;
+    text-align: center;
+    font-size: 30px;
+    margin:0 auto;
+}
 
 .btn_time{
-    background-color: #f08080;
-    width:150px;
-    border: dashed 2px #f08080;
+    background-color: #C0C0C0;
+    width:90px;
+    border: dashed 2px gold;
+    border-spacing: 2px;
     color: white;
-    padding: 16px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
+    margin: 0 auto;
+    margin-top: 5px;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
@@ -73,9 +84,44 @@ h1{
     color: #333;
 }
 
+#return{
+    background-color: #f6f6fa;
+    color: #333;
+    border: 1px solid #fff;
+    box-shadow: 0 0 3px 3px #090;
+    font-size: 25px;
+}
+
 table{
     margin:0 auto;
-    border-collapse: collapse;
-    
+    border-collapse: collapse;  
+}
+
+#easy #normal #hard {
+    margin: 0 10px;
+}
+
+.input-hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+input[type=radio]:checked + label>img {
+  border: 1px solid #fff;
+  box-shadow: 0 0 3px 3px #090;
+}
+
+/* Stuff after this is only to make things more pretty */
+input[type=radio] + label>img {
+  border: 1px dashed #444;
+  width: 70px;
+  height: 70px;
+  transition: 500ms all;
+}
+
+input[type=radio]:checked + label>img {
+  transform: 
+    rotateZ(-10deg) 
+    rotateX(10deg);
 }
 

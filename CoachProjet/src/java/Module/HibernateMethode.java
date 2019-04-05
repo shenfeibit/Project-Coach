@@ -8,6 +8,8 @@
 package Module;
 
 import Bd.*;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -274,7 +276,7 @@ public static void affecter(int idps, int idc){
             Query qProg = ses.createQuery("from Possederps as pp where pp.programmestandard=" + idps);
             List<Possederps> listpossederps = (List<Possederps>) qProg.list();
             Programmestandard ss = listpossederps.get(0).getProgrammestandard();
-            Set<Seancestandard> setSes = new HashSet<Seancestandard>();
+            Set<Seancestandard> setSes = new HashSet<>();
             for(Possederps ps : listpossederps){
                setSes.add(ps.getSeancestandard());
             }
@@ -324,6 +326,7 @@ public static HashMap<Integer,Exerciseperso> showExePersoBySea(int idSea){
             List<Exerciseperso> lexe = (List<Exerciseperso>) q.list();
             for(Exerciseperso exe: lexe){
                 l_exep.put(exe.getOrdreexe(), exe);
+                exe.getLibexe();
             }
             tc.commit();
             return l_exep;
@@ -400,6 +403,130 @@ public static List<Client> verifierClient (String nomSaisi) {
         return lstc;
     }
 
+//author Fei
+public static HashMap<String,String[]> evoluationBilan(int idCli){
+    Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+    Transaction tc = ses.beginTransaction();
+    Query q = ses.createQuery("from Seanceperso as sea where sea.programmeperso "
+            + "= (select idpp from Programmeperso as pp where pp.client = "+idCli+") "
+                    + "and sea.typesea='bilan' and sea.datesea is not null");
+    HashMap<String,String[]> mres = new HashMap<String,String[]>();
+    List<Seanceperso> lsea = (List<Seanceperso>) q.list();
+    if(lsea.size()>1){
+        Seanceperso b1 = lsea.get(0);
+        Seanceperso b2 = lsea.get(lsea.size()-1);
+
+        //for the evaluations of bras
+        String[] resB = new String[3];
+        resB[0]=b1.getBras().toString();
+        resB[1]=b2.getBras().toString();
+        resB[2]=new BigDecimal(Double.parseDouble(resB[1])-Double.parseDouble(resB[0]))
+                .setScale(2,BigDecimal.ROUND_HALF_UP).toString();
+        mres.put("Bras",resB);
+
+        //for poitrine
+        String[] resP = new String[3];
+        resP[0]=b1.getPoitrine().toString();
+        resP[1]=b2.getPoitrine().toString();
+        resP[2]=new BigDecimal(Double.parseDouble(resP[1])-Double.parseDouble(resP[0]))
+                .setScale(2,BigDecimal.ROUND_HALF_UP).toString();
+        mres.put("Poitrine",resP);
+
+        //for Taille
+        String[] resT = new String[3];
+        resT[0]=b1.getTaille().toString();
+        resT[1]=b2.getTaille().toString();
+        resT[2]=new BigDecimal(Double.parseDouble(resT[1])-Double.parseDouble(resT[0]))
+                .setScale(2,BigDecimal.ROUND_HALF_UP).toString();
+        mres.put("Taille",resT);
+
+        //for hanches
+        String[] resH = new String[3];
+        resH[0]=b1.getHanches().toString();
+        resH[1]=b2.getHanches().toString();
+        resH[2]=new BigDecimal(Double.parseDouble(resH[1])-Double.parseDouble(resH[0]))
+                .setScale(2,BigDecimal.ROUND_HALF_UP).toString();
+        mres.put("Hanches",resH);
+
+        //for Cuisses
+        String[] resC = new String[3];
+        resC[0]=b1.getCuisses().toString();
+        resC[1]=b2.getCuisses().toString();
+        resC[2]=new BigDecimal(Double.parseDouble(resC[1])-Double.parseDouble(resC[0]))
+                .setScale(2,BigDecimal.ROUND_HALF_UP).toString();
+        mres.put("Cuisses",resC);
+    }
+    else{
+        Seanceperso b1 = lsea.get(0);
+
+        //for the evaluations of bras
+        String[] resB = new String[3];
+        resB[0]=b1.getBras().toString();
+        resB[1]="-";
+        resB[2]="-";
+        mres.put("Bras",resB);
+
+        //for poitrine
+        String[] resP = new String[3];
+        resP[0]=b1.getPoitrine().toString();
+        resP[1]="-";
+        resP[2]="-";
+        mres.put("Poitrine",resP);
+
+        //for Taille
+        String[] resT = new String[3];
+        resT[0]=b1.getTaille().toString();
+        resT[1]="-";
+        resT[2]="-";
+        mres.put("Taille",resT);
+
+        //for hanches
+        String[] resH = new String[3];
+        resH[0]=b1.getHanches().toString();
+        resH[1]="-";
+        resH[2]="-";
+        mres.put("Hanches",resH);
+
+        //for Cuisses
+        String[] resC = new String[3];
+        resC[0]=b1.getCuisses().toString();
+        resC[1]="-";
+        resC[2]="-";
+        mres.put("Cuisses",resC);
+    }
+    tc.commit();
+    return mres;
+}
+public static void addPerformance (int idExe, String performance) {
+        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tc = ses.beginTransaction();
+        Query q = ses.createQuery("update Exerciseperso set PERFORMANCE = '"+ performance +"' where IDEXE="+idExe);
+        int result = q.executeUpdate();
+        tc.commit();
+    }
+
+public static void finishSeance (int idSea) {
+        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tc = ses.beginTransaction();
+        Date date = new Date();
+        
+        Query q = ses.createQuery("from Seanceperso as sp where idsea="+idSea);
+        Seanceperso sp=(Seanceperso)q.list().get(0);
+        sp.setDatesea(date);
+        ses.update(sp);
+        tc.commit();
+    }
+
+public static int showIdCli (int idSea){
+    Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+    Transaction tc = ses.beginTransaction();
+    Query q = ses.createQuery( " from Programmeperso as pp where pp.idpp in (select programmeperso from Seanceperso as sp where sp.idsea="+idSea+")" );
+    List<Programmeperso> lpp = (List<Programmeperso>) q.list();
+    Programmeperso pp = lpp.get(0);
+    int idCli = pp.getClient().getIdc();
+    tc.commit();
+    return idCli;
+    }
 public static void insertMensBilan(int idSea, double bra, double poi, double tou, double han, double cui){
     Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
     Transaction tc = ses.beginTransaction();
