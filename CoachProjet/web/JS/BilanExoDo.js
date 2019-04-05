@@ -92,8 +92,7 @@ function finish(){
         var xhr = new XMLHttpRequest();
         var duree = encodeURIComponent(temps);
         var nbrept = encodeURIComponent(document.getElementById("nbrep").value);
-        alert(duree);
-        alert(nbrept);
+       
 	xhr.open("GET","ServletEnregBilan?idExe="+ idExe+"&duree="+duree+"&nbrep="+nbrept);
         xhr.send();
         document.getElementById("exercise").innerHTML="<h1>Bravo, vous avez terminez le séance!</h1>";
