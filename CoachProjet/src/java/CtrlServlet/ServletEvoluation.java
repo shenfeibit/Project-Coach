@@ -5,10 +5,11 @@
  */
 package CtrlServlet;
 
-import Bd.Exerciseperso;
+import Bd.*;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author 21611945
+ * @author 21611943
  */
-public class ServletShowExe extends HttpServlet {
+public class ServletEvoluation extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,37 +32,35 @@ public class ServletShowExe extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/xml;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<?xml version=\"1.0\"?>");
-            out.println("<exercise>");
-            String idExe = request.getParameter("idExe");
-            try
-            {
-                Exerciseperso ep = HibernateMethode.showExe(Integer.parseInt(idExe));
-                out.println("<libexe>"+ep.getLibexe()+"</libexe>");
-                out.println("<descripexe>"+ep.getDescripexe()+"</descripexe>");
-                String photo;
-                String video;
-                if(ep.getPhotoexe().equals("")){
-                    photo = "Bon Courage";
-                }else{
-                    photo = ep.getPhotoexe();
+        
+        
+            response.setContentType("application/xml;charset=UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            try (PrintWriter out = response.getWriter()) {
+                //write the page XML
+                out.println("<?xml version=\"1.0\"?>");
+                out.println("<mesurables>");
+                //get the param
+                String idCli = request.getParameter("idc");
+            try {
+                HashMap<String,String[]> mres = HibernateMethode.evoluationBilan(Integer.parseInt(idCli));
+                for (String mes : mres.keySet()){
+                    out.println("<mes>"
+                            +"<libM>"+mes+"</libM>"
+                            +"<l_res>"
+                                +"<r1>"+ mres.get(mes)[0]+"</r1>"
+                                +"<r2>"+ mres.get(mes)[1]+"</r2>"
+                                +"<r3>"+ mres.get(mes)[2]+"</r3>"
+                            +"</l_res>"
+                        +"</mes>");
                 }
-                if(ep.getVideoexe().equals("")){
-                    video = "Bon Courage";
-                }else{
-                    video = ep.getVideoexe();
-                }
-                out.println("<photoexe>"+photo+"</photoexe>");
-                out.println("<videoexe>"+video+"</videoexe>");
             }
-            catch (Exception ex)
-            {
-                out.println("<erreur>ServletShowExe Erreur - " + ex.getMessage() + "</erreur>");
-            }
-            out.println("</exercise>");
-        }
+                catch (Exception ex)
+                    {
+                        out.println("<erreur>ServletTableProg Erreur - " + ex.getMessage() + "</erreur>");
+                    }
+            out.println("</mesurables>");
+	}
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -5,7 +5,6 @@
  */
 package CtrlServlet;
 
-import Bd.Exerciseperso;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author 21611945
+ * @author 21611924
  */
-public class ServletShowExe extends HttpServlet {
+public class ServletAddPer extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,38 +30,11 @@ public class ServletShowExe extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/xml;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<?xml version=\"1.0\"?>");
-            out.println("<exercise>");
-            String idExe = request.getParameter("idExe");
-            try
-            {
-                Exerciseperso ep = HibernateMethode.showExe(Integer.parseInt(idExe));
-                out.println("<libexe>"+ep.getLibexe()+"</libexe>");
-                out.println("<descripexe>"+ep.getDescripexe()+"</descripexe>");
-                String photo;
-                String video;
-                if(ep.getPhotoexe().equals("")){
-                    photo = "Bon Courage";
-                }else{
-                    photo = ep.getPhotoexe();
-                }
-                if(ep.getVideoexe().equals("")){
-                    video = "Bon Courage";
-                }else{
-                    video = ep.getVideoexe();
-                }
-                out.println("<photoexe>"+photo+"</photoexe>");
-                out.println("<videoexe>"+video+"</videoexe>");
-            }
-            catch (Exception ex)
-            {
-                out.println("<erreur>ServletShowExe Erreur - " + ex.getMessage() + "</erreur>");
-            }
-            out.println("</exercise>");
+        response.setContentType("text/html;charset=UTF-8");
+        String performance = request.getParameter("performance");
+        String idExe = request.getParameter("idExe");
+        HibernateMethode.addPerformance(Integer.parseInt(idExe), performance);
         }
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

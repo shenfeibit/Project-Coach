@@ -9,6 +9,46 @@
         <url-pattern>/ServletAccueilClient</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>ServletAddPer</servlet-name>
+        <servlet-class>CtrlServlet.ServletAddPer</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletAddPer</servlet-name>
+        <url-pattern>/ServletAddPer</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletEndSea</servlet-name>
+        <servlet-class>CtrlServlet.ServletEndSea</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletEndSea</servlet-name>
+        <url-pattern>/ServletEndSea</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletEndSeaPerformance</servlet-name>
+        <servlet-class>CtrlServlet.ServletEndSeaPerformance</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletEndSeaPerformance</servlet-name>
+        <url-pattern>/ServletEndSeaPerformance</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EndSeance</servlet-name>
+        <jsp-file>/HTML/EndSeancejsp.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EndSeance</servlet-name>
+        <url-pattern>/EndSeance</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FunctionEndSeance</servlet-name>
+        <jsp-file>/JS/EndSeance.js</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FunctionEndSeance</servlet-name>
+        <url-pattern>/FunctionEndSeance</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ServletExerciseBySea</servlet-name>
         <servlet-class>CtrlServlet.ServletExerciseBySea</servlet-class>
     </servlet>
@@ -31,7 +71,7 @@
     <servlet-mapping>
         <servlet-name>BeginSeance</servlet-name>
         <url-pattern>/BeginSeance</url-pattern>
-    </servlet-mapping>      
+    </servlet-mapping>
     <servlet>
         <servlet-name>ServletSeanceStandPs</servlet-name>
         <servlet-class>CtrlServlet.ServletSeanceStandPs</servlet-class>
@@ -155,7 +195,7 @@
     <servlet>
         <servlet-name>ServletSeaName</servlet-name>
         <servlet-class>CtrlServlet.ServletSeaName</servlet-class>
-    </servlet>    
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletSeaName</servlet-name>
         <url-pattern>/ServletSeaName</url-pattern>
@@ -167,6 +207,14 @@
     <servlet-mapping>
         <servlet-name>PageClient</servlet-name>
         <url-pattern>/PageClient</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletEvoluation</servlet-name>
+        <servlet-class>CtrlServlet.ServletEvoluation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletEvoluation</servlet-name>
+        <url-pattern>/ServletEvoluation</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
