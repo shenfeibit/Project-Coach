@@ -14,9 +14,9 @@ import java.util.HashMap;
 public class test {
      public static void main (String[] args) throws Exception
         {
-            HibernateMethode.insertMensBilan(7,10,20,12,15,14);
+            boolean h =HibernateMethode.verifSea(8);
 //             for(Integer i : listexe.keySet()){
-//                 System.out.println(res);
+                 System.out.println(h);
              }
 
 

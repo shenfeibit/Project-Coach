@@ -175,7 +175,7 @@ function showinfoCli ()
 
 function click_encours(){
     var idSea = document.getElementById("encours").getAttribute('value');
-    window.location.href="ServletBeginSea?idSea="+idSea;
+    window.location.href="ServletVerifSea?idSea="+idSea;
 }
 
 function click_next(){

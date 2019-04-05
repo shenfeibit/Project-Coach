@@ -38,7 +38,7 @@
                     <span id="time"></span><span id="time_out"></span>
                 </div>
                 <div id="performance">
-                    <h1>performance : </h1>
+                    <h1>Performance : </h1>
                     <table>
                         <tr>
                             <td><div id="easy"><input type="image"  src="IMAGE/performance/easy.png" width ="50" alt="image easy"/></div></td>

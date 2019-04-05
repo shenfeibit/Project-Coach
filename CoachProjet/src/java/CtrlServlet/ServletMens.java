@@ -35,7 +35,7 @@ public class ServletMens extends HttpServlet {
             response.setContentType("application/xml;charset=UTF-8");
             response.setCharacterEncoding("UTF-8");
 
-        try (PrintWriter out = response.getWriter()) {
+        {
             String idSea = request.getParameter("idSea");
             String idBras = request.getParameter("idBras");
             String idPoitrine = request.getParameter("idPoitrine");
@@ -43,6 +43,9 @@ public class ServletMens extends HttpServlet {
             String idHanches = request.getParameter("idHanches");
             String idCuisses = request.getParameter("idCuisses");
 
+            //create session
+            HttpSession ses = request.getSession(true);
+            ses.setAttribute("idSea", idSea);
             String avertissement="";
 
             if(idBras.isEmpty()||idPoitrine.isEmpty()||idTaille.isEmpty()||idHanches.isEmpty()||idCuisses.isEmpty()){
@@ -56,9 +59,9 @@ public class ServletMens extends HttpServlet {
                         Double.parseDouble(idTaille),
                         Double.parseDouble(idHanches),
                         Double.parseDouble(idCuisses));
-                    response.sendRedirect("FreqMens");
+                    response.sendRedirect("BeginSeaPer");
                 }catch (Exception ex){
-                        RequestDispatcher rd = request.getRequestDispatcher("FreqMens");
+                        RequestDispatcher rd = request.getRequestDispatcher("BeginSeancesBilan");
                         request.setAttribute("erreurReq", ex.getMessage()) ;
                         rd.forward(request, response);
                 }
@@ -66,7 +69,7 @@ public class ServletMens extends HttpServlet {
 
             if (!avertissement.isEmpty()){
                 //On retourne sur la page de saisie. On délègue à la ressource accueil
-                RequestDispatcher rd = request.getRequestDispatcher("FreqMens");
+                RequestDispatcher rd = request.getRequestDispatcher("BeginSeancesBilan");
                 request.setAttribute("avrtMensuration", avertissement);
                 rd.forward(request, response);
             }

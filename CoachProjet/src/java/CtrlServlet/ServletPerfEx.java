@@ -5,22 +5,21 @@
  */
 package CtrlServlet;
 
-import Bd.Client;
-import Bd.Objectif;
 import Module.HibernateMethode;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author 21511708
  */
-public class ServletClientNonPgrm extends HttpServlet {
+public class ServletPerfEx extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,33 +32,38 @@ public class ServletClientNonPgrm extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-response.setContentType("application/xml;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<?xml version=\"1.0\"?>");
-            out.println("<list_idNonPgrm>");
-            ArrayList<Client> listid = HibernateMethode.consultClientNonPgrm();
+            response.setContentType("application/xml;charset=UTF-8");
+            response.setCharacterEncoding("UTF-8");
 
-            for(Client l : listid){
-                out.println("<client>");
-                    out.print("<id>"+l.getIdc()+"</id>");
-                    out.println("<nom>"+l.getNomc()+"</nom>");
-                    out.println("<prenom>"+l.getPrenomc()+"</prenom>");
-                    out.println("<sexe>"+l.getSexec()+"</sexe>");
-                    out.println("<image>"+l.getPhotoc()+"</image>");
-                    out.println("<liste_obj>");
-                        ArrayList<Objectif> l_obj;
-                        l_obj = HibernateMethode.showObjectifCli(l.getIdc());
-                        for (Objectif o : l_obj)
-                        {
-                            out.println("<lib>"+o.getLibobj()+"</lib>");
-                        }
-                        out.println("</liste_obj>");
-                    String datecli = HibernateMethode.showDateDemande(l.getIdc());
-                    out.println("<date>"+datecli+"</date>");
-                    out.println("</client>");
+        try (PrintWriter out = response.getWriter()) {
+            String idSea = request.getParameter("idSea");
+            String idCalme = request.getParameter("idCalme");
+            String idFlex = request.getParameter("idFlex");
+            String idExAll = request.getParameter("idExAll");
+
+
+            String avertissement="";
+
+            if(idCalme.isEmpty()||idFlex.isEmpty()||idExAll.isEmpty()){
+                avertissement = "Veuillez saisir vos informations";
+            }else{
+                try{
+//                    int idSea, String freqCardCalme, String freqCardFlex, String freqCardExAll
+                    HibernateMethode.insrtPerfBilan(Integer.parseInt(idSea),idCalme,idFlex,idExAll);
+                    response.sendRedirect("FreqMens");
+                }catch (Exception ex){
+                        RequestDispatcher rd = request.getRequestDispatcher("FreqMens");
+                        request.setAttribute("erreurReqBil", ex.getMessage()) ;
+                        rd.forward(request, response);
+                }
             }
 
-            out.println("</list_idNonPgrm>");
+            if (!avertissement.isEmpty()){
+                //On retourne sur la page de saisie. On délègue à la ressource accueil
+                RequestDispatcher rd = request.getRequestDispatcher("FreqMens");
+                request.setAttribute("avrtPerf", avertissement);
+                rd.forward(request, response);
+            }
         }
     }
 

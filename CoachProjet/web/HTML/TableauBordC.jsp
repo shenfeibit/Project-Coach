@@ -94,6 +94,5 @@ and open the template in the editor.
         
         <!--the button for turn back to the previous page-->
         <div id="bt_ctrl_back"> <input class="l_btn" type="button" value="Back" /></div>
-        
     </body>
 </html>

@@ -432,5 +432,33 @@ public static void insrtPerfBilan(int idSea, String freqCardCalme, String freqCa
     tc.commit();
 }
 
+public static void enregisterDureereal(String idexo, String duree, String nbrepet){
+    Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+    Transaction tc = ses.beginTransaction() ;
+    Query q = ses.createQuery("from Exerciseperso as exp where exp.idexe="+idexo);
+    Exerciseperso exp = (Exerciseperso) q.list().get(0);
+    exp.setDureereal(duree);
+    exp.setNbrepetreal(nbrepet);
+    ses.update(exp);
+    tc.commit();
+   }
+
+public static boolean verifSea (int idSea) {
+        Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tc = ses.beginTransaction();
+        Query q = ses.createQuery("from Seanceperso as s where s.idsea = " + idSea);
+        Seanceperso se = new Seanceperso();
+        se = (Seanceperso) q.list().get(0);
+        tc.commit();
+        if(se.getTypesea().equals("bilan")){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }
+
+
+
+

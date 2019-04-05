@@ -4,6 +4,14 @@
         <servlet-name>ServletAccueilClient</servlet-name>
         <servlet-class>CtrlServlet.ServletAccueilClient</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletPerfEx</servlet-name>
+        <servlet-class>CtrlServlet.ServletPerfEx</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletPerfEx</servlet-name>
+        <url-pattern>/ServletPerfEx</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletAccueilClient</servlet-name>
         <url-pattern>/ServletAccueilClient</url-pattern>
@@ -11,6 +19,22 @@
     <servlet>
         <servlet-name>FreqMens</servlet-name>
         <jsp-file>/HTML/FreqMens.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletVerifSea</servlet-name>
+        <servlet-class>CtrlServlet.ServletVerifSea</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BeginSeancesBilan</servlet-name>
+        <jsp-file>/HTML/BeginSeancesBilan.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>PerformanceMens</servlet-name>
+        <jsp-file>/JS/PerformanceMens.js</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>BeginSeaPer</servlet-name>
+        <jsp-file>/HTML/BeginSeaPer.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>FreqMens</servlet-name>
@@ -191,6 +215,22 @@
     <servlet-mapping>
         <servlet-name>PageClient</servlet-name>
         <url-pattern>/PageClient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletVerifSea</servlet-name>
+        <url-pattern>/ServletVerifSea</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BeginSeancesBilan</servlet-name>
+        <url-pattern>/BeginSeancesBilan</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PerformanceMens</servlet-name>
+        <url-pattern>/PerformanceMens</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BeginSeaPer</servlet-name>
+        <url-pattern>/BeginSeaPer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

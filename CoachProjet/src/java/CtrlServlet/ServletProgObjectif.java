@@ -33,7 +33,6 @@ public class ServletProgObjectif extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        
             response.setContentType("application/xml;charset=UTF-8");
             try (PrintWriter out = response.getWriter()) {
                 //write the page XML
