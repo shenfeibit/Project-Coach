@@ -9,10 +9,10 @@ function showPerformance(){
             var rep = xhr.responseXML;
             var l_exe = rep.getElementsByTagName("exe");
             
-            var texte = "<table><tr><th>Exercise</th></tr><tr><th>Performance</th></tr>";
+            var texte = "<table border=\"1\"><tr><td>Exercise</td><td>Performance</td></tr>";
             for(var i=0;i<l_exe.length;i++){
                 var exe = l_exe[i].children;
-                texte+="<tr><td>"+exe[0].firstChild.nodeValue+"</td><td>";
+                texte+="<tr><td>"+exe[0].firstChild.nodeValue+"</td>";
                 texte+="<td>"+exe[1].firstChild.nodeValue+"</td></tr>";
             }
             texte+="</table>";
