@@ -516,4 +516,15 @@ public static void finishSeance (int idSea) {
         ses.update(sp);
         tc.commit();
     }
+
+public static int showIdCli (int idSea){
+    Session ses = HibernateUtil.getSessionFactory().getCurrentSession();
+    Transaction tc = ses.beginTransaction();
+    Query q = ses.createQuery( " from Programmeperso as pp where pp.idpp in (select programmeperso from Seanceperso as sp where sp.idsea="+idSea+")" );
+    List<Programmeperso> lpp = (List<Programmeperso>) q.list();
+    Programmeperso pp = lpp.get(0);
+    int idCli = pp.getClient().getIdc();
+    tc.commit();
+    return idCli;
+    }
 }

@@ -4,6 +4,10 @@
         <servlet-name>ServletAccueilClient</servlet-name>
         <servlet-class>CtrlServlet.ServletAccueilClient</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletReturnPageClient</servlet-name>
+        <servlet-class>CtrlServlet.ServletReturnPageClient</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletAccueilClient</servlet-name>
         <url-pattern>/ServletAccueilClient</url-pattern>
@@ -215,6 +219,10 @@
     <servlet-mapping>
         <servlet-name>ServletEvoluation</servlet-name>
         <url-pattern>/ServletEvoluation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletReturnPageClient</servlet-name>
+        <url-pattern>/ServletReturnPageClient</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

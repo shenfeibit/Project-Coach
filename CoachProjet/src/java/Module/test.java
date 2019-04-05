@@ -30,5 +30,5 @@ public class test {
                 }
                 System.out.println("<photoexe>"+photo+"</photoexe>");
 
-}
-}
+}}
+

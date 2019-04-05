@@ -523,7 +523,7 @@ function evoluation(elt){
                 var res = xhr.responseXML;
                 var l_mes = res.getElementsByTagName("mes");
                 
-                var texte ="<table><tr><td>Mesure</td><td>Bilan N°1</td><td>Bilan Dernier</td><td>Evoluation</td></tr>";
+                var texte ="<table border=\"1\"><tr><td>Mesure</td><td>Bilan N°1</td><td>Bilan Dernier</td><td>Evoluation</td></tr>";
                 for(var i=0; i<l_mes.length; i++){
                     var mes=l_mes[i];
                     texte+="<tr><td>"+mes.children[0].firstChild.nodeValue;+"</td>";

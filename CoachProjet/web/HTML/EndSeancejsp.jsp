@@ -24,5 +24,8 @@
         </div>
         <h2>Félicitation, vous avez bien fait !</h2>
         <div id='res_performance'></div>
+        <%
+            out.println("<a id='return' href='ServletReturnPageClient?idSea="+idSea+"'>Return</a>");
+        %>
     </body>
 </html>
