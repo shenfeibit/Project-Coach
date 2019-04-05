@@ -64,7 +64,7 @@
                         <div class="form-group">
                         <%
                             String idSea = request.getParameter("idSea");
-                            out.println("<input type='text' name='idSea' value='"+idSea+"'>");
+                            out.println("<input type='hidden' name='idSea' value='"+idSea+"'>");
                         %>
                         <input type="submit" class="btnSubmitMens" value="Enregistrer" /> 
                         

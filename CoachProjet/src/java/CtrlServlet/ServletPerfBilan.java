@@ -35,7 +35,7 @@ public class ServletPerfBilan extends HttpServlet {
             response.setContentType("application/xml;charset=UTF-8");
             response.setCharacterEncoding("UTF-8");
 
-        try (PrintWriter out = response.getWriter()) {
+        {
             String idSea = request.getParameter("idSea");
             String idCalme = request.getParameter("idCalme");
             String idFlex = request.getParameter("idFlex");
@@ -50,9 +50,9 @@ public class ServletPerfBilan extends HttpServlet {
                 try{
 //                    int idSea, String freqCardCalme, String freqCardFlex, String freqCardExAll
                     HibernateMethode.insrtPerfBilan(Integer.parseInt(idSea),idCalme,idFlex,idExAll);
-                    response.sendRedirect("FreqMens");
+                    response.sendRedirect("BeginSeaBilanExo");
                 }catch (Exception ex){
-                        RequestDispatcher rd = request.getRequestDispatcher("FreqMens");
+                        RequestDispatcher rd = request.getRequestDispatcher("BeginSeaPer");
                         request.setAttribute("erreurReqBil", ex.getMessage()) ;
                         rd.forward(request, response);
                 }
@@ -60,7 +60,7 @@ public class ServletPerfBilan extends HttpServlet {
 
             if (!avertissement.isEmpty()){
                 //On retourne sur la page de saisie. On délègue à la ressource accueil
-                RequestDispatcher rd = request.getRequestDispatcher("FreqMens");
+                RequestDispatcher rd = request.getRequestDispatcher("BeginSeaPer");
                 request.setAttribute("avrtPerf", avertissement);
                 rd.forward(request, response);
             }

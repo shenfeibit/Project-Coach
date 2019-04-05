@@ -4,14 +4,6 @@
         <servlet-name>ServletAccueilClient</servlet-name>
         <servlet-class>CtrlServlet.ServletAccueilClient</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ServletPerfEx</servlet-name>
-        <servlet-class>CtrlServlet.ServletPerfEx</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletPerfEx</servlet-name>
-        <url-pattern>/ServletPerfEx</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletAccueilClient</servlet-name>
         <url-pattern>/ServletAccueilClient</url-pattern>
@@ -35,6 +27,10 @@
     <servlet>
         <servlet-name>BeginSeaPer</servlet-name>
         <jsp-file>/HTML/BeginSeaPer.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>BeginSeaBilanExo</servlet-name>
+        <jsp-file>/HTML/BeginSeaBilanExo.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>FreqMens</servlet-name>
@@ -231,6 +227,10 @@
     <servlet-mapping>
         <servlet-name>BeginSeaPer</servlet-name>
         <url-pattern>/BeginSeaPer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BeginSeaBilanExo</servlet-name>
+        <url-pattern>/BeginSeaBilanExo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
