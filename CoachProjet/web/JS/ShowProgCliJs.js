@@ -147,7 +147,7 @@ function showinfoCli ()
                 for (var i =0; i < l_obj.length; i++){       
                     lib += l_obj[i].firstChild.nodeValue + "</br>";                    
                 }
-                lib+="</span>";
+                lib+="</span></br>";
                 var texte = lib+nom[0].firstChild.nodeValue + " " 
                         + prenom[0].firstChild.nodeValue + "</br>" 
                         + sexe[0].firstChild.nodeValue + "</br>" 

@@ -43,10 +43,9 @@ and open the template in the editor.
         <div id="detailCli">
             <div><input id="idClient" type="text" value="" /></div>
             <div>
-                <div id="image"></div>
-                
+                <div id="image"></div>                
                 <div id="descp"><p>the informations of the client</p></div>
-                <div id="objectif"><p id="libobj">client's objectif</p></div>
+                <div id="evoluation"></div>
             </div>
         </div>
         
