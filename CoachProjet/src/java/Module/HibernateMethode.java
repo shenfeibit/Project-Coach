@@ -326,6 +326,7 @@ public static HashMap<Integer,Exerciseperso> showExePersoBySea(int idSea){
             List<Exerciseperso> lexe = (List<Exerciseperso>) q.list();
             for(Exerciseperso exe: lexe){
                 l_exep.put(exe.getOrdreexe(), exe);
+                exe.getLibexe();
             }
             tc.commit();
             return l_exep;
