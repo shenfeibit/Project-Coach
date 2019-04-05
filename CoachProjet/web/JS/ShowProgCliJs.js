@@ -222,13 +222,15 @@ function evoluation(){
         };
         xhr.send();
 }
-
+function load(){
+    showinfoCli();
+    evoluation();
+    afficheProgression();
+    affichePP();
+}
 //the events corresponding for each function
 document.addEventListener("DOMContentLoaded", () => {
-    window.addEventListener("load",showinfoCli);
-    window.addEventListener("load",evoluation);
-    window.addEventListener("load",afficheProgression);
-    window.addEventListener("load",affichePP);
+    window.addEventListener("load",load);
 });
 
 
