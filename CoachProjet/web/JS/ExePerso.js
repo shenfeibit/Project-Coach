@@ -1,11 +1,27 @@
+/**
+ * 
+ * this page javascript is used for the manage the re-actions of the page for BeginSeance
+ */
+
+
+//des globle variables, which indice the order of excercise
 var order;
+//the total number of exercises
 var order_length;
+//the exercise in turn
 var idExe;
+//all the exercises for this seance
 var listExe;
-//count the time
+
+//variables used to count the time
 var i=0;
 var x;
-var perfo;
+var temps;
+
+/**
+ * 
+ * function used to show all the information of the exercise in turn
+ */
 function showExe(){
         var xhr = new XMLHttpRequest();
 	xhr.open("GET","ServletShowExe?idExe="+ idExe);
@@ -45,6 +61,7 @@ function showExe(){
     xhr.send();
 };
 
+//we can back to the exercise before by this function
 function showLeftExe(){
         order -= 1;
         idExe = listExe[order].children[1].firstChild.nodeValue;
@@ -55,6 +72,7 @@ function showLeftExe(){
         showExe();
 }
 
+//we can do the next exercise by this function
 function showRightExe(){
         order -= 1;
         order += 2;
@@ -65,7 +83,10 @@ function showRightExe(){
         document.getElementById("hard").checked=false;
         showExe();
 }
-
+/**
+ * 
+ * function used to get the name of the seance and show in the page
+ */
 function showSeaName(){
     var xhr = new XMLHttpRequest();
     
@@ -89,10 +110,13 @@ function showSeaName(){
             showExe();
             }               
 	};
-    xhr.send();
-    
+    xhr.send();    
 }
 
+/**
+ * 
+ * function used to pure the count the time
+ */
 function timebegin(){
     i=0;
     x=setInterval(function(){
@@ -110,10 +134,18 @@ function timebegin(){
     },1000);
 };
 
+/**
+ * 
+ * function used to stop the time controle
+ */
 function timeend(){
     clearInterval(x);
 }
 
+/**
+ * 
+ * function used to controle whether the exercise is the last
+ */
 function continu(){
     if(parseInt(order)>=parseInt(order_length-1)){
         document.getElementById("btn_Right").disabled=true;
@@ -129,6 +161,10 @@ function continu(){
     perfo = this.value;
 }
 
+/**
+ * 
+ * function used to save each performance for exercises in the data base
+ */
 function addPerformance(){
     var xhr = new XMLHttpRequest();
     var performance = null;
@@ -146,6 +182,10 @@ function addPerformance(){
     xhr.send();   
 }
 
+/**
+ * 
+ * function used to save all the performances in the data base
+ */
 function addPerformancefinal(){
     var xhr = new XMLHttpRequest();
     var performance = null;
@@ -162,6 +202,10 @@ function addPerformancefinal(){
     xhr.send();   
 }
 
+/**
+ * 
+ * function to finish the seance
+ */
 function finish_seance(){
     var idSea = document.getElementById("idSea").value;
     window.location.href="ServletEndSea?idSea="+idSea;

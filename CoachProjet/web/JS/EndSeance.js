@@ -1,3 +1,13 @@
+/**
+ * 
+ * this page javascript is used for the manage the re-actions of the page for EndSeance
+ * when we finish the seance, the results will be showed in this page
+ */
+
+/**
+ * 
+ * function used to show all the performances for different exeercises of this seances
+ */
 function showPerformance(){
     var xhr = new XMLHttpRequest();
     var idSea = document.getElementById("idSea").value;
@@ -26,6 +36,10 @@ function showPerformance(){
     
 }
 
+/**
+ * 
+ * fuction used to ger and show the name of seance
+ */
 function showSeaName(){
     var xhr = new XMLHttpRequest();
     

@@ -1,7 +1,7 @@
 <%-- 
     Document   : BeginSeance
     Created on : 3 avr. 2019, 11:36:46
-    Author     : 21611943
+    Author     : Jiayu
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

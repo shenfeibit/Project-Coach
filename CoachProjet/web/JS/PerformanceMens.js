@@ -1,3 +1,12 @@
+/**
+ * 
+ * this page javascript is used to support the page BeginSeaBilanExo
+ */
+
+/**
+ * 
+ * shows the informataiton of seance bilan
+ */
 function showSeaName(){
     var xhr = new XMLHttpRequest();
     var idSea = document.getElementById("idSea").value;

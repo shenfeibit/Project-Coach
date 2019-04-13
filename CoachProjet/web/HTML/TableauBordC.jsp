@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<%-- 
+    Document   : PageClient
+    Created on : 2 avr. 2019, 16:19:05
+    Author     : Nass/Tong/Jiayu/Fei
+--%>
 <html>
     <!-- the head of the page which identify the style and javascript-->
     <head>

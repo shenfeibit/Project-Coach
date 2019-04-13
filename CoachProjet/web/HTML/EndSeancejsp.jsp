@@ -1,7 +1,7 @@
 <%-- 
     Document   : EndSeancejsp
     Created on : 4 avr. 2019, 18:19:46
-    Author     : 21611924
+    Author     : Jiayu
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

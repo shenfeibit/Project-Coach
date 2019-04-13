@@ -1,3 +1,8 @@
+/**
+ * 
+ * this page javascript is used for the manage the re-actions of the page for PageClient
+ */
+
 // Function which return tne program perso and her seance perso
 function affichePP ()
 	{
@@ -166,12 +171,13 @@ function showinfoCli ()
         
     }
     
-
+//function to do the seance in turn
 function click_encours(){
     var idSea = document.getElementById("encours").getAttribute('value');
     window.location.href="ServletVerifSea?idSea="+idSea;
 }
 
+//function to consult the details of next seance
 function click_next(){
     var idSea = document.getElementById("next").getAttribute('value');
     var xhr = new XMLHttpRequest();
@@ -194,6 +200,7 @@ function click_next(){
     xhr.send();
 }
 
+//function to show the evoluation of performance of seance bilan
 function evoluation(){
     var xhr = new XMLHttpRequest();
         var param=encodeURIComponent(document.getElementById("idClient").value);
@@ -216,19 +223,20 @@ function evoluation(){
                 }
                 texte += "</table>";
                 var elt = document.getElementById("evoluation");
-                elt.innerHTML = texte;
-                
-            }
-            
+                elt.innerHTML = texte;                
+            }            
         };
         xhr.send();
 }
+
+//function load to solve the problem of 'nested transaction'
 function load(){
     showinfoCli();
     evoluation();
     afficheProgression();
     affichePP();
 }
+
 //the events corresponding for each function
 document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("load",load);

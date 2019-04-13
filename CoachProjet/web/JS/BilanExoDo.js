@@ -1,12 +1,27 @@
+/**
+ * 
+ * this page javascript is used for the manage the re-actions of the page for BeginSeanceBilan
+ */
+
+
+//des globle variables, which indice the order of excercise
 var order;
+//the total number of exercises
 var order_length;
+//the exercise in turn
 var idExe;
+//all the exercises for this seance
 var listExe;
-//count the time
+
+//variables used to count the time
 var i=0;
 var x;
 var temps;
 
+/**
+ * 
+ * function used to get the name of the seance and show in the page
+ */
 function showSeaName(){
     var xhr = new XMLHttpRequest();
     var idSea = document.getElementById("idSea").value;
@@ -32,6 +47,10 @@ function showSeaName(){
     xhr.send();
 }
 
+/**
+ * 
+ * function used to show all the information of the exercise in turn
+ */
 function showExe(){
         var xhr = new XMLHttpRequest();
 	xhr.open("GET","ServletShowExe?idExe="+ idExe);
@@ -59,10 +78,12 @@ function showExe(){
                 document.getElementById("nbrep").value="";
                 temps="";
                 
+                //if this is the last exercise, client can finish the seance by the button termier
                 if(parseInt(order)>=parseInt(order_length-1)){
                     document.getElementById("suivant").type="hidden";
                     document.getElementById("Terminer").type="button";
                 }
+                //if this is not the last exercise, client can do the next
                 else{
                     document.getElementById("suivant").type="button";
                     document.getElementById("Terminer").type="hidden";
@@ -72,6 +93,10 @@ function showExe(){
     xhr.send();
 };
 
+/**
+ * 
+ * function used to ger the next exercise (when client click next)
+ */
 function addparam(){
         var xhr = new XMLHttpRequest();
         var duree = encodeURIComponent(temps);
@@ -88,6 +113,10 @@ function addparam(){
         
 }
 
+/**
+ * 
+ * function to finish the seance and save the date and paramaters in the data base
+ */
 function finish(){
         var xhr = new XMLHttpRequest();
         var duree = encodeURIComponent(temps);
@@ -96,16 +125,25 @@ function finish(){
 	xhr.open("GET","ServletEnregBilan?idExe="+ idExe+"&duree="+duree+"&nbrep="+nbrept);
         xhr.send();
         document.getElementById("exercise").innerHTML="<h1>Bravo, vous avez terminez le séance!</h1>";
+        
+        endPerformance();
 }
 
+/**
+ * 
+ * function used to save all the performances in the data base
+ */
 function endPerformance(){
     var xhr = new XMLHttpRequest();
     var idSea = document.getElementById("idSea").value;
     xhr.open("GET","ServletEndSeaPerformance?idSea="+idSea);
     xhr.send();
-    
 }
 
+/**
+ * 
+ * function used to pure the count the time
+ */
 function timebegin(){
     i=0;
     x=setInterval(function(){
@@ -124,6 +162,10 @@ function timebegin(){
     },1000);
 };
 
+/**
+ * 
+ * function used to stop the time controle
+ */
 function timeend(){
     clearInterval(x);
 }
@@ -142,8 +184,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("time_end").addEventListener("click",timeend);
         document.getElementById("suivant").addEventListener("click",addparam);
         document.getElementById("Terminer").addEventListener("click",finish);
-        document.getElementById("Terminer").addEventListener("click",endPerformance);
-        
 });
 
 
